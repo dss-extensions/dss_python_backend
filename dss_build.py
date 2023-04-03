@@ -1,6 +1,6 @@
 from cffi import FFI
 import sys, re, os
-from dss_setup_common import PLATFORM_FOLDER, DSS_VERSIONS
+from dss_setup_common import PLATFORM_FOLDER
 
 def process_header(src, extern_py=False, implement_py=False, prefix=''):
     '''Prepare the DSS C-API headers for parsing and building with CFFI'''
@@ -76,7 +76,7 @@ ffi_builders = {}
 src_path = os.environ.get('SRC_DIR', '')
 DSS_CAPI_PATH = os.environ.get('DSS_CAPI_PATH', os.path.join(src_path, '..', 'dss_capi'))
     
-for version in DSS_VERSIONS:
+for version in ('', 'd'):
     ffi_builder_dss = FFI()
     debug = 'd' if version.endswith('d') else ''
 
@@ -165,9 +165,8 @@ for user_model in user_models:
         
 # Is there a better way to do this? Unfortunately setup(cffi_modules=...)
 # needs a list of strings and cannot handle objects directly
-ffi_builder_v7 = ffi_builders['v7']
-ffi_builder_v7d = ffi_builders['v7d']
-# ffi_builder_v8 = ffi_builders['v8']
+ffi_builder_ = ffi_builders['']
+ffi_builder_d = ffi_builders['d']
 ffi_builder_GenUserModel = ffi_builders['GenUserModel']
 #ffi_builder_PVSystemUserModel = ffi_builders['PVSystemUserModel']
 #ffi_builder_StoreDynaModel = ffi_builders['StoreDynaModel']

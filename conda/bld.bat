@@ -1,4 +1,4 @@
-REM Build dss_python
+REM Build dss_python_backend
 rd /s /q build 
 rd /s /q dist
 rd /s /q .eggs

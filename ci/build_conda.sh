@@ -1,4 +1,4 @@
-cd dss_python
+cd dss_python_backend
 
 if [ "$RUNNER_OS" = "Windows" ]; then
     CONDA=`cygpath "$CONDA"`
@@ -6,12 +6,12 @@ if [ "$RUNNER_OS" = "Windows" ]; then
 fi
 
 export PATH=$CONDA:$CONDA/bin:$CONDA/scripts:$PATH
-export DSS_PYTHON_MANYLINUX=0
+export DSS_PYTHON_BACKEND_MANYLINUX=0
 
 source $CONDA/etc/profile.d/conda.sh
 
 # Update the recipe
-DSS_PYTHON_PREPARE_BOA=1 python setup.py
+DSS_PYTHON_BACKEND_PREPARE_BOA=1 python setup.py
 
 conda config --set always_yes yes --set changeps1 no
 conda config --add channels conda-forge

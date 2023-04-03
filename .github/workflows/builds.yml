@@ -30,27 +30,25 @@ jobs:
     steps: 
       - name: 'Checkout'
         run: |
-          git clone $GITHUB_SERVER_URL/$GITHUB_REPOSITORY dss_python
-          cd dss_python
+          git clone $GITHUB_SERVER_URL/$GITHUB_REPOSITORY dss_python_backend
+          cd dss_python_backend
           git checkout $GITHUB_SHA
       - name: 'Download/extract DSS C-API binaries'
         run: |
           curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/dss_capi_${DSS_CAPI_TAG}_linux_x64.tar.gz -o dss_capi.tar.gz
-          curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/messages.tar.gz -o messages.tar.gz
           tar zxf dss_capi.tar.gz
-          cd dss_python/dss
-          tar zxf ../../messages.tar.gz
+          cd dss_python_backend/dss
       - name: Build wheel
         run: |
           mkdir -p artifacts
           mkdir -p artifacts_raw
-          bash dss_python/ci/build_linux.sh x64
+          bash dss_python_backend/ci/build_linux.sh x64
       # - name: Build conda packages
       #   continue-on-error: true
       #   run: |
-      #     bash dss_python/ci/build_conda.sh
+      #     bash dss_python_backend/ci/build_conda.sh
       - name: Try installing the wheel
-        run: bash dss_python/ci/test_wheel.sh
+        run: bash dss_python_backend/ci/test_wheel.sh
       - name: 'Upload artifacts'
         uses: "actions/upload-artifact@v2"
         with:
@@ -66,8 +64,8 @@ jobs:
     steps: 
       - name: 'Checkout'
         run: |
-          git clone $GITHUB_SERVER_URL/$GITHUB_REPOSITORY dss_python
-          cd dss_python
+          git clone $GITHUB_SERVER_URL/$GITHUB_REPOSITORY dss_python_backend
+          cd dss_python_backend
           git checkout $GITHUB_SHA
       - name: 'Setup Docker'
         run: |
@@ -75,15 +73,13 @@ jobs:
       - name: 'Download/extract DSS C-API binaries'
         run: |
           curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/dss_capi_${DSS_CAPI_TAG}_linux_x86.tar.gz -o dss_capi.tar.gz
-          curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/messages.tar.gz -o messages.tar.gz
           tar zxf dss_capi.tar.gz
-          cd dss_python/dss
-          tar zxf ../../messages.tar.gz
+          cd dss_python_backend/dss
       - name: Build wheel
         run: |
           mkdir -p artifacts
           mkdir -p artifacts_raw
-          docker run -e GITHUB_SHA -e GITHUB_REF -e DSS_CAPI_PATH=/build/dss_capi -v "${PWD}:/build" -w /build $DOCKER_IMAGE bash /build/dss_python/ci/build_linux.sh x86
+          docker run -e GITHUB_SHA -e GITHUB_REF -e DSS_CAPI_PATH=/build/dss_capi -v "${PWD}:/build" -w /build $DOCKER_IMAGE bash /build/dss_python_backend/ci/build_linux.sh x86
       - name: 'Upload artifacts'
         uses: "actions/upload-artifact@v2"
         with:
@@ -101,26 +97,24 @@ jobs:
       - uses: actions/checkout@v2
         with: 
           fetch-depth: 0
-          path: 'dss_python'
+          path: 'dss_python_backend'
       - name: 'Download/extract DSS C-API binaries'
         run: |
           curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/dss_capi_${DSS_CAPI_TAG}_darwin_x64.tar.gz -o dss_capi.tar.gz
-          curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/messages.tar.gz -o messages.tar.gz
           tar zxf dss_capi.tar.gz
-          cd dss_python/dss
-          tar zxf ../../messages.tar.gz
+          cd dss_python_backend/dss
       - name: 'Download macOS SDK 10.13'
         run: |
           curl -s -L https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.13.sdk.tar.xz -o macOSsdk.tar.xz
           tar xf macOSsdk.tar.xz
       - name: Build wheel
         run: |
-          bash dss_python/ci/build_wheel.sh
+          bash dss_python_backend/ci/build_wheel.sh
       # - name: Build conda packages
       #   continue-on-error: true
       #   run: |
       #     sudo chown -R $UID $CONDA
-      #     bash dss_python/ci/build_conda.sh
+      #     bash dss_python_backend/ci/build_conda.sh
       - name: 'Upload artifacts'
         uses: "actions/upload-artifact@v2"
         with:
@@ -141,26 +135,24 @@ jobs:
       - uses: actions/checkout@v2
         with: 
           fetch-depth: 0
-          path: 'dss_python'
+          path: 'dss_python_backend'
       - name: 'Download/extract DSS C-API binaries'
         run: |
           curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/dss_capi_${DSS_CAPI_TAG}_darwin_arm64.tar.gz -o dss_capi.tar.gz
-          curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/messages.tar.gz -o messages.tar.gz
           tar zxf dss_capi.tar.gz
-          cd dss_python/dss
-          tar zxf ../../messages.tar.gz
+          cd dss_python_backend/dss
       # - name: 'Download macOS SDK 10.13'
       #   run: |
       #     curl -s -L https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.13.sdk.tar.xz -o macOSsdk.tar.xz
       #     tar xf macOSsdk.tar.xz
       - name: Build wheel
         run: |
-          bash dss_python/ci/build_wheel.sh
+          bash dss_python_backend/ci/build_wheel.sh
       # - name: Build conda packages
       #   continue-on-error: true
       #   run: |
       #     sudo chown -R $UID $CONDA
-      #     bash dss_python/ci/build_conda.sh
+      #     bash dss_python_backend/ci/build_conda.sh
       - name: 'Upload artifacts'
         uses: "actions/upload-artifact@v2"
         with:
@@ -178,24 +170,22 @@ jobs:
       - uses: actions/checkout@v2
         with: 
           fetch-depth: 0
-          path: 'dss_python'
+          path: 'dss_python_backend'
       - name: 'Download/extract DSS C-API binaries'
         shell: cmd
         run: |
           "c:\Program Files\Git\mingw64\bin\curl" -s -L https://github.com/dss-extensions/dss_capi/releases/download/%DSS_CAPI_TAG%/dss_capi_%DSS_CAPI_TAG%_win_x64.zip -o dss_capi.zip
-          "c:\Program Files\Git\mingw64\bin\curl" -s -L https://github.com/dss-extensions/dss_capi/releases/download/%DSS_CAPI_TAG%/messages.zip -o messages.zip
           7z x -y -o. dss_capi.zip
-          cd dss_python\dss
-          tar zxf ..\..\messages.zip
+          cd dss_python_backend\dss
       - name: Build wheel
         shell: bash
         run: |
-          bash dss_python/ci/build_wheel.sh
+          bash dss_python_backend/ci/build_wheel.sh
       # - name: Build conda packages
       #   continue-on-error: true
       #   shell: bash
       #   run: |
-      #     bash dss_python/ci/build_conda.sh
+      #     bash dss_python_backend/ci/build_conda.sh
       - name: 'Upload artifacts'
         uses: "actions/upload-artifact@v2"
         with:
@@ -213,7 +203,7 @@ jobs:
       - uses: actions/checkout@v2
         with: 
           fetch-depth: 0
-          path: 'dss_python'
+          path: 'dss_python_backend'
       - uses: actions/setup-python@v2
         with:
           python-version: '3.7'
@@ -222,14 +212,12 @@ jobs:
         shell: cmd
         run: |
           "c:\Program Files\Git\mingw64\bin\curl" -s -L https://github.com/dss-extensions/dss_capi/releases/download/%DSS_CAPI_TAG%/dss_capi_%DSS_CAPI_TAG%_win_x86.zip -o dss_capi.zip
-          "c:\Program Files\Git\mingw64\bin\curl" -s -L https://github.com/dss-extensions/dss_capi/releases/download/%DSS_CAPI_TAG%/messages.zip -o messages.zip
           7z x -y -o. dss_capi.zip
-          cd dss_python\dss
-          tar zxf ..\..\messages.zip
+          cd dss_python_backend\dss
       - name: Build wheel
         shell: bash
         run: |
-          bash dss_python/ci/build_wheel.sh
+          bash dss_python_backend/ci/build_wheel.sh
       - name: 'Upload artifacts'
         uses: "actions/upload-artifact@v2"
         with:

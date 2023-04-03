@@ -113,10 +113,9 @@ ENV/
 README.rst
 
 conda_wheels/
-dss/*.lib
-dss/**/*.h
-dss/**/*.hpp
-dss/messages/*
+dss_python_backend/*.lib
+dss_python_backend/**/*.h
+dss_python_backend/**/*.hpp
 
 *.CSV
 *.lib

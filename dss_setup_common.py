@@ -20,8 +20,6 @@ if ('-arm64' in os.environ.get('_PYTHON_HOST_PLATFORM', '')) or platform.machine
 platform_short = ''.join(filter(lambda ch: ch.isalpha(), sys.platform))
 PLATFORM_FOLDER = '{}_{}'.format(platform_short, arch)
 
-DSS_VERSIONS = ('v7', 'v7d')
-
 if sys.platform == 'win32':
     DLL_SUFFIX = '.dll'
     DLL_PREFIX = ''
