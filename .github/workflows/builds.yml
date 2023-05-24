@@ -88,10 +88,10 @@ jobs:
 
   build_macos_x64:
     name: 'macOS x64'
-    runs-on: 'macos-10.15'
+    runs-on: 'macos-11'
     env:
       DSS_CAPI_PATH: '${{ github.workspace }}/dss_capi'
-      SDKROOT: '${{ github.workspace }}/MacOSX10.13.sdk'
+      #SDKROOT: '${{ github.workspace }}/MacOSX10.13.sdk'
       PYTHON: python3
     steps:
       - uses: actions/checkout@v2
@@ -103,10 +103,10 @@ jobs:
           curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/dss_capi_${DSS_CAPI_TAG}_darwin_x64.tar.gz -o dss_capi.tar.gz
           tar zxf dss_capi.tar.gz
           cd dss_python_backend/dss_python_backend
-      - name: 'Download macOS SDK 10.13'
-        run: |
-          curl -s -L https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.13.sdk.tar.xz -o macOSsdk.tar.xz
-          tar xf macOSsdk.tar.xz
+      # - name: 'Download macOS SDK 10.13'
+      #   run: |
+      #     curl -s -L https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.13.sdk.tar.xz -o macOSsdk.tar.xz
+      #     tar xf macOSsdk.tar.xz
       - name: Build wheel
         run: |
           bash dss_python_backend/ci/build_wheel.sh
