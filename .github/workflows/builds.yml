@@ -3,7 +3,7 @@ name: Builds
 # TODO: generalize steps
 
 env:
-  DSS_CAPI_TAG: '0.13.1'
+  DSS_CAPI_TAG: '0.13.2'
   ARTIFACTS_FOLDER: '${{ github.workspace }}/artifacts'
 
 on: 
@@ -50,7 +50,7 @@ jobs:
       - name: Try installing the wheel
         run: bash dss_python_backend/ci/test_wheel.sh
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v3"
         with:
           name: 'packages'
           path: '${{ github.workspace }}/artifacts'
@@ -81,20 +81,20 @@ jobs:
           mkdir -p artifacts_raw
           docker run -e GITHUB_SHA -e GITHUB_REF -e DSS_CAPI_PATH=/build/dss_capi -v "${PWD}:/build" -w /build $DOCKER_IMAGE bash /build/dss_python_backend/ci/build_linux.sh x86
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v3"
         with:
           name: 'packages'
           path: '${{ github.workspace }}/artifacts'
 
   build_macos_x64:
     name: 'macOS x64'
-    runs-on: 'macos-10.15'
+    runs-on: 'macos-11'
     env:
       DSS_CAPI_PATH: '${{ github.workspace }}/dss_capi'
-      SDKROOT: '${{ github.workspace }}/MacOSX10.13.sdk'
+      #SDKROOT: '${{ github.workspace }}/MacOSX10.13.sdk'
       PYTHON: python3
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with: 
           fetch-depth: 0
           path: 'dss_python_backend'
@@ -103,10 +103,10 @@ jobs:
           curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/dss_capi_${DSS_CAPI_TAG}_darwin_x64.tar.gz -o dss_capi.tar.gz
           tar zxf dss_capi.tar.gz
           cd dss_python_backend/dss_python_backend
-      - name: 'Download macOS SDK 10.13'
-        run: |
-          curl -s -L https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.13.sdk.tar.xz -o macOSsdk.tar.xz
-          tar xf macOSsdk.tar.xz
+      # - name: 'Download macOS SDK 10.13'
+      #   run: |
+      #     curl -s -L https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.13.sdk.tar.xz -o macOSsdk.tar.xz
+      #     tar xf macOSsdk.tar.xz
       - name: Build wheel
         run: |
           bash dss_python_backend/ci/build_wheel.sh
@@ -116,7 +116,7 @@ jobs:
       #     sudo chown -R $UID $CONDA
       #     bash dss_python_backend/ci/build_conda.sh
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v3"
         with:
           name: 'packages'
           path: '${{ github.workspace }}/artifacts'
@@ -132,7 +132,7 @@ jobs:
       ARCHFLAGS: '-arch arm64'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with: 
           fetch-depth: 0
           path: 'dss_python_backend'
@@ -154,7 +154,7 @@ jobs:
       #     sudo chown -R $UID $CONDA
       #     bash dss_python_backend/ci/build_conda.sh
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v3"
         with:
           name: 'packages'
           path: '${{ github.workspace }}/artifacts'
@@ -167,7 +167,7 @@ jobs:
       DSS_CAPI_PATH: '${{ github.workspace }}\dss_capi'
       PYTHON: python
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with: 
           fetch-depth: 0
           path: 'dss_python_backend'
@@ -187,7 +187,7 @@ jobs:
       #   run: |
       #     bash dss_python_backend/ci/build_conda.sh
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v3"
         with:
           name: 'packages'
           path: '${{ github.workspace }}/artifacts'
@@ -200,11 +200,11 @@ jobs:
       DSS_CAPI_PATH: '${{ github.workspace }}\dss_capi'
       PYTHON: python
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with: 
           fetch-depth: 0
           path: 'dss_python_backend'
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: '3.7'
           architecture: 'x86'
@@ -219,7 +219,7 @@ jobs:
         run: |
           bash dss_python_backend/ci/build_wheel.sh
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v3"
         with:
           name: 'packages'
           path: '${{ github.workspace }}/artifacts'
