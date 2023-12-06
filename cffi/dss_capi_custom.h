@@ -1,5 +1,5 @@
 extern "Python" int32_t dss_python_cb_plot(void* ctx, char* params);
-extern "Python" int32_t dss_python_cb_write(void* ctx, char* messageStr, int32_t messageType);
+extern "Python" int32_t dss_python_cb_write(void* ctx, char* messageStr, int32_t messageType, int64_t messageSize, int32_t messageSubType);
 
 extern "Python" void dss_python_cb_init_controls(void* ctx);
 extern "Python" void dss_python_cb_check_controls(void* ctx);
