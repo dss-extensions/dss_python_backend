@@ -3,7 +3,7 @@ name: Builds
 # TODO: generalize steps
 
 env:
-  DSS_CAPI_TAG: '0.13.4'
+  DSS_CAPI_TAG: '0.14.0b1'
   ARTIFACTS_FOLDER: '${{ github.workspace }}/artifacts'
 
 on: 
@@ -206,7 +206,7 @@ jobs:
           path: 'dss_python_backend'
       - uses: actions/setup-python@v3
         with:
-          python-version: '3.7'
+          python-version: '3.8'
           architecture: 'x86'
       - name: 'Download/extract DSS C-API binaries'
         shell: cmd
