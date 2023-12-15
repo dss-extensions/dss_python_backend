@@ -353,6 +353,16 @@ class DSSJSONFlags(IntFlag):
     Any default object that has been edited is always exported. Affects whole circuit and batch exports.
     """
 
+    SkipTimestamp = 0x00000200
+    """
+    Skip timestamp/version comment, which is added a pre-command by default. Affects whole circuit exports.
+    """
+
+    SkipBuses = 0x00000400
+    """
+    Skip exporting buses. Affects whole circuit exports.
+    """
+
 
 class DSSCompatFlags(IntFlag):
     NoSolverFloatChecks = 0x00000001
@@ -458,6 +468,105 @@ class DSSPropertyNameStyle(IntEnum):
     Use the previous capitalization of the property names.
     """
 
+class DSSSaveFlags(IntFlag):
+    """
+    DSSSaveFlags are bit flags used in the Circuit_Save function to
+    customize the saved circuit.
+    """
+
+    CalcVoltageBases = 0x0001
+    """Include the command CalcVoltageBases."""
+
+    SetVoltageBases = 0x0002
+    """Include commands to set the voltage bases individually."""
+
+    IncludeOptions = 0x0004
+    """Include most of the options (from the Set/Get DSS commands)."""
+
+    IncludeDisabled = 0x0008
+    """Include disabled circuit elements (and LoadShapes)."""
+
+    ExcludeDefault = 0x0010
+    """Exclude default DSS items if they are not modified by the user."""
+
+    SingleFile = 0x0020
+    """Use a single file instead of a folder for output."""
+
+    KeepOrder = 0x0040
+    """Save the circuit elements in the order they were loaded in the active circuit. Guarantees better reproducibility, especially when the system is ill-conditioned. Requires "SingleFile" flag."""
+
+    ExcludeMeterZones = 0x0080
+    """Do not export meter zones (as "feeders") separately. Has no effect when using a single file."""
+
+    IsOpen = 0x0100
+    """Export commands to open terminals of elements."""
+
+    ToString = 0x0200
+    """Export to the result string. Requires "SingleFile" flag."""
+
+
+class EnergyMeterRegisters(IntEnum):
+    """
+    Energy meter registers
+
+    This enumeration lists the basic energy meter registers. Extra registers start
+    at `VBaseStart`. This is exposed to make it easier to access common registers
+    without needing to check the register names every time, plus makes it safer to
+    access the registers by index directly without introducing bugs we found in
+    OpenDSS code (both user code and engine code) in the past due to direct use
+    of magic numbers.
+    """
+    kWh = 0
+    kvarh = 1
+    MaxkW = 2
+    MaxkVA = 3
+    ZonekWh = 4
+    Zonekvarh = 5
+    ZoneMaxkW = 6
+    ZoneMaxkVA = 7
+    OverloadkWhNorm = 8
+    OverloadkWhEmerg = 9
+    LoadEEN = 10
+    LoadUE = 11
+    ZoneLosseskWh = 12
+    ZoneLosseskvarh = 13
+    LossesMaxkW = 14
+    LossesMaxkvar = 15
+    LoadLosseskWh = 16
+    LoadLosseskvarh = 17
+    NoLoadLosseskWh = 18
+    NoLoadLosseskvarh = 19
+    MaxLoadLosses = 20
+    MaxNoLoadLosses = 21
+    LineLosseskWh = 22
+    TransformerLosseskWh = 23
+    LineModeLineLoss = 24
+    ZeroModeLineLoss = 25
+    ThreePhaseLineLoss = 26
+    OnePhaseLineLoss = 27
+    GenkWh = 28
+    Genkvarh = 29
+    GenMaxkW = 30
+    GenMaxkVA = 31
+
+    VBaseStart = 32
+    """Anchor for the voltage base loss registers"""
+
+class GeneratorRegisters(IntEnum):
+    """
+    Generator registers
+
+    Enumeration of the generator registers by index. 
+    Currently shared between the Generator, Storage and PVSystem models.
+    """
+    kWh = 0
+    kvarh = 1
+    MaxkW = 2
+    MaxkVA = 3
+    Hours = 4
+    Price = 5
+
+
 __all__ = [
     'ActionCodes',
     'AltDSSEvent',
@@ -468,7 +577,10 @@ __all__ = [
     'CoreType',
     'DSSCompatFlags',
     'DSSJSONFlags',
+    'DSSSaveFlags',
     'DSSPropertyNameStyle',
+    'EnergyMeterRegisters',
+    'GeneratorRegisters',
     'GeneratorStatus',
     'LineUnits',
     'LoadModels',
