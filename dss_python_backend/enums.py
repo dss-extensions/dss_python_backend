@@ -176,6 +176,13 @@ class CapControlModes(IntEnum):
     PF = 4
     """ON and OFF settings are power factor, negative for leading"""
 
+
+class StorageStates(IntEnum):
+    Charging = -1
+    Idling = 0
+    Discharging = 1
+
+
 class ActionCodes(IntEnum):
     none = 0
     """No action"""
@@ -559,12 +566,55 @@ class GeneratorRegisters(IntEnum):
     Enumeration of the generator registers by index. 
     Currently shared between the Generator, Storage and PVSystem models.
     """
+
     kWh = 0
     kvarh = 1
     MaxkW = 2
     MaxkVA = 3
     Hours = 4
     Price = 5
+
+
+class SetterFlags(IntFlag):
+    """
+    Setter flags customize down how the update of DSS properties are handled by the
+    engine and parts of the API. Use especially in the `Obj` and `Batch` APIs
+    """
+
+    ImplicitSizes = 0x00000001
+    """
+    Most array properties depend on sizes defined by other properties.
+    Using this flag, many properties allow users to skip setting the other property
+    directly, allowing the engine to use the size of the provided array to
+    initialize the other property.
+    """
+
+    AvoidFullRecalc = 0x00000002
+    """
+    Some components like Loads don't need to update YPrim for every change, e.g. setting
+    "`load.a_load.kW=1`" if was "kW" previously 2 should not force a YPrim update, but it does
+    force an update by default.
+    Using this flag will reproduce what the classic OpenDSS API for Loads (DSS.ActiveCircuit.Loads)
+    does, but removes a lot of duplicated code. Besides that, we can extend the feature 
+    for other components if we think it fits.
+    """
+
+    SkipNA = 0x00000004
+    """
+    For batch operations with arrays, skip NA values
+    
+    Currently, NA values are interpret as:
+    - NaN for float64
+    - INT32_MIN (0x80000000) for int32
+    - Null pointers for strings (in this case, use a `"\0"` string for empty strings)
+    """
+
+    AllowAllConductors = 0x80000000
+    """
+    Used internally for the "Wires" property ("Conductors").
+    This was left public in case someone tries to implement some internal aspects in
+    external functions.
+    """
 
 
 __all__ = [
@@ -589,8 +639,10 @@ __all__ = [
     'OCPDevType',
     'Options',
     'RandomModes',
+    'SetterFlags',
     'SolutionAlgorithms',
     'SolutionLoadModels',
+    'StorageStates',
     'SolveModes',
     'SparseSolverOptions',
     'YMatrixModes',
