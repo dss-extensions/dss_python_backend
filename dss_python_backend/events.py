@@ -1,3 +1,5 @@
+import atexit
+from weakref import WeakKeyDictionary
 from .enums import AltDSSEvent
 from . import ffi, lib
 
@@ -8,7 +10,7 @@ LEGACY_EVENTS = (
 )
 
 class EventCallbackManager:
-    _ctx_to_manager = {}
+    _ctx_to_manager = WeakKeyDictionary()
 
     def __init__(self, ctx):
         if ctx in EventCallbackManager._ctx_to_manager:
@@ -18,6 +20,23 @@ class EventCallbackManager:
         self.ctx = ctx
         for evt_type in AltDSSEvent:
             setattr(self, evt_type.name, [])
+
+
+    def unregister_all(self):
+        for evt_type in AltDSSEvent:
+            handlers = getattr(self, evt_type.name)
+            if not handlers:
+                continue
+
+            handlers[:] = []
+            lib.ctx_DSSEvents_UnregisterAlt(
+                self.ctx,
+                evt_type,
+                lib.altdss_python_util_callback
+            )
+
+    def __del__(self):
+        self.unregister_all()
 
     def register_func(self, evt: AltDSSEvent, func) -> bool:
         handlers = getattr(self, AltDSSEvent(evt).name)
@@ -87,5 +106,15 @@ def altdss_python_util_callback(ctx, eventCode: int, step: int, ptr):
         err_ptr[0] = 1
         lib.ctx_Error_Set_Description(ctx, f"Python callback exception: {ex}".encode())
 
+
+def _remove_callbacks():
+    '''
+    Remove all callbacks at exit. Since the native library may outlive the Python callbacks,
+    we need to remove the callbacks here to ensure they are not called.
+    '''
+    for ctx_mgr in EventCallbackManager._ctx_to_manager.values():
+        ctx_mgr.unregister_all()
+
+atexit.register(_remove_callbacks)
 
 __all__ = ['get_manager_for_ctx']
