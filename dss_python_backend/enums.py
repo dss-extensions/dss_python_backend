@@ -577,7 +577,7 @@ class GeneratorRegisters(IntEnum):
 
 class SetterFlags(IntFlag):
     """
-    Setter flags customize down how the update of DSS properties are handled by the
+    Setter flags customize how the update of DSS properties are handled by the
     engine and parts of the API. Use especially in the `Obj` and `Batch` APIs
     """
 
@@ -603,10 +603,10 @@ class SetterFlags(IntFlag):
     """
     For batch operations with arrays, skip NA values
     
-    Currently, NA values are interpret as:
-    - NaN for float64
-    - INT32_MIN (0x80000000) for int32
-    - Null pointers for strings (in this case, use a `"\0"` string for empty strings)
+    Currently, NA values are interpreted as:
+    - NaN for `float64`
+    - INT32_MAX (0x7fffffff) for `int32`
+    - Null pointers for strings (in this case, use a `"\\0"` string for empty strings)
     """
 
     AllowAllConductors = 0x80000000
@@ -627,8 +627,8 @@ __all__ = [
     'CoreType',
     'DSSCompatFlags',
     'DSSJSONFlags',
-    'DSSSaveFlags',
     'DSSPropertyNameStyle',
+    'DSSSaveFlags',
     'EnergyMeterRegisters',
     'GeneratorRegisters',
     'GeneratorStatus',
@@ -642,8 +642,8 @@ __all__ = [
     'SetterFlags',
     'SolutionAlgorithms',
     'SolutionLoadModels',
-    'StorageStates',
     'SolveModes',
     'SparseSolverOptions',
+    'StorageStates',
     'YMatrixModes',
 ]
