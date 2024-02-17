@@ -344,9 +344,9 @@ class DSSJSONFlags(IntFlag):
     Exclude disabled elements (only valid when exporting a collection)
     """
     
-    SkipDSSClass = 0x00000040
+    IncludeDSSClass = 0x00000040
     """
-    Do not add the "DSSClass" property to the output
+    Add "DSSClass" property to the output objects
     """
     
     LowercaseKeys = 0x00000080
@@ -609,7 +609,7 @@ class SetterFlags(IntFlag):
     - Null pointers for strings (in this case, use a `"\\0"` string for empty strings)
     """
 
-    AllowAllConductors = 0x80000000
+    AllowAllConductors = 0x40000000
     """
     Used internally for the "Wires" property ("Conductors").
     This was left public in case someone tries to implement some internal aspects in
