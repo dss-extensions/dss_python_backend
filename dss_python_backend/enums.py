@@ -12,19 +12,19 @@ except (ModuleNotFoundError, ImportError):
 class MonitorModes(IntEnum):
     VI = 0x00
     """Monitor records Voltage and Current at the terminal (Default)"""
-    
+
     Power = 0x01
     """Monitor records kW, kvar or kVA, angle values, etc. at the terminal to which it is connected."""
-    
-    Taps = 0x02 
+
+    Taps = 0x02
     """For monitoring Regulator and Transformer taps"""
-    
+
     States = 0x03
     """For monitoring State Variables (for PC Elements only)"""
-    
+
     Sequence = 0x10
     """Reports the monitored quantities as sequence quantities"""
-    
+
     Magnitude = 0x20
     """Reports the monitored quantities in Magnitude Only"""
 
@@ -34,31 +34,31 @@ class MonitorModes(IntEnum):
 class SolveModes(IntEnum):
     SnapShot = 0
     """Solve a single snapshot power flow"""
-    
+
     Daily = 1
     """Solve following Daily load shapes"""
-    
+
     Yearly = 2
     """Solve following Yearly load shapes"""
-    
+
     Monte1 = 3
     """Monte Carlo Mode 1"""
 
     LD1 = 4
     """Load-duration Mode 1"""
-    
+
     PeakDay = 5
     """Solves for Peak Day using Daily load curve"""
-    
+
     DutyCycle = 6
     """Solve following Duty Cycle load shapes"""
-    
+
     Direct = 7
     """Solve direct (forced admittance model)"""
-    
-    MonteFault = 8 
+
+    MonteFault = 8
     """Monte carlo Fault Study"""
-    
+
     FaultStudy = 9
     """Fault study at all buses"""
 
@@ -67,10 +67,10 @@ class SolveModes(IntEnum):
 
     Monte3 = 11
     """Monte Carlo Mode 3"""
-    
+
     LD2 = 12
     """Load-Duration Mode 2"""
-    
+
     AutoAdd = 13
     """Auto add generators or capacitors"""
 
@@ -86,7 +86,7 @@ class SolveModes(IntEnum):
 
 
 class Options(IntEnum):
-    '''Deprecated. Please use instead: 
+    '''Deprecated. Please use instead:
         - AutoAddTypes
         - CktModels
         - ControlModes
@@ -94,7 +94,7 @@ class Options(IntEnum):
         - SolutionAlgorithms
         - RandomModes
     '''
-    
+
     PowerFlow = 1
     Admittance = 2
     NormalSolve = 0
@@ -110,7 +110,7 @@ class Options(IntEnum):
     AddGen = 1
     AddCap = 2
     ControlOFF = -1
-    
+
 class SolutionLoadModels(IntEnum):
     PowerFlow = 1
     """Power Flow load model option"""
@@ -119,32 +119,32 @@ class SolutionLoadModels(IntEnum):
     """Admittance load model option"""
 
 class SolutionAlgorithms(IntEnum):
-    NormalSolve = 0 
+    NormalSolve = 0
     """Solution algorithm option - Normal solution"""
 
-    NewtonSolve = 1 
+    NewtonSolve = 1
     """Solution algorithm option - Newton solution"""
 
 class ControlModes(IntEnum):
     Static = 0
     """Control Mode option - Static"""
-    
+
     Event = 1
     """Control Mode Option - Event driven solution mode"""
 
     Time = 2
     """Control mode option - Time driven mode"""
-    
+
     Multirate = 3
     """Control mode option - Multirate mode"""
-    
+
     Off = -1
     """Control Mode OFF"""
 
 class CktModels(IntEnum):
-    Multiphase = 0 
+    Multiphase = 0
     """Circuit model is multiphase (default)"""
-    
+
     PositiveSeq = 1
     """Circuit model is positive sequence model only"""
 
@@ -152,16 +152,16 @@ class RandomModes(IntEnum):
     Gaussian = 1 # Gaussian
     Uniform = 2 # Uniform
     LogNormal = 3 # Log normal
-    
+
 class AutoAddTypes(IntEnum):
     AddGen = 1
     """Add generators in AutoAdd mode"""
-    
+
     AddCap = 2
     """Add capacitors in AutoAdd mode"""
 
 class CapControlModes(IntEnum):
-    Current = 0 
+    Current = 0
     """Current control, ON and OFF settings on CT secondary"""
 
     Voltage = 1
@@ -169,7 +169,7 @@ class CapControlModes(IntEnum):
 
     KVAR = 2
     """kVAR control, ON and OFF settings on PT / CT base"""
-    
+
     Time = 3
     """Time control, ON and OFF settings are seconds from midnight"""
 
@@ -281,7 +281,7 @@ class CoreType(IntEnum):
 
 
 class SparseSolverOptions(IntEnum):
-    ReuseNothing = 0 
+    ReuseNothing = 0
     """
     Default behavior, following the official OpenDSS implementation.
     """
@@ -292,18 +292,18 @@ class SparseSolverOptions(IntEnum):
     may have some cost saving if the number of entries changed in the system Y
     matrix are a small fraction of the total entries.
     """
-    
+
     ReuseSymbolicFactorization = 2
     """
     Reuse the symbolic factorization, implies ReuseCompressedMatrix
     """
-    
+
     ReuseNumericFactorization = 3
     """
     Reuse the numeric factorization, implies ReuseSymbolicFactorization
     """
-    
-    AlwaysResetYPrimInvalid = 0x10000000 
+
+    AlwaysResetYPrimInvalid = 0x10000000
     """
     Bit flag, see CktElement.pas for details. Some components do not clear the
     dirty flag after their YPrim is updated, so YPrim is updated every time the
@@ -318,37 +318,37 @@ class DSSJSONFlags(IntFlag):
     """
     Return all properties, regardless of order or if the property was filled by the user
     """
-    
+
     SkipRedundant = 0x00000002
     """
     Skip redundant properties
     """
-    
+
     EnumAsInt = 0x00000004
     """
     Return enums as integers instead of strings
     """
-    
+
     FullNames = 0x00000008
     """
     Use full names for the elements, including the class name
     """
-    
+
     Pretty = 0x00000010
     """
     Try to "pretty" format the JSON output
     """
-    
+
     ExcludeDisabled = 0x00000020
     """
     Exclude disabled elements (only valid when exporting a collection)
     """
-    
+
     IncludeDSSClass = 0x00000040
     """
     Add "DSSClass" property to the output objects
     """
-    
+
     LowercaseKeys = 0x00000080
     """
     Use lowercase representation for the property names (and other keys) instead of the internal variants.
@@ -356,7 +356,7 @@ class DSSJSONFlags(IntFlag):
 
     IncludeDefaultObjs = 0x00000100
     """
-    Include default unchanged objects in the exports. 
+    Include default unchanged objects in the exports.
     Any default object that has been edited is always exported. Affects whole circuit and batch exports.
     """
 
@@ -374,8 +374,8 @@ class DSSJSONFlags(IntFlag):
 class DSSCompatFlags(IntFlag):
     NoSolverFloatChecks = 0x00000001
     """
-    If enabled, don't check for NaNs in the inner solution loop. 
-    This can lead to various errors. 
+    If enabled, don't check for NaNs in the inner solution loop.
+    This can lead to various errors.
     This flag is useful for legacy applications that don't handle OpenDSS API errors properly.
     Through the development of DSS-Extensions, we noticed this is actually a quite common issue.
     """
@@ -393,7 +393,7 @@ class DSSCompatFlags(IntFlag):
 
     InvControl9611 = 0x00000004
     """
-    Toggle some InvControl behavior introduced in OpenDSS 9.6.1.1. It could be a regression 
+    Toggle some InvControl behavior introduced in OpenDSS 9.6.1.1. It could be a regression
     but needs further investigation, so we added this flag in the time being.
     """
 
@@ -419,7 +419,7 @@ class DSSCompatFlags(IntFlag):
     NoPropertyTracking = 0x00000020
     """
     On DSS-Extensions/AltDSS, when setting a property invalidates a previous input value, the engine
-    will try to mark the invalidated data as unset. This allows for better exports and tracking of 
+    will try to mark the invalidated data as unset. This allows for better exports and tracking of
     the current state of DSS objects.
     Set this flag to disable this behavior, following the original OpenDSS implementation for potential
     compatibility with older software that may require the original behavior; note that may lead to
@@ -563,7 +563,7 @@ class GeneratorRegisters(IntEnum):
     """
     Generator registers
 
-    Enumeration of the generator registers by index. 
+    Enumeration of the generator registers by index.
     Currently shared between the Generator, Storage and PVSystem models.
     """
 
@@ -595,14 +595,14 @@ class SetterFlags(IntFlag):
     "`load.a_load.kW=1`" if was "kW" previously 2 should not force a YPrim update, but it does
     force an update by default.
     Using this flag will reproduce what the classic OpenDSS API for Loads (DSS.ActiveCircuit.Loads)
-    does, but removes a lot of duplicated code. Besides that, we can extend the feature 
+    does, but removes a lot of duplicated code. Besides that, we can extend the feature
     for other components if we think it fits.
     """
 
     SkipNA = 0x00000004
     """
     For batch operations with arrays, skip NA values
-    
+
     Currently, NA values are interpreted as:
     - NaN for `float64`
     - INT32_MAX (0x7fffffff) for `int32`
@@ -615,6 +615,394 @@ class SetterFlags(IntFlag):
     This was left public in case someone tries to implement some internal aspects in
     external functions.
     """
+
+
+class GeneratorVariables(IntEnum):
+    """
+    Generator variables
+
+    Enumeration of the generator *state variables* by (1-based) index.
+    This is the implicit list and there can be more variables used by user-models
+    and DynamicExp objects. For those, users can get the variable names from the
+    API.
+    """
+
+    Frequency = 1
+    '''Frequency (Hz)'''
+
+    Theta = 2
+    '''Theta (°)'''
+
+    Vd = 3
+    '''Vd (pu)'''
+
+    PShaft = 4
+    '''PShaft (W)'''
+
+    dSpeed = 5
+    '''dSpeed (°/s)'''
+
+    dTheta = 6
+    '''dTheta (°)'''
+
+
+class IndMach012Variables(IntEnum):
+    '''
+    IndMach012 variables
+
+    Enumeration of the IndMach012 *state variables* by (1-based) index.
+    '''
+
+    Frequency = 1
+    '''Frequency'''
+
+    Theta = 2
+    '''Theta (deg)'''
+
+    E1 = 3
+    '''E1'''
+
+    Pshaft = 4
+    '''Pshaft'''
+
+    dSpeed = 5
+    '''dSpeed (deg/sec)'''
+
+    dTheta = 6
+    '''dTheta (deg)'''
+
+    Slip = 7
+    '''Slip'''
+
+    puRs = 8
+    '''puRs'''
+
+    puXs = 9
+    '''puXs'''
+
+    puRr = 10
+    '''puRr'''
+
+    puXr = 11
+    '''puXr'''
+
+    puXm = 12
+    '''puXm'''
+
+    MaxSlip = 13
+    '''Maxslip'''
+
+    Is1 = 14
+    '''Is1'''
+
+    Is2 = 15
+    '''Is2'''
+
+    Ir1 = 16
+    '''Ir1'''
+
+    Ir2 = 17
+    '''Ir2'''
+
+    StatorLosses = 18
+    '''Stator Losses'''
+
+    RotorLosses = 19
+    '''Rotor Losses'''
+
+    ShaftPowerHP = 20
+    '''Shaft Power (hp)'''
+
+    PowerFactor = 21
+    '''Power Factor'''
+
+    Efficiency = 22
+    '''Efficiency (%)'''
+
+
+class PVSystemVariables(IntEnum):
+    """
+    PVSystem variables
+
+    Enumeration of the PVSystem *state variables* by (1-based) index.
+    This is the implicit list and there can be more variables used by user-models
+    and DynamicExp objects.
+    """
+
+    Irradiance = 1
+    '''Irradiance'''
+
+    PanelkW = 2
+    '''PanelkW'''
+
+    P_TFactor = 3
+    '''P_TFactor'''
+
+    Efficiency = 4
+    '''Efficiency'''
+
+    Vreg = 5
+    '''Vreg'''
+
+    Vavg_DRC = 6
+    '''Vavg (DRC)'''
+
+    volt_var = 7
+    '''volt-var'''
+
+    volt_watt = 8
+    '''volt-watt'''
+
+    DRC = 9
+    '''DRC'''
+
+    VV_DRC = 10
+    '''VV_DRC'''
+
+    watt_pf = 11
+    '''watt-pf'''
+
+    watt_var = 12
+    '''watt-var'''
+
+    kW_out_desired = 13
+    '''kW_out_desired'''
+
+    GridVoltage = 14
+    '''Grid voltage'''
+
+    di_dt = 15
+    '''di/dt'''
+
+    it = 16
+    '''it'''
+
+    itHistory = 17
+    '''it History'''
+
+    RatedVDC = 18
+    '''Rated VDC'''
+
+    AvgDutyCycle = 19
+    '''Avg duty cycle'''
+
+    Target_Amps = 20
+    '''Target (Amps)'''
+
+    SeriesL = 21
+    '''Series L'''
+
+    MaxAmps_phase = 22
+    '''Max. Amps (phase)'''
+
+
+class StorageVariables(IntEnum):
+    '''
+    Storage variables
+
+    Enumeration of the Storage state variables by (1-based) index.
+    This is the implicit list and there can be more variables used by user-models
+    and DynamicExp objects.
+    '''
+
+    kWh = 1
+    '''kWh'''
+
+    State = 2
+    '''State'''
+
+    kWOut = 3
+    '''kWOut'''
+
+    kWIn = 4
+    '''kWIn'''
+
+    kvarOut = 5
+    '''kvarOut'''
+
+    DCkW = 6
+    '''DCkW'''
+
+    kWTotalLosses = 7
+    '''kWTotalLosses'''
+
+    kWInvLosses = 8
+    '''kWInvLosses'''
+
+    kWIdlingLosses = 9
+    '''kWIdlingLosses'''
+
+    kWChDchLosses = 10
+    '''kWChDchLosses'''
+
+    kWhChng = 11
+    '''kWh Chng'''
+
+    InvEff = 12
+    '''InvEff'''
+
+    InverterON = 13
+    '''InverterON'''
+
+    Vref = 14
+    '''Vref'''
+
+    Vavg_DRC = 15
+    '''Vavg (DRC)'''
+
+    VV_Oper = 16
+    '''VV Oper'''
+
+    VW_Oper = 17
+    '''VW Oper'''
+
+    DRC_Oper = 18
+    '''DRC Oper'''
+
+    VV_DRC_Oper = 19
+    '''VV_DRC Oper'''
+
+    WP_Oper = 20
+    '''WP Oper'''
+
+    WV_Oper = 21
+    '''WV Oper'''
+
+    kWDesired = 22
+    '''kWDesired'''
+
+    kW_VW_Limit = 23
+    '''kW VW Limit'''
+
+    Limit_kWOut_Function = 24
+    '''Limit kWOut Function'''
+
+    kVA_Exceeded = 25
+    '''kVA Exceeded'''
+
+    GridVoltage = 26
+    '''Grid voltage'''
+
+    di_dt = 27
+    '''di/dt'''
+
+    it = 28
+    '''it'''
+
+    itHistory = 29
+    '''it History'''
+
+    RatedVDC = 30
+    '''Rated VDC'''
+
+    AvgDutyCycle = 31
+    '''Avg duty cycle'''
+
+    Target_Amps = 32
+    '''Target (Amps)'''
+
+    SeriesL = 33
+    '''Series L'''
+
+    MaxAmps_phase = 34
+    '''Max. Amps (phase)'''
+
+
+class UPFCVariables(IntEnum):
+    '''
+    UPFC variables
+
+    Enumeration of the UPFC state variables by (1-based) index.
+    '''
+
+    ModeUPFC = 1
+    '''ModeUPFC'''
+
+    IUPFC = 2
+    '''IUPFC'''
+
+    Re_Vbin = 3
+    '''Re{Vbin}'''
+
+    Im_Vbin = 4
+    '''Im{Vbin}'''
+
+    Re_Vbout = 5
+    '''Re{Vbout}'''
+
+    Im_Vbout = 6
+    '''Im{Vbout}'''
+
+    Losses = 7
+    '''Losses'''
+
+    P_UPFC = 8
+    '''P_UPFC'''
+
+    Q_UPFC = 9
+    '''Q_UPFC'''
+
+    Qideal = 10
+    '''Qideal'''
+
+    Re_Sr0_1 = 11
+    '''Re{Sr0^[1]}'''
+
+    Im_Sr0_1 = 12
+    '''Im{Sr0^[1]}'''
+
+    Re_Sr1_1 = 13
+    '''Re{Sr1^[1]}'''
+
+    Im_Sr1_1 = 14
+    '''Im{Sr1^[1]}'''
+
+
+class VCCSRMSVariables(IntEnum):
+    '''
+    VCCS RMS variables
+
+    Enumeration of the VCCS state variables by (1-based) index, when used in RMS mode (`RMSMode=true`).
+    '''
+
+    Vrms = 1
+    '''Vrms'''
+
+    Ipwr = 2
+    '''Ipwr'''
+
+    Hout = 3
+    '''Hout'''
+
+    Irms = 4
+    '''Irms'''
+
+
+class VCCSNonRMSVariables(IntEnum):
+    '''
+    VCCS non-RMS variables
+
+    Enumeration of the VCCS state variables by (1-based) index, when used in non-RMS mode (`RMSMode=false`).
+    '''
+
+    Vwave = 1
+    '''Vwave'''
+
+    Iwave = 2
+    '''Iwave'''
+
+    Irms = 3
+    '''Irms'''
+
+    Ipeak = 4
+    '''Ipeak'''
+
+    BP1out = 5
+    '''BP1out'''
+
+    Hout = 6
+    '''Hout'''
+
 
 
 __all__ = [
@@ -632,12 +1020,15 @@ __all__ = [
     'EnergyMeterRegisters',
     'GeneratorRegisters',
     'GeneratorStatus',
+    'GeneratorVariables',
+    'IndMach012Variables',
     'LineUnits',
     'LoadModels',
     'LoadStatus',
     'MonitorModes',
     'OCPDevType',
     'Options',
+    'PVSystemVariables',
     'RandomModes',
     'SetterFlags',
     'SolutionAlgorithms',
@@ -645,5 +1036,9 @@ __all__ = [
     'SolveModes',
     'SparseSolverOptions',
     'StorageStates',
+    'StorageVariables',
+    'UPFCVariables',
+    'VCCSNonRMSVariables',
+    'VCCSRMSVariables',
     'YMatrixModes',
 ]
