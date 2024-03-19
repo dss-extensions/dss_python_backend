@@ -423,7 +423,7 @@ class DSSCompatFlags(IntFlag):
     the current state of DSS objects.
     Set this flag to disable this behavior, following the original OpenDSS implementation for potential
     compatibility with older software that may require the original behavior; note that may lead to
-    errorneous interpretation of the data in the DSS properties. This was introduced in DSS C-API v0.14.0
+    erroneous interpretation of the data in the DSS properties. This was introduced in DSS C-API v0.14.0
     and will be further developed for future versions.
     """
 
@@ -615,6 +615,48 @@ class SetterFlags(IntFlag):
     This was left public in case someone tries to implement some internal aspects in
     external functions.
     """
+
+
+class DSSObjectFlags(IntFlag):
+    """
+    Object flags are bit flags used by various of the internal processes of the DSS engine.
+
+    Most are internal state, but advanced/expert users can manipulate them for some interesting uses.
+    """
+
+    Editing = 0x0001
+
+    HasBeenSaved = 0x0002
+
+    DefaultAndUnedited = 0x0004
+
+    Checked = 0x0008
+
+    Flag = 0x0010
+    """General purpose flag for each object"""
+
+    HasEnergyMeter = 0x0020
+
+    HasSensorObj = 0x0040
+
+    IsIsolated = 0x0080
+
+    HasControl = 0x0100
+
+    IsMonitored = 0x0200
+    """Indicates some control is monitoring this element"""
+
+    HasOCPDevice = 0x0400,
+    """Fuse, Relay, or Recloser"""
+
+    HasAutoOCPDevice = 0x0800
+    """Relay or Recloser only"""
+
+    NeedsRecalc = 0x1000
+    """Used for Edit command loops"""
+
+    NeedsYPrim = 0x2000
+    """Used for Edit command loops + setter flags"""
 
 
 class GeneratorVariables(IntEnum):
@@ -1015,6 +1057,7 @@ __all__ = [
     'CoreType',
     'DSSCompatFlags',
     'DSSJSONFlags',
+    'DSSObjectFlags',
     'DSSPropertyNameStyle',
     'DSSSaveFlags',
     'EnergyMeterRegisters',
