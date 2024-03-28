@@ -27,6 +27,7 @@ jobs:
       CONDA_SUBDIR: 'linux-64'
       DSS_CAPI_PATH: '${{ github.workspace }}/dss_capi'
       CONDA: "/opt/miniconda/"
+      DSS_CAPI_BUILD_ODDIE: '1'
     steps: 
       - name: 'Checkout'
         run: |
@@ -166,6 +167,7 @@ jobs:
       CONDA_SUBDIR: 'win-64'
       DSS_CAPI_PATH: '${{ github.workspace }}\dss_capi'
       PYTHON: python
+      DSS_CAPI_BUILD_ODDIE: '1'
     steps:
       - uses: actions/checkout@v3
         with: 

@@ -1,6 +1,6 @@
 from setuptools import setup
 import re, shutil, os, io
-from dss_setup_common import PLATFORM_FOLDER, DLL_SUFFIX
+from dss_setup_common import PLATFORM_FOLDER, DLL_SUFFIX, BUILD_ODDIE
 import glob
 
 MANYLINUX = os.environ.get('DSS_PYTHON_BACKEND_MANYLINUX', '0') == '1'
@@ -13,6 +13,7 @@ with io.open('README.md', encoding='utf8') as readme_md:
 # 1. Try env var DSS_PYTHON_BACKEND_VERSION
 # 2. Try GITHUB_REF for a Git tag
 # 3. Otherwise, just use the hardcoded version
+
 package_version = os.environ.get('DSS_PYTHON_BACKEND_VERSION')
 github_ref = os.environ.get('GITHUB_REF')
 if package_version is None and github_ref is not None:
@@ -55,8 +56,9 @@ if not MANYLINUX:
         shutil.copy(fn, dll_path_out)
 
 # Copy libs (easier to build custom extensions with a default DSS Python installation)
-for fn in glob.glob(os.path.join(base_dll_path_in, '*.lib')) + glob.glob(os.path.join(base_dll_path_in, '*.a')):
-    shutil.copy(fn, dll_path_out)
+for pattern in ('*.lib', '*.a', '*.pdb'):
+    for fn in glob.glob(os.path.join(base_dll_path_in, pattern)):
+        shutil.copy(fn, dll_path_out)
 
 # Copy headers
 if os.path.exists(include_path_out):
@@ -83,6 +85,11 @@ else:
         'dss_python_backend': ['*{}'.format(DLL_SUFFIX)] + extra_files
     })
 
+
+VERSIONS = ['', 'd']
+if BUILD_ODDIE:
+    VERSIONS.append('odd')
+
 setup(
     name="dss_python_backend",
     description="Low-level Python bindings and native libs for DSS-Python. Not intended for direct usage, see DSS-Python instead.",
@@ -94,7 +101,7 @@ setup(
     license="BSD",
     packages=['dss_python_backend'],
     setup_requires=["cffi>=1.11.2"],
-    cffi_modules=["dss_build.py:ffi_builder_{}".format(version) for version in ('', 'd')] + 
+    cffi_modules=["dss_build.py:ffi_builder_{}".format(version) for version in VERSIONS] + 
         [
             'dss_build.py:ffi_builder_GenUserModel', 
             #'dss_build.py:ffi_builder_PVSystemUserModel', 

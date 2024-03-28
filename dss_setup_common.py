@@ -1,5 +1,7 @@
 import sys, os, platform
 
+BUILD_ODDIE = os.environ.get('DSS_CAPI_BUILD_ODDIE', '') == '1'
+
 # Not complete but should suffice for the moment
 if 'linux' in sys.platform.lower():
     uname = os.uname()
