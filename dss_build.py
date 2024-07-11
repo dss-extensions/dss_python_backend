@@ -2,12 +2,51 @@ from cffi import FFI
 import sys, re, os
 from dss_setup_common import PLATFORM_FOLDER, BUILD_ODDIE
 
-def process_header(src, extern_py=False, implement_py=False, prefix=''):
+def process_header(src, extern_py=False, implement_py=False, prefix='', flags=None):
     '''Prepare the DSS C-API headers for parsing and building with CFFI'''
     
+    if flags is not None:
+        definitions = [x[2:] for x in flags] # remove -D
+    else:
+        definitions = None
+
     call_convention = '__stdcall ' if (sys.platform == 'win32') else ''
     
-    src  = src.replace('dss_long_bool', 'int32_t')
+    if definitions is not None:
+        # Since we cannot easily use a C preprocessor here, some custom replacements
+        if 'ALTDSS_USERMODEL' in definitions:
+            src = src.replace('dss_long_bool', 'int32_t')
+        else:
+            src = src.replace('dss_long_bool', 'bool')
+
+        candidate_definitions = ['ALTDSS_USERMODEL', 'OPENDSS_USERMODEL_V7', 'OPENDSS_USERMODEL_V10']
+
+        cond = re.escape('#if defined(ALTDSS_USERMODEL) || defined(OPENDSS_USERMODEL_V7)')
+        m = re.search(f'^{cond}\n(.*?)\n#else // {cond}\n(.*?)\n#endif // {cond}', src, flags=re.DOTALL|re.IGNORECASE|re.MULTILINE)
+        assert m
+        src = src.replace(m.group(0), 
+            m.group(1) 
+            if ('ALTDSS_USERMODEL' in definitions or 'OPENDSS_USERMODEL_V7' in definitions) else 
+            m.group(2)
+        )
+
+        for candidate in candidate_definitions:
+            cond = re.escape(f'#ifdef {candidate}')
+            m = re.search(f'^{cond}\n(.*?)\n#else // {cond}\n(.*?)\n#endif // {cond}', src, flags=re.DOTALL|re.IGNORECASE|re.MULTILINE)
+            if m:
+                src = src.replace(m.group(0), 
+                    m.group(1) 
+                    if (candidate in definitions) else 
+                    m.group(2)
+                )
+
+            m = re.search(f'^{cond}\n(.*?)\n#endif // {cond}', src, flags=re.DOTALL|re.IGNORECASE|re.MULTILINE)
+            if m:
+                src = src.replace(m.group(0), 
+                    m.group(1) 
+                    if (candidate in definitions) else 
+                    ''
+                )
 
     src = re.sub('^.*namespace .*$', '', src, flags=re.MULTILINE)
     if not implement_py:
@@ -139,7 +178,7 @@ for version in VERSIONS:
 # merged in a single DLL, but there's not much benefit.
 
 with open(os.path.join(DSS_CAPI_PATH, 'include/dss_UserModels.h'), 'r') as f:
-    cffi_header_um = process_header(f.read())
+    raw_header_um = f.read()
     
 user_models = [
     'GenUserModel',
@@ -149,25 +188,34 @@ user_models = [
     # 'CapUserControl',
 ]    
 
-for user_model in user_models:    
+variant_options = {
+    'AltDSS': ['-DALTDSS_USERMODEL'],
+    'OpenDSS_v7': ['-DOPENDSS_USERMODEL_V7'],
+    'OpenDSS_v8v9': [],
+    'OpenDSS_v10': ['-DOPENDSS_USERMODEL_V10']
+}
+
+for user_model in user_models:
     with open(os.path.join(DSS_CAPI_PATH, 'include', 'dss_{}.h'.format(user_model)), 'r') as f:
         func_def = f.read()
         
     prefix = "py{}_".format(user_model)
     user_model_def = process_header(func_def, extern_py=True, prefix=prefix)
     user_model_src = process_header(func_def, implement_py=True, prefix=prefix)
-        
-    ffi_builder = FFI()
-    ffi_builder.cdef(cffi_header_um + user_model_def, packed=True)
-    ffi_builder.set_source("_dss_{}".format(user_model), user_model_src,
-        libraries=[],
-        library_dirs=[],
-        include_dirs=[os.path.join(DSS_CAPI_PATH, 'include')],
-        source_extension='.c',
-        #extra_compile_args=['/DYNAMICBASE:NO'],
-        #extra_link_args=['/DYNAMICBASE:NO', '/NXCOMPAT:NO']
-    )
-    ffi_builders[user_model] = ffi_builder
+
+    for variant, variant_flags in variant_options.items():
+        cffi_header_um_variant = process_header(raw_header_um, flags=variant_flags)
+        ffi_builder = FFI()
+        ffi_builder.cdef(cffi_header_um_variant + user_model_def, packed=True)
+        ffi_builder.set_source(f"_dss_{user_model}_{variant}", user_model_src,
+            libraries=[],
+            library_dirs=[],
+            include_dirs=[os.path.join(DSS_CAPI_PATH, 'include')],
+            source_extension='.c',
+            extra_compile_args=variant_flags,
+            #extra_link_args=['/DYNAMICBASE:NO', '/NXCOMPAT:NO']
+        )
+        ffi_builders[f'{user_model}-{variant}'] = ffi_builder
         
 # Is there a better way to do this? Unfortunately setup(cffi_modules=...)
 # needs a list of strings and cannot handle objects directly
@@ -176,7 +224,10 @@ ffi_builder_d = ffi_builders['dss_capid']
 if BUILD_ODDIE:
     ffi_builder_odd = ffi_builders['altdss_oddie_capi']
 
-ffi_builder_GenUserModel = ffi_builders['GenUserModel']
+ffi_builder_GenUserModel_altdss = ffi_builders['GenUserModel-AltDSS']
+ffi_builder_GenUserModel_v7 = ffi_builders['GenUserModel-OpenDSS_v7']
+ffi_builder_GenUserModel_v8v9 = ffi_builders['GenUserModel-OpenDSS_v8v9']
+ffi_builder_GenUserModel_v10 = ffi_builders['GenUserModel-OpenDSS_v10']
 #ffi_builder_PVSystemUserModel = ffi_builders['PVSystemUserModel']
 #ffi_builder_StoreDynaModel = ffi_builders['StoreDynaModel']
 #ffi_builder_StoreUserModel = ffi_builders['StoreUserModel']

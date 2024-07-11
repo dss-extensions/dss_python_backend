@@ -103,7 +103,10 @@ setup(
     setup_requires=["cffi>=1.11.2"],
     cffi_modules=["dss_build.py:ffi_builder_{}".format(version) for version in VERSIONS] + 
         [
-            'dss_build.py:ffi_builder_GenUserModel', 
+            'dss_build.py:ffi_builder_GenUserModel_altdss', 
+            'dss_build.py:ffi_builder_GenUserModel_v7', 
+            'dss_build.py:ffi_builder_GenUserModel_v8v9', 
+            'dss_build.py:ffi_builder_GenUserModel_v10', 
             #'dss_build.py:ffi_builder_PVSystemUserModel', 
             #'dss_build.py:ffi_builder_StoreDynaModel', 
             #'dss_build.py:ffi_builder_StoreUserModel', 
