@@ -125,6 +125,9 @@ class SolutionAlgorithms(IntEnum):
     NewtonSolve = 1
     """Solution algorithm option - Newton solution"""
 
+    NCIMSolve = 2
+    """Solution algorithm option - NCIM solution"""
+
 class ControlModes(IntEnum):
     Static = 0
     """Control Mode option - Static"""
