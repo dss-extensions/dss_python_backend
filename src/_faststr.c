@@ -12,7 +12,8 @@ typedef void (*func_dispose_strlist_t)(char ***p, int32_t cnt);
 
 typedef struct
 {
-    PyObject_HEAD;
+    PyObject_HEAD
+
     void *dssCtx;
     int32_t *errorPtr;
     func_str_ctx_t func;
@@ -22,7 +23,8 @@ typedef struct
 
 typedef struct
 {
-    PyObject_HEAD;
+    PyObject_HEAD
+
     void *dssCtx;
     int32_t *errorPtr;
     func_ctx_strlist_t func;
