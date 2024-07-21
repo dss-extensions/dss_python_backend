@@ -135,7 +135,7 @@ static PyMethodDef AltDSSStrFunc_methods[] = {
 
 static PyTypeObject AltDSSStrFuncType = {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
-    .tp_name = "_faststr.AltDSSStrFunc",
+    .tp_name = "_fast.AltDSSStrFunc",
     .tp_doc = PyDoc_STR("Wrap an AltDSS C-API plain str function, handling DSS errors"),
     .tp_basicsize = sizeof(AltDSSStrFuncObject),
     .tp_itemsize = 0,
@@ -253,7 +253,7 @@ static PyMethodDef AltDSSStrListFunc_methods[] = {
 
 static PyTypeObject AltDSSStrListFuncType = {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
-    .tp_name = "_faststr.AltDSSStrListFunc",
+    .tp_name = "_fast.AltDSSStrListFunc",
     .tp_doc = PyDoc_STR("Wrap an AltDSS C-API function that returns an array of strings, handling DSS errors"),
     .tp_basicsize = sizeof(AltDSSStrListFuncObject),
     .tp_itemsize = 0,
@@ -268,15 +268,15 @@ static PyMethodDef funcs[] = {
     {NULL, NULL, 0, NULL}
 };
 
-static struct PyModuleDef altdss_faststr_def = {
+static struct PyModuleDef altdss_fast_def = {
     PyModuleDef_HEAD_INIT, 
-    "_faststr", 
+    "_fast", 
     "A couple of faster string handling functions; CPython only.\n",
     -1,
     funcs
 };
 
-PyMODINIT_FUNC PyInit__faststr()
+PyMODINIT_FUNC PyInit__fast()
 {
     PyObject *m;
     if (PyType_Ready(&AltDSSStrFuncType) < 0 || PyType_Ready(&AltDSSStrListFuncType) < 0)
@@ -284,7 +284,7 @@ PyMODINIT_FUNC PyInit__faststr()
         return NULL;
     }
 
-    m = PyModule_Create(&altdss_faststr_def);
+    m = PyModule_Create(&altdss_fast_def);
     if (m == NULL)
     {
         return NULL;
