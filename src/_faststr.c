@@ -7,8 +7,17 @@
 // PyLong_FromVoidPtr and PyLong_AsVoidPtr
 
 typedef const char* (*func_str_ctx_t)(const void* ctx);
+typedef const char* (*func_str_ctx_int32_t)(const void* ctx, int32_t value);
 typedef void (*func_ctx_strlist_t)(const void* ctx, char*** ResultPtr, int32_t* ResultDims);
+typedef void (*func_ctx_strlist_int32_t)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, int32_t value);
+typedef void (*func_ctx_strlist_pchar_t)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, const char* value);
 typedef void (*func_dispose_strlist_t)(char ***p, int32_t cnt);
+
+enum Signatures {
+    Signature_empty = 0,
+    Signature_int = 1,
+    Signature_str = 2
+};
 
 typedef struct
 {
@@ -16,9 +25,10 @@ typedef struct
 
     void *dssCtx;
     int32_t *errorPtr;
-    func_str_ctx_t func;
+    void* func;
     func_str_ctx_t errorDescFunc;
     PyObject *DSSExceptionType;
+    unsigned char funcArgSignature;
 } AltDSSStrFuncObject;
 
 typedef struct
@@ -31,6 +41,7 @@ typedef struct
     func_str_ctx_t errorDescFunc;
     func_dispose_strlist_t disposeFunc;
     PyObject *DSSExceptionType;
+    unsigned char funcArgSignature;
 } AltDSSStrListFuncObject;
 
 static PyObject *AltDSSStrListFunc_set_exc_type(PyObject *self, PyObject *arg)
@@ -60,24 +71,39 @@ static int AltDSSStrFunc_init(PyObject *self, PyObject *args, PyObject *Py_UNUSE
     }
 
     unsigned long long dssCtx, errorPtr, func, errorDescFunc;
-    if(!PyArg_ParseTuple(args, "KKKKO", &dssCtx, &errorPtr, &func, &errorDescFunc, &f->DSSExceptionType))
+    if (!PyArg_ParseTuple(args, "KKKKOb", &dssCtx, &errorPtr, &func, &errorDescFunc, &f->DSSExceptionType, &f->funcArgSignature))
     {
         PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSSStrFunc initialization");
         return -1;
     }
     f->dssCtx = (void*) dssCtx;
     f->errorPtr = (int32_t*) errorPtr;
-    f->func = (func_str_ctx_t) func;
+    f->func = (void*) func;
     f->errorDescFunc = (func_str_ctx_t) errorDescFunc;
     Py_INCREF(f->DSSExceptionType);
     return 0;
 }
 
-static PyObject *AltDSSStrFunc_call(PyObject *self, PyObject *Py_UNUSED(args_ignored), PyObject *Py_UNUSED(kwargs_ignored))
+static PyObject *AltDSSStrFunc_call(PyObject *self, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
 {
     AltDSSStrFuncObject *f = (AltDSSStrFuncObject*) self;
     PyObject *result = NULL;
-    const char* cstr = f->func(f->dssCtx);
+    int argValue;
+    char const* cstr;
+    switch (f->funcArgSignature)
+    {
+        case Signature_int:
+            if (!PyArg_ParseTuple(args, "i", &argValue))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSSStrFunc call (expected an integer value)");
+                return NULL;
+            }
+            cstr = ((func_str_ctx_int32_t)f->func)(f->dssCtx, argValue);
+            break;
+        default:
+            cstr = ((func_str_ctx_t)f->func)(f->dssCtx);
+            break;
+    }
     //TODO: for Alt functions, we will need to dispose the C string later, 
     // or take ownership of the pointer.
     if (*f->errorPtr && f->DSSExceptionType != Py_None)
@@ -132,7 +158,7 @@ static int AltDSSStrListFunc_init(PyObject *self, PyObject *args, PyObject *Py_U
     }
 
     unsigned long long dssCtx, errorPtr, func, errorDescFunc, disposeFunc;
-    if(!PyArg_ParseTuple(args, "KKKKKO", &dssCtx, &errorPtr, &func, &errorDescFunc, &disposeFunc, &f->DSSExceptionType))
+    if (!PyArg_ParseTuple(args, "KKKKKOb", &dssCtx, &errorPtr, &func, &errorDescFunc, &disposeFunc, &f->DSSExceptionType, &f->funcArgSignature))
     {
         PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSSStrListFunc initialization");
         return -1;
@@ -147,7 +173,7 @@ static int AltDSSStrListFunc_init(PyObject *self, PyObject *args, PyObject *Py_U
 }
 
 
-static PyObject *AltDSSStrListFunc_call(PyObject *self, PyObject *Py_UNUSED(args_ignored), PyObject *Py_UNUSED(kwargs_ignored))
+static PyObject *AltDSSStrListFunc_call(PyObject *self, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
 {
     AltDSSStrListFuncObject *f = (AltDSSStrListFuncObject*) self;
     PyObject *result = NULL;
@@ -156,8 +182,32 @@ static PyObject *AltDSSStrListFunc_call(PyObject *self, PyObject *Py_UNUSED(args
     char** sptr = NULL;
     int32_t count[4] = {0, 0, 0, 0};
     int32_t i;
+    int argIntValue;
+    char *argStrValue;
 
-    f->func(f->dssCtx, &cstr_list, &count[0]);
+    switch (f->funcArgSignature)
+    {
+        case Signature_int:
+            if (!PyArg_ParseTuple(args, "i", &argIntValue))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSSStrFunc call (expected an integer value)");
+                return NULL;
+            }
+            ((func_ctx_strlist_int32_t)f->func)(f->dssCtx, &cstr_list, &count[0], argIntValue);
+            break;
+        case Signature_str:
+            // TODO: use s# whenever possible
+            if (!PyArg_ParseTuple(args, "s*", &argStrValue))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSSStrFunc call (expected either a string or bytes value)");
+                return NULL;
+            }
+            ((func_ctx_strlist_pchar_t)f->func)(f->dssCtx, &cstr_list, &count[0], argStrValue);
+            break;
+        default:
+            ((func_ctx_strlist_t)f->func)(f->dssCtx, &cstr_list, &count[0]);
+            break;
+    }
 
     if (*f->errorPtr && f->DSSExceptionType != Py_None)
     {
@@ -214,58 +264,7 @@ static PyTypeObject AltDSSStrListFuncType = {
     .tp_methods = AltDSSStrListFunc_methods,
 };
 
-
-
-static PyObject *addr_to_str(PyObject *self, PyObject *arg)
-{
-    PyObject *result = NULL;
-    unsigned long long cstr_addr = PyLong_AsUnsignedLongLong(arg);
-    if (PyErr_Occurred())
-    {
-        return NULL;
-    }
-    result = cstr_addr ? PyUnicode_FromString((const char *) cstr_addr) : PyUnicode_FromString("");
-    if (PyErr_Occurred())
-    {
-        return NULL;
-    }
-    return result;
-}
-
-static PyObject *addr_to_strs(PyObject *self, PyObject *args)
-{
-    PyObject *result = NULL;
-    PyObject *item = NULL;
-    unsigned long long cstrlist_addr = 0;
-    char **cstr_list = NULL;
-    Py_ssize_t count = 0, i;
-    if(!PyArg_ParseTuple(args, "Kn", &cstrlist_addr, &count))
-    {
-        return NULL;
-    }
-    cstr_list = (char **) cstrlist_addr;
-    result = PyList_New(count);
-    if (PyErr_Occurred())
-    {
-        return NULL;
-    }
-
-    for (i = 0; i < count; ++i, ++cstr_list)
-    {
-        item = (*cstr_list) ? PyUnicode_FromString(*cstr_list) : PyUnicode_FromString("");
-        if (PyErr_Occurred())
-        {
-            Py_DECREF(result);
-            return NULL;
-        }
-        PyList_SetItem(result, i, item);
-    }
-    return result;
-}
-
 static PyMethodDef funcs[] = {
-    {"addr_to_str", (PyCFunction) addr_to_str, METH_O, "Converts a C string from a given pointer address to Python string\n"},
-    {"addr_to_strs", (PyCFunction) addr_to_strs, METH_VARARGS, "Converts an array of C strings from a given pointer address and count to a list of Python strings\n"},
     {NULL, NULL, 0, NULL}
 };
 
