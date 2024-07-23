@@ -213,7 +213,7 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
             ((func_ctx_float64_t)f->func)(f->dssCtx, cval_float64);
             break;
         case Signature_one_bool:
-            if (!PyArg_ParseTuple(args, "d", &cval_int))
+            if (!PyArg_ParseTuple(args, "p", &cval_int))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a float64 value)");
                 return NULL;
