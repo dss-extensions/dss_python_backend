@@ -33,6 +33,7 @@ typedef void (*func_ctx_int32_t)(const void* ctx, int32_t value);
 typedef void (*func_ctx_float64_t)(const void* ctx, double value);
 typedef void (*func_ctx_bool_t)(const void* ctx, uint16_t value);
 typedef void (*func_ctx_str_t)(const void* ctx, const char* value);
+typedef void (*func_ctx_t)(const void* ctx);
 
 enum Signatures {
     Signature_empty = 0,
@@ -226,6 +227,9 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 return NULL;
             }
             ((func_ctx_str_t)f->func)(f->dssCtx, c_str);
+            break;
+        case Signature_empty:
+            ((func_ctx_t)f->func)(f->dssCtx);
             break;
         default:
             PyErr_SetString(PyExc_TypeError, "Invalid call signature");
@@ -848,6 +852,7 @@ int AltDSS_PyScalarSetter_cinit(AltDSS_PyScalarSetterObject* f, AltDSS_PyContext
     if ((args_type != Signature_one_int32 && 
         args_type != Signature_one_float64 && 
         args_type != Signature_one_bool &&
+        args_type != Signature_empty &&
         args_type != Signature_str)
         || (res_type != Signature_empty)
         )
@@ -972,6 +977,7 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
             case Signature_one_float64:
             case Signature_one_int32:
             case Signature_one_bool:
+            case Signature_empty:
                 *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarSetterObject, &AltDSS_PyScalarSetterType);
                 if ((*py_func) == NULL)
                 {
