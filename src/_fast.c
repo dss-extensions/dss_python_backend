@@ -29,6 +29,10 @@ typedef void (*func_ctx_strlist_pchar_t)(const void* ctx, char*** ResultPtr, int
 typedef void (*gr_func_ctx_t)(const void* ctx);
 typedef void (*gr_func_ctx_int32_t)(const void* ctx, int32_t value);
 
+typedef void (*func_ctx_int32_t)(const void* ctx, int32_t value);
+typedef void (*func_ctx_float64_t)(const void* ctx, double value);
+typedef void (*func_ctx_bool_t)(const void* ctx, uint16_t value);
+
 enum Signatures {
     Signature_empty = 0,
     Signature_int32 = 1,
@@ -75,7 +79,6 @@ typedef struct
     unsigned char resType;
 } AltDSS_PyStrListGetterObject;
 
-
 typedef struct
 {
     PyObject_HEAD
@@ -90,6 +93,19 @@ typedef struct
     unsigned char resType;
 } AltDSS_PyScalarGetterObject;
 
+typedef struct
+{
+    PyObject_HEAD
+
+    void *dssCtx;
+    int32_t *errorPtr;
+    void* func;
+    int32_t *settingsPtr;
+    struct AltDSS_PyContextObject_* parent;
+
+    unsigned char funcArgSignature;
+    unsigned char resType;
+} AltDSS_PyScalarSetterObject;
 
 typedef struct
 {
@@ -129,6 +145,14 @@ typedef struct AltDSS_PyContextObject_
     #include "./_fast_struct_members.inc.c"
 } AltDSS_PyContextObject;
 
+static int AltDSS_PyScalarSetter_init(AltDSS_PyScalarSetterObject *f, PyObject *Py_UNUSED(args_ignored), PyObject *Py_UNUSED(kwargs_ignored))
+{
+    f->parent = NULL;
+    f->dssCtx = NULL;
+    f->func = NULL;
+    return 0;
+}
+
 static int AltDSS_PyScalarGetter_init(AltDSS_PyScalarGetterObject *f, PyObject *Py_UNUSED(args_ignored), PyObject *Py_UNUSED(kwargs_ignored))
 {
     f->parent = NULL;
@@ -159,6 +183,64 @@ static int AltDSS_PyStrListGetter_init(AltDSS_PyStrListGetterObject *f, PyObject
     f->parent = NULL;
     f->func = NULL;
     return 0;
+}
+
+static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
+{
+    PyObject *result = NULL;
+    int cval_int;
+    double cval_float64;
+    
+    switch (f->funcArgSignature)
+    {
+        case Signature_one_int32:
+            if (!PyArg_ParseTuple(args, "i", &cval_int))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected an integer value)");
+                return NULL;
+            }
+            ((func_ctx_int32_t)f->func)(f->dssCtx, cval_int);
+            break;
+        case Signature_one_float64:
+            if (!PyArg_ParseTuple(args, "d", &cval_float64))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a float64 value)");
+                return NULL;
+            }
+            ((func_ctx_float64_t)f->func)(f->dssCtx, cval_float64);
+            break;
+        case Signature_one_bool:
+            if (!PyArg_ParseTuple(args, "d", &cval_int))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a float64 value)");
+                return NULL;
+            }
+            ((func_ctx_bool_t)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
+            break;
+        default:
+            PyErr_SetString(PyExc_TypeError, "Invalid call signature");
+            return NULL;
+    }
+
+    if (*f->errorPtr && f->parent->DSSExceptionType != Py_None)
+    {
+        if (ctx_Error_Get_Description != f->func)
+        {
+            const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
+            int32_t num = *f->errorPtr;
+            *f->errorPtr = 0;
+            //TODO: check ref count here
+            PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
+                PyLong_FromLong(num),
+                PyUnicode_FromString(errorDesc)
+            ));
+            return NULL;
+        }
+        PyErr_SetString(f->parent->DSSExceptionType, "Error mapping DSS error to Python!");
+        return NULL;
+    }
+
+    return Py_None;
 }
 
 static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
@@ -485,13 +567,25 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
 static PyTypeObject AltDSS_PyScalarGetterType = {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
     .tp_name = ALTDSS_FAST_MODNAME ".AltDSS_PyScalarGetter",
-    .tp_doc = PyDoc_STR("Wrap an AltDSS C-API plain scalar (int32, float64, bool) functions, handling DSS errors"),
+    .tp_doc = PyDoc_STR("Wrap an AltDSS C-API plain scalar (int32, float64, bool) getter functions, handling DSS errors"),
     .tp_basicsize = sizeof(AltDSS_PyScalarGetterObject),
     .tp_itemsize = 0,
     .tp_flags = Py_TPFLAGS_DEFAULT,
     .tp_new = PyType_GenericNew,
     .tp_init = (initproc) AltDSS_PyScalarGetter_init,
     .tp_call = ((PyCFunctionWithKeywords) AltDSS_PyScalarGetter_call),
+};
+
+static PyTypeObject AltDSS_PyScalarSetterType = {
+    .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
+    .tp_name = ALTDSS_FAST_MODNAME ".AltDSS_PyScalarSetter",
+    .tp_doc = PyDoc_STR("Wrap an AltDSS C-API plain scalar (int32, float64, bool) setter functions, handling DSS errors"),
+    .tp_basicsize = sizeof(AltDSS_PyScalarSetterObject),
+    .tp_itemsize = 0,
+    .tp_flags = Py_TPFLAGS_DEFAULT,
+    .tp_new = PyType_GenericNew,
+    .tp_init = (initproc) AltDSS_PyScalarSetter_init,
+    .tp_call = ((PyCFunctionWithKeywords) AltDSS_PyScalarSetter_call),
 };
 
 static PyTypeObject AltDSS_PyStrGetterType = {
@@ -543,7 +637,7 @@ static struct PyModuleDef altdss_fast_def = {
     funcs
 };
 
-int AltDSS_Add_PyGetter(AltDSS_PyContextObject *self, int res_type, int args_type, void* c_func, PyObject **py_func, PyObject *setObj, PyObject *fakeLib, const char* fname);
+int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type, void* c_func, PyObject **py_func, PyObject *setObj, PyObject *fakeLib, const char* fname);
 
 static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
 {
@@ -652,6 +746,7 @@ PyMODINIT_FUNC ALTDSS_FAST_MODINIT()
         || PyType_Ready(&AltDSS_PyStrListGetterType) < 0
         || PyType_Ready(&AltDSS_PyGRGetterType) < 0
         || PyType_Ready(&AltDSS_PyScalarGetterType) < 0
+        || PyType_Ready(&AltDSS_PyScalarSetterType) < 0
         || PyType_Ready(&AltDSS_PyContextType) < 0
     )
     {
@@ -690,8 +785,16 @@ PyMODINIT_FUNC ALTDSS_FAST_MODINIT()
         goto ERROR4;
     }
 
+    Py_INCREF(&AltDSS_PyScalarSetterType);
+    if (PyModule_AddObject(m, "AltDSS_PyScalarSetter", (PyObject *) &AltDSS_PyScalarSetterType) < 0)
+    {
+        goto ERROR5;
+    }
+
     return m;
 
+ERROR5:
+    Py_DECREF(&AltDSS_PyScalarSetterType);
 ERROR4:
     Py_DECREF(&AltDSS_PyScalarGetterType);
 ERROR3:
@@ -712,6 +815,31 @@ int AltDSS_PyStrListGetter_cinit(AltDSS_PyStrListGetterObject* f, AltDSS_PyConte
     void* ctx = alt_py_ctx->dssCtx;
 
     if (res_type != Signature_str_list)
+    {
+        f->dssCtx = NULL;
+        f->func = NULL;
+        return 0;
+    }
+
+    f->parent = alt_py_ctx;
+    f->dssCtx = alt_py_ctx->dssCtx;
+    f->errorPtr = alt_py_ctx->errorPtr;
+    f->func = c_func;
+    f->settingsPtr = alt_py_ctx->settingsPtr;
+    f->funcArgSignature = args_type;
+    f->resType = res_type;
+    return 1;
+}
+
+int AltDSS_PyScalarSetter_cinit(AltDSS_PyScalarSetterObject* f, AltDSS_PyContextObject *alt_py_ctx, int res_type, int args_type, void* c_func)
+{
+    void* ctx = alt_py_ctx->dssCtx;
+
+    if ((args_type != Signature_one_int32 && 
+        args_type != Signature_one_float64 && 
+        args_type != Signature_one_bool)
+        || (res_type != Signature_empty)
+        )
     {
         f->dssCtx = NULL;
         f->func = NULL;
@@ -806,50 +934,99 @@ int AltDSS_PyGRGetter_cinit(AltDSS_PyGRGetterObject* f, AltDSS_PyContextObject *
     }
 }
 
-int AltDSS_Add_PyGetter(AltDSS_PyContextObject *self, int res_type, int args_type, void* c_func, PyObject **py_func, PyObject *setObj, PyObject *fakeLib, const char* fname)
+int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type, void* c_func, PyObject **py_func, PyObject *setObj, PyObject *fakeLib, const char* fname)
 {
     PyObject* key = NULL;
-    switch (res_type)
+
+    if (res_type == Signature_empty)
     {
-        case Signature_str_list:
-            *py_func = (PyObject*) PyObject_New(AltDSS_PyStrListGetterObject, &AltDSS_PyStrListGetterType);
-            if ((*py_func) == NULL)
-            {
+        switch (args_type)
+        {
+            // case Signature_str_list:
+            //     *py_func = (PyObject*) PyObject_New(AltDSS_PyStrListGetterObject, &AltDSS_PyStrListGetterType);
+            //     if ((*py_func) == NULL)
+            //     {
+            //         goto ADD_FUNC_ERROR;
+            //     }
+            //     AltDSS_PyStrListGetter_cinit((AltDSS_PyStrListGetterObject*) *py_func, self, res_type, args_type, c_func);
+            //     break;
+            // case Signature_str:
+            //     *py_func = (PyObject*) PyObject_New(AltDSS_PyStrGetterObject, &AltDSS_PyStrGetterType);
+            //     if ((*py_func) == NULL)
+            //     {
+            //         goto ADD_FUNC_ERROR;
+            //     }
+            //     AltDSS_PyStrGetter_cinit((AltDSS_PyStrGetterObject*) *py_func, self, res_type, args_type, c_func);
+            //     break;
+            case Signature_one_float64:
+            case Signature_one_int32:
+            case Signature_one_bool:
+                *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarSetterObject, &AltDSS_PyScalarSetterType);
+                if ((*py_func) == NULL)
+                {
+                    goto ADD_FUNC_ERROR;
+                }
+                AltDSS_PyScalarSetter_cinit((AltDSS_PyScalarSetterObject*) *py_func, self, res_type, args_type, c_func);
+                break;
+            // case Signature_complex128:
+            // case Signature_float64:
+            // case Signature_int32:
+            // case Signature_int8:
+            //     *py_func = (PyObject*) PyObject_New(AltDSS_PyGRGetterObject, &AltDSS_PyGRGetterType);
+            //     if ((*py_func) == NULL)
+            //     {
+            //         goto ADD_FUNC_ERROR;
+            //     }
+            //     AltDSS_PyGRGetter_cinit((AltDSS_PyGRGetterObject*) *py_func, self, res_type, args_type, c_func);
+            //     break;
+            default:
                 goto ADD_FUNC_ERROR;
-            }
-            AltDSS_PyStrListGetter_cinit((AltDSS_PyStrListGetterObject*) *py_func, self, res_type, args_type, c_func);
-            break;
-        case Signature_str:
-            *py_func = (PyObject*) PyObject_New(AltDSS_PyStrGetterObject, &AltDSS_PyStrGetterType);
-            if ((*py_func) == NULL)
-            {
+        }        
+    }
+    else
+    {
+        switch (res_type)
+        {
+            case Signature_str_list:
+                *py_func = (PyObject*) PyObject_New(AltDSS_PyStrListGetterObject, &AltDSS_PyStrListGetterType);
+                if ((*py_func) == NULL)
+                {
+                    goto ADD_FUNC_ERROR;
+                }
+                AltDSS_PyStrListGetter_cinit((AltDSS_PyStrListGetterObject*) *py_func, self, res_type, args_type, c_func);
+                break;
+            case Signature_str:
+                *py_func = (PyObject*) PyObject_New(AltDSS_PyStrGetterObject, &AltDSS_PyStrGetterType);
+                if ((*py_func) == NULL)
+                {
+                    goto ADD_FUNC_ERROR;
+                }
+                AltDSS_PyStrGetter_cinit((AltDSS_PyStrGetterObject*) *py_func, self, res_type, args_type, c_func);
+                break;
+            case Signature_one_float64:
+            case Signature_one_int32:
+            case Signature_one_bool:
+                *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarGetterObject, &AltDSS_PyScalarGetterType);
+                if ((*py_func) == NULL)
+                {
+                    goto ADD_FUNC_ERROR;
+                }
+                AltDSS_PyScalarGetter_cinit((AltDSS_PyScalarGetterObject*) *py_func, self, res_type, args_type, c_func);
+                break;
+            case Signature_complex128:
+            case Signature_float64:
+            case Signature_int32:
+            case Signature_int8:
+                *py_func = (PyObject*) PyObject_New(AltDSS_PyGRGetterObject, &AltDSS_PyGRGetterType);
+                if ((*py_func) == NULL)
+                {
+                    goto ADD_FUNC_ERROR;
+                }
+                AltDSS_PyGRGetter_cinit((AltDSS_PyGRGetterObject*) *py_func, self, res_type, args_type, c_func);
+                break;
+            default:
                 goto ADD_FUNC_ERROR;
-            }
-            AltDSS_PyStrGetter_cinit((AltDSS_PyStrGetterObject*) *py_func, self, res_type, args_type, c_func);
-            break;
-        case Signature_one_float64:
-        case Signature_one_int32:
-        case Signature_one_bool:
-            *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarGetterObject, &AltDSS_PyScalarGetterType);
-            if ((*py_func) == NULL)
-            {
-                goto ADD_FUNC_ERROR;
-            }
-            AltDSS_PyScalarGetter_cinit((AltDSS_PyScalarGetterObject*) *py_func, self, res_type, args_type, c_func);
-            break;
-        case Signature_complex128:
-        case Signature_float64:
-        case Signature_int32:
-        case Signature_int8:
-            *py_func = (PyObject*) PyObject_New(AltDSS_PyGRGetterObject, &AltDSS_PyGRGetterType);
-            if ((*py_func) == NULL)
-            {
-                goto ADD_FUNC_ERROR;
-            }
-            AltDSS_PyGRGetter_cinit((AltDSS_PyGRGetterObject*) *py_func, self, res_type, args_type, c_func);
-            break;
-        default:
-            goto ADD_FUNC_ERROR;
+        }
     }
 
     key = PyUnicode_FromString(fname);

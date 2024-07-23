@@ -63,7 +63,9 @@
     PyObject *f_Monitors_Get_Element;
     PyObject *f_Monitors_Get_FileName;
     PyObject *f_Monitors_Get_Name;
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_Name;
+#endif
     PyObject *f_PVSystems_Get_Name;
     PyObject *f_PVSystems_Get_Sensor;
     PyObject *f_PVSystems_Get_Tdaily;
@@ -200,7 +202,9 @@
     PyObject *f_Meters_Get_ZonePCE;
     PyObject *f_Monitors_Get_AllNames;
     PyObject *f_Monitors_Get_Header;
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllNames;
+#endif
     PyObject *f_PVSystems_Get_AllNames;
     PyObject *f_PVSystems_Get_RegisterNames;
 #ifndef ALTDSS_ODDIE
@@ -309,12 +313,24 @@
     PyObject *f_Meters_Get_Totals_GR;
     PyObject *f_Monitors_Get_dblFreq_GR;
     PyObject *f_Monitors_Get_dblHour_GR;
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllCplxSeqCurrents_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllCurrents_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllCurrentsMagAng_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllPowers_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllSeqCurrents_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllSeqPowers_GR;
+#endif
     PyObject *f_PVSystems_Get_RegisterValues_GR;
 #ifndef ALTDSS_ODDIE
     PyObject *f_Reactors_Get_Rmatrix_GR;
@@ -363,9 +379,15 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_LineGeometries_Get_Units_GR;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllNumConductors_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllNumPhases_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllNumTerminals_GR;
+#endif
     PyObject *f_Parallel_Get_ActorProgress_GR;
     PyObject *f_Parallel_Get_ActorStatus_GR;
     PyObject *f_Settings_Get_LossRegs_GR;
@@ -567,14 +589,30 @@
     PyObject *f_Monitors_Get_SampleCount;
     PyObject *f_Monitors_Get_Terminal;
     PyObject *f_Monitors_Get_idx;
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_Count;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_First;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_FromTerminal;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_Next;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_Numcustomers;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_ParentPDElement;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_SectionID;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_Totalcustomers;
+#endif
     PyObject *f_PVSystems_Get_Count;
     PyObject *f_PVSystems_Get_First;
     PyObject *f_PVSystems_Get_Next;
@@ -756,6 +794,182 @@
     PyObject *f_YMatrix_Get_Iteration;
     PyObject *f_Bus_GetUniqueNodeNumber;
     PyObject *f_Circuit_SetActiveBusi;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_GMRUnits;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_RadiusUnits;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_ResistanceUnits;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_idx;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_k;
+#endif
+    PyObject *f_CapControls_Set_Mode;
+    PyObject *f_CapControls_Set_MonitoredTerm;
+    PyObject *f_CapControls_Set_idx;
+    PyObject *f_Capacitors_Set_NumSteps;
+    PyObject *f_Capacitors_Set_idx;
+    PyObject *f_Circuit_SetCktElementIndex;
+    PyObject *f_CktElement_Set_VariableIdx;
+    PyObject *f_CtrlQueue_Delete;
+    PyObject *f_CtrlQueue_Set_Action;
+    PyObject *f_DSSProgress_Set_PctProgress;
+    PyObject *f_DSSProperty_Set_Index;
+    PyObject *f_Fuses_Set_MonitoredTerm;
+    PyObject *f_Fuses_Set_SwitchedTerm;
+    PyObject *f_Fuses_Set_idx;
+    PyObject *f_GICSources_Set_Phases;
+    PyObject *f_GICSources_Set_idx;
+    PyObject *f_Generators_Set_Class_;
+    PyObject *f_Generators_Set_Model;
+    PyObject *f_Generators_Set_Phases;
+    PyObject *f_Generators_Set_Status;
+    PyObject *f_Generators_Set_idx;
+    PyObject *f_ISources_Set_idx;
+    PyObject *f_LineCodes_Set_Phases;
+    PyObject *f_LineCodes_Set_Units;
+    PyObject *f_LineCodes_Set_idx;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Set_Nconds;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Set_Phases;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Set_idx;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineSpacings_Set_Nconds;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineSpacings_Set_Phases;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineSpacings_Set_Units;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineSpacings_Set_idx;
+#endif
+    PyObject *f_Lines_Set_Phases;
+    PyObject *f_Lines_Set_Units;
+    PyObject *f_Lines_Set_idx;
+    PyObject *f_LoadShapes_Set_Npts;
+    PyObject *f_LoadShapes_Set_idx;
+    PyObject *f_Loads_Set_Class_;
+    PyObject *f_Loads_Set_Model;
+    PyObject *f_Loads_Set_NumCust;
+    PyObject *f_Loads_Set_Phases;
+    PyObject *f_Loads_Set_Status;
+    PyObject *f_Loads_Set_idx;
+    PyObject *f_Meters_SetActiveSection;
+    PyObject *f_Meters_Set_MeteredTerminal;
+    PyObject *f_Meters_Set_SequenceIndex;
+    PyObject *f_Meters_Set_idx;
+    PyObject *f_Monitors_Set_Mode;
+    PyObject *f_Monitors_Set_Terminal;
+    PyObject *f_Monitors_Set_idx;
+    PyObject *f_PVSystems_Set_idx;
+    PyObject *f_Parallel_Set_ActiveActor;
+    PyObject *f_Parallel_Set_ActiveParallel;
+    PyObject *f_Parallel_Set_ActorCPU;
+    PyObject *f_Parallel_Set_ConcatenateReports;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_Phases;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_idx;
+#endif
+    PyObject *f_Reclosers_Set_MonitoredTerm;
+    PyObject *f_Reclosers_Set_NormalState;
+    PyObject *f_Reclosers_Set_NumFast;
+    PyObject *f_Reclosers_Set_Shots;
+    PyObject *f_Reclosers_Set_State;
+    PyObject *f_Reclosers_Set_SwitchedTerm;
+    PyObject *f_Reclosers_Set_idx;
+    PyObject *f_RegControls_Set_MaxTapChange;
+    PyObject *f_RegControls_Set_TapNumber;
+    PyObject *f_RegControls_Set_TapWinding;
+    PyObject *f_RegControls_Set_Winding;
+    PyObject *f_RegControls_Set_idx;
+    PyObject *f_Relays_Set_MonitoredTerm;
+    PyObject *f_Relays_Set_NormalState;
+    PyObject *f_Relays_Set_State;
+    PyObject *f_Relays_Set_SwitchedTerm;
+    PyObject *f_Relays_Set_idx;
+    PyObject *f_Sensors_Set_MeteredTerminal;
+    PyObject *f_Sensors_Set_idx;
+    PyObject *f_Settings_SetPropertyNameStyle;
+    PyObject *f_Settings_Set_CktModel;
+    PyObject *f_Settings_Set_IterateDisabled;
+    PyObject *f_Solution_Set_AddType;
+    PyObject *f_Solution_Set_Algorithm;
+    PyObject *f_Solution_Set_ControlIterations;
+    PyObject *f_Solution_Set_ControlMode;
+    PyObject *f_Solution_Set_Hour;
+    PyObject *f_Solution_Set_LoadModel;
+    PyObject *f_Solution_Set_MaxControlIterations;
+    PyObject *f_Solution_Set_MaxIterations;
+    PyObject *f_Solution_Set_MinIterations;
+    PyObject *f_Solution_Set_Mode;
+    PyObject *f_Solution_Set_Number;
+    PyObject *f_Solution_Set_Random;
+    PyObject *f_Solution_Set_Year;
+    PyObject *f_Storages_Set_ControlMode;
+    PyObject *f_Storages_Set_State;
+    PyObject *f_Storages_Set_VarFollowInverter;
+    PyObject *f_Storages_Set_idx;
+    PyObject *f_SwtControls_Set_Action;
+    PyObject *f_SwtControls_Set_NormalState;
+    PyObject *f_SwtControls_Set_State;
+    PyObject *f_SwtControls_Set_SwitchedTerm;
+    PyObject *f_SwtControls_Set_idx;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_GMRUnits;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_RadiusUnits;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_ResistanceUnits;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_idx;
+#endif
+    PyObject *f_Transformers_Set_CoreType;
+    PyObject *f_Transformers_Set_NumTaps;
+    PyObject *f_Transformers_Set_NumWindings;
+    PyObject *f_Transformers_Set_Wdg;
+    PyObject *f_Transformers_Set_idx;
+    PyObject *f_Vsources_Set_Phases;
+    PyObject *f_Vsources_Set_idx;
+    PyObject *f_WindGens_Set_Class_;
+    PyObject *f_WindGens_Set_NPoles;
+    PyObject *f_WindGens_Set_N_WTG;
+    PyObject *f_WindGens_Set_Phases;
+    PyObject *f_WindGens_Set_QFlag;
+    PyObject *f_WindGens_Set_QMode;
+    PyObject *f_WindGens_Set_idx;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_GMRUnits;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_RadiusUnits;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_ResistanceUnits;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_idx;
+#endif
+    PyObject *f_XYCurves_Set_Npts;
+    PyObject *f_XYCurves_Set_idx;
+    PyObject *f_YMatrix_AddInAuxCurrents;
+    PyObject *f_YMatrix_Set_Iteration;
     PyObject *f_Bus_Get_Cust_Duration;
     PyObject *f_Bus_Get_Cust_Interrupts;
     PyObject *f_Bus_Get_Distance;
@@ -908,12 +1122,24 @@
     PyObject *f_Meters_Get_SAIFI;
     PyObject *f_Meters_Get_SAIFIKW;
     PyObject *f_Meters_Get_SumBranchFltRates;
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AccumulatedL;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_FaultRate;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_Lambda;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_RepairTime;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_TotalMiles;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_pctPermanent;
+#endif
     PyObject *f_PVSystems_Get_Irradiance;
     PyObject *f_PVSystems_Get_IrradianceNow;
     PyObject *f_PVSystems_Get_PF;
@@ -1109,6 +1335,344 @@
     PyObject *f_XYCurves_Get_Yshift;
     PyObject *f_XYCurves_Get_x;
     PyObject *f_XYCurves_Get_y;
+    PyObject *f_Bus_Set_x;
+    PyObject *f_Bus_Set_y;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_DiaCable;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_DiaIns;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_DiaStrand;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_Diameter;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_EmergAmps;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_EpsR;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_GMRac;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_GmrStrand;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_InsLayer;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_NormAmps;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_RStrand;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_Rac;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_Radius;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_Rdc;
+#endif
+    PyObject *f_CapControls_Set_CTratio;
+    PyObject *f_CapControls_Set_DeadTime;
+    PyObject *f_CapControls_Set_Delay;
+    PyObject *f_CapControls_Set_DelayOff;
+    PyObject *f_CapControls_Set_OFFSetting;
+    PyObject *f_CapControls_Set_ONSetting;
+    PyObject *f_CapControls_Set_PTratio;
+    PyObject *f_CapControls_Set_Vmax;
+    PyObject *f_CapControls_Set_Vmin;
+    PyObject *f_Capacitors_Set_kV;
+    PyObject *f_Capacitors_Set_kvar;
+    PyObject *f_CktElement_Set_EmergAmps;
+    PyObject *f_CktElement_Set_NormalAmps;
+    PyObject *f_CktElement_Set_VariableValue;
+    PyObject *f_Fuses_Set_Delay;
+    PyObject *f_Fuses_Set_RatedCurrent;
+    PyObject *f_GICSources_Set_EE;
+    PyObject *f_GICSources_Set_EN;
+    PyObject *f_GICSources_Set_Lat1;
+    PyObject *f_GICSources_Set_Lat2;
+    PyObject *f_GICSources_Set_Lon1;
+    PyObject *f_GICSources_Set_Lon2;
+    PyObject *f_GICSources_Set_Volts;
+    PyObject *f_Generators_Set_PF;
+    PyObject *f_Generators_Set_Vmaxpu;
+    PyObject *f_Generators_Set_Vminpu;
+    PyObject *f_Generators_Set_kV;
+    PyObject *f_Generators_Set_kVArated;
+    PyObject *f_Generators_Set_kW;
+    PyObject *f_Generators_Set_kva;
+    PyObject *f_Generators_Set_kvar;
+    PyObject *f_ISources_Set_Amps;
+    PyObject *f_ISources_Set_AngleDeg;
+    PyObject *f_ISources_Set_Frequency;
+    PyObject *f_LineCodes_Set_C0;
+    PyObject *f_LineCodes_Set_C1;
+    PyObject *f_LineCodes_Set_EmergAmps;
+    PyObject *f_LineCodes_Set_NormAmps;
+    PyObject *f_LineCodes_Set_R0;
+    PyObject *f_LineCodes_Set_R1;
+    PyObject *f_LineCodes_Set_X0;
+    PyObject *f_LineCodes_Set_X1;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Set_EmergAmps;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Set_NormAmps;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Set_RhoEarth;
+#endif
+    PyObject *f_Lines_Set_C0;
+    PyObject *f_Lines_Set_C1;
+    PyObject *f_Lines_Set_EmergAmps;
+    PyObject *f_Lines_Set_Length;
+    PyObject *f_Lines_Set_NormAmps;
+    PyObject *f_Lines_Set_R0;
+    PyObject *f_Lines_Set_R1;
+    PyObject *f_Lines_Set_Rg;
+    PyObject *f_Lines_Set_Rho;
+    PyObject *f_Lines_Set_X0;
+    PyObject *f_Lines_Set_X1;
+    PyObject *f_Lines_Set_Xg;
+    PyObject *f_LoadShapes_Set_HrInterval;
+    PyObject *f_LoadShapes_Set_MaxP;
+    PyObject *f_LoadShapes_Set_MaxQ;
+    PyObject *f_LoadShapes_Set_MinInterval;
+    PyObject *f_LoadShapes_Set_PBase;
+    PyObject *f_LoadShapes_Set_Qbase;
+    PyObject *f_LoadShapes_Set_SInterval;
+    PyObject *f_Loads_Set_AllocationFactor;
+    PyObject *f_Loads_Set_CVRvars;
+    PyObject *f_Loads_Set_CVRwatts;
+    PyObject *f_Loads_Set_Cfactor;
+    PyObject *f_Loads_Set_PF;
+    PyObject *f_Loads_Set_PctMean;
+    PyObject *f_Loads_Set_PctStdDev;
+    PyObject *f_Loads_Set_RelWeight;
+    PyObject *f_Loads_Set_Rneut;
+    PyObject *f_Loads_Set_Vmaxpu;
+    PyObject *f_Loads_Set_Vminemerg;
+    PyObject *f_Loads_Set_Vminnorm;
+    PyObject *f_Loads_Set_Vminpu;
+    PyObject *f_Loads_Set_Xneut;
+    PyObject *f_Loads_Set_kV;
+    PyObject *f_Loads_Set_kW;
+    PyObject *f_Loads_Set_kva;
+    PyObject *f_Loads_Set_kvar;
+    PyObject *f_Loads_Set_kwh;
+    PyObject *f_Loads_Set_kwhdays;
+    PyObject *f_Loads_Set_pctSeriesRL;
+    PyObject *f_Loads_Set_xfkVA;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_PDElements_Set_FaultRate;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_PDElements_Set_RepairTime;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_PDElements_Set_pctPermanent;
+#endif
+    PyObject *f_PVSystems_Set_Irradiance;
+    PyObject *f_PVSystems_Set_PF;
+    PyObject *f_PVSystems_Set_Pmpp;
+    PyObject *f_PVSystems_Set_kVArated;
+    PyObject *f_PVSystems_Set_kvar;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_LmH;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_R;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_Rp;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_X;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_kV;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_kvar;
+#endif
+    PyObject *f_Reclosers_Set_GroundInst;
+    PyObject *f_Reclosers_Set_GroundTrip;
+    PyObject *f_Reclosers_Set_PhaseInst;
+    PyObject *f_Reclosers_Set_PhaseTrip;
+    PyObject *f_ReduceCkt_Set_Zmag;
+    PyObject *f_RegControls_Set_CTPrimary;
+    PyObject *f_RegControls_Set_Delay;
+    PyObject *f_RegControls_Set_ForwardBand;
+    PyObject *f_RegControls_Set_ForwardR;
+    PyObject *f_RegControls_Set_ForwardVreg;
+    PyObject *f_RegControls_Set_ForwardX;
+    PyObject *f_RegControls_Set_PTratio;
+    PyObject *f_RegControls_Set_ReverseBand;
+    PyObject *f_RegControls_Set_ReverseR;
+    PyObject *f_RegControls_Set_ReverseVreg;
+    PyObject *f_RegControls_Set_ReverseX;
+    PyObject *f_RegControls_Set_TapDelay;
+    PyObject *f_RegControls_Set_VoltageLimit;
+    PyObject *f_Sensors_Set_PctError;
+    PyObject *f_Sensors_Set_Weight;
+    PyObject *f_Sensors_Set_kVbase;
+    PyObject *f_Settings_Set_AllocationFactors;
+    PyObject *f_Settings_Set_EmergVmaxpu;
+    PyObject *f_Settings_Set_EmergVminpu;
+    PyObject *f_Settings_Set_LossWeight;
+    PyObject *f_Settings_Set_NormVmaxpu;
+    PyObject *f_Settings_Set_NormVminpu;
+    PyObject *f_Settings_Set_PriceSignal;
+    PyObject *f_Settings_Set_UEweight;
+    PyObject *f_Solution_Set_Capkvar;
+    PyObject *f_Solution_Set_Frequency;
+    PyObject *f_Solution_Set_GenMult;
+    PyObject *f_Solution_Set_GenPF;
+    PyObject *f_Solution_Set_GenkW;
+    PyObject *f_Solution_Set_IntervalHrs;
+    PyObject *f_Solution_Set_LoadMult;
+    PyObject *f_Solution_Set_Seconds;
+    PyObject *f_Solution_Set_StepSize;
+    PyObject *f_Solution_Set_StepsizeHr;
+    PyObject *f_Solution_Set_StepsizeMin;
+    PyObject *f_Solution_Set_Tolerance;
+    PyObject *f_Solution_Set_Total_Time;
+    PyObject *f_Solution_Set_dblHour;
+    PyObject *f_Solution_Set_pctGrowth;
+    PyObject *f_Storages_Set_AmpLimit;
+    PyObject *f_Storages_Set_AmpLimitGain;
+    PyObject *f_Storages_Set_ChargeTrigger;
+    PyObject *f_Storages_Set_DischargeTrigger;
+    PyObject *f_Storages_Set_EffCharge;
+    PyObject *f_Storages_Set_EffDischarge;
+    PyObject *f_Storages_Set_Kp;
+    PyObject *f_Storages_Set_PF;
+    PyObject *f_Storages_Set_PITol;
+    PyObject *f_Storages_Set_SafeVoltage;
+    PyObject *f_Storages_Set_TimeChargeTrig;
+    PyObject *f_Storages_Set_kV;
+    PyObject *f_Storages_Set_kVA;
+    PyObject *f_Storages_Set_kVDC;
+    PyObject *f_Storages_Set_kW;
+    PyObject *f_Storages_Set_kWRated;
+    PyObject *f_Storages_Set_kWhRated;
+    PyObject *f_Storages_Set_kvar;
+    PyObject *f_Storages_Set_puSOC;
+    PyObject *f_SwtControls_Set_Delay;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_DiaCable;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_DiaIns;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_DiaShield;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_Diameter;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_EmergAmps;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_EpsR;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_GMRac;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_InsLayer;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_NormAmps;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_Rac;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_Radius;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_Rdc;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_TapeLap;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_TapeLayer;
+#endif
+    PyObject *f_Transformers_Set_MaxTap;
+    PyObject *f_Transformers_Set_MinTap;
+    PyObject *f_Transformers_Set_R;
+    PyObject *f_Transformers_Set_RdcOhms;
+    PyObject *f_Transformers_Set_Rneut;
+    PyObject *f_Transformers_Set_Tap;
+    PyObject *f_Transformers_Set_Xhl;
+    PyObject *f_Transformers_Set_Xht;
+    PyObject *f_Transformers_Set_Xlt;
+    PyObject *f_Transformers_Set_Xneut;
+    PyObject *f_Transformers_Set_kV;
+    PyObject *f_Transformers_Set_kVA;
+    PyObject *f_Vsources_Set_AngleDeg;
+    PyObject *f_Vsources_Set_BasekV;
+    PyObject *f_Vsources_Set_Frequency;
+    PyObject *f_Vsources_Set_pu;
+    PyObject *f_WindGens_Set_Ag;
+    PyObject *f_WindGens_Set_Cp;
+    PyObject *f_WindGens_Set_Lamda;
+    PyObject *f_WindGens_Set_PF;
+    PyObject *f_WindGens_Set_PSS;
+    PyObject *f_WindGens_Set_QSS;
+    PyObject *f_WindGens_Set_RThev;
+    PyObject *f_WindGens_Set_Rad;
+    PyObject *f_WindGens_Set_VCutIn;
+    PyObject *f_WindGens_Set_VCutOut;
+    PyObject *f_WindGens_Set_Vss;
+    PyObject *f_WindGens_Set_WindSpeed;
+    PyObject *f_WindGens_Set_XThev;
+    PyObject *f_WindGens_Set_kV;
+    PyObject *f_WindGens_Set_kVA;
+    PyObject *f_WindGens_Set_kW;
+    PyObject *f_WindGens_Set_kvar;
+    PyObject *f_WindGens_Set_pd;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_CapRadius;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_Diameter;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_EmergAmps;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_GMRac;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_NormAmps;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_Rac;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_Radius;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_Rdc;
+#endif
+    PyObject *f_XYCurves_Set_Xscale;
+    PyObject *f_XYCurves_Set_Xshift;
+    PyObject *f_XYCurves_Set_Yscale;
+    PyObject *f_XYCurves_Set_Yshift;
+    PyObject *f_XYCurves_Set_x;
+    PyObject *f_XYCurves_Set_y;
     PyObject *f_Bus_Get_Coorddefined;
     PyObject *f_Bus_ZscRefresh;
     PyObject *f_CapControls_Get_UseVoltOverride;
@@ -1140,7 +1704,9 @@
     PyObject *f_LoadShapes_Get_UseActual;
     PyObject *f_Loads_Get_IsDelta;
     PyObject *f_Meters_Get_DIFilesAreOpen;
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_IsShunt;
+#endif
     PyObject *f_Parser_Get_AutoIncrement;
 #ifndef ALTDSS_ODDIE
     PyObject *f_Reactors_Get_IsDelta;

@@ -63,7 +63,9 @@
 {"Monitors_Get_Element", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_Element)},
 {"Monitors_Get_FileName", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_FileName)},
 {"Monitors_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_Name)},
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Name)},
+#endif
 {"PVSystems_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Name)},
 {"PVSystems_Get_Sensor", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Sensor)},
 {"PVSystems_Get_Tdaily", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Tdaily)},
@@ -200,7 +202,9 @@
 {"Meters_Get_ZonePCE", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Get_ZonePCE)},
 {"Monitors_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_AllNames)},
 {"Monitors_Get_Header", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_Header)},
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNames)},
+#endif
 {"PVSystems_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_AllNames)},
 {"PVSystems_Get_RegisterNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_RegisterNames)},
 #ifndef ALTDSS_ODDIE
@@ -309,12 +313,24 @@
 {"Meters_Get_Totals_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Get_Totals_GR)},
 {"Monitors_Get_dblFreq_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_dblFreq_GR)},
 {"Monitors_Get_dblHour_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_dblHour_GR)},
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllCplxSeqCurrents_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllCplxSeqCurrents_GR)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllCurrents_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllCurrents_GR)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllCurrentsMagAng_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllCurrentsMagAng_GR)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllPowers_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllPowers_GR)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllSeqCurrents_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllSeqCurrents_GR)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllSeqPowers_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllSeqPowers_GR)},
+#endif
 {"PVSystems_Get_RegisterValues_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_RegisterValues_GR)},
 #ifndef ALTDSS_ODDIE
 {"Reactors_Get_Rmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Rmatrix_GR)},
@@ -363,9 +379,15 @@
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Units_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Units_GR)},
 #endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllNumConductors_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumConductors_GR)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllNumPhases_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumPhases_GR)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllNumTerminals_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumTerminals_GR)},
+#endif
 {"Parallel_Get_ActorProgress_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parallel_Get_ActorProgress_GR)},
 {"Parallel_Get_ActorStatus_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parallel_Get_ActorStatus_GR)},
 {"Settings_Get_LossRegs_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Get_LossRegs_GR)},
@@ -567,14 +589,30 @@
 {"Monitors_Get_SampleCount", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_SampleCount)},
 {"Monitors_Get_Terminal", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_Terminal)},
 {"Monitors_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_idx)},
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Count)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_First)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_FromTerminal", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_FromTerminal)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Next)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_Numcustomers", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Numcustomers)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_ParentPDElement", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_ParentPDElement)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_SectionID", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_SectionID)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_Totalcustomers", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Totalcustomers)},
+#endif
 {"PVSystems_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Count)},
 {"PVSystems_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_First)},
 {"PVSystems_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Next)},
@@ -756,6 +794,182 @@
 {"YMatrix_Get_Iteration", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_Get_Iteration)},
 {"Bus_GetUniqueNodeNumber", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_GetUniqueNodeNumber)},
 {"Circuit_SetActiveBusi", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_SetActiveBusi)},
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_GMRUnits)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_RadiusUnits)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_ResistanceUnits)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_idx)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_k", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_k)},
+#endif
+{"CapControls_Set_Mode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Mode)},
+{"CapControls_Set_MonitoredTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_MonitoredTerm)},
+{"CapControls_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_idx)},
+{"Capacitors_Set_NumSteps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Capacitors_Set_NumSteps)},
+{"Capacitors_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Capacitors_Set_idx)},
+{"Circuit_SetCktElementIndex", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_SetCktElementIndex)},
+{"CktElement_Set_VariableIdx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Set_VariableIdx)},
+{"CtrlQueue_Delete", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CtrlQueue_Delete)},
+{"CtrlQueue_Set_Action", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CtrlQueue_Set_Action)},
+{"DSSProgress_Set_PctProgress", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSSProgress_Set_PctProgress)},
+{"DSSProperty_Set_Index", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSSProperty_Set_Index)},
+{"Fuses_Set_MonitoredTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Fuses_Set_MonitoredTerm)},
+{"Fuses_Set_SwitchedTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Fuses_Set_SwitchedTerm)},
+{"Fuses_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Fuses_Set_idx)},
+{"GICSources_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_GICSources_Set_Phases)},
+{"GICSources_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_GICSources_Set_idx)},
+{"Generators_Set_Class_", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_Class_)},
+{"Generators_Set_Model", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_Model)},
+{"Generators_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_Phases)},
+{"Generators_Set_Status", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_Status)},
+{"Generators_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_idx)},
+{"ISources_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ISources_Set_idx)},
+{"LineCodes_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_Phases)},
+{"LineCodes_Set_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_Units)},
+{"LineCodes_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_idx)},
+#ifndef ALTDSS_ODDIE
+{"LineGeometries_Set_Nconds", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_Nconds)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"LineGeometries_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_Phases)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"LineGeometries_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_idx)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"LineSpacings_Set_Nconds", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Nconds)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"LineSpacings_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Phases)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"LineSpacings_Set_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Units)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"LineSpacings_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_idx)},
+#endif
+{"Lines_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Phases)},
+{"Lines_Set_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Units)},
+{"Lines_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_idx)},
+{"LoadShapes_Set_Npts", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_Npts)},
+{"LoadShapes_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_idx)},
+{"Loads_Set_Class_", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Class_)},
+{"Loads_Set_Model", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Model)},
+{"Loads_Set_NumCust", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_NumCust)},
+{"Loads_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Phases)},
+{"Loads_Set_Status", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Status)},
+{"Loads_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_idx)},
+{"Meters_SetActiveSection", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_SetActiveSection)},
+{"Meters_Set_MeteredTerminal", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Set_MeteredTerminal)},
+{"Meters_Set_SequenceIndex", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Set_SequenceIndex)},
+{"Meters_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Set_idx)},
+{"Monitors_Set_Mode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Set_Mode)},
+{"Monitors_Set_Terminal", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Set_Terminal)},
+{"Monitors_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Set_idx)},
+{"PVSystems_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_idx)},
+{"Parallel_Set_ActiveActor", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parallel_Set_ActiveActor)},
+{"Parallel_Set_ActiveParallel", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parallel_Set_ActiveParallel)},
+{"Parallel_Set_ActorCPU", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parallel_Set_ActorCPU)},
+{"Parallel_Set_ConcatenateReports", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parallel_Set_ConcatenateReports)},
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Phases)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_idx)},
+#endif
+{"Reclosers_Set_MonitoredTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_MonitoredTerm)},
+{"Reclosers_Set_NormalState", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_NormalState)},
+{"Reclosers_Set_NumFast", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_NumFast)},
+{"Reclosers_Set_Shots", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_Shots)},
+{"Reclosers_Set_State", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_State)},
+{"Reclosers_Set_SwitchedTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_SwitchedTerm)},
+{"Reclosers_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_idx)},
+{"RegControls_Set_MaxTapChange", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_MaxTapChange)},
+{"RegControls_Set_TapNumber", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_TapNumber)},
+{"RegControls_Set_TapWinding", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_TapWinding)},
+{"RegControls_Set_Winding", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_Winding)},
+{"RegControls_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_idx)},
+{"Relays_Set_MonitoredTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Relays_Set_MonitoredTerm)},
+{"Relays_Set_NormalState", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Relays_Set_NormalState)},
+{"Relays_Set_State", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Relays_Set_State)},
+{"Relays_Set_SwitchedTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Relays_Set_SwitchedTerm)},
+{"Relays_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Relays_Set_idx)},
+{"Sensors_Set_MeteredTerminal", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Sensors_Set_MeteredTerminal)},
+{"Sensors_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Sensors_Set_idx)},
+{"Settings_SetPropertyNameStyle", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_SetPropertyNameStyle)},
+{"Settings_Set_CktModel", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_CktModel)},
+{"Settings_Set_IterateDisabled", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_IterateDisabled)},
+{"Solution_Set_AddType", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_AddType)},
+{"Solution_Set_Algorithm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Algorithm)},
+{"Solution_Set_ControlIterations", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_ControlIterations)},
+{"Solution_Set_ControlMode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_ControlMode)},
+{"Solution_Set_Hour", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Hour)},
+{"Solution_Set_LoadModel", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_LoadModel)},
+{"Solution_Set_MaxControlIterations", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_MaxControlIterations)},
+{"Solution_Set_MaxIterations", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_MaxIterations)},
+{"Solution_Set_MinIterations", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_MinIterations)},
+{"Solution_Set_Mode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Mode)},
+{"Solution_Set_Number", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Number)},
+{"Solution_Set_Random", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Random)},
+{"Solution_Set_Year", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Year)},
+{"Storages_Set_ControlMode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_ControlMode)},
+{"Storages_Set_State", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_State)},
+{"Storages_Set_VarFollowInverter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_VarFollowInverter)},
+{"Storages_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_idx)},
+{"SwtControls_Set_Action", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_Action)},
+{"SwtControls_Set_NormalState", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_NormalState)},
+{"SwtControls_Set_State", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_State)},
+{"SwtControls_Set_SwitchedTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_SwitchedTerm)},
+{"SwtControls_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_idx)},
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_GMRUnits)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_RadiusUnits)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_ResistanceUnits)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_idx)},
+#endif
+{"Transformers_Set_CoreType", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_CoreType)},
+{"Transformers_Set_NumTaps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_NumTaps)},
+{"Transformers_Set_NumWindings", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_NumWindings)},
+{"Transformers_Set_Wdg", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_Wdg)},
+{"Transformers_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_idx)},
+{"Vsources_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Vsources_Set_Phases)},
+{"Vsources_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Vsources_Set_idx)},
+{"WindGens_Set_Class_", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Class_)},
+{"WindGens_Set_NPoles", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_NPoles)},
+{"WindGens_Set_N_WTG", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_N_WTG)},
+{"WindGens_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Phases)},
+{"WindGens_Set_QFlag", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_QFlag)},
+{"WindGens_Set_QMode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_QMode)},
+{"WindGens_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_idx)},
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_GMRUnits)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_RadiusUnits)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_ResistanceUnits)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_idx)},
+#endif
+{"XYCurves_Set_Npts", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Npts)},
+{"XYCurves_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_idx)},
+{"YMatrix_AddInAuxCurrents", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_AddInAuxCurrents)},
+{"YMatrix_Set_Iteration", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_Set_Iteration)},
 {"Bus_Get_Cust_Duration", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_Cust_Duration)},
 {"Bus_Get_Cust_Interrupts", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_Cust_Interrupts)},
 {"Bus_Get_Distance", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_Distance)},
@@ -908,12 +1122,24 @@
 {"Meters_Get_SAIFI", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Get_SAIFI)},
 {"Meters_Get_SAIFIKW", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Get_SAIFIKW)},
 {"Meters_Get_SumBranchFltRates", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Get_SumBranchFltRates)},
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AccumulatedL", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AccumulatedL)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_FaultRate", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_FaultRate)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_Lambda", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Lambda)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_RepairTime", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_RepairTime)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_TotalMiles", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_TotalMiles)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_pctPermanent", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_pctPermanent)},
+#endif
 {"PVSystems_Get_Irradiance", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Irradiance)},
 {"PVSystems_Get_IrradianceNow", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_IrradianceNow)},
 {"PVSystems_Get_PF", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_PF)},
@@ -1109,6 +1335,344 @@
 {"XYCurves_Get_Yshift", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_Yshift)},
 {"XYCurves_Get_x", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_x)},
 {"XYCurves_Get_y", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_y)},
+{"Bus_Set_x", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Set_x)},
+{"Bus_Set_y", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Set_y)},
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_DiaCable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_DiaCable)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_DiaIns", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_DiaIns)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_DiaStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_DiaStrand)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Diameter)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_EmergAmps)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_EpsR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_EpsR)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_GMRac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_GMRac)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_GmrStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_GmrStrand)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_InsLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_InsLayer)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_NormAmps)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_RStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_RStrand)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Rac)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Radius)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Rdc)},
+#endif
+{"CapControls_Set_CTratio", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_CTratio)},
+{"CapControls_Set_DeadTime", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_DeadTime)},
+{"CapControls_Set_Delay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Delay)},
+{"CapControls_Set_DelayOff", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_DelayOff)},
+{"CapControls_Set_OFFSetting", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_OFFSetting)},
+{"CapControls_Set_ONSetting", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_ONSetting)},
+{"CapControls_Set_PTratio", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_PTratio)},
+{"CapControls_Set_Vmax", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Vmax)},
+{"CapControls_Set_Vmin", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Vmin)},
+{"Capacitors_Set_kV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Capacitors_Set_kV)},
+{"Capacitors_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Capacitors_Set_kvar)},
+{"CktElement_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Set_EmergAmps)},
+{"CktElement_Set_NormalAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Set_NormalAmps)},
+{"CktElement_Set_VariableValue", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Set_VariableValue)},
+{"Fuses_Set_Delay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Fuses_Set_Delay)},
+{"Fuses_Set_RatedCurrent", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Fuses_Set_RatedCurrent)},
+{"GICSources_Set_EE", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_GICSources_Set_EE)},
+{"GICSources_Set_EN", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_GICSources_Set_EN)},
+{"GICSources_Set_Lat1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_GICSources_Set_Lat1)},
+{"GICSources_Set_Lat2", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_GICSources_Set_Lat2)},
+{"GICSources_Set_Lon1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_GICSources_Set_Lon1)},
+{"GICSources_Set_Lon2", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_GICSources_Set_Lon2)},
+{"GICSources_Set_Volts", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_GICSources_Set_Volts)},
+{"Generators_Set_PF", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_PF)},
+{"Generators_Set_Vmaxpu", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_Vmaxpu)},
+{"Generators_Set_Vminpu", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_Vminpu)},
+{"Generators_Set_kV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_kV)},
+{"Generators_Set_kVArated", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_kVArated)},
+{"Generators_Set_kW", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_kW)},
+{"Generators_Set_kva", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_kva)},
+{"Generators_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_kvar)},
+{"ISources_Set_Amps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ISources_Set_Amps)},
+{"ISources_Set_AngleDeg", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ISources_Set_AngleDeg)},
+{"ISources_Set_Frequency", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ISources_Set_Frequency)},
+{"LineCodes_Set_C0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_C0)},
+{"LineCodes_Set_C1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_C1)},
+{"LineCodes_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_EmergAmps)},
+{"LineCodes_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_NormAmps)},
+{"LineCodes_Set_R0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_R0)},
+{"LineCodes_Set_R1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_R1)},
+{"LineCodes_Set_X0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_X0)},
+{"LineCodes_Set_X1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_X1)},
+#ifndef ALTDSS_ODDIE
+{"LineGeometries_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_EmergAmps)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"LineGeometries_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_NormAmps)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"LineGeometries_Set_RhoEarth", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_RhoEarth)},
+#endif
+{"Lines_Set_C0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_C0)},
+{"Lines_Set_C1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_C1)},
+{"Lines_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_EmergAmps)},
+{"Lines_Set_Length", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Length)},
+{"Lines_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_NormAmps)},
+{"Lines_Set_R0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_R0)},
+{"Lines_Set_R1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_R1)},
+{"Lines_Set_Rg", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Rg)},
+{"Lines_Set_Rho", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Rho)},
+{"Lines_Set_X0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_X0)},
+{"Lines_Set_X1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_X1)},
+{"Lines_Set_Xg", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Xg)},
+{"LoadShapes_Set_HrInterval", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_HrInterval)},
+{"LoadShapes_Set_MaxP", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_MaxP)},
+{"LoadShapes_Set_MaxQ", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_MaxQ)},
+{"LoadShapes_Set_MinInterval", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_MinInterval)},
+{"LoadShapes_Set_PBase", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_PBase)},
+{"LoadShapes_Set_Qbase", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_Qbase)},
+{"LoadShapes_Set_SInterval", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_SInterval)},
+{"Loads_Set_AllocationFactor", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_AllocationFactor)},
+{"Loads_Set_CVRvars", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_CVRvars)},
+{"Loads_Set_CVRwatts", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_CVRwatts)},
+{"Loads_Set_Cfactor", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Cfactor)},
+{"Loads_Set_PF", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_PF)},
+{"Loads_Set_PctMean", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_PctMean)},
+{"Loads_Set_PctStdDev", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_PctStdDev)},
+{"Loads_Set_RelWeight", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_RelWeight)},
+{"Loads_Set_Rneut", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Rneut)},
+{"Loads_Set_Vmaxpu", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Vmaxpu)},
+{"Loads_Set_Vminemerg", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Vminemerg)},
+{"Loads_Set_Vminnorm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Vminnorm)},
+{"Loads_Set_Vminpu", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Vminpu)},
+{"Loads_Set_Xneut", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Xneut)},
+{"Loads_Set_kV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_kV)},
+{"Loads_Set_kW", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_kW)},
+{"Loads_Set_kva", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_kva)},
+{"Loads_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_kvar)},
+{"Loads_Set_kwh", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_kwh)},
+{"Loads_Set_kwhdays", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_kwhdays)},
+{"Loads_Set_pctSeriesRL", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_pctSeriesRL)},
+{"Loads_Set_xfkVA", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_xfkVA)},
+#ifndef ALTDSS_ODDIE
+{"PDElements_Set_FaultRate", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Set_FaultRate)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"PDElements_Set_RepairTime", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Set_RepairTime)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"PDElements_Set_pctPermanent", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Set_pctPermanent)},
+#endif
+{"PVSystems_Set_Irradiance", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Irradiance)},
+{"PVSystems_Set_PF", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_PF)},
+{"PVSystems_Set_Pmpp", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Pmpp)},
+{"PVSystems_Set_kVArated", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_kVArated)},
+{"PVSystems_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_kvar)},
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_LmH", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_LmH)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_R", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_R)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_Rp", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Rp)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_X", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_X)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_kV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_kV)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_kvar)},
+#endif
+{"Reclosers_Set_GroundInst", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_GroundInst)},
+{"Reclosers_Set_GroundTrip", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_GroundTrip)},
+{"Reclosers_Set_PhaseInst", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_PhaseInst)},
+{"Reclosers_Set_PhaseTrip", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_PhaseTrip)},
+{"ReduceCkt_Set_Zmag", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ReduceCkt_Set_Zmag)},
+{"RegControls_Set_CTPrimary", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_CTPrimary)},
+{"RegControls_Set_Delay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_Delay)},
+{"RegControls_Set_ForwardBand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_ForwardBand)},
+{"RegControls_Set_ForwardR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_ForwardR)},
+{"RegControls_Set_ForwardVreg", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_ForwardVreg)},
+{"RegControls_Set_ForwardX", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_ForwardX)},
+{"RegControls_Set_PTratio", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_PTratio)},
+{"RegControls_Set_ReverseBand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_ReverseBand)},
+{"RegControls_Set_ReverseR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_ReverseR)},
+{"RegControls_Set_ReverseVreg", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_ReverseVreg)},
+{"RegControls_Set_ReverseX", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_ReverseX)},
+{"RegControls_Set_TapDelay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_TapDelay)},
+{"RegControls_Set_VoltageLimit", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_VoltageLimit)},
+{"Sensors_Set_PctError", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Sensors_Set_PctError)},
+{"Sensors_Set_Weight", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Sensors_Set_Weight)},
+{"Sensors_Set_kVbase", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Sensors_Set_kVbase)},
+{"Settings_Set_AllocationFactors", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_AllocationFactors)},
+{"Settings_Set_EmergVmaxpu", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_EmergVmaxpu)},
+{"Settings_Set_EmergVminpu", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_EmergVminpu)},
+{"Settings_Set_LossWeight", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_LossWeight)},
+{"Settings_Set_NormVmaxpu", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_NormVmaxpu)},
+{"Settings_Set_NormVminpu", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_NormVminpu)},
+{"Settings_Set_PriceSignal", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_PriceSignal)},
+{"Settings_Set_UEweight", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_UEweight)},
+{"Solution_Set_Capkvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Capkvar)},
+{"Solution_Set_Frequency", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Frequency)},
+{"Solution_Set_GenMult", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_GenMult)},
+{"Solution_Set_GenPF", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_GenPF)},
+{"Solution_Set_GenkW", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_GenkW)},
+{"Solution_Set_IntervalHrs", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_IntervalHrs)},
+{"Solution_Set_LoadMult", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_LoadMult)},
+{"Solution_Set_Seconds", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Seconds)},
+{"Solution_Set_StepSize", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_StepSize)},
+{"Solution_Set_StepsizeHr", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_StepsizeHr)},
+{"Solution_Set_StepsizeMin", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_StepsizeMin)},
+{"Solution_Set_Tolerance", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Tolerance)},
+{"Solution_Set_Total_Time", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_Total_Time)},
+{"Solution_Set_dblHour", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_dblHour)},
+{"Solution_Set_pctGrowth", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_pctGrowth)},
+{"Storages_Set_AmpLimit", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_AmpLimit)},
+{"Storages_Set_AmpLimitGain", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_AmpLimitGain)},
+{"Storages_Set_ChargeTrigger", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_ChargeTrigger)},
+{"Storages_Set_DischargeTrigger", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_DischargeTrigger)},
+{"Storages_Set_EffCharge", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_EffCharge)},
+{"Storages_Set_EffDischarge", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_EffDischarge)},
+{"Storages_Set_Kp", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_Kp)},
+{"Storages_Set_PF", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_PF)},
+{"Storages_Set_PITol", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_PITol)},
+{"Storages_Set_SafeVoltage", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_SafeVoltage)},
+{"Storages_Set_TimeChargeTrig", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_TimeChargeTrig)},
+{"Storages_Set_kV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_kV)},
+{"Storages_Set_kVA", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_kVA)},
+{"Storages_Set_kVDC", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_kVDC)},
+{"Storages_Set_kW", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_kW)},
+{"Storages_Set_kWRated", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_kWRated)},
+{"Storages_Set_kWhRated", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_kWhRated)},
+{"Storages_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_kvar)},
+{"Storages_Set_puSOC", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_puSOC)},
+{"SwtControls_Set_Delay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_Delay)},
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_DiaCable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_DiaCable)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_DiaIns", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_DiaIns)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_DiaShield", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_DiaShield)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Diameter)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_EmergAmps)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_EpsR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_EpsR)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_GMRac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_GMRac)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_InsLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_InsLayer)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_NormAmps)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Rac)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Radius)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Rdc)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_TapeLap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_TapeLap)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_TapeLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_TapeLayer)},
+#endif
+{"Transformers_Set_MaxTap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_MaxTap)},
+{"Transformers_Set_MinTap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_MinTap)},
+{"Transformers_Set_R", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_R)},
+{"Transformers_Set_RdcOhms", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_RdcOhms)},
+{"Transformers_Set_Rneut", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_Rneut)},
+{"Transformers_Set_Tap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_Tap)},
+{"Transformers_Set_Xhl", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_Xhl)},
+{"Transformers_Set_Xht", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_Xht)},
+{"Transformers_Set_Xlt", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_Xlt)},
+{"Transformers_Set_Xneut", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_Xneut)},
+{"Transformers_Set_kV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_kV)},
+{"Transformers_Set_kVA", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_kVA)},
+{"Vsources_Set_AngleDeg", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Vsources_Set_AngleDeg)},
+{"Vsources_Set_BasekV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Vsources_Set_BasekV)},
+{"Vsources_Set_Frequency", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Vsources_Set_Frequency)},
+{"Vsources_Set_pu", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Vsources_Set_pu)},
+{"WindGens_Set_Ag", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Ag)},
+{"WindGens_Set_Cp", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Cp)},
+{"WindGens_Set_Lamda", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Lamda)},
+{"WindGens_Set_PF", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_PF)},
+{"WindGens_Set_PSS", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_PSS)},
+{"WindGens_Set_QSS", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_QSS)},
+{"WindGens_Set_RThev", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_RThev)},
+{"WindGens_Set_Rad", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Rad)},
+{"WindGens_Set_VCutIn", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_VCutIn)},
+{"WindGens_Set_VCutOut", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_VCutOut)},
+{"WindGens_Set_Vss", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Vss)},
+{"WindGens_Set_WindSpeed", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_WindSpeed)},
+{"WindGens_Set_XThev", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_XThev)},
+{"WindGens_Set_kV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_kV)},
+{"WindGens_Set_kVA", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_kVA)},
+{"WindGens_Set_kW", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_kW)},
+{"WindGens_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_kvar)},
+{"WindGens_Set_pd", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_pd)},
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_CapRadius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_CapRadius)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Diameter)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_EmergAmps)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_GMRac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_GMRac)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_NormAmps)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Rac)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Radius)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Rdc)},
+#endif
+{"XYCurves_Set_Xscale", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Xscale)},
+{"XYCurves_Set_Xshift", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Xshift)},
+{"XYCurves_Set_Yscale", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Yscale)},
+{"XYCurves_Set_Yshift", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Yshift)},
+{"XYCurves_Set_x", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_x)},
+{"XYCurves_Set_y", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_y)},
 {"Bus_Get_Coorddefined", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_Coorddefined)},
 {"Bus_ZscRefresh", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_ZscRefresh)},
 {"CapControls_Get_UseVoltOverride", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_UseVoltOverride)},
@@ -1140,7 +1704,9 @@
 {"LoadShapes_Get_UseActual", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Get_UseActual)},
 {"Loads_Get_IsDelta", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Get_IsDelta)},
 {"Meters_Get_DIFilesAreOpen", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Get_DIFilesAreOpen)},
+#ifndef ALTDSS_ODDIE
 {"PDElements_Get_IsShunt", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_IsShunt)},
+#endif
 {"Parser_Get_AutoIncrement", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Get_AutoIncrement)},
 #ifndef ALTDSS_ODDIE
 {"Reactors_Get_IsDelta", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_IsDelta)},
