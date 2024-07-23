@@ -154,6 +154,143 @@
     PyObject *f_DSS_Executive_Get_Option;
     PyObject *f_DSS_Executive_Get_OptionHelp;
     PyObject *f_DSS_Executive_Get_OptionValue;
+    PyObject *f_ActiveClass_Set_Name;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_CNData_Set_Name;
+#endif
+    PyObject *f_CapControls_Set_Capacitor;
+    PyObject *f_CapControls_Set_MonitoredObj;
+    PyObject *f_CapControls_Set_Name;
+    PyObject *f_Capacitors_Set_Name;
+    PyObject *f_Circuit_Disable;
+    PyObject *f_Circuit_Enable;
+    PyObject *f_Circuit_SetCktElementName;
+    PyObject *f_CktElement_Set_DisplayName;
+    PyObject *f_CktElement_Set_VariableName;
+    PyObject *f_DSSProgress_Set_Caption;
+    PyObject *f_DSSProperty_Set_Name;
+    PyObject *f_DSSProperty_Set_Val;
+    PyObject *f_DSS_NewCircuit;
+    PyObject *f_DSS_Set_DataPath;
+    PyObject *f_Error_Set_Description;
+    PyObject *f_Fuses_Set_MonitoredObj;
+    PyObject *f_Fuses_Set_Name;
+    PyObject *f_Fuses_Set_SwitchedObj;
+    PyObject *f_Fuses_Set_TCCcurve;
+    PyObject *f_GICSources_Set_Name;
+    PyObject *f_Generators_Set_Bus1;
+    PyObject *f_Generators_Set_Name;
+    PyObject *f_Generators_Set_Yearly;
+    PyObject *f_Generators_Set_daily;
+    PyObject *f_Generators_Set_duty;
+    PyObject *f_ISources_Set_Name;
+    PyObject *f_LineCodes_Set_Name;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Set_Name;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineSpacings_Set_Name;
+#endif
+    PyObject *f_Lines_Set_Bus1;
+    PyObject *f_Lines_Set_Bus2;
+    PyObject *f_Lines_Set_Geometry;
+    PyObject *f_Lines_Set_LineCode;
+    PyObject *f_Lines_Set_Name;
+    PyObject *f_Lines_Set_Spacing;
+    PyObject *f_LoadShapes_Set_Name;
+    PyObject *f_Loads_Set_CVRcurve;
+    PyObject *f_Loads_Set_Growth;
+    PyObject *f_Loads_Set_Name;
+    PyObject *f_Loads_Set_Spectrum;
+    PyObject *f_Loads_Set_Yearly;
+    PyObject *f_Loads_Set_daily;
+    PyObject *f_Loads_Set_duty;
+    PyObject *f_Meters_Set_MeteredElement;
+    PyObject *f_Meters_Set_Name;
+    PyObject *f_Monitors_Set_Element;
+    PyObject *f_Monitors_Set_Name;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_PDElements_Set_Name;
+#endif
+    PyObject *f_PVSystems_Set_Name;
+    PyObject *f_PVSystems_Set_Tdaily;
+    PyObject *f_PVSystems_Set_Tduty;
+    PyObject *f_PVSystems_Set_Tyearly;
+    PyObject *f_PVSystems_Set_daily;
+    PyObject *f_PVSystems_Set_duty;
+    PyObject *f_PVSystems_Set_yearly;
+    PyObject *f_Parser_Set_BeginQuote;
+    PyObject *f_Parser_Set_CmdString;
+    PyObject *f_Parser_Set_Delimiters;
+    PyObject *f_Parser_Set_EndQuote;
+    PyObject *f_Parser_Set_WhiteSpace;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_Bus1;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_Bus2;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_LCurve;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_Name;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Set_RCurve;
+#endif
+    PyObject *f_Reclosers_Set_MonitoredObj;
+    PyObject *f_Reclosers_Set_Name;
+    PyObject *f_Reclosers_Set_SwitchedObj;
+    PyObject *f_ReduceCkt_SaveCircuit;
+    PyObject *f_ReduceCkt_Set_EditString;
+    PyObject *f_ReduceCkt_Set_EnergyMeter;
+    PyObject *f_ReduceCkt_Set_StartPDElement;
+    PyObject *f_RegControls_Set_MonitoredBus;
+    PyObject *f_RegControls_Set_Name;
+    PyObject *f_RegControls_Set_Transformer;
+    PyObject *f_Relays_Set_MonitoredObj;
+    PyObject *f_Relays_Set_Name;
+    PyObject *f_Relays_Set_SwitchedObj;
+    PyObject *f_Sensors_Set_MeteredElement;
+    PyObject *f_Sensors_Set_Name;
+    PyObject *f_Settings_Set_AutoBusList;
+    PyObject *f_Settings_Set_PriceCurve;
+    PyObject *f_Solution_Set_DefaultDaily;
+    PyObject *f_Solution_Set_DefaultYearly;
+    PyObject *f_Solution_Set_LDCurve;
+    PyObject *f_Storages_Set_Name;
+    PyObject *f_SwtControls_Set_Name;
+    PyObject *f_SwtControls_Set_SwitchedObj;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_TSData_Set_Name;
+#endif
+    PyObject *f_Text_CommandBlock;
+    PyObject *f_Text_Set_Command;
+    PyObject *f_Topology_Set_BranchName;
+    PyObject *f_Topology_Set_BusName;
+    PyObject *f_Transformers_Set_Name;
+    PyObject *f_Transformers_Set_XfmrCode;
+    PyObject *f_Vsources_Set_Name;
+    PyObject *f_WindGens_Set_Bus1;
+    PyObject *f_WindGens_Set_Name;
+    PyObject *f_WindGens_Set_Yearly;
+    PyObject *f_WindGens_Set_daily;
+    PyObject *f_WindGens_Set_duty;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_WireData_Set_Name;
+#endif
+    PyObject *f_XYCurves_Set_Name;
+    PyObject *f_YMatrix_SaveAsMarketFiles;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_ZIP_Extract_GR;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_ZIP_Open;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_ZIP_Redirect;
+#endif
     PyObject *f_ActiveClass_Get_AllNames;
     PyObject *f_Bus_Get_AllPCEatBus;
     PyObject *f_Bus_Get_AllPDEatBus;

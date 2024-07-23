@@ -32,6 +32,7 @@ typedef void (*gr_func_ctx_int32_t)(const void* ctx, int32_t value);
 typedef void (*func_ctx_int32_t)(const void* ctx, int32_t value);
 typedef void (*func_ctx_float64_t)(const void* ctx, double value);
 typedef void (*func_ctx_bool_t)(const void* ctx, uint16_t value);
+typedef void (*func_ctx_str_t)(const void* ctx, const char* value);
 
 enum Signatures {
     Signature_empty = 0,
@@ -190,6 +191,7 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
     PyObject *result = NULL;
     int cval_int;
     double cval_float64;
+    char* c_str = NULL;
     
     switch (f->funcArgSignature)
     {
@@ -216,6 +218,14 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 return NULL;
             }
             ((func_ctx_bool_t)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
+            break;
+        case Signature_str:
+            if (!PyArg_ParseTuple(args, "s*", &c_str))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a str or bytes value)");
+                return NULL;
+            }
+            ((func_ctx_str_t)f->func)(f->dssCtx, c_str);
             break;
         default:
             PyErr_SetString(PyExc_TypeError, "Invalid call signature");
@@ -837,7 +847,8 @@ int AltDSS_PyScalarSetter_cinit(AltDSS_PyScalarSetterObject* f, AltDSS_PyContext
 
     if ((args_type != Signature_one_int32 && 
         args_type != Signature_one_float64 && 
-        args_type != Signature_one_bool)
+        args_type != Signature_one_bool &&
+        args_type != Signature_str)
         || (res_type != Signature_empty)
         )
     {

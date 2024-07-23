@@ -154,6 +154,143 @@
     if (!AltDSS_Add_PyFunc(self, Signature_str, Signature_one_int32, ctx_DSS_Executive_Get_Option, &self->f_DSS_Executive_Get_Option, setObj, fakeLib,"DSS_Executive_Get_Option")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_str, Signature_one_int32, ctx_DSS_Executive_Get_OptionHelp, &self->f_DSS_Executive_Get_OptionHelp, setObj, fakeLib,"DSS_Executive_Get_OptionHelp")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_str, Signature_one_int32, ctx_DSS_Executive_Get_OptionValue, &self->f_DSS_Executive_Get_OptionValue, setObj, fakeLib,"DSS_Executive_Get_OptionValue")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_ActiveClass_Set_Name, &self->f_ActiveClass_Set_Name, setObj, fakeLib,"ActiveClass_Set_Name")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_CNData_Set_Name, &self->f_CNData_Set_Name, setObj, fakeLib,"CNData_Set_Name")) goto ERROR_INIT;
+#endif
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_CapControls_Set_Capacitor, &self->f_CapControls_Set_Capacitor, setObj, fakeLib,"CapControls_Set_Capacitor")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_CapControls_Set_MonitoredObj, &self->f_CapControls_Set_MonitoredObj, setObj, fakeLib,"CapControls_Set_MonitoredObj")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_CapControls_Set_Name, &self->f_CapControls_Set_Name, setObj, fakeLib,"CapControls_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Capacitors_Set_Name, &self->f_Capacitors_Set_Name, setObj, fakeLib,"Capacitors_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Circuit_Disable, &self->f_Circuit_Disable, setObj, fakeLib,"Circuit_Disable")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Circuit_Enable, &self->f_Circuit_Enable, setObj, fakeLib,"Circuit_Enable")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Circuit_SetCktElementName, &self->f_Circuit_SetCktElementName, setObj, fakeLib,"Circuit_SetCktElementName")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_CktElement_Set_DisplayName, &self->f_CktElement_Set_DisplayName, setObj, fakeLib,"CktElement_Set_DisplayName")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_CktElement_Set_VariableName, &self->f_CktElement_Set_VariableName, setObj, fakeLib,"CktElement_Set_VariableName")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_DSSProgress_Set_Caption, &self->f_DSSProgress_Set_Caption, setObj, fakeLib,"DSSProgress_Set_Caption")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_DSSProperty_Set_Name, &self->f_DSSProperty_Set_Name, setObj, fakeLib,"DSSProperty_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_DSSProperty_Set_Val, &self->f_DSSProperty_Set_Val, setObj, fakeLib,"DSSProperty_Set_Val")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_DSS_NewCircuit, &self->f_DSS_NewCircuit, setObj, fakeLib,"DSS_NewCircuit")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_DSS_Set_DataPath, &self->f_DSS_Set_DataPath, setObj, fakeLib,"DSS_Set_DataPath")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Error_Set_Description, &self->f_Error_Set_Description, setObj, fakeLib,"Error_Set_Description")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Fuses_Set_MonitoredObj, &self->f_Fuses_Set_MonitoredObj, setObj, fakeLib,"Fuses_Set_MonitoredObj")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Fuses_Set_Name, &self->f_Fuses_Set_Name, setObj, fakeLib,"Fuses_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Fuses_Set_SwitchedObj, &self->f_Fuses_Set_SwitchedObj, setObj, fakeLib,"Fuses_Set_SwitchedObj")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Fuses_Set_TCCcurve, &self->f_Fuses_Set_TCCcurve, setObj, fakeLib,"Fuses_Set_TCCcurve")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_GICSources_Set_Name, &self->f_GICSources_Set_Name, setObj, fakeLib,"GICSources_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Generators_Set_Bus1, &self->f_Generators_Set_Bus1, setObj, fakeLib,"Generators_Set_Bus1")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Generators_Set_Name, &self->f_Generators_Set_Name, setObj, fakeLib,"Generators_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Generators_Set_Yearly, &self->f_Generators_Set_Yearly, setObj, fakeLib,"Generators_Set_Yearly")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Generators_Set_daily, &self->f_Generators_Set_daily, setObj, fakeLib,"Generators_Set_daily")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Generators_Set_duty, &self->f_Generators_Set_duty, setObj, fakeLib,"Generators_Set_duty")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_ISources_Set_Name, &self->f_ISources_Set_Name, setObj, fakeLib,"ISources_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_LineCodes_Set_Name, &self->f_LineCodes_Set_Name, setObj, fakeLib,"LineCodes_Set_Name")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_LineGeometries_Set_Name, &self->f_LineGeometries_Set_Name, setObj, fakeLib,"LineGeometries_Set_Name")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_LineSpacings_Set_Name, &self->f_LineSpacings_Set_Name, setObj, fakeLib,"LineSpacings_Set_Name")) goto ERROR_INIT;
+#endif
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Lines_Set_Bus1, &self->f_Lines_Set_Bus1, setObj, fakeLib,"Lines_Set_Bus1")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Lines_Set_Bus2, &self->f_Lines_Set_Bus2, setObj, fakeLib,"Lines_Set_Bus2")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Lines_Set_Geometry, &self->f_Lines_Set_Geometry, setObj, fakeLib,"Lines_Set_Geometry")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Lines_Set_LineCode, &self->f_Lines_Set_LineCode, setObj, fakeLib,"Lines_Set_LineCode")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Lines_Set_Name, &self->f_Lines_Set_Name, setObj, fakeLib,"Lines_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Lines_Set_Spacing, &self->f_Lines_Set_Spacing, setObj, fakeLib,"Lines_Set_Spacing")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_LoadShapes_Set_Name, &self->f_LoadShapes_Set_Name, setObj, fakeLib,"LoadShapes_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Loads_Set_CVRcurve, &self->f_Loads_Set_CVRcurve, setObj, fakeLib,"Loads_Set_CVRcurve")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Loads_Set_Growth, &self->f_Loads_Set_Growth, setObj, fakeLib,"Loads_Set_Growth")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Loads_Set_Name, &self->f_Loads_Set_Name, setObj, fakeLib,"Loads_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Loads_Set_Spectrum, &self->f_Loads_Set_Spectrum, setObj, fakeLib,"Loads_Set_Spectrum")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Loads_Set_Yearly, &self->f_Loads_Set_Yearly, setObj, fakeLib,"Loads_Set_Yearly")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Loads_Set_daily, &self->f_Loads_Set_daily, setObj, fakeLib,"Loads_Set_daily")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Loads_Set_duty, &self->f_Loads_Set_duty, setObj, fakeLib,"Loads_Set_duty")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Meters_Set_MeteredElement, &self->f_Meters_Set_MeteredElement, setObj, fakeLib,"Meters_Set_MeteredElement")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Meters_Set_Name, &self->f_Meters_Set_Name, setObj, fakeLib,"Meters_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Monitors_Set_Element, &self->f_Monitors_Set_Element, setObj, fakeLib,"Monitors_Set_Element")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Monitors_Set_Name, &self->f_Monitors_Set_Name, setObj, fakeLib,"Monitors_Set_Name")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_PDElements_Set_Name, &self->f_PDElements_Set_Name, setObj, fakeLib,"PDElements_Set_Name")) goto ERROR_INIT;
+#endif
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_PVSystems_Set_Name, &self->f_PVSystems_Set_Name, setObj, fakeLib,"PVSystems_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_PVSystems_Set_Tdaily, &self->f_PVSystems_Set_Tdaily, setObj, fakeLib,"PVSystems_Set_Tdaily")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_PVSystems_Set_Tduty, &self->f_PVSystems_Set_Tduty, setObj, fakeLib,"PVSystems_Set_Tduty")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_PVSystems_Set_Tyearly, &self->f_PVSystems_Set_Tyearly, setObj, fakeLib,"PVSystems_Set_Tyearly")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_PVSystems_Set_daily, &self->f_PVSystems_Set_daily, setObj, fakeLib,"PVSystems_Set_daily")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_PVSystems_Set_duty, &self->f_PVSystems_Set_duty, setObj, fakeLib,"PVSystems_Set_duty")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_PVSystems_Set_yearly, &self->f_PVSystems_Set_yearly, setObj, fakeLib,"PVSystems_Set_yearly")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Parser_Set_BeginQuote, &self->f_Parser_Set_BeginQuote, setObj, fakeLib,"Parser_Set_BeginQuote")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Parser_Set_CmdString, &self->f_Parser_Set_CmdString, setObj, fakeLib,"Parser_Set_CmdString")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Parser_Set_Delimiters, &self->f_Parser_Set_Delimiters, setObj, fakeLib,"Parser_Set_Delimiters")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Parser_Set_EndQuote, &self->f_Parser_Set_EndQuote, setObj, fakeLib,"Parser_Set_EndQuote")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Parser_Set_WhiteSpace, &self->f_Parser_Set_WhiteSpace, setObj, fakeLib,"Parser_Set_WhiteSpace")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Reactors_Set_Bus1, &self->f_Reactors_Set_Bus1, setObj, fakeLib,"Reactors_Set_Bus1")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Reactors_Set_Bus2, &self->f_Reactors_Set_Bus2, setObj, fakeLib,"Reactors_Set_Bus2")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Reactors_Set_LCurve, &self->f_Reactors_Set_LCurve, setObj, fakeLib,"Reactors_Set_LCurve")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Reactors_Set_Name, &self->f_Reactors_Set_Name, setObj, fakeLib,"Reactors_Set_Name")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Reactors_Set_RCurve, &self->f_Reactors_Set_RCurve, setObj, fakeLib,"Reactors_Set_RCurve")) goto ERROR_INIT;
+#endif
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Reclosers_Set_MonitoredObj, &self->f_Reclosers_Set_MonitoredObj, setObj, fakeLib,"Reclosers_Set_MonitoredObj")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Reclosers_Set_Name, &self->f_Reclosers_Set_Name, setObj, fakeLib,"Reclosers_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Reclosers_Set_SwitchedObj, &self->f_Reclosers_Set_SwitchedObj, setObj, fakeLib,"Reclosers_Set_SwitchedObj")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_ReduceCkt_SaveCircuit, &self->f_ReduceCkt_SaveCircuit, setObj, fakeLib,"ReduceCkt_SaveCircuit")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_ReduceCkt_Set_EditString, &self->f_ReduceCkt_Set_EditString, setObj, fakeLib,"ReduceCkt_Set_EditString")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_ReduceCkt_Set_EnergyMeter, &self->f_ReduceCkt_Set_EnergyMeter, setObj, fakeLib,"ReduceCkt_Set_EnergyMeter")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_ReduceCkt_Set_StartPDElement, &self->f_ReduceCkt_Set_StartPDElement, setObj, fakeLib,"ReduceCkt_Set_StartPDElement")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_RegControls_Set_MonitoredBus, &self->f_RegControls_Set_MonitoredBus, setObj, fakeLib,"RegControls_Set_MonitoredBus")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_RegControls_Set_Name, &self->f_RegControls_Set_Name, setObj, fakeLib,"RegControls_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_RegControls_Set_Transformer, &self->f_RegControls_Set_Transformer, setObj, fakeLib,"RegControls_Set_Transformer")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Relays_Set_MonitoredObj, &self->f_Relays_Set_MonitoredObj, setObj, fakeLib,"Relays_Set_MonitoredObj")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Relays_Set_Name, &self->f_Relays_Set_Name, setObj, fakeLib,"Relays_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Relays_Set_SwitchedObj, &self->f_Relays_Set_SwitchedObj, setObj, fakeLib,"Relays_Set_SwitchedObj")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Sensors_Set_MeteredElement, &self->f_Sensors_Set_MeteredElement, setObj, fakeLib,"Sensors_Set_MeteredElement")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Sensors_Set_Name, &self->f_Sensors_Set_Name, setObj, fakeLib,"Sensors_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Settings_Set_AutoBusList, &self->f_Settings_Set_AutoBusList, setObj, fakeLib,"Settings_Set_AutoBusList")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Settings_Set_PriceCurve, &self->f_Settings_Set_PriceCurve, setObj, fakeLib,"Settings_Set_PriceCurve")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Solution_Set_DefaultDaily, &self->f_Solution_Set_DefaultDaily, setObj, fakeLib,"Solution_Set_DefaultDaily")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Solution_Set_DefaultYearly, &self->f_Solution_Set_DefaultYearly, setObj, fakeLib,"Solution_Set_DefaultYearly")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Solution_Set_LDCurve, &self->f_Solution_Set_LDCurve, setObj, fakeLib,"Solution_Set_LDCurve")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Storages_Set_Name, &self->f_Storages_Set_Name, setObj, fakeLib,"Storages_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_SwtControls_Set_Name, &self->f_SwtControls_Set_Name, setObj, fakeLib,"SwtControls_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_SwtControls_Set_SwitchedObj, &self->f_SwtControls_Set_SwitchedObj, setObj, fakeLib,"SwtControls_Set_SwitchedObj")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_TSData_Set_Name, &self->f_TSData_Set_Name, setObj, fakeLib,"TSData_Set_Name")) goto ERROR_INIT;
+#endif
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Text_CommandBlock, &self->f_Text_CommandBlock, setObj, fakeLib,"Text_CommandBlock")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Text_Set_Command, &self->f_Text_Set_Command, setObj, fakeLib,"Text_Set_Command")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Topology_Set_BranchName, &self->f_Topology_Set_BranchName, setObj, fakeLib,"Topology_Set_BranchName")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Topology_Set_BusName, &self->f_Topology_Set_BusName, setObj, fakeLib,"Topology_Set_BusName")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Transformers_Set_Name, &self->f_Transformers_Set_Name, setObj, fakeLib,"Transformers_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Transformers_Set_XfmrCode, &self->f_Transformers_Set_XfmrCode, setObj, fakeLib,"Transformers_Set_XfmrCode")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_Vsources_Set_Name, &self->f_Vsources_Set_Name, setObj, fakeLib,"Vsources_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_WindGens_Set_Bus1, &self->f_WindGens_Set_Bus1, setObj, fakeLib,"WindGens_Set_Bus1")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_WindGens_Set_Name, &self->f_WindGens_Set_Name, setObj, fakeLib,"WindGens_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_WindGens_Set_Yearly, &self->f_WindGens_Set_Yearly, setObj, fakeLib,"WindGens_Set_Yearly")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_WindGens_Set_daily, &self->f_WindGens_Set_daily, setObj, fakeLib,"WindGens_Set_daily")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_WindGens_Set_duty, &self->f_WindGens_Set_duty, setObj, fakeLib,"WindGens_Set_duty")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_WireData_Set_Name, &self->f_WireData_Set_Name, setObj, fakeLib,"WireData_Set_Name")) goto ERROR_INIT;
+#endif
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_XYCurves_Set_Name, &self->f_XYCurves_Set_Name, setObj, fakeLib,"XYCurves_Set_Name")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_YMatrix_SaveAsMarketFiles, &self->f_YMatrix_SaveAsMarketFiles, setObj, fakeLib,"YMatrix_SaveAsMarketFiles")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_ZIP_Extract_GR, &self->f_ZIP_Extract_GR, setObj, fakeLib,"ZIP_Extract_GR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_ZIP_Open, &self->f_ZIP_Open, setObj, fakeLib,"ZIP_Open")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_str, ctx_ZIP_Redirect, &self->f_ZIP_Redirect, setObj, fakeLib,"ZIP_Redirect")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyFunc(self, Signature_str_list, Signature_empty, ctx_ActiveClass_Get_AllNames, &self->f_ActiveClass_Get_AllNames, setObj, fakeLib,"ActiveClass_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_str_list, Signature_empty, ctx_Bus_Get_AllPCEatBus, &self->f_Bus_Get_AllPCEatBus, setObj, fakeLib,"Bus_Get_AllPCEatBus")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_str_list, Signature_empty, ctx_Bus_Get_AllPDEatBus, &self->f_Bus_Get_AllPDEatBus, setObj, fakeLib,"Bus_Get_AllPDEatBus")) goto ERROR_INIT;

@@ -154,6 +154,143 @@
 {"DSS_Executive_Get_Option", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Executive_Get_Option)},
 {"DSS_Executive_Get_OptionHelp", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Executive_Get_OptionHelp)},
 {"DSS_Executive_Get_OptionValue", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Executive_Get_OptionValue)},
+{"ActiveClass_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_Set_Name)},
+#ifndef ALTDSS_ODDIE
+{"CNData_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Name)},
+#endif
+{"CapControls_Set_Capacitor", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Capacitor)},
+{"CapControls_Set_MonitoredObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_MonitoredObj)},
+{"CapControls_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Name)},
+{"Capacitors_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Capacitors_Set_Name)},
+{"Circuit_Disable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_Disable)},
+{"Circuit_Enable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_Enable)},
+{"Circuit_SetCktElementName", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_SetCktElementName)},
+{"CktElement_Set_DisplayName", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Set_DisplayName)},
+{"CktElement_Set_VariableName", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Set_VariableName)},
+{"DSSProgress_Set_Caption", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSSProgress_Set_Caption)},
+{"DSSProperty_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSSProperty_Set_Name)},
+{"DSSProperty_Set_Val", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSSProperty_Set_Val)},
+{"DSS_NewCircuit", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_NewCircuit)},
+{"DSS_Set_DataPath", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Set_DataPath)},
+{"Error_Set_Description", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Error_Set_Description)},
+{"Fuses_Set_MonitoredObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Fuses_Set_MonitoredObj)},
+{"Fuses_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Fuses_Set_Name)},
+{"Fuses_Set_SwitchedObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Fuses_Set_SwitchedObj)},
+{"Fuses_Set_TCCcurve", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Fuses_Set_TCCcurve)},
+{"GICSources_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_GICSources_Set_Name)},
+{"Generators_Set_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_Bus1)},
+{"Generators_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_Name)},
+{"Generators_Set_Yearly", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_Yearly)},
+{"Generators_Set_daily", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_daily)},
+{"Generators_Set_duty", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_duty)},
+{"ISources_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ISources_Set_Name)},
+{"LineCodes_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_Name)},
+#ifndef ALTDSS_ODDIE
+{"LineGeometries_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_Name)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"LineSpacings_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Name)},
+#endif
+{"Lines_Set_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Bus1)},
+{"Lines_Set_Bus2", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Bus2)},
+{"Lines_Set_Geometry", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Geometry)},
+{"Lines_Set_LineCode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_LineCode)},
+{"Lines_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Name)},
+{"Lines_Set_Spacing", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Spacing)},
+{"LoadShapes_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_Name)},
+{"Loads_Set_CVRcurve", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_CVRcurve)},
+{"Loads_Set_Growth", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Growth)},
+{"Loads_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Name)},
+{"Loads_Set_Spectrum", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Spectrum)},
+{"Loads_Set_Yearly", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_Yearly)},
+{"Loads_Set_daily", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_daily)},
+{"Loads_Set_duty", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_duty)},
+{"Meters_Set_MeteredElement", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Set_MeteredElement)},
+{"Meters_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Set_Name)},
+{"Monitors_Set_Element", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Set_Element)},
+{"Monitors_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Set_Name)},
+#ifndef ALTDSS_ODDIE
+{"PDElements_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Set_Name)},
+#endif
+{"PVSystems_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Name)},
+{"PVSystems_Set_Tdaily", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Tdaily)},
+{"PVSystems_Set_Tduty", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Tduty)},
+{"PVSystems_Set_Tyearly", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Tyearly)},
+{"PVSystems_Set_daily", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_daily)},
+{"PVSystems_Set_duty", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_duty)},
+{"PVSystems_Set_yearly", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_yearly)},
+{"Parser_Set_BeginQuote", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Set_BeginQuote)},
+{"Parser_Set_CmdString", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Set_CmdString)},
+{"Parser_Set_Delimiters", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Set_Delimiters)},
+{"Parser_Set_EndQuote", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Set_EndQuote)},
+{"Parser_Set_WhiteSpace", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Set_WhiteSpace)},
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Bus1)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_Bus2", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Bus2)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_LCurve", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_LCurve)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Name)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"Reactors_Set_RCurve", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_RCurve)},
+#endif
+{"Reclosers_Set_MonitoredObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_MonitoredObj)},
+{"Reclosers_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_Name)},
+{"Reclosers_Set_SwitchedObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_SwitchedObj)},
+{"ReduceCkt_SaveCircuit", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ReduceCkt_SaveCircuit)},
+{"ReduceCkt_Set_EditString", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ReduceCkt_Set_EditString)},
+{"ReduceCkt_Set_EnergyMeter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ReduceCkt_Set_EnergyMeter)},
+{"ReduceCkt_Set_StartPDElement", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ReduceCkt_Set_StartPDElement)},
+{"RegControls_Set_MonitoredBus", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_MonitoredBus)},
+{"RegControls_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_Name)},
+{"RegControls_Set_Transformer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_RegControls_Set_Transformer)},
+{"Relays_Set_MonitoredObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Relays_Set_MonitoredObj)},
+{"Relays_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Relays_Set_Name)},
+{"Relays_Set_SwitchedObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Relays_Set_SwitchedObj)},
+{"Sensors_Set_MeteredElement", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Sensors_Set_MeteredElement)},
+{"Sensors_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Sensors_Set_Name)},
+{"Settings_Set_AutoBusList", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_AutoBusList)},
+{"Settings_Set_PriceCurve", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Settings_Set_PriceCurve)},
+{"Solution_Set_DefaultDaily", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_DefaultDaily)},
+{"Solution_Set_DefaultYearly", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_DefaultYearly)},
+{"Solution_Set_LDCurve", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Solution_Set_LDCurve)},
+{"Storages_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_Name)},
+{"SwtControls_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_Name)},
+{"SwtControls_Set_SwitchedObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_SwitchedObj)},
+#ifndef ALTDSS_ODDIE
+{"TSData_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Name)},
+#endif
+{"Text_CommandBlock", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Text_CommandBlock)},
+{"Text_Set_Command", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Text_Set_Command)},
+{"Topology_Set_BranchName", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Set_BranchName)},
+{"Topology_Set_BusName", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Set_BusName)},
+{"Transformers_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_Name)},
+{"Transformers_Set_XfmrCode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_XfmrCode)},
+{"Vsources_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Vsources_Set_Name)},
+{"WindGens_Set_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Bus1)},
+{"WindGens_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Name)},
+{"WindGens_Set_Yearly", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Yearly)},
+{"WindGens_Set_daily", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_daily)},
+{"WindGens_Set_duty", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_duty)},
+#ifndef ALTDSS_ODDIE
+{"WireData_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Name)},
+#endif
+{"XYCurves_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Name)},
+{"YMatrix_SaveAsMarketFiles", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_SaveAsMarketFiles)},
+#ifndef ALTDSS_ODDIE
+{"ZIP_Extract_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Extract_GR)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"ZIP_Open", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Open)},
+#endif
+#ifndef ALTDSS_ODDIE
+{"ZIP_Redirect", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Redirect)},
+#endif
 {"ActiveClass_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_Get_AllNames)},
 {"Bus_Get_AllPCEatBus", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_AllPCEatBus)},
 {"Bus_Get_AllPDEatBus", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_AllPDEatBus)},
