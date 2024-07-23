@@ -2,7 +2,9 @@
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_ActiveClass_Get_ActiveClassParent, &self->f_ActiveClass_Get_ActiveClassParent, setObj, fakeLib,"ActiveClass_Get_ActiveClassParent")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_ActiveClass_Get_Name, &self->f_ActiveClass_Get_Name, setObj, fakeLib,"ActiveClass_Get_Name")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Bus_Get_Name, &self->f_Bus_Get_Name, setObj, fakeLib,"Bus_Get_Name")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_CNData_Get_Name, &self->f_CNData_Get_Name, setObj, fakeLib,"CNData_Get_Name")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_CNData_Get_Name, &self->f_CNData_Get_Name, setObj, fakeLib,"CNData_Get_Name")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_CapControls_Get_Capacitor, &self->f_CapControls_Get_Capacitor, setObj, fakeLib,"CapControls_Get_Capacitor")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_CapControls_Get_MonitoredObj, &self->f_CapControls_Get_MonitoredObj, setObj, fakeLib,"CapControls_Get_MonitoredObj")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_CapControls_Get_Name, &self->f_CapControls_Get_Name, setObj, fakeLib,"CapControls_Get_Name")) goto ERROR_INIT;
@@ -35,7 +37,9 @@
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Generators_Get_duty, &self->f_Generators_Get_duty, setObj, fakeLib,"Generators_Get_duty")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_ISources_Get_Name, &self->f_ISources_Get_Name, setObj, fakeLib,"ISources_Get_Name")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_LineCodes_Get_Name, &self->f_LineCodes_Get_Name, setObj, fakeLib,"LineCodes_Get_Name")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_LineGeometries_Get_Name, &self->f_LineGeometries_Get_Name, setObj, fakeLib,"LineGeometries_Get_Name")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_LineGeometries_Get_Name, &self->f_LineGeometries_Get_Name, setObj, fakeLib,"LineGeometries_Get_Name")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_LineSpacings_Get_Name, &self->f_LineSpacings_Get_Name, setObj, fakeLib,"LineSpacings_Get_Name")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Lines_Get_Bus1, &self->f_Lines_Get_Bus1, setObj, fakeLib,"Lines_Get_Bus1")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Lines_Get_Bus2, &self->f_Lines_Get_Bus2, setObj, fakeLib,"Lines_Get_Bus2")) goto ERROR_INIT;
@@ -73,11 +77,21 @@
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Parser_Get_NextParam, &self->f_Parser_Get_NextParam, setObj, fakeLib,"Parser_Get_NextParam")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Parser_Get_StrValue, &self->f_Parser_Get_StrValue, setObj, fakeLib,"Parser_Get_StrValue")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Parser_Get_WhiteSpace, &self->f_Parser_Get_WhiteSpace, setObj, fakeLib,"Parser_Get_WhiteSpace")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reactors_Get_Bus1, &self->f_Reactors_Get_Bus1, setObj, fakeLib,"Reactors_Get_Bus1")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reactors_Get_Bus2, &self->f_Reactors_Get_Bus2, setObj, fakeLib,"Reactors_Get_Bus2")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reactors_Get_LCurve, &self->f_Reactors_Get_LCurve, setObj, fakeLib,"Reactors_Get_LCurve")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reactors_Get_Name, &self->f_Reactors_Get_Name, setObj, fakeLib,"Reactors_Get_Name")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reactors_Get_RCurve, &self->f_Reactors_Get_RCurve, setObj, fakeLib,"Reactors_Get_RCurve")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reactors_Get_Bus1, &self->f_Reactors_Get_Bus1, setObj, fakeLib,"Reactors_Get_Bus1")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reactors_Get_Bus2, &self->f_Reactors_Get_Bus2, setObj, fakeLib,"Reactors_Get_Bus2")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reactors_Get_LCurve, &self->f_Reactors_Get_LCurve, setObj, fakeLib,"Reactors_Get_LCurve")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reactors_Get_Name, &self->f_Reactors_Get_Name, setObj, fakeLib,"Reactors_Get_Name")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reactors_Get_RCurve, &self->f_Reactors_Get_RCurve, setObj, fakeLib,"Reactors_Get_RCurve")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reclosers_Get_MonitoredObj, &self->f_Reclosers_Get_MonitoredObj, setObj, fakeLib,"Reclosers_Get_MonitoredObj")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reclosers_Get_Name, &self->f_Reclosers_Get_Name, setObj, fakeLib,"Reclosers_Get_Name")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Reclosers_Get_SwitchedObj, &self->f_Reclosers_Get_SwitchedObj, setObj, fakeLib,"Reclosers_Get_SwitchedObj")) goto ERROR_INIT;
@@ -101,7 +115,9 @@
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Storages_Get_Name, &self->f_Storages_Get_Name, setObj, fakeLib,"Storages_Get_Name")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_SwtControls_Get_Name, &self->f_SwtControls_Get_Name, setObj, fakeLib,"SwtControls_Get_Name")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_SwtControls_Get_SwitchedObj, &self->f_SwtControls_Get_SwitchedObj, setObj, fakeLib,"SwtControls_Get_SwitchedObj")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_TSData_Get_Name, &self->f_TSData_Get_Name, setObj, fakeLib,"TSData_Get_Name")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_TSData_Get_Name, &self->f_TSData_Get_Name, setObj, fakeLib,"TSData_Get_Name")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Text_Get_Command, &self->f_Text_Get_Command, setObj, fakeLib,"Text_Get_Command")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Text_Get_Result, &self->f_Text_Get_Result, setObj, fakeLib,"Text_Get_Result")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Topology_Get_BranchName, &self->f_Topology_Get_BranchName, setObj, fakeLib,"Topology_Get_BranchName")) goto ERROR_INIT;
@@ -115,12 +131,20 @@
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_WindGens_Get_Yearly, &self->f_WindGens_Get_Yearly, setObj, fakeLib,"WindGens_Get_Yearly")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_WindGens_Get_daily, &self->f_WindGens_Get_daily, setObj, fakeLib,"WindGens_Get_daily")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_WindGens_Get_duty, &self->f_WindGens_Get_duty, setObj, fakeLib,"WindGens_Get_duty")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_WireData_Get_Name, &self->f_WireData_Get_Name, setObj, fakeLib,"WireData_Get_Name")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_WireData_Get_Name, &self->f_WireData_Get_Name, setObj, fakeLib,"WireData_Get_Name")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_XYCurves_Get_Name, &self->f_XYCurves_Get_Name, setObj, fakeLib,"XYCurves_Get_Name")) goto ERROR_INIT;
-    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_one_int32, ctx_ActiveClass_ToJSON, &self->f_ActiveClass_ToJSON, setObj, fakeLib,"ActiveClass_ToJSON")) goto ERROR_INIT;)
-    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_one_int32, ctx_Circuit_ToJSON, &self->f_Circuit_ToJSON, setObj, fakeLib,"Circuit_ToJSON")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_one_int32, ctx_ActiveClass_ToJSON, &self->f_ActiveClass_ToJSON, setObj, fakeLib,"ActiveClass_ToJSON")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_one_int32, ctx_Circuit_ToJSON, &self->f_Circuit_ToJSON, setObj, fakeLib,"Circuit_ToJSON")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_one_int32, ctx_CktElement_Get_Controller, &self->f_CktElement_Get_Controller, setObj, fakeLib,"CktElement_Get_Controller")) goto ERROR_INIT;
-    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_one_int32, ctx_DSSElement_ToJSON, &self->f_DSSElement_ToJSON, setObj, fakeLib,"DSSElement_ToJSON")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_one_int32, ctx_DSSElement_ToJSON, &self->f_DSSElement_ToJSON, setObj, fakeLib,"DSSElement_ToJSON")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_one_int32, ctx_DSS_Executive_Get_Command, &self->f_DSS_Executive_Get_Command, setObj, fakeLib,"DSS_Executive_Get_Command")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_one_int32, ctx_DSS_Executive_Get_CommandHelp, &self->f_DSS_Executive_Get_CommandHelp, setObj, fakeLib,"DSS_Executive_Get_CommandHelp")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_one_int32, ctx_DSS_Executive_Get_Option, &self->f_DSS_Executive_Get_Option, setObj, fakeLib,"DSS_Executive_Get_Option")) goto ERROR_INIT;
@@ -131,7 +155,9 @@
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Bus_Get_AllPDEatBus, &self->f_Bus_Get_AllPDEatBus, setObj, fakeLib,"Bus_Get_AllPDEatBus")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Bus_Get_LineList, &self->f_Bus_Get_LineList, setObj, fakeLib,"Bus_Get_LineList")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Bus_Get_LoadList, &self->f_Bus_Get_LoadList, setObj, fakeLib,"Bus_Get_LoadList")) goto ERROR_INIT;
-    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_CNData_Get_AllNames, &self->f_CNData_Get_AllNames, setObj, fakeLib,"CNData_Get_AllNames")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_CNData_Get_AllNames, &self->f_CNData_Get_AllNames, setObj, fakeLib,"CNData_Get_AllNames")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_CapControls_Get_AllNames, &self->f_CapControls_Get_AllNames, setObj, fakeLib,"CapControls_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Capacitors_Get_AllNames, &self->f_Capacitors_Get_AllNames, setObj, fakeLib,"Capacitors_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Circuit_Get_AllBusNames, &self->f_Circuit_Get_AllBusNames, setObj, fakeLib,"Circuit_Get_AllBusNames")) goto ERROR_INIT;
@@ -153,8 +179,12 @@
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Generators_Get_RegisterNames, &self->f_Generators_Get_RegisterNames, setObj, fakeLib,"Generators_Get_RegisterNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_ISources_Get_AllNames, &self->f_ISources_Get_AllNames, setObj, fakeLib,"ISources_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_LineCodes_Get_AllNames, &self->f_LineCodes_Get_AllNames, setObj, fakeLib,"LineCodes_Get_AllNames")) goto ERROR_INIT;
-    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_LineGeometries_Get_AllNames, &self->f_LineGeometries_Get_AllNames, setObj, fakeLib,"LineGeometries_Get_AllNames")) goto ERROR_INIT;)
-    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_LineGeometries_Get_Conductors, &self->f_LineGeometries_Get_Conductors, setObj, fakeLib,"LineGeometries_Get_Conductors")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_LineGeometries_Get_AllNames, &self->f_LineGeometries_Get_AllNames, setObj, fakeLib,"LineGeometries_Get_AllNames")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_LineGeometries_Get_Conductors, &self->f_LineGeometries_Get_Conductors, setObj, fakeLib,"LineGeometries_Get_Conductors")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_LineSpacings_Get_AllNames, &self->f_LineSpacings_Get_AllNames, setObj, fakeLib,"LineSpacings_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Lines_Get_AllNames, &self->f_Lines_Get_AllNames, setObj, fakeLib,"Lines_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_LoadShapes_Get_AllNames, &self->f_LoadShapes_Get_AllNames, setObj, fakeLib,"LoadShapes_Get_AllNames")) goto ERROR_INIT;
@@ -169,7 +199,9 @@
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_PDElements_Get_AllNames, &self->f_PDElements_Get_AllNames, setObj, fakeLib,"PDElements_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_PVSystems_Get_AllNames, &self->f_PVSystems_Get_AllNames, setObj, fakeLib,"PVSystems_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_PVSystems_Get_RegisterNames, &self->f_PVSystems_Get_RegisterNames, setObj, fakeLib,"PVSystems_Get_RegisterNames")) goto ERROR_INIT;
-    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Reactors_Get_AllNames, &self->f_Reactors_Get_AllNames, setObj, fakeLib,"Reactors_Get_AllNames")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Reactors_Get_AllNames, &self->f_Reactors_Get_AllNames, setObj, fakeLib,"Reactors_Get_AllNames")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Reclosers_Get_AllNames, &self->f_Reclosers_Get_AllNames, setObj, fakeLib,"Reclosers_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_RegControls_Get_AllNames, &self->f_RegControls_Get_AllNames, setObj, fakeLib,"RegControls_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Relays_Get_AllNames, &self->f_Relays_Get_AllNames, setObj, fakeLib,"Relays_Get_AllNames")) goto ERROR_INIT;
@@ -180,7 +212,9 @@
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Storages_Get_AllNames, &self->f_Storages_Get_AllNames, setObj, fakeLib,"Storages_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Storages_Get_RegisterNames, &self->f_Storages_Get_RegisterNames, setObj, fakeLib,"Storages_Get_RegisterNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_SwtControls_Get_AllNames, &self->f_SwtControls_Get_AllNames, setObj, fakeLib,"SwtControls_Get_AllNames")) goto ERROR_INIT;
-    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_TSData_Get_AllNames, &self->f_TSData_Get_AllNames, setObj, fakeLib,"TSData_Get_AllNames")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_TSData_Get_AllNames, &self->f_TSData_Get_AllNames, setObj, fakeLib,"TSData_Get_AllNames")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Topology_Get_AllIsolatedBranches, &self->f_Topology_Get_AllIsolatedBranches, setObj, fakeLib,"Topology_Get_AllIsolatedBranches")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Topology_Get_AllIsolatedLoads, &self->f_Topology_Get_AllIsolatedLoads, setObj, fakeLib,"Topology_Get_AllIsolatedLoads")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Topology_Get_AllLoopedPairs, &self->f_Topology_Get_AllLoopedPairs, setObj, fakeLib,"Topology_Get_AllLoopedPairs")) goto ERROR_INIT;
@@ -188,10 +222,14 @@
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Vsources_Get_AllNames, &self->f_Vsources_Get_AllNames, setObj, fakeLib,"Vsources_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_WindGens_Get_AllNames, &self->f_WindGens_Get_AllNames, setObj, fakeLib,"WindGens_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_WindGens_Get_RegisterNames, &self->f_WindGens_Get_RegisterNames, setObj, fakeLib,"WindGens_Get_RegisterNames")) goto ERROR_INIT;
-    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_WireData_Get_AllNames, &self->f_WireData_Get_AllNames, setObj, fakeLib,"WireData_Get_AllNames")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_WireData_Get_AllNames, &self->f_WireData_Get_AllNames, setObj, fakeLib,"WireData_Get_AllNames")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_XYCurves_Get_AllNames, &self->f_XYCurves_Get_AllNames, setObj, fakeLib,"XYCurves_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_one_int32, ctx_Circuit_Get_AllNodeNamesByPhase, &self->f_Circuit_Get_AllNodeNamesByPhase, setObj, fakeLib,"Circuit_Get_AllNodeNamesByPhase")) goto ERROR_INIT;
-    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_str, ctx_ZIP_List, &self->f_ZIP_List, setObj, fakeLib,"ZIP_List")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_str, ctx_ZIP_List, &self->f_ZIP_List, setObj, fakeLib,"ZIP_List")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Bus_Get_CplxSeqVoltages_GR, &self->f_Bus_Get_CplxSeqVoltages_GR, setObj, fakeLib,"Bus_Get_CplxSeqVoltages_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Bus_Get_Isc_GR, &self->f_Bus_Get_Isc_GR, setObj, fakeLib,"Bus_Get_Isc_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Bus_Get_SeqVoltages_GR, &self->f_Bus_Get_SeqVoltages_GR, setObj, fakeLib,"Bus_Get_SeqVoltages_GR")) goto ERROR_INIT;
@@ -240,8 +278,12 @@
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineCodes_Get_Cmatrix_GR, &self->f_LineCodes_Get_Cmatrix_GR, setObj, fakeLib,"LineCodes_Get_Cmatrix_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineCodes_Get_Rmatrix_GR, &self->f_LineCodes_Get_Rmatrix_GR, setObj, fakeLib,"LineCodes_Get_Rmatrix_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineCodes_Get_Xmatrix_GR, &self->f_LineCodes_Get_Xmatrix_GR, setObj, fakeLib,"LineCodes_Get_Xmatrix_GR")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineGeometries_Get_Xcoords_GR, &self->f_LineGeometries_Get_Xcoords_GR, setObj, fakeLib,"LineGeometries_Get_Xcoords_GR")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineGeometries_Get_Ycoords_GR, &self->f_LineGeometries_Get_Ycoords_GR, setObj, fakeLib,"LineGeometries_Get_Ycoords_GR")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineGeometries_Get_Xcoords_GR, &self->f_LineGeometries_Get_Xcoords_GR, setObj, fakeLib,"LineGeometries_Get_Xcoords_GR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineGeometries_Get_Ycoords_GR, &self->f_LineGeometries_Get_Ycoords_GR, setObj, fakeLib,"LineGeometries_Get_Ycoords_GR")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineSpacings_Get_Xcoords_GR, &self->f_LineSpacings_Get_Xcoords_GR, setObj, fakeLib,"LineSpacings_Get_Xcoords_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineSpacings_Get_Ycoords_GR, &self->f_LineSpacings_Get_Ycoords_GR, setObj, fakeLib,"LineSpacings_Get_Ycoords_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Lines_Get_Cmatrix_GR, &self->f_Lines_Get_Cmatrix_GR, setObj, fakeLib,"Lines_Get_Cmatrix_GR")) goto ERROR_INIT;
@@ -266,12 +308,24 @@
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_PDElements_Get_AllSeqCurrents_GR, &self->f_PDElements_Get_AllSeqCurrents_GR, setObj, fakeLib,"PDElements_Get_AllSeqCurrents_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_PDElements_Get_AllSeqPowers_GR, &self->f_PDElements_Get_AllSeqPowers_GR, setObj, fakeLib,"PDElements_Get_AllSeqPowers_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_PVSystems_Get_RegisterValues_GR, &self->f_PVSystems_Get_RegisterValues_GR, setObj, fakeLib,"PVSystems_Get_RegisterValues_GR")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Rmatrix_GR, &self->f_Reactors_Get_Rmatrix_GR, setObj, fakeLib,"Reactors_Get_Rmatrix_GR")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Xmatrix_GR, &self->f_Reactors_Get_Xmatrix_GR, setObj, fakeLib,"Reactors_Get_Xmatrix_GR")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Z_GR, &self->f_Reactors_Get_Z_GR, setObj, fakeLib,"Reactors_Get_Z_GR")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Z0_GR, &self->f_Reactors_Get_Z0_GR, setObj, fakeLib,"Reactors_Get_Z0_GR")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Z1_GR, &self->f_Reactors_Get_Z1_GR, setObj, fakeLib,"Reactors_Get_Z1_GR")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Z2_GR, &self->f_Reactors_Get_Z2_GR, setObj, fakeLib,"Reactors_Get_Z2_GR")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Rmatrix_GR, &self->f_Reactors_Get_Rmatrix_GR, setObj, fakeLib,"Reactors_Get_Rmatrix_GR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Xmatrix_GR, &self->f_Reactors_Get_Xmatrix_GR, setObj, fakeLib,"Reactors_Get_Xmatrix_GR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Z_GR, &self->f_Reactors_Get_Z_GR, setObj, fakeLib,"Reactors_Get_Z_GR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Z0_GR, &self->f_Reactors_Get_Z0_GR, setObj, fakeLib,"Reactors_Get_Z0_GR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Z1_GR, &self->f_Reactors_Get_Z1_GR, setObj, fakeLib,"Reactors_Get_Z1_GR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reactors_Get_Z2_GR, &self->f_Reactors_Get_Z2_GR, setObj, fakeLib,"Reactors_Get_Z2_GR")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Reclosers_Get_RecloseIntervals_GR, &self->f_Reclosers_Get_RecloseIntervals_GR, setObj, fakeLib,"Reclosers_Get_RecloseIntervals_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Sensors_Get_AllocationFactor_GR, &self->f_Sensors_Get_AllocationFactor_GR, setObj, fakeLib,"Sensors_Get_AllocationFactor_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Sensors_Get_Currents_GR, &self->f_Sensors_Get_Currents_GR, setObj, fakeLib,"Sensors_Get_Currents_GR")) goto ERROR_INIT;
@@ -298,7 +352,9 @@
     if (!AltDSS_Add_PyGetter(self, Signature_int32, Signature_empty, ctx_Capacitors_Get_States_GR, &self->f_Capacitors_Get_States_GR, setObj, fakeLib,"Capacitors_Get_States_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_int32, Signature_empty, ctx_CktElement_Get_NodeOrder_GR, &self->f_CktElement_Get_NodeOrder_GR, setObj, fakeLib,"CktElement_Get_NodeOrder_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_int32, Signature_empty, ctx_CktElement_Get_NodeRef_GR, &self->f_CktElement_Get_NodeRef_GR, setObj, fakeLib,"CktElement_Get_NodeRef_GR")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_int32, Signature_empty, ctx_LineGeometries_Get_Units_GR, &self->f_LineGeometries_Get_Units_GR, setObj, fakeLib,"LineGeometries_Get_Units_GR")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_int32, Signature_empty, ctx_LineGeometries_Get_Units_GR, &self->f_LineGeometries_Get_Units_GR, setObj, fakeLib,"LineGeometries_Get_Units_GR")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_int32, Signature_empty, ctx_PDElements_Get_AllNumConductors_GR, &self->f_PDElements_Get_AllNumConductors_GR, setObj, fakeLib,"PDElements_Get_AllNumConductors_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_int32, Signature_empty, ctx_PDElements_Get_AllNumPhases_GR, &self->f_PDElements_Get_AllNumPhases_GR, setObj, fakeLib,"PDElements_Get_AllNumPhases_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_int32, Signature_empty, ctx_PDElements_Get_AllNumTerminals_GR, &self->f_PDElements_Get_AllNumTerminals_GR, setObj, fakeLib,"PDElements_Get_AllNumTerminals_GR")) goto ERROR_INIT;
@@ -318,14 +374,30 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Bus_Get_Next, &self->f_Bus_Get_Next, setObj, fakeLib,"Bus_Get_Next")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Bus_Get_NumNodes, &self->f_Bus_Get_NumNodes, setObj, fakeLib,"Bus_Get_NumNodes")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Bus_Get_SectionID, &self->f_Bus_Get_SectionID, setObj, fakeLib,"Bus_Get_SectionID")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_Count, &self->f_CNData_Get_Count, setObj, fakeLib,"CNData_Get_Count")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_First, &self->f_CNData_Get_First, setObj, fakeLib,"CNData_Get_First")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_GMRUnits, &self->f_CNData_Get_GMRUnits, setObj, fakeLib,"CNData_Get_GMRUnits")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_Next, &self->f_CNData_Get_Next, setObj, fakeLib,"CNData_Get_Next")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_RadiusUnits, &self->f_CNData_Get_RadiusUnits, setObj, fakeLib,"CNData_Get_RadiusUnits")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_ResistanceUnits, &self->f_CNData_Get_ResistanceUnits, setObj, fakeLib,"CNData_Get_ResistanceUnits")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_idx, &self->f_CNData_Get_idx, setObj, fakeLib,"CNData_Get_idx")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_k, &self->f_CNData_Get_k, setObj, fakeLib,"CNData_Get_k")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_Count, &self->f_CNData_Get_Count, setObj, fakeLib,"CNData_Get_Count")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_First, &self->f_CNData_Get_First, setObj, fakeLib,"CNData_Get_First")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_GMRUnits, &self->f_CNData_Get_GMRUnits, setObj, fakeLib,"CNData_Get_GMRUnits")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_Next, &self->f_CNData_Get_Next, setObj, fakeLib,"CNData_Get_Next")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_RadiusUnits, &self->f_CNData_Get_RadiusUnits, setObj, fakeLib,"CNData_Get_RadiusUnits")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_ResistanceUnits, &self->f_CNData_Get_ResistanceUnits, setObj, fakeLib,"CNData_Get_ResistanceUnits")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_idx, &self->f_CNData_Get_idx, setObj, fakeLib,"CNData_Get_idx")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CNData_Get_k, &self->f_CNData_Get_k, setObj, fakeLib,"CNData_Get_k")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CapControls_Get_Count, &self->f_CapControls_Get_Count, setObj, fakeLib,"CapControls_Get_Count")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CapControls_Get_First, &self->f_CapControls_Get_First, setObj, fakeLib,"CapControls_Get_First")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_CapControls_Get_Mode, &self->f_CapControls_Get_Mode, setObj, fakeLib,"CapControls_Get_Mode")) goto ERROR_INIT;
@@ -399,12 +471,24 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineCodes_Get_Phases, &self->f_LineCodes_Get_Phases, setObj, fakeLib,"LineCodes_Get_Phases")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineCodes_Get_Units, &self->f_LineCodes_Get_Units, setObj, fakeLib,"LineCodes_Get_Units")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineCodes_Get_idx, &self->f_LineCodes_Get_idx, setObj, fakeLib,"LineCodes_Get_idx")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_Count, &self->f_LineGeometries_Get_Count, setObj, fakeLib,"LineGeometries_Get_Count")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_First, &self->f_LineGeometries_Get_First, setObj, fakeLib,"LineGeometries_Get_First")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_Nconds, &self->f_LineGeometries_Get_Nconds, setObj, fakeLib,"LineGeometries_Get_Nconds")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_Next, &self->f_LineGeometries_Get_Next, setObj, fakeLib,"LineGeometries_Get_Next")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_Phases, &self->f_LineGeometries_Get_Phases, setObj, fakeLib,"LineGeometries_Get_Phases")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_idx, &self->f_LineGeometries_Get_idx, setObj, fakeLib,"LineGeometries_Get_idx")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_Count, &self->f_LineGeometries_Get_Count, setObj, fakeLib,"LineGeometries_Get_Count")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_First, &self->f_LineGeometries_Get_First, setObj, fakeLib,"LineGeometries_Get_First")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_Nconds, &self->f_LineGeometries_Get_Nconds, setObj, fakeLib,"LineGeometries_Get_Nconds")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_Next, &self->f_LineGeometries_Get_Next, setObj, fakeLib,"LineGeometries_Get_Next")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_Phases, &self->f_LineGeometries_Get_Phases, setObj, fakeLib,"LineGeometries_Get_Phases")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_idx, &self->f_LineGeometries_Get_idx, setObj, fakeLib,"LineGeometries_Get_idx")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineSpacings_Get_Count, &self->f_LineSpacings_Get_Count, setObj, fakeLib,"LineSpacings_Get_Count")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineSpacings_Get_First, &self->f_LineSpacings_Get_First, setObj, fakeLib,"LineSpacings_Get_First")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineSpacings_Get_Nconds, &self->f_LineSpacings_Get_Nconds, setObj, fakeLib,"LineSpacings_Get_Nconds")) goto ERROR_INIT;
@@ -481,12 +565,24 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Parallel_Get_NumCores, &self->f_Parallel_Get_NumCores, setObj, fakeLib,"Parallel_Get_NumCores")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Parallel_Get_NumOfActors, &self->f_Parallel_Get_NumOfActors, setObj, fakeLib,"Parallel_Get_NumOfActors")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Parser_Get_IntValue, &self->f_Parser_Get_IntValue, setObj, fakeLib,"Parser_Get_IntValue")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_Count, &self->f_Reactors_Get_Count, setObj, fakeLib,"Reactors_Get_Count")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_First, &self->f_Reactors_Get_First, setObj, fakeLib,"Reactors_Get_First")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_Next, &self->f_Reactors_Get_Next, setObj, fakeLib,"Reactors_Get_Next")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_Phases, &self->f_Reactors_Get_Phases, setObj, fakeLib,"Reactors_Get_Phases")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_SpecType, &self->f_Reactors_Get_SpecType, setObj, fakeLib,"Reactors_Get_SpecType")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_idx, &self->f_Reactors_Get_idx, setObj, fakeLib,"Reactors_Get_idx")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_Count, &self->f_Reactors_Get_Count, setObj, fakeLib,"Reactors_Get_Count")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_First, &self->f_Reactors_Get_First, setObj, fakeLib,"Reactors_Get_First")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_Next, &self->f_Reactors_Get_Next, setObj, fakeLib,"Reactors_Get_Next")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_Phases, &self->f_Reactors_Get_Phases, setObj, fakeLib,"Reactors_Get_Phases")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_SpecType, &self->f_Reactors_Get_SpecType, setObj, fakeLib,"Reactors_Get_SpecType")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reactors_Get_idx, &self->f_Reactors_Get_idx, setObj, fakeLib,"Reactors_Get_idx")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reclosers_Get_Count, &self->f_Reclosers_Get_Count, setObj, fakeLib,"Reclosers_Get_Count")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reclosers_Get_First, &self->f_Reclosers_Get_First, setObj, fakeLib,"Reclosers_Get_First")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Reclosers_Get_MonitoredTerm, &self->f_Reclosers_Get_MonitoredTerm, setObj, fakeLib,"Reclosers_Get_MonitoredTerm")) goto ERROR_INIT;
@@ -552,13 +648,27 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_SwtControls_Get_State, &self->f_SwtControls_Get_State, setObj, fakeLib,"SwtControls_Get_State")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_SwtControls_Get_SwitchedTerm, &self->f_SwtControls_Get_SwitchedTerm, setObj, fakeLib,"SwtControls_Get_SwitchedTerm")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_SwtControls_Get_idx, &self->f_SwtControls_Get_idx, setObj, fakeLib,"SwtControls_Get_idx")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_Count, &self->f_TSData_Get_Count, setObj, fakeLib,"TSData_Get_Count")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_First, &self->f_TSData_Get_First, setObj, fakeLib,"TSData_Get_First")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_GMRUnits, &self->f_TSData_Get_GMRUnits, setObj, fakeLib,"TSData_Get_GMRUnits")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_Next, &self->f_TSData_Get_Next, setObj, fakeLib,"TSData_Get_Next")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_RadiusUnits, &self->f_TSData_Get_RadiusUnits, setObj, fakeLib,"TSData_Get_RadiusUnits")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_ResistanceUnits, &self->f_TSData_Get_ResistanceUnits, setObj, fakeLib,"TSData_Get_ResistanceUnits")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_idx, &self->f_TSData_Get_idx, setObj, fakeLib,"TSData_Get_idx")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_Count, &self->f_TSData_Get_Count, setObj, fakeLib,"TSData_Get_Count")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_First, &self->f_TSData_Get_First, setObj, fakeLib,"TSData_Get_First")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_GMRUnits, &self->f_TSData_Get_GMRUnits, setObj, fakeLib,"TSData_Get_GMRUnits")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_Next, &self->f_TSData_Get_Next, setObj, fakeLib,"TSData_Get_Next")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_RadiusUnits, &self->f_TSData_Get_RadiusUnits, setObj, fakeLib,"TSData_Get_RadiusUnits")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_ResistanceUnits, &self->f_TSData_Get_ResistanceUnits, setObj, fakeLib,"TSData_Get_ResistanceUnits")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_TSData_Get_idx, &self->f_TSData_Get_idx, setObj, fakeLib,"TSData_Get_idx")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Topology_Get_ActiveBranch, &self->f_Topology_Get_ActiveBranch, setObj, fakeLib,"Topology_Get_ActiveBranch")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Topology_Get_ActiveLevel, &self->f_Topology_Get_ActiveLevel, setObj, fakeLib,"Topology_Get_ActiveLevel")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Topology_Get_BackwardBranch, &self->f_Topology_Get_BackwardBranch, setObj, fakeLib,"Topology_Get_BackwardBranch")) goto ERROR_INIT;
@@ -595,13 +705,27 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WindGens_Get_QFlag, &self->f_WindGens_Get_QFlag, setObj, fakeLib,"WindGens_Get_QFlag")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WindGens_Get_QMode, &self->f_WindGens_Get_QMode, setObj, fakeLib,"WindGens_Get_QMode")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WindGens_Get_idx, &self->f_WindGens_Get_idx, setObj, fakeLib,"WindGens_Get_idx")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_Count, &self->f_WireData_Get_Count, setObj, fakeLib,"WireData_Get_Count")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_First, &self->f_WireData_Get_First, setObj, fakeLib,"WireData_Get_First")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_GMRUnits, &self->f_WireData_Get_GMRUnits, setObj, fakeLib,"WireData_Get_GMRUnits")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_Next, &self->f_WireData_Get_Next, setObj, fakeLib,"WireData_Get_Next")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_RadiusUnits, &self->f_WireData_Get_RadiusUnits, setObj, fakeLib,"WireData_Get_RadiusUnits")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_ResistanceUnits, &self->f_WireData_Get_ResistanceUnits, setObj, fakeLib,"WireData_Get_ResistanceUnits")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_idx, &self->f_WireData_Get_idx, setObj, fakeLib,"WireData_Get_idx")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_Count, &self->f_WireData_Get_Count, setObj, fakeLib,"WireData_Get_Count")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_First, &self->f_WireData_Get_First, setObj, fakeLib,"WireData_Get_First")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_GMRUnits, &self->f_WireData_Get_GMRUnits, setObj, fakeLib,"WireData_Get_GMRUnits")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_Next, &self->f_WireData_Get_Next, setObj, fakeLib,"WireData_Get_Next")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_RadiusUnits, &self->f_WireData_Get_RadiusUnits, setObj, fakeLib,"WireData_Get_RadiusUnits")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_ResistanceUnits, &self->f_WireData_Get_ResistanceUnits, setObj, fakeLib,"WireData_Get_ResistanceUnits")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_WireData_Get_idx, &self->f_WireData_Get_idx, setObj, fakeLib,"WireData_Get_idx")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_XYCurves_Get_Count, &self->f_XYCurves_Get_Count, setObj, fakeLib,"XYCurves_Get_Count")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_XYCurves_Get_First, &self->f_XYCurves_Get_First, setObj, fakeLib,"XYCurves_Get_First")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_XYCurves_Get_Next, &self->f_XYCurves_Get_Next, setObj, fakeLib,"XYCurves_Get_Next")) goto ERROR_INIT;
@@ -620,20 +744,48 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Bus_Get_kVBase, &self->f_Bus_Get_kVBase, setObj, fakeLib,"Bus_Get_kVBase")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Bus_Get_x, &self->f_Bus_Get_x, setObj, fakeLib,"Bus_Get_x")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Bus_Get_y, &self->f_Bus_Get_y, setObj, fakeLib,"Bus_Get_y")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_DiaCable, &self->f_CNData_Get_DiaCable, setObj, fakeLib,"CNData_Get_DiaCable")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_DiaIns, &self->f_CNData_Get_DiaIns, setObj, fakeLib,"CNData_Get_DiaIns")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_DiaStrand, &self->f_CNData_Get_DiaStrand, setObj, fakeLib,"CNData_Get_DiaStrand")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_Diameter, &self->f_CNData_Get_Diameter, setObj, fakeLib,"CNData_Get_Diameter")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_EmergAmps, &self->f_CNData_Get_EmergAmps, setObj, fakeLib,"CNData_Get_EmergAmps")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_EpsR, &self->f_CNData_Get_EpsR, setObj, fakeLib,"CNData_Get_EpsR")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_GMRac, &self->f_CNData_Get_GMRac, setObj, fakeLib,"CNData_Get_GMRac")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_GmrStrand, &self->f_CNData_Get_GmrStrand, setObj, fakeLib,"CNData_Get_GmrStrand")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_InsLayer, &self->f_CNData_Get_InsLayer, setObj, fakeLib,"CNData_Get_InsLayer")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_NormAmps, &self->f_CNData_Get_NormAmps, setObj, fakeLib,"CNData_Get_NormAmps")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_RStrand, &self->f_CNData_Get_RStrand, setObj, fakeLib,"CNData_Get_RStrand")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_Rac, &self->f_CNData_Get_Rac, setObj, fakeLib,"CNData_Get_Rac")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_Radius, &self->f_CNData_Get_Radius, setObj, fakeLib,"CNData_Get_Radius")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_Rdc, &self->f_CNData_Get_Rdc, setObj, fakeLib,"CNData_Get_Rdc")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_DiaCable, &self->f_CNData_Get_DiaCable, setObj, fakeLib,"CNData_Get_DiaCable")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_DiaIns, &self->f_CNData_Get_DiaIns, setObj, fakeLib,"CNData_Get_DiaIns")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_DiaStrand, &self->f_CNData_Get_DiaStrand, setObj, fakeLib,"CNData_Get_DiaStrand")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_Diameter, &self->f_CNData_Get_Diameter, setObj, fakeLib,"CNData_Get_Diameter")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_EmergAmps, &self->f_CNData_Get_EmergAmps, setObj, fakeLib,"CNData_Get_EmergAmps")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_EpsR, &self->f_CNData_Get_EpsR, setObj, fakeLib,"CNData_Get_EpsR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_GMRac, &self->f_CNData_Get_GMRac, setObj, fakeLib,"CNData_Get_GMRac")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_GmrStrand, &self->f_CNData_Get_GmrStrand, setObj, fakeLib,"CNData_Get_GmrStrand")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_InsLayer, &self->f_CNData_Get_InsLayer, setObj, fakeLib,"CNData_Get_InsLayer")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_NormAmps, &self->f_CNData_Get_NormAmps, setObj, fakeLib,"CNData_Get_NormAmps")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_RStrand, &self->f_CNData_Get_RStrand, setObj, fakeLib,"CNData_Get_RStrand")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_Rac, &self->f_CNData_Get_Rac, setObj, fakeLib,"CNData_Get_Rac")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_Radius, &self->f_CNData_Get_Radius, setObj, fakeLib,"CNData_Get_Radius")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CNData_Get_Rdc, &self->f_CNData_Get_Rdc, setObj, fakeLib,"CNData_Get_Rdc")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CapControls_Get_CTratio, &self->f_CapControls_Get_CTratio, setObj, fakeLib,"CapControls_Get_CTratio")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CapControls_Get_DeadTime, &self->f_CapControls_Get_DeadTime, setObj, fakeLib,"CapControls_Get_DeadTime")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_CapControls_Get_Delay, &self->f_CapControls_Get_Delay, setObj, fakeLib,"CapControls_Get_Delay")) goto ERROR_INIT;
@@ -676,9 +828,15 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_LineCodes_Get_R1, &self->f_LineCodes_Get_R1, setObj, fakeLib,"LineCodes_Get_R1")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_LineCodes_Get_X0, &self->f_LineCodes_Get_X0, setObj, fakeLib,"LineCodes_Get_X0")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_LineCodes_Get_X1, &self->f_LineCodes_Get_X1, setObj, fakeLib,"LineCodes_Get_X1")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_LineGeometries_Get_EmergAmps, &self->f_LineGeometries_Get_EmergAmps, setObj, fakeLib,"LineGeometries_Get_EmergAmps")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_LineGeometries_Get_NormAmps, &self->f_LineGeometries_Get_NormAmps, setObj, fakeLib,"LineGeometries_Get_NormAmps")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_LineGeometries_Get_RhoEarth, &self->f_LineGeometries_Get_RhoEarth, setObj, fakeLib,"LineGeometries_Get_RhoEarth")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_LineGeometries_Get_EmergAmps, &self->f_LineGeometries_Get_EmergAmps, setObj, fakeLib,"LineGeometries_Get_EmergAmps")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_LineGeometries_Get_NormAmps, &self->f_LineGeometries_Get_NormAmps, setObj, fakeLib,"LineGeometries_Get_NormAmps")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_LineGeometries_Get_RhoEarth, &self->f_LineGeometries_Get_RhoEarth, setObj, fakeLib,"LineGeometries_Get_RhoEarth")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Lines_Get_C0, &self->f_Lines_Get_C0, setObj, fakeLib,"Lines_Get_C0")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Lines_Get_C1, &self->f_Lines_Get_C1, setObj, fakeLib,"Lines_Get_C1")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Lines_Get_EmergAmps, &self->f_Lines_Get_EmergAmps, setObj, fakeLib,"Lines_Get_EmergAmps")) goto ERROR_INIT;
@@ -742,12 +900,24 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_PVSystems_Get_kW, &self->f_PVSystems_Get_kW, setObj, fakeLib,"PVSystems_Get_kW")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_PVSystems_Get_kvar, &self->f_PVSystems_Get_kvar, setObj, fakeLib,"PVSystems_Get_kvar")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Parser_Get_DblValue, &self->f_Parser_Get_DblValue, setObj, fakeLib,"Parser_Get_DblValue")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_LmH, &self->f_Reactors_Get_LmH, setObj, fakeLib,"Reactors_Get_LmH")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_R, &self->f_Reactors_Get_R, setObj, fakeLib,"Reactors_Get_R")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_Rp, &self->f_Reactors_Get_Rp, setObj, fakeLib,"Reactors_Get_Rp")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_X, &self->f_Reactors_Get_X, setObj, fakeLib,"Reactors_Get_X")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_kV, &self->f_Reactors_Get_kV, setObj, fakeLib,"Reactors_Get_kV")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_kvar, &self->f_Reactors_Get_kvar, setObj, fakeLib,"Reactors_Get_kvar")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_LmH, &self->f_Reactors_Get_LmH, setObj, fakeLib,"Reactors_Get_LmH")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_R, &self->f_Reactors_Get_R, setObj, fakeLib,"Reactors_Get_R")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_Rp, &self->f_Reactors_Get_Rp, setObj, fakeLib,"Reactors_Get_Rp")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_X, &self->f_Reactors_Get_X, setObj, fakeLib,"Reactors_Get_X")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_kV, &self->f_Reactors_Get_kV, setObj, fakeLib,"Reactors_Get_kV")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reactors_Get_kvar, &self->f_Reactors_Get_kvar, setObj, fakeLib,"Reactors_Get_kvar")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reclosers_Get_GroundInst, &self->f_Reclosers_Get_GroundInst, setObj, fakeLib,"Reclosers_Get_GroundInst")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reclosers_Get_GroundTrip, &self->f_Reclosers_Get_GroundTrip, setObj, fakeLib,"Reclosers_Get_GroundTrip")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Reclosers_Get_PhaseInst, &self->f_Reclosers_Get_PhaseInst, setObj, fakeLib,"Reclosers_Get_PhaseInst")) goto ERROR_INIT;
@@ -811,20 +981,48 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Storages_Get_kvar, &self->f_Storages_Get_kvar, setObj, fakeLib,"Storages_Get_kvar")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Storages_Get_puSOC, &self->f_Storages_Get_puSOC, setObj, fakeLib,"Storages_Get_puSOC")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_SwtControls_Get_Delay, &self->f_SwtControls_Get_Delay, setObj, fakeLib,"SwtControls_Get_Delay")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_DiaCable, &self->f_TSData_Get_DiaCable, setObj, fakeLib,"TSData_Get_DiaCable")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_DiaIns, &self->f_TSData_Get_DiaIns, setObj, fakeLib,"TSData_Get_DiaIns")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_DiaShield, &self->f_TSData_Get_DiaShield, setObj, fakeLib,"TSData_Get_DiaShield")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_Diameter, &self->f_TSData_Get_Diameter, setObj, fakeLib,"TSData_Get_Diameter")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_EmergAmps, &self->f_TSData_Get_EmergAmps, setObj, fakeLib,"TSData_Get_EmergAmps")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_EpsR, &self->f_TSData_Get_EpsR, setObj, fakeLib,"TSData_Get_EpsR")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_GMRac, &self->f_TSData_Get_GMRac, setObj, fakeLib,"TSData_Get_GMRac")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_InsLayer, &self->f_TSData_Get_InsLayer, setObj, fakeLib,"TSData_Get_InsLayer")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_NormAmps, &self->f_TSData_Get_NormAmps, setObj, fakeLib,"TSData_Get_NormAmps")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_Rac, &self->f_TSData_Get_Rac, setObj, fakeLib,"TSData_Get_Rac")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_Radius, &self->f_TSData_Get_Radius, setObj, fakeLib,"TSData_Get_Radius")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_Rdc, &self->f_TSData_Get_Rdc, setObj, fakeLib,"TSData_Get_Rdc")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_TapeLap, &self->f_TSData_Get_TapeLap, setObj, fakeLib,"TSData_Get_TapeLap")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_TapeLayer, &self->f_TSData_Get_TapeLayer, setObj, fakeLib,"TSData_Get_TapeLayer")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_DiaCable, &self->f_TSData_Get_DiaCable, setObj, fakeLib,"TSData_Get_DiaCable")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_DiaIns, &self->f_TSData_Get_DiaIns, setObj, fakeLib,"TSData_Get_DiaIns")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_DiaShield, &self->f_TSData_Get_DiaShield, setObj, fakeLib,"TSData_Get_DiaShield")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_Diameter, &self->f_TSData_Get_Diameter, setObj, fakeLib,"TSData_Get_Diameter")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_EmergAmps, &self->f_TSData_Get_EmergAmps, setObj, fakeLib,"TSData_Get_EmergAmps")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_EpsR, &self->f_TSData_Get_EpsR, setObj, fakeLib,"TSData_Get_EpsR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_GMRac, &self->f_TSData_Get_GMRac, setObj, fakeLib,"TSData_Get_GMRac")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_InsLayer, &self->f_TSData_Get_InsLayer, setObj, fakeLib,"TSData_Get_InsLayer")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_NormAmps, &self->f_TSData_Get_NormAmps, setObj, fakeLib,"TSData_Get_NormAmps")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_Rac, &self->f_TSData_Get_Rac, setObj, fakeLib,"TSData_Get_Rac")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_Radius, &self->f_TSData_Get_Radius, setObj, fakeLib,"TSData_Get_Radius")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_Rdc, &self->f_TSData_Get_Rdc, setObj, fakeLib,"TSData_Get_Rdc")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_TapeLap, &self->f_TSData_Get_TapeLap, setObj, fakeLib,"TSData_Get_TapeLap")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_TSData_Get_TapeLayer, &self->f_TSData_Get_TapeLayer, setObj, fakeLib,"TSData_Get_TapeLayer")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Transformers_Get_MaxTap, &self->f_Transformers_Get_MaxTap, setObj, fakeLib,"Transformers_Get_MaxTap")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Transformers_Get_MinTap, &self->f_Transformers_Get_MinTap, setObj, fakeLib,"Transformers_Get_MinTap")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_Transformers_Get_R, &self->f_Transformers_Get_R, setObj, fakeLib,"Transformers_Get_R")) goto ERROR_INIT;
@@ -859,14 +1057,30 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WindGens_Get_kW, &self->f_WindGens_Get_kW, setObj, fakeLib,"WindGens_Get_kW")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WindGens_Get_kvar, &self->f_WindGens_Get_kvar, setObj, fakeLib,"WindGens_Get_kvar")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WindGens_Get_pd, &self->f_WindGens_Get_pd, setObj, fakeLib,"WindGens_Get_pd")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_CapRadius, &self->f_WireData_Get_CapRadius, setObj, fakeLib,"WireData_Get_CapRadius")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_Diameter, &self->f_WireData_Get_Diameter, setObj, fakeLib,"WireData_Get_Diameter")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_EmergAmps, &self->f_WireData_Get_EmergAmps, setObj, fakeLib,"WireData_Get_EmergAmps")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_GMRac, &self->f_WireData_Get_GMRac, setObj, fakeLib,"WireData_Get_GMRac")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_NormAmps, &self->f_WireData_Get_NormAmps, setObj, fakeLib,"WireData_Get_NormAmps")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_Rac, &self->f_WireData_Get_Rac, setObj, fakeLib,"WireData_Get_Rac")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_Radius, &self->f_WireData_Get_Radius, setObj, fakeLib,"WireData_Get_Radius")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_Rdc, &self->f_WireData_Get_Rdc, setObj, fakeLib,"WireData_Get_Rdc")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_CapRadius, &self->f_WireData_Get_CapRadius, setObj, fakeLib,"WireData_Get_CapRadius")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_Diameter, &self->f_WireData_Get_Diameter, setObj, fakeLib,"WireData_Get_Diameter")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_EmergAmps, &self->f_WireData_Get_EmergAmps, setObj, fakeLib,"WireData_Get_EmergAmps")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_GMRac, &self->f_WireData_Get_GMRac, setObj, fakeLib,"WireData_Get_GMRac")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_NormAmps, &self->f_WireData_Get_NormAmps, setObj, fakeLib,"WireData_Get_NormAmps")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_Rac, &self->f_WireData_Get_Rac, setObj, fakeLib,"WireData_Get_Rac")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_Radius, &self->f_WireData_Get_Radius, setObj, fakeLib,"WireData_Get_Radius")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_WireData_Get_Rdc, &self->f_WireData_Get_Rdc, setObj, fakeLib,"WireData_Get_Rdc")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_XYCurves_Get_Xscale, &self->f_XYCurves_Get_Xscale, setObj, fakeLib,"XYCurves_Get_Xscale")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_XYCurves_Get_Xshift, &self->f_XYCurves_Get_Xshift, setObj, fakeLib,"XYCurves_Get_Xshift")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_float64, Signature_empty, ctx_XYCurves_Get_Yscale, &self->f_XYCurves_Get_Yscale, setObj, fakeLib,"XYCurves_Get_Yscale")) goto ERROR_INIT;
@@ -897,15 +1111,21 @@
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_Generators_Get_ForcedON, &self->f_Generators_Get_ForcedON, setObj, fakeLib,"Generators_Get_ForcedON")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_Generators_Get_IsDelta, &self->f_Generators_Get_IsDelta, setObj, fakeLib,"Generators_Get_IsDelta")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_LineCodes_Get_IsZ1Z0, &self->f_LineCodes_Get_IsZ1Z0, setObj, fakeLib,"LineCodes_Get_IsZ1Z0")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_LineGeometries_Get_Reduce, &self->f_LineGeometries_Get_Reduce, setObj, fakeLib,"LineGeometries_Get_Reduce")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_LineGeometries_Get_Reduce, &self->f_LineGeometries_Get_Reduce, setObj, fakeLib,"LineGeometries_Get_Reduce")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_Lines_Get_IsSwitch, &self->f_Lines_Get_IsSwitch, setObj, fakeLib,"Lines_Get_IsSwitch")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_LoadShapes_Get_UseActual, &self->f_LoadShapes_Get_UseActual, setObj, fakeLib,"LoadShapes_Get_UseActual")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_Loads_Get_IsDelta, &self->f_Loads_Get_IsDelta, setObj, fakeLib,"Loads_Get_IsDelta")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_Meters_Get_DIFilesAreOpen, &self->f_Meters_Get_DIFilesAreOpen, setObj, fakeLib,"Meters_Get_DIFilesAreOpen")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_PDElements_Get_IsShunt, &self->f_PDElements_Get_IsShunt, setObj, fakeLib,"PDElements_Get_IsShunt")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_Parser_Get_AutoIncrement, &self->f_Parser_Get_AutoIncrement, setObj, fakeLib,"Parser_Get_AutoIncrement")) goto ERROR_INIT;
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_Reactors_Get_IsDelta, &self->f_Reactors_Get_IsDelta, setObj, fakeLib,"Reactors_Get_IsDelta")) goto ERROR_INIT;)
-    OMIT_IF_ODDIE(if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_Reactors_Get_Parallel, &self->f_Reactors_Get_Parallel, setObj, fakeLib,"Reactors_Get_Parallel")) goto ERROR_INIT;)
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_Reactors_Get_IsDelta, &self->f_Reactors_Get_IsDelta, setObj, fakeLib,"Reactors_Get_IsDelta")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_Reactors_Get_Parallel, &self->f_Reactors_Get_Parallel, setObj, fakeLib,"Reactors_Get_Parallel")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_ReduceCkt_Get_KeepLoad, &self->f_ReduceCkt_Get_KeepLoad, setObj, fakeLib,"ReduceCkt_Get_KeepLoad")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_RegControls_Get_IsInverseTime, &self->f_RegControls_Get_IsInverseTime, setObj, fakeLib,"RegControls_Get_IsInverseTime")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_bool, Signature_empty, ctx_RegControls_Get_IsReversible, &self->f_RegControls_Get_IsReversible, setObj, fakeLib,"RegControls_Get_IsReversible")) goto ERROR_INIT;
