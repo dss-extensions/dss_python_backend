@@ -40,7 +40,9 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_LineGeometries_Get_Name;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_Name;
+#endif
     PyObject *f_Lines_Get_Bus1;
     PyObject *f_Lines_Get_Bus2;
     PyObject *f_Lines_Get_Geometry;
@@ -185,7 +187,9 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_LineGeometries_Get_Conductors;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_AllNames;
+#endif
     PyObject *f_Lines_Get_AllNames;
     PyObject *f_LoadShapes_Get_AllNames;
     PyObject *f_Loads_Get_AllNames;
@@ -284,8 +288,12 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_LineGeometries_Get_Ycoords_GR;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_Xcoords_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_Ycoords_GR;
+#endif
     PyObject *f_Lines_Get_Cmatrix_GR;
     PyObject *f_Lines_Get_Rmatrix_GR;
     PyObject *f_Lines_Get_Xmatrix_GR;
@@ -489,13 +497,27 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_LineGeometries_Get_idx;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_Count;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_First;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_Nconds;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_Next;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_Phases;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_Units;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_idx;
+#endif
     PyObject *f_Lines_Get_Count;
     PyObject *f_Lines_Get_First;
     PyObject *f_Lines_Get_Next;

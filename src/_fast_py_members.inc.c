@@ -40,7 +40,9 @@
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Name)},
 #endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Name)},
+#endif
 {"Lines_Get_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Bus1)},
 {"Lines_Get_Bus2", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Bus2)},
 {"Lines_Get_Geometry", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Geometry)},
@@ -185,7 +187,9 @@
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Conductors", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Conductors)},
 #endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_AllNames)},
+#endif
 {"Lines_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_AllNames)},
 {"LoadShapes_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Get_AllNames)},
 {"Loads_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Get_AllNames)},
@@ -284,8 +288,12 @@
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Ycoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Ycoords_GR)},
 #endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Xcoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Xcoords_GR)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Ycoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Ycoords_GR)},
+#endif
 {"Lines_Get_Cmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Cmatrix_GR)},
 {"Lines_Get_Rmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Rmatrix_GR)},
 {"Lines_Get_Xmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Xmatrix_GR)},
@@ -489,13 +497,27 @@
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_idx)},
 #endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Count)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_First)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Nconds", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Nconds)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Next)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Phases)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Units)},
+#endif
+#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_idx)},
+#endif
 {"Lines_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Count)},
 {"Lines_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_First)},
 {"Lines_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Next)},

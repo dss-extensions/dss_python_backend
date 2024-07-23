@@ -40,7 +40,9 @@
 #ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_LineGeometries_Get_Name, &self->f_LineGeometries_Get_Name, setObj, fakeLib,"LineGeometries_Get_Name")) goto ERROR_INIT;
 #endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_LineSpacings_Get_Name, &self->f_LineSpacings_Get_Name, setObj, fakeLib,"LineSpacings_Get_Name")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Lines_Get_Bus1, &self->f_Lines_Get_Bus1, setObj, fakeLib,"Lines_Get_Bus1")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Lines_Get_Bus2, &self->f_Lines_Get_Bus2, setObj, fakeLib,"Lines_Get_Bus2")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str, Signature_empty, ctx_Lines_Get_Geometry, &self->f_Lines_Get_Geometry, setObj, fakeLib,"Lines_Get_Geometry")) goto ERROR_INIT;
@@ -185,7 +187,9 @@
 #ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_LineGeometries_Get_Conductors, &self->f_LineGeometries_Get_Conductors, setObj, fakeLib,"LineGeometries_Get_Conductors")) goto ERROR_INIT;
 #endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_LineSpacings_Get_AllNames, &self->f_LineSpacings_Get_AllNames, setObj, fakeLib,"LineSpacings_Get_AllNames")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Lines_Get_AllNames, &self->f_Lines_Get_AllNames, setObj, fakeLib,"Lines_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_LoadShapes_Get_AllNames, &self->f_LoadShapes_Get_AllNames, setObj, fakeLib,"LoadShapes_Get_AllNames")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_str_list, Signature_empty, ctx_Loads_Get_AllNames, &self->f_Loads_Get_AllNames, setObj, fakeLib,"Loads_Get_AllNames")) goto ERROR_INIT;
@@ -284,8 +288,12 @@
 #ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineGeometries_Get_Ycoords_GR, &self->f_LineGeometries_Get_Ycoords_GR, setObj, fakeLib,"LineGeometries_Get_Ycoords_GR")) goto ERROR_INIT;
 #endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineSpacings_Get_Xcoords_GR, &self->f_LineSpacings_Get_Xcoords_GR, setObj, fakeLib,"LineSpacings_Get_Xcoords_GR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_LineSpacings_Get_Ycoords_GR, &self->f_LineSpacings_Get_Ycoords_GR, setObj, fakeLib,"LineSpacings_Get_Ycoords_GR")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Lines_Get_Cmatrix_GR, &self->f_Lines_Get_Cmatrix_GR, setObj, fakeLib,"Lines_Get_Cmatrix_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Lines_Get_Rmatrix_GR, &self->f_Lines_Get_Rmatrix_GR, setObj, fakeLib,"Lines_Get_Rmatrix_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_float64, Signature_empty, ctx_Lines_Get_Xmatrix_GR, &self->f_Lines_Get_Xmatrix_GR, setObj, fakeLib,"Lines_Get_Xmatrix_GR")) goto ERROR_INIT;
@@ -489,13 +497,27 @@
 #ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineGeometries_Get_idx, &self->f_LineGeometries_Get_idx, setObj, fakeLib,"LineGeometries_Get_idx")) goto ERROR_INIT;
 #endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineSpacings_Get_Count, &self->f_LineSpacings_Get_Count, setObj, fakeLib,"LineSpacings_Get_Count")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineSpacings_Get_First, &self->f_LineSpacings_Get_First, setObj, fakeLib,"LineSpacings_Get_First")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineSpacings_Get_Nconds, &self->f_LineSpacings_Get_Nconds, setObj, fakeLib,"LineSpacings_Get_Nconds")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineSpacings_Get_Next, &self->f_LineSpacings_Get_Next, setObj, fakeLib,"LineSpacings_Get_Next")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineSpacings_Get_Phases, &self->f_LineSpacings_Get_Phases, setObj, fakeLib,"LineSpacings_Get_Phases")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineSpacings_Get_Units, &self->f_LineSpacings_Get_Units, setObj, fakeLib,"LineSpacings_Get_Units")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_LineSpacings_Get_idx, &self->f_LineSpacings_Get_idx, setObj, fakeLib,"LineSpacings_Get_idx")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Lines_Get_Count, &self->f_Lines_Get_Count, setObj, fakeLib,"Lines_Get_Count")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Lines_Get_First, &self->f_Lines_Get_First, setObj, fakeLib,"Lines_Get_First")) goto ERROR_INIT;
     if (!AltDSS_Add_PyGetter(self, Signature_one_int32, Signature_empty, ctx_Lines_Get_Next, &self->f_Lines_Get_Next, setObj, fakeLib,"Lines_Get_Next")) goto ERROR_INIT;
