@@ -977,6 +977,7 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
             case Signature_one_float64:
             case Signature_one_int32:
             case Signature_one_bool:
+            case Signature_str:
             case Signature_empty:
                 *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarSetterObject, &AltDSS_PyScalarSetterType);
                 if ((*py_func) == NULL)
