@@ -240,8 +240,8 @@
     PyObject *f_LineCodes_Get_Cmatrix_GR;
     PyObject *f_LineCodes_Get_Rmatrix_GR;
     PyObject *f_LineCodes_Get_Xmatrix_GR;
-    OMIT_IF_ODDIE(PyObject *f_LineGeometries_Get_Xcoords_GR;
-    OMIT_IF_ODDIE(PyObject *f_LineGeometries_Get_Ycoords_GR;
+    OMIT_IF_ODDIE(PyObject *f_LineGeometries_Get_Xcoords_GR;)
+    OMIT_IF_ODDIE(PyObject *f_LineGeometries_Get_Ycoords_GR;)
     PyObject *f_LineSpacings_Get_Xcoords_GR;
     PyObject *f_LineSpacings_Get_Ycoords_GR;
     PyObject *f_Lines_Get_Cmatrix_GR;
@@ -266,12 +266,12 @@
     PyObject *f_PDElements_Get_AllSeqCurrents_GR;
     PyObject *f_PDElements_Get_AllSeqPowers_GR;
     PyObject *f_PVSystems_Get_RegisterValues_GR;
-    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Rmatrix_GR;
-    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Xmatrix_GR;
-    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Z_GR;
-    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Z0_GR;
-    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Z1_GR;
-    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Z2_GR;
+    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Rmatrix_GR;)
+    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Xmatrix_GR;)
+    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Z_GR;)
+    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Z0_GR;)
+    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Z1_GR;)
+    OMIT_IF_ODDIE(PyObject *f_Reactors_Get_Z2_GR;)
     PyObject *f_Reclosers_Get_RecloseIntervals_GR;
     PyObject *f_Sensors_Get_AllocationFactor_GR;
     PyObject *f_Sensors_Get_Currents_GR;
@@ -298,7 +298,7 @@
     PyObject *f_Capacitors_Get_States_GR;
     PyObject *f_CktElement_Get_NodeOrder_GR;
     PyObject *f_CktElement_Get_NodeRef_GR;
-    OMIT_IF_ODDIE(PyObject *f_LineGeometries_Get_Units_GR;
+    OMIT_IF_ODDIE(PyObject *f_LineGeometries_Get_Units_GR;)
     PyObject *f_PDElements_Get_AllNumConductors_GR;
     PyObject *f_PDElements_Get_AllNumPhases_GR;
     PyObject *f_PDElements_Get_AllNumTerminals_GR;
