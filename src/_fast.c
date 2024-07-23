@@ -192,7 +192,7 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
     PyObject *result = NULL;
     int cval_int;
     double cval_float64;
-    char* c_str = NULL;
+    Py_buffer c_str_buffer;
     
     switch (f->funcArgSignature)
     {
@@ -221,12 +221,13 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
             ((func_ctx_bool_t)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
             break;
         case Signature_str:
-            if (!PyArg_ParseTuple(args, "s*", &c_str))
+            if (!PyArg_ParseTuple(args, "s*", &c_str_buffer))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a str or bytes value)");
                 return NULL;
             }
-            ((func_ctx_str_t)f->func)(f->dssCtx, c_str);
+            ((func_ctx_str_t)f->func)(f->dssCtx, (const char*) c_str_buffer.buf);
+            PyBuffer_Release(&c_str_buffer);
             break;
         case Signature_empty:
             ((func_ctx_t)f->func)(f->dssCtx);
@@ -515,7 +516,7 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
     int32_t count[4] = {0, 0, 0, 0};
     int32_t i;
     int argIntValue;
-    char *argStrValue;
+    Py_buffer c_str_buffer;
 
     switch (f->funcArgSignature)
     {
@@ -529,12 +530,13 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
             break;
         case Signature_str:
             // TODO: use s# whenever possible
-            if (!PyArg_ParseTuple(args, "s*", &argStrValue))
+            if (!PyArg_ParseTuple(args, "s*", &c_str_buffer))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected either a string or bytes value)");
                 return NULL;
             }
-            ((func_ctx_strlist_pchar_t)f->func)(f->dssCtx, &cstr_list, &count[0], argStrValue);
+            ((func_ctx_strlist_pchar_t)f->func)(f->dssCtx, &cstr_list, &count[0], (const char*) c_str_buffer.buf);
+            PyBuffer_Release(&c_str_buffer);
             break;
         default:
             ((func_ctx_strlist_t)f->func)(f->dssCtx, &cstr_list, &count[0]);
