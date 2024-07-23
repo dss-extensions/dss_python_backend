@@ -1,6 +1,8 @@
 from distutils.core import setup, Extension
 import numpy
 
+# TODO: add versions that link to the debug libs
+
 def main():
     options_oddie = dict(
         include_dirs=[numpy.get_include()],
@@ -19,7 +21,8 @@ def main():
         #extra_link_args=["-Wl,-R,$ORIGIN/."],
         # extra_compile_args=['/Od', '/Zi', f'-DALTDSS_FAST_MODNAME="_fastdss"', f'-DALTDSS_FAST_MODINIT=PyInit__fastdss'],
         # extra_link_args=['/DEBUG']
-        extra_compile_args=[f'-DALTDSS_FAST_MODNAME="_fastdss"', f'-DALTDSS_FAST_MODINIT=PyInit__fastdss'],
+        # extra_compile_args=[f'-DALTDSS_FAST_MODNAME="_fastdss"', f'-DALTDSS_FAST_MODINIT=PyInit__fastdss'],
+        extra_compile_args=[f'-DALTDSS_FAST_MODNAME="_fastdss"', f'-DALTDSS_FAST_MODINIT=PyInit__fastdss', '-g', '-O0'],
     )
 
     setup(name='dss_python_backend',
