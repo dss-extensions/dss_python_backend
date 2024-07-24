@@ -39,8 +39,6 @@
 {"LineCodes_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_Name)},
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Name)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Name)},
 #endif
 {"Lines_Get_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Bus1)},
@@ -83,17 +81,9 @@
 {"Parser_Get_WhiteSpace", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Get_WhiteSpace)},
 #ifndef ALTDSS_ODDIE
 {"Reactors_Get_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Bus1)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Bus2", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Bus2)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_LCurve", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_LCurve)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Name)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_RCurve", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_RCurve)},
 #endif
 {"Reclosers_Get_MonitoredObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_MonitoredObj)},
@@ -141,8 +131,6 @@
 {"XYCurves_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_Name)},
 #ifndef ALTDSS_ODDIE
 {"ActiveClass_ToJSON", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_ToJSON)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Circuit_ToJSON", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_ToJSON)},
 #endif
 {"CktElement_Get_Controller", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_Controller)},
@@ -187,8 +175,6 @@
 {"LineCodes_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_Name)},
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_Name)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Name)},
 #endif
 {"Lines_Set_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Bus1)},
@@ -226,17 +212,9 @@
 {"Parser_Set_WhiteSpace", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Set_WhiteSpace)},
 #ifndef ALTDSS_ODDIE
 {"Reactors_Set_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Bus1)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Set_Bus2", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Bus2)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Set_LCurve", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_LCurve)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Name)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Set_RCurve", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_RCurve)},
 #endif
 {"Reclosers_Set_MonitoredObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_MonitoredObj)},
@@ -284,11 +262,7 @@
 {"YMatrix_SaveAsMarketFiles", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_SaveAsMarketFiles)},
 #ifndef ALTDSS_ODDIE
 {"ZIP_Extract_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Extract_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"ZIP_Open", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Open)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"ZIP_Redirect", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Redirect)},
 #endif
 {"ActiveClass_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_Get_AllNames)},
@@ -322,11 +296,7 @@
 {"LineCodes_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_AllNames)},
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_AllNames)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Conductors", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Conductors)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_AllNames)},
 #endif
 {"Lines_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_AllNames)},
@@ -425,14 +395,8 @@
 {"LineCodes_Get_Xmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_Xmatrix_GR)},
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Xcoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Xcoords_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Ycoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Ycoords_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Xcoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Xcoords_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Ycoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Ycoords_GR)},
 #endif
 {"Lines_Get_Cmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Cmatrix_GR)},
@@ -452,39 +416,19 @@
 {"Monitors_Get_dblHour_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_dblHour_GR)},
 #ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllCplxSeqCurrents_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllCplxSeqCurrents_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllCurrents_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllCurrents_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllCurrentsMagAng_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllCurrentsMagAng_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllPowers_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllPowers_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllSeqCurrents_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllSeqCurrents_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllSeqPowers_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllSeqPowers_GR)},
 #endif
 {"PVSystems_Get_RegisterValues_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_RegisterValues_GR)},
 #ifndef ALTDSS_ODDIE
 {"Reactors_Get_Rmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Rmatrix_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Xmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Xmatrix_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Z_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Z_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Z0_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Z0_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Z1_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Z1_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Z2_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Z2_GR)},
 #endif
 {"Reclosers_Get_RecloseIntervals_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_RecloseIntervals_GR)},
@@ -515,14 +459,8 @@
 {"CktElement_Get_NodeRef_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_NodeRef_GR)},
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Units_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Units_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllNumConductors_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumConductors_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllNumPhases_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumPhases_GR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_AllNumTerminals_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumTerminals_GR)},
 #endif
 {"Parallel_Get_ActorProgress_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parallel_Get_ActorProgress_GR)},
@@ -543,26 +481,12 @@
 {"Bus_Get_SectionID", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_SectionID)},
 #ifndef ALTDSS_ODDIE
 {"CNData_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Count)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_First)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_GMRUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Next)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_RadiusUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_ResistanceUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_idx)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_k", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_k)},
 #endif
 {"CapControls_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_Count)},
@@ -640,41 +564,17 @@
 {"LineCodes_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_idx)},
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Count)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_First)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Nconds", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Nconds)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Next)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Phases)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_idx)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Count)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_First)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Nconds", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Nconds)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Next)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Phases)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Units)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_idx)},
 #endif
 {"Lines_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Count)},
@@ -728,26 +628,12 @@
 {"Monitors_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Monitors_Get_idx)},
 #ifndef ALTDSS_ODDIE
 {"PDElements_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Count)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_First)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_FromTerminal", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_FromTerminal)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Next)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_Numcustomers", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Numcustomers)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_ParentPDElement", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_ParentPDElement)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_SectionID", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_SectionID)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_Totalcustomers", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Totalcustomers)},
 #endif
 {"PVSystems_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Count)},
@@ -764,20 +650,10 @@
 {"Parser_Get_IntValue", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Get_IntValue)},
 #ifndef ALTDSS_ODDIE
 {"Reactors_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Count)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_First)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Next)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Phases)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_SpecType", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_SpecType)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_idx)},
 #endif
 {"Reclosers_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_Count)},
@@ -847,23 +723,11 @@
 {"SwtControls_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Get_idx)},
 #ifndef ALTDSS_ODDIE
 {"TSData_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_Count)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_First)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_GMRUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_Next)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_RadiusUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_ResistanceUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_idx)},
 #endif
 {"Topology_Get_ActiveBranch", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Get_ActiveBranch)},
@@ -904,23 +768,11 @@
 {"WindGens_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_idx)},
 #ifndef ALTDSS_ODDIE
 {"WireData_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Count)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_First)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_GMRUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Next)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_RadiusUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_ResistanceUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_idx)},
 #endif
 {"XYCurves_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_Count)},
@@ -933,17 +785,9 @@
 {"Circuit_SetActiveBusi", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_SetActiveBusi)},
 #ifndef ALTDSS_ODDIE
 {"CNData_Set_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_GMRUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_RadiusUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_ResistanceUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_idx)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_k", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_k)},
 #endif
 {"CapControls_Set_Mode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Mode)},
@@ -973,23 +817,11 @@
 {"LineCodes_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_idx)},
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_Nconds", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_Nconds)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_Phases)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_idx)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Set_Nconds", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Nconds)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Phases)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Set_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Units)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineSpacings_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_idx)},
 #endif
 {"Lines_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Phases)},
@@ -1017,8 +849,6 @@
 {"Parallel_Set_ConcatenateReports", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parallel_Set_ConcatenateReports)},
 #ifndef ALTDSS_ODDIE
 {"Reactors_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Phases)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_idx)},
 #endif
 {"Reclosers_Set_MonitoredTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_MonitoredTerm)},
@@ -1067,14 +897,8 @@
 {"SwtControls_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_idx)},
 #ifndef ALTDSS_ODDIE
 {"TSData_Set_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_GMRUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_RadiusUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_ResistanceUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_idx)},
 #endif
 {"Transformers_Set_CoreType", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_CoreType)},
@@ -1093,14 +917,8 @@
 {"WindGens_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_idx)},
 #ifndef ALTDSS_ODDIE
 {"WireData_Set_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_GMRUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_RadiusUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_ResistanceUnits)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_idx)},
 #endif
 {"XYCurves_Set_Npts", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Npts)},
@@ -1119,44 +937,18 @@
 {"Bus_Get_y", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_y)},
 #ifndef ALTDSS_ODDIE
 {"CNData_Get_DiaCable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_DiaCable)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_DiaIns", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_DiaIns)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_DiaStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_DiaStrand)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Diameter)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_EmergAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_EpsR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_EpsR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_GMRac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_GMRac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_GmrStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_GmrStrand)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_InsLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_InsLayer)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_NormAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_RStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_RStrand)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Rac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Radius)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Rdc)},
 #endif
 {"CapControls_Get_CTratio", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_CTratio)},
@@ -1203,11 +995,7 @@
 {"LineCodes_Get_X1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_X1)},
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_EmergAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_NormAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_RhoEarth", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_RhoEarth)},
 #endif
 {"Lines_Get_C0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_C0)},
@@ -1261,20 +1049,10 @@
 {"Meters_Get_SumBranchFltRates", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Meters_Get_SumBranchFltRates)},
 #ifndef ALTDSS_ODDIE
 {"PDElements_Get_AccumulatedL", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AccumulatedL)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_FaultRate", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_FaultRate)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_Lambda", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Lambda)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_RepairTime", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_RepairTime)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_TotalMiles", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_TotalMiles)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Get_pctPermanent", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_pctPermanent)},
 #endif
 {"PVSystems_Get_Irradiance", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Irradiance)},
@@ -1287,20 +1065,10 @@
 {"Parser_Get_DblValue", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Get_DblValue)},
 #ifndef ALTDSS_ODDIE
 {"Reactors_Get_LmH", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_LmH)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_R", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_R)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Rp", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Rp)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_X", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_X)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_kV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_kV)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_kvar)},
 #endif
 {"Reclosers_Get_GroundInst", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_GroundInst)},
@@ -1368,44 +1136,18 @@
 {"SwtControls_Get_Delay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Get_Delay)},
 #ifndef ALTDSS_ODDIE
 {"TSData_Get_DiaCable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_DiaCable)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_DiaIns", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_DiaIns)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_DiaShield", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_DiaShield)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_Diameter)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_EmergAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_EpsR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_EpsR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_GMRac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_GMRac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_InsLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_InsLayer)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_NormAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_Rac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_Radius)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_Rdc)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_TapeLap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_TapeLap)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_TapeLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_TapeLayer)},
 #endif
 {"Transformers_Get_MaxTap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Get_MaxTap)},
@@ -1444,26 +1186,12 @@
 {"WindGens_Get_pd", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_pd)},
 #ifndef ALTDSS_ODDIE
 {"WireData_Get_CapRadius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_CapRadius)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Diameter)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_EmergAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_GMRac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_GMRac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_NormAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Rac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Radius)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Rdc)},
 #endif
 {"XYCurves_Get_Xscale", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_Xscale)},
@@ -1476,44 +1204,18 @@
 {"Bus_Set_y", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Set_y)},
 #ifndef ALTDSS_ODDIE
 {"CNData_Set_DiaCable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_DiaCable)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_DiaIns", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_DiaIns)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_DiaStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_DiaStrand)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Diameter)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_EmergAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_EpsR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_EpsR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_GMRac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_GMRac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_GmrStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_GmrStrand)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_InsLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_InsLayer)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_NormAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_RStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_RStrand)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Rac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Radius)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Rdc)},
 #endif
 {"CapControls_Set_CTratio", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_CTratio)},
@@ -1560,11 +1262,7 @@
 {"LineCodes_Set_X1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_X1)},
 #ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_EmergAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_NormAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_RhoEarth", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_RhoEarth)},
 #endif
 {"Lines_Set_C0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_C0)},
@@ -1610,11 +1308,7 @@
 {"Loads_Set_xfkVA", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_xfkVA)},
 #ifndef ALTDSS_ODDIE
 {"PDElements_Set_FaultRate", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Set_FaultRate)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Set_RepairTime", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Set_RepairTime)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"PDElements_Set_pctPermanent", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Set_pctPermanent)},
 #endif
 {"PVSystems_Set_Irradiance", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Irradiance)},
@@ -1624,20 +1318,10 @@
 {"PVSystems_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_kvar)},
 #ifndef ALTDSS_ODDIE
 {"Reactors_Set_LmH", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_LmH)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Set_R", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_R)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Set_Rp", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Rp)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Set_X", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_X)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Set_kV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_kV)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Set_kvar)},
 #endif
 {"Reclosers_Set_GroundInst", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_GroundInst)},
@@ -1706,44 +1390,18 @@
 {"SwtControls_Set_Delay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_Delay)},
 #ifndef ALTDSS_ODDIE
 {"TSData_Set_DiaCable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_DiaCable)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_DiaIns", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_DiaIns)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_DiaShield", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_DiaShield)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Diameter)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_EmergAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_EpsR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_EpsR)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_GMRac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_GMRac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_InsLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_InsLayer)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_NormAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Rac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Radius)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Rdc)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_TapeLap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_TapeLap)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_TapeLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_TapeLayer)},
 #endif
 {"Transformers_Set_MaxTap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_MaxTap)},
@@ -1782,26 +1440,12 @@
 {"WindGens_Set_pd", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_pd)},
 #ifndef ALTDSS_ODDIE
 {"WireData_Set_CapRadius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_CapRadius)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Diameter)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_EmergAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_GMRac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_GMRac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_NormAmps)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Rac)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Radius)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Rdc)},
 #endif
 {"XYCurves_Set_Xscale", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Xscale)},
@@ -1847,8 +1491,6 @@
 {"Parser_Get_AutoIncrement", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Get_AutoIncrement)},
 #ifndef ALTDSS_ODDIE
 {"Reactors_Get_IsDelta", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_IsDelta)},
-#endif
-#ifndef ALTDSS_ODDIE
 {"Reactors_Get_Parallel", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Parallel)},
 #endif
 {"ReduceCkt_Get_KeepLoad", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ReduceCkt_Get_KeepLoad)},
