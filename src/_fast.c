@@ -10,12 +10,16 @@
 #include "../dss_python_backend/include/dss_capi_ctx.h"
 
 typedef int32_t (*func_int32_ctx_int32_t)(const void* ctx, int32_t value);
+typedef int32_t (*func_int32_ctx_pchar_t)(const void* ctx, const char* value);
 typedef int32_t (*func_int32_ctx_t)(const void* ctx);
 
 typedef double (*func_float64_ctx_int32_t)(const void* ctx, int32_t value);
+typedef double (*func_float64_ctx_pchar_t)(const void* ctx, const char* value);
 typedef double (*func_float64_ctx_t)(const void* ctx);
 
 typedef uint16_t (*func_bool_ctx_int32_t)(const void* ctx, int32_t value);
+typedef uint16_t (*func_bool_ctx_int32_int32_t)(const void* ctx, int32_t value, int32_t value2);
+typedef uint16_t (*func_bool_ctx_pchar_t)(const void* ctx, const char* value);
 typedef uint16_t (*func_bool_ctx_t)(const void* ctx);
 
 typedef const char* (*func_str_ctx_t)(const void* ctx);
@@ -26,8 +30,10 @@ typedef void (*func_ctx_strlist_pchar_t)(const void* ctx, char*** ResultPtr, int
 typedef void (*gr_func_ctx_t)(const void* ctx);
 typedef void (*gr_func_ctx_bool_t)(const void* ctx, uint16_t value);
 typedef void (*gr_func_ctx_int32_t)(const void* ctx, int32_t value);
+typedef void (*gr_func_ctx_float64_float64_int32_t)(const void* ctx, double f1, double f2, int32_t value);
 
 typedef void (*func_ctx_int32_t)(const void* ctx, int32_t value);
+typedef void (*func_ctx_int32_int32_t)(const void* ctx, int32_t value, int32_t value2);
 typedef void (*func_ctx_float64_t)(const void* ctx, double value);
 typedef void (*func_ctx_bool_t)(const void* ctx, uint16_t value);
 typedef void (*func_ctx_str_t)(const void* ctx, const char* value);
@@ -47,6 +53,8 @@ enum Signatures {
     Signature_one_float64 = 10,
     Signature_str_list = 11,
     Signature_one_bool = 12,
+    Signature_int32_int32 = 13,
+    Signature_float64_float64_int32 = 14
 };
 
 enum DSSFastSettings {
@@ -174,7 +182,7 @@ static int AltDSS_PyGRGetter_init(AltDSS_PyGRGetterObject *f, PyObject *Py_UNUSE
     return 0;
 }
 
-static int AltDSS_PyStrGetter_init(AltDSS_PyStrGetterObject *f, PyObject *PyUNUSED(args_ignored), PyObject *Py_UNUSED(kwargs_ignored))
+static int AltDSS_PyStrGetter_init(AltDSS_PyStrGetterObject *f, PyObject *Py_UNUSED(args_ignored), PyObject *Py_UNUSED(kwargs_ignored))
 {
     f->parent = NULL;
     f->func = NULL;
@@ -192,10 +200,10 @@ static int AltDSS_PyStrListGetter_init(AltDSS_PyStrListGetterObject *f, PyObject
 
 static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
 {
-    PyObject *result = NULL;
-    int cval_int;
+    PyObject* result = NULL;
+    int cval_int, cval_int2;
     double cval_float64;
-    Py_buffer c_str_buffer;
+    Py_buffer cstr_buffer;
     
     switch (f->funcArgSignature)
     {
@@ -206,6 +214,14 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 return NULL;
             }
             ((func_ctx_int32_t)f->func)(f->dssCtx, cval_int);
+            break;
+        case Signature_int32_int32:
+            if (!PyArg_ParseTuple(args, "ii", &cval_int, &cval_int2))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected two integer values)");
+                return NULL;
+            }
+            ((func_ctx_int32_int32_t)f->func)(f->dssCtx, cval_int, cval_int2);
             break;
         case Signature_one_float64:
             if (!PyArg_ParseTuple(args, "d", &cval_float64))
@@ -224,13 +240,13 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
             ((func_ctx_bool_t)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
             break;
         case Signature_str:
-            if (!PyArg_ParseTuple(args, "s*", &c_str_buffer))
+            if (!PyArg_ParseTuple(args, "s*", &cstr_buffer))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a str or bytes value)");
                 return NULL;
             }
-            ((func_ctx_str_t)f->func)(f->dssCtx, (const char*) c_str_buffer.buf);
-            PyBuffer_Release(&c_str_buffer);
+            ((func_ctx_str_t)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
+            PyBuffer_Release(&cstr_buffer);
             break;
         case Signature_empty:
             ((func_ctx_t)f->func)(f->dssCtx);
@@ -247,7 +263,6 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
             const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
             int32_t num = *f->errorPtr;
             *f->errorPtr = 0;
-            //TODO: check ref count here
             PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
                 PyLong_FromLong(num),
                 PyUnicode_FromString(errorDesc)
@@ -257,19 +272,28 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
         PyErr_SetString(f->parent->DSSExceptionType, "Error mapping DSS error to Python!");
         return NULL;
     }
-
-    return Py_None;
+    result = Py_None;
+    Py_INCREF(result);
+    return result;
 }
 
 static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
 {
     PyObject *result = NULL;
-    int argValue;
-    int32_t cval_int32;
-    double cval_float64;
-    
+    int argValue, argValue2;
+    int32_t cval_int32 = -1;
+    double cval_float64 = -1;
+    Py_buffer cstr_buffer;
+
     switch (f->funcArgSignature)
     {
+        case Signature_int32_int32:
+            if (!PyArg_ParseTuple(args, "ii", &argValue, &argValue2))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarGetter call (expected two integer values)");
+                return NULL;
+            }
+            break;
         case Signature_one_int32:
             if (!PyArg_ParseTuple(args, "i", &argValue))
             {
@@ -277,6 +301,12 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
                 return NULL;
             }
             break;
+        case Signature_str:
+            if (!PyArg_ParseTuple(args, "s*", &cstr_buffer))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarGetter call (expected a str or bytes value)");
+                return NULL;
+            }
         case Signature_empty:
             break;
         default:
@@ -289,12 +319,22 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
         case Signature_one_bool:
         switch (f->funcArgSignature)
         {
+            case Signature_int32_int32:
+                cval_int32 = ((func_bool_ctx_int32_int32_t)f->func)(f->dssCtx, argValue, argValue2);
+                break;
             case Signature_one_int32:
                 cval_int32 = ((func_bool_ctx_int32_t)f->func)(f->dssCtx, argValue);
                 break;
-            default:
+            case Signature_str:
+                cval_int32 = ((func_bool_ctx_pchar_t)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
+                PyBuffer_Release(&cstr_buffer);
+                break;
+            case Signature_empty:
                 cval_int32 = ((func_bool_ctx_t)f->func)(f->dssCtx);
                 break;
+            default:
+                PyErr_SetString(PyExc_TypeError, "Internal error: unknown signature");
+                return NULL;
         }
         break;
         case Signature_one_int32:
@@ -303,9 +343,16 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
             case Signature_one_int32:
                 cval_int32 = ((func_int32_ctx_int32_t)f->func)(f->dssCtx, argValue);
                 break;
-            default:
+            case Signature_str:
+                cval_int32 = ((func_int32_ctx_pchar_t)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
+                PyBuffer_Release(&cstr_buffer);
+                break;
+            case Signature_empty:
                 cval_int32 = ((func_int32_ctx_t)f->func)(f->dssCtx);
                 break;
+            default:
+                PyErr_SetString(PyExc_TypeError, "Internal error: unknown signature");
+                return NULL;
         }
         break;
         case Signature_one_float64:
@@ -314,9 +361,16 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
             case Signature_one_int32:
                 cval_float64 = ((func_float64_ctx_int32_t)f->func)(f->dssCtx, argValue);
                 break;
-            default:
+            case Signature_str:
+                cval_float64 = ((func_float64_ctx_pchar_t)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
+                PyBuffer_Release(&cstr_buffer);
+                break;
+            case Signature_empty:
                 cval_float64 = ((func_float64_ctx_t)f->func)(f->dssCtx);
                 break;
+            default:
+                PyErr_SetString(PyExc_TypeError, "Internal error: unknown signature");
+                return NULL;
         }
         break;
     }
@@ -328,7 +382,6 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
             const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
             int32_t num = *f->errorPtr;
             *f->errorPtr = 0;
-            //TODO: check ref count here
             PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
                 PyLong_FromLong(num),
                 PyUnicode_FromString(errorDesc)
@@ -357,6 +410,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
 {
     PyObject *result = NULL;
     PyObject *item = NULL;
+    double float64Arg1, float64Arg2;
     int argValue = 0;
     int32_t resType = f->resType;
     const int32_t settings = *f->settingsPtr;
@@ -370,6 +424,14 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
 
     switch (f->funcArgSignature)
     {
+        case Signature_float64_float64_int32:
+            if (!PyArg_ParseTuple(args, "ddi", &float64Arg1, &float64Arg2, &argValue))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyGRGetter call (expected float, float, integer arguments)");
+                return NULL;
+            }
+            ((gr_func_ctx_float64_float64_int32_t)f->func)(f->dssCtx, float64Arg1, float64Arg2, argValue);
+            break;
         case Signature_one_int32:
             if (!PyArg_ParseTuple(args, "i", &argValue))
             {
@@ -397,7 +459,6 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
             const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
             int32_t num = *f->errorPtr;
             *f->errorPtr = 0;
-            //TODO: check ref count here
             PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
                 PyLong_FromLong(num),
                 PyUnicode_FromString(errorDesc)
@@ -407,8 +468,6 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
         PyErr_SetString(f->parent->DSSExceptionType, "Error mapping DSS error to Python!");
         return NULL;
     }
-
-    //TODO: handle list option
 
     nitems = f->countPtr[0];
     if ((f->countPtr[2] == 0))
@@ -644,11 +703,12 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
     PyObject *result = NULL;
     PyObject *item = NULL;
     char** cstr_list = NULL;
+    char* cstr = NULL;
     char** sptr = NULL;
     int32_t count[4] = {0, 0, 0, 0};
     int32_t i;
     int argIntValue;
-    Py_buffer c_str_buffer;
+    Py_buffer cstr_buffer;
     const int32_t settings = *f->settingsPtr;
 
     switch (f->funcArgSignature)
@@ -663,13 +723,13 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
             break;
         case Signature_str:
             // TODO: use s# whenever possible
-            if (!PyArg_ParseTuple(args, "s*", &c_str_buffer))
+            if (!PyArg_ParseTuple(args, "s*", &cstr_buffer))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected either a string or bytes value)");
                 return NULL;
             }
-            ((func_ctx_strlist_pchar_t)f->func)(f->dssCtx, &cstr_list, &count[0], (const char*) c_str_buffer.buf);
-            PyBuffer_Release(&c_str_buffer);
+            ((func_ctx_strlist_pchar_t)f->func)(f->dssCtx, &cstr_list, &count[0], (const char*) cstr_buffer.buf);
+            PyBuffer_Release(&cstr_buffer);
             break;
         default:
             ((func_ctx_strlist_t)f->func)(f->dssCtx, &cstr_list, &count[0]);
@@ -697,9 +757,22 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
         return NULL;
     }
 
-    if (settings & DSSFastSettings_ODDPyStrings)
+    if ((settings & DSSFastSettings_ODDPyStrings) && (count[0] == 1))
     {
-TODO
+        cstr = cstr_list[0];
+        if ((cstr == NULL) || (cstr[0] == 0))
+        {
+            count[0] = 0;
+        }
+        else if ((strnlen(cstr, 5) == 4) && (
+            (cstr[0] == 'n' || cstr[0] == 'N') &&
+            (cstr[1] == 'o' || cstr[1] == 'O') &&
+            (cstr[2] == 'n' || cstr[2] == 'N') &&
+            (cstr[3] == 'e' || cstr[3] == 'E')
+        ))
+        {
+            count[0] = 0;
+        }
     }
 
     for (i = 0, sptr = cstr_list; i < count[0]; ++i, ++sptr)
@@ -847,9 +920,11 @@ ERROR_INIT:
 
 static PyObject *AltDSS_PyContext_set_exc_type(AltDSS_PyContextObject *self, PyObject *arg)
 {
+    PyObject* result = Py_None;
     self->DSSExceptionType = arg;
     Py_INCREF(arg);
-    return Py_None;
+    Py_INCREF(result);
+    return result;
 }
 
 static PyMethodDef AltDSS_PyContext_methods[] = {
@@ -966,8 +1041,6 @@ ERROR0:
 
 int AltDSS_PyStrListGetter_cinit(AltDSS_PyStrListGetterObject* f, AltDSS_PyContextObject *alt_py_ctx, int res_type, int args_type, void* c_func)
 {
-    void* ctx = alt_py_ctx->dssCtx;
-
     if (res_type != Signature_str_list)
     {
         f->dssCtx = NULL;
@@ -987,9 +1060,9 @@ int AltDSS_PyStrListGetter_cinit(AltDSS_PyStrListGetterObject* f, AltDSS_PyConte
 
 int AltDSS_PyScalarSetter_cinit(AltDSS_PyScalarSetterObject* f, AltDSS_PyContextObject *alt_py_ctx, int res_type, int args_type, void* c_func)
 {
-    void* ctx = alt_py_ctx->dssCtx;
-
-    if ((args_type != Signature_one_int32 && 
+    if ((
+        args_type != Signature_int32_int32 &&
+        args_type != Signature_one_int32 && 
         args_type != Signature_one_float64 && 
         args_type != Signature_one_bool &&
         args_type != Signature_empty &&
@@ -1014,8 +1087,6 @@ int AltDSS_PyScalarSetter_cinit(AltDSS_PyScalarSetterObject* f, AltDSS_PyContext
 
 int AltDSS_PyScalarGetter_cinit(AltDSS_PyScalarGetterObject* f, AltDSS_PyContextObject *alt_py_ctx, int res_type, int args_type, void* c_func)
 {
-    void* ctx = alt_py_ctx->dssCtx;
-
     if (res_type != Signature_one_int32 && 
         res_type != Signature_one_float64 && 
         res_type != Signature_one_bool)
@@ -1037,8 +1108,6 @@ int AltDSS_PyScalarGetter_cinit(AltDSS_PyScalarGetterObject* f, AltDSS_PyContext
 
 int AltDSS_PyStrGetter_cinit(AltDSS_PyStrGetterObject* f, AltDSS_PyContextObject *alt_py_ctx, int res_type, int args_type, void* c_func)
 {
-    void* ctx = alt_py_ctx->dssCtx;
-
     if (res_type != Signature_str)
     {
         f->dssCtx = NULL;
@@ -1058,8 +1127,6 @@ int AltDSS_PyStrGetter_cinit(AltDSS_PyStrGetterObject* f, AltDSS_PyContextObject
 
 int AltDSS_PyGRGetter_cinit(AltDSS_PyGRGetterObject* f, AltDSS_PyContextObject *alt_py_ctx, int resType, int argsType, void* c_func)
 {
-    void* ctx = alt_py_ctx->dssCtx;
-
     f->parent = alt_py_ctx;
     f->dssCtx = alt_py_ctx->dssCtx;
     f->errorPtr = alt_py_ctx->errorPtr;
@@ -1093,8 +1160,6 @@ int AltDSS_PyGRGetter_cinit(AltDSS_PyGRGetterObject* f, AltDSS_PyContextObject *
 int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type, void* c_func, PyObject **py_func, PyObject *setObj, PyObject *fakeLib, const char* fname)
 {
     PyObject* key = NULL;
-    char buffer[100] = {0};
-    int gr = 0;
 
     if (res_type == Signature_empty)
     {
@@ -1116,6 +1181,7 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
             //     }
             //     AltDSS_PyStrGetter_cinit((AltDSS_PyStrGetterObject*) *py_func, self, res_type, args_type, c_func);
             //     break;
+            case Signature_int32_int32:
             case Signature_one_float64:
             case Signature_one_int32:
             case Signature_one_bool:
@@ -1182,7 +1248,6 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
                 {
                     goto ADD_FUNC_ERROR;
                 }
-                gr = 1;
                 AltDSS_PyGRGetter_cinit((AltDSS_PyGRGetterObject*) *py_func, self, res_type, args_type, c_func);
                 break;
             default:

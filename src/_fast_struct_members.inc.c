@@ -510,6 +510,18 @@
     PyObject *f_Parser_Get_SymMatrix_GR;
     PyObject *f_Parser_Get_Vector_GR;
 #ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Get_Cmatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Get_Rmatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Get_Xmatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Get_Zmatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllMaxCurrents_GR;
 #endif
 #ifndef ALTDSS_ODDIE
@@ -550,6 +562,7 @@
     PyObject *f_Bus_Get_Next;
     PyObject *f_Bus_Get_NumNodes;
     PyObject *f_Bus_Get_SectionID;
+    PyObject *f_Bus_Get_idx;
 #ifndef ALTDSS_ODDIE
     PyObject *f_CNData_Get_Count;
 #endif
@@ -940,6 +953,12 @@
     PyObject *f_YMatrix_Get_Iteration;
     PyObject *f_Bus_GetUniqueNodeNumber;
     PyObject *f_Circuit_SetActiveBusi;
+    PyObject *f_Circuit_SetActiveBus;
+    PyObject *f_Circuit_SetActiveClass;
+    PyObject *f_Circuit_SetActiveElement;
+    PyObject *f_DSS_SetActiveClass;
+    PyObject *f_Lines_New;
+    PyObject *f_LoadShapes_New;
 #ifndef ALTDSS_ODDIE
     PyObject *f_CNData_Set_GMRUnits;
 #endif
@@ -1116,6 +1135,10 @@
     PyObject *f_XYCurves_Set_idx;
     PyObject *f_YMatrix_AddInAuxCurrents;
     PyObject *f_YMatrix_Set_Iteration;
+    PyObject *f_CktElement_Close;
+    PyObject *f_CktElement_Open;
+    PyObject *f_Solution_BuildYMatrix;
+    PyObject *f_YMatrix_BuildYMatrixD;
     PyObject *f_Bus_Get_Cust_Duration;
     PyObject *f_Bus_Get_Cust_Interrupts;
     PyObject *f_Bus_Get_Distance;
@@ -1882,69 +1905,58 @@
     PyObject *f_YMatrix_Get_SolutionInitialized;
     PyObject *f_YMatrix_Get_SystemYChanged;
     PyObject *f_YMatrix_Get_UseAuxCurrents;
-    PyObject *f_Bus_Get_Coorddefined;
-    PyObject *f_Bus_ZscRefresh;
-    PyObject *f_CapControls_Get_UseVoltOverride;
-    PyObject *f_Capacitors_AddStep;
-    PyObject *f_Capacitors_Get_IsDelta;
-    PyObject *f_Capacitors_SubtractStep;
-    PyObject *f_CktElement_Get_Enabled;
-    PyObject *f_CktElement_Get_HasOCPDevice;
-    PyObject *f_CktElement_Get_HasSwitchControl;
-    PyObject *f_CktElement_Get_HasVoltControl;
-    PyObject *f_CktElement_Get_IsIsolated;
-    PyObject *f_DSS_Get_AllowChangeDir;
-    PyObject *f_DSS_Get_AllowDOScmd;
-    PyObject *f_DSS_Get_AllowEditor;
-    PyObject *f_DSS_Get_AllowForms;
-    PyObject *f_DSS_Get_COMErrorResults;
-    PyObject *f_DSS_Get_EnableArrayDimensions;
-    PyObject *f_DSS_Get_LegacyModels;
-    PyObject *f_Error_Get_EarlyAbort;
-    PyObject *f_Error_Get_ExtendedErrors;
-    PyObject *f_Fuses_IsBlown;
-    PyObject *f_Generators_Get_ForcedON;
-    PyObject *f_Generators_Get_IsDelta;
-    PyObject *f_LineCodes_Get_IsZ1Z0;
 #ifndef ALTDSS_ODDIE
-    PyObject *f_LineGeometries_Get_Reduce;
+    PyObject *f_ZIP_Contains;
 #endif
-    PyObject *f_Lines_Get_IsSwitch;
-    PyObject *f_LoadShapes_Get_UseActual;
-    PyObject *f_Loads_Get_IsDelta;
-    PyObject *f_Meters_Get_DIFilesAreOpen;
+    PyObject *f_CktElement_IsOpen;
+    PyObject *f_CapControls_Set_UseVoltOverride;
+    PyObject *f_Capacitors_Set_IsDelta;
+    PyObject *f_CktElement_Set_Enabled;
+    PyObject *f_DSS_Set_AllowChangeDir;
+    PyObject *f_DSS_Set_AllowDOScmd;
+    PyObject *f_DSS_Set_AllowEditor;
+    PyObject *f_DSS_Set_AllowForms;
+    PyObject *f_DSS_Set_COMErrorResults;
+    PyObject *f_DSS_Set_EnableArrayDimensions;
+    PyObject *f_DSS_Set_LegacyModels;
+    PyObject *f_Error_Set_EarlyAbort;
+    PyObject *f_Error_Set_ExtendedErrors;
+    PyObject *f_Generators_Set_ForcedON;
+    PyObject *f_Generators_Set_IsDelta;
 #ifndef ALTDSS_ODDIE
-    PyObject *f_PDElements_Get_IsShunt;
+    PyObject *f_LineGeometries_Set_Reduce;
 #endif
-    PyObject *f_Parser_Get_AutoIncrement;
+    PyObject *f_Lines_Set_IsSwitch;
+    PyObject *f_LoadShapes_Set_UseActual;
+    PyObject *f_Loads_Set_IsDelta;
+    PyObject *f_Meters_DoReliabilityCalc;
+    PyObject *f_Parser_Set_AutoIncrement;
 #ifndef ALTDSS_ODDIE
-    PyObject *f_Reactors_Get_IsDelta;
+    PyObject *f_Reactors_Set_IsDelta;
 #endif
 #ifndef ALTDSS_ODDIE
-    PyObject *f_Reactors_Get_Parallel;
+    PyObject *f_Reactors_Set_Parallel;
 #endif
-    PyObject *f_ReduceCkt_Get_KeepLoad;
-    PyObject *f_RegControls_Get_IsInverseTime;
-    PyObject *f_RegControls_Get_IsReversible;
-    PyObject *f_Sensors_Get_IsDelta;
-    PyObject *f_Sensors_Get_ReverseDelta;
-    PyObject *f_Settings_Get_AllowDuplicates;
-    PyObject *f_Settings_Get_ControlTrace;
-    PyObject *f_Settings_Get_LoadsTerminalCheck;
-    PyObject *f_Settings_Get_Trapezoidal;
-    PyObject *f_Settings_Get_ZoneLock;
-    PyObject *f_Solution_Get_ControlActionsDone;
-    PyObject *f_Solution_Get_Converged;
-    PyObject *f_Solution_Get_SystemYChanged;
-    PyObject *f_Storages_Get_LimitCurrent;
-    PyObject *f_SwtControls_Get_IsLocked;
-    PyObject *f_Transformers_Get_IsDelta;
-    PyObject *f_WindGens_Get_IsDelta;
-    PyObject *f_YMatrix_CheckConvergence;
-    PyObject *f_YMatrix_Get_LoadsNeedUpdating;
-    PyObject *f_YMatrix_Get_SolutionInitialized;
-    PyObject *f_YMatrix_Get_SystemYChanged;
-    PyObject *f_YMatrix_Get_UseAuxCurrents;
+    PyObject *f_ReduceCkt_Set_KeepLoad;
+    PyObject *f_RegControls_Set_IsInverseTime;
+    PyObject *f_RegControls_Set_IsReversible;
+    PyObject *f_Sensors_Set_IsDelta;
+    PyObject *f_Sensors_Set_ReverseDelta;
+    PyObject *f_Settings_Set_AllowDuplicates;
+    PyObject *f_Settings_Set_ControlTrace;
+    PyObject *f_Settings_Set_LoadsTerminalCheck;
+    PyObject *f_Settings_Set_Trapezoidal;
+    PyObject *f_Settings_Set_ZoneLock;
+    PyObject *f_Solution_Set_ControlActionsDone;
+    PyObject *f_Solution_Set_Converged;
+    PyObject *f_Storages_Set_LimitCurrent;
+    PyObject *f_SwtControls_Set_IsLocked;
+    PyObject *f_Transformers_Set_IsDelta;
+    PyObject *f_WindGens_Set_IsDelta;
+    PyObject *f_YMatrix_Set_LoadsNeedUpdating;
+    PyObject *f_YMatrix_Set_SolutionInitialized;
+    PyObject *f_YMatrix_Set_SystemYChanged;
+    PyObject *f_YMatrix_Set_UseAuxCurrents;
     PyObject *f_CapControls_Reset;
     PyObject *f_Capacitors_Close;
     PyObject *f_Capacitors_Open;
