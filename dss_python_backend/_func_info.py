@@ -12,7 +12,8 @@ class Signatures(IntEnum):
     OneComplex128 = 8
     OneInt32 = 9
     OneFloat64 = 10
-
+    StrList = 11
+    OneBool = 12
 str_funcs = (
     ("ActiveClass_Get_ActiveClassName", 0),
     ("ActiveClass_Get_ActiveClassParent", 0),
@@ -428,6 +429,9 @@ f64arr_funcs = (
     ("Parser_Get_Matrix_GR", 1, 3),
     ("Parser_Get_SymMatrix_GR", 1, 3),
     ("Parser_Get_Vector_GR", 1, 3),
+    ("PDElements_Get_AllMaxCurrents_GR", 12, 3),
+    ("PDElements_Get_AllPctEmerg_GR", 12, 3),
+    ("PDElements_Get_AllPctNorm_GR", 12, 3),
 )
 
 i32arr_funcs = (
@@ -1457,6 +1461,64 @@ bool_funcs = (
     ("YMatrix_Get_SolutionInitialized", 0, 11),
     ("YMatrix_Get_SystemYChanged", 0, 11),
     ("YMatrix_Get_UseAuxCurrents", 0, 11),
+)
+
+bool_setter_funcs = (
+    ("Bus_Get_Coorddefined", 11, 0),
+    ("Bus_ZscRefresh", 11, 0),
+    ("CapControls_Get_UseVoltOverride", 11, 0),
+    ("Capacitors_AddStep", 11, 0),
+    ("Capacitors_Get_IsDelta", 11, 0),
+    ("Capacitors_SubtractStep", 11, 0),
+    ("CktElement_Get_Enabled", 11, 0),
+    ("CktElement_Get_HasOCPDevice", 11, 0),
+    ("CktElement_Get_HasSwitchControl", 11, 0),
+    ("CktElement_Get_HasVoltControl", 11, 0),
+    ("CktElement_Get_IsIsolated", 11, 0),
+    ("DSS_Get_AllowChangeDir", 11, 0),
+    ("DSS_Get_AllowDOScmd", 11, 0),
+    ("DSS_Get_AllowEditor", 11, 0),
+    ("DSS_Get_AllowForms", 11, 0),
+    ("DSS_Get_COMErrorResults", 11, 0),
+    ("DSS_Get_EnableArrayDimensions", 11, 0),
+    ("DSS_Get_LegacyModels", 11, 0),
+    ("Error_Get_EarlyAbort", 11, 0),
+    ("Error_Get_ExtendedErrors", 11, 0),
+    ("Fuses_IsBlown", 11, 0),
+    ("Generators_Get_ForcedON", 11, 0),
+    ("Generators_Get_IsDelta", 11, 0),
+    ("LineCodes_Get_IsZ1Z0", 11, 0),
+    ("LineGeometries_Get_Reduce", 11, 0),
+    ("Lines_Get_IsSwitch", 11, 0),
+    ("LoadShapes_Get_UseActual", 11, 0),
+    ("Loads_Get_IsDelta", 11, 0),
+    ("Meters_Get_DIFilesAreOpen", 11, 0),
+    ("PDElements_Get_IsShunt", 11, 0),
+    ("Parser_Get_AutoIncrement", 11, 0),
+    ("Reactors_Get_IsDelta", 11, 0),
+    ("Reactors_Get_Parallel", 11, 0),
+    ("ReduceCkt_Get_KeepLoad", 11, 0),
+    ("RegControls_Get_IsInverseTime", 11, 0),
+    ("RegControls_Get_IsReversible", 11, 0),
+    ("Sensors_Get_IsDelta", 11, 0),
+    ("Sensors_Get_ReverseDelta", 11, 0),
+    ("Settings_Get_AllowDuplicates", 11, 0),
+    ("Settings_Get_ControlTrace", 11, 0),
+    ("Settings_Get_LoadsTerminalCheck", 11, 0),
+    ("Settings_Get_Trapezoidal", 11, 0),
+    ("Settings_Get_ZoneLock", 11, 0),
+    ("Solution_Get_ControlActionsDone", 11, 0),
+    ("Solution_Get_Converged", 11, 0),
+    ("Solution_Get_SystemYChanged", 11, 0),
+    ("Storages_Get_LimitCurrent", 11, 0),
+    ("SwtControls_Get_IsLocked", 11, 0),
+    ("Transformers_Get_IsDelta", 11, 0),
+    ("WindGens_Get_IsDelta", 11, 0),
+    ("YMatrix_CheckConvergence", 11, 0),
+    ("YMatrix_Get_LoadsNeedUpdating", 11, 0),
+    ("YMatrix_Get_SolutionInitialized", 11, 0),
+    ("YMatrix_Get_SystemYChanged", 11, 0),
+    ("YMatrix_Get_UseAuxCurrents", 11, 0),
 )
 
 void_funcs = (

@@ -2,7 +2,7 @@ from cffi import FFI
 import sys, re, os
 from dss_setup_common import PLATFORM_FOLDER, BUILD_ODDIE
 
-def process_header(src, extern_py=False, implement_py=False, prefix='', flags=None):
+def process_header(src, extern_py=False, implement_py=False, prefix='', flags=None, fn=''):
     '''Prepare the DSS C-API headers for parsing and building with CFFI'''
     
     if flags is not None:
@@ -54,6 +54,13 @@ def process_header(src, extern_py=False, implement_py=False, prefix='', flags=No
         src = re.sub('^.*extern .*$', '', src, flags=re.MULTILINE)
         src = re.sub('^#.*', '', src, flags=re.MULTILINE)
         src = re.sub('(DSS_CAPI_.*DLL)|(ALTDSS_.*_DLL)', '', src)
+        
+        # Remove functions for GR strings, deprecated
+        non_gr_str_list = re.findall(r'^\s*void (\w+)\(const\s+void\*\s*ctx,\s*char\s*\*\*\*\s*\w+,\s*int32_t\s*\*\s*\w+', src, flags=re.MULTILINE)
+        non_gr_str_list += re.findall(r'^\s*void (\w+)\(char\s*\*\*\*\s*\w+,\s*int32_t\s*\*\s*\w+', src, flags=re.MULTILINE)
+        for non_gr_name in non_gr_str_list:
+            src = re.sub(rf'^\s*void\s+({non_gr_name})_GR.*', '', src, count=1, flags=re.MULTILINE)
+
         src = re.sub(
             r'DSS_MODEL_CALLBACK\(([^,]+), ([^\)]+)\)', 
             r'\1 ({call_convention}*\2)'.format(call_convention=call_convention), 
@@ -133,7 +140,7 @@ for version in VERSIONS:
         # headers = [main_header_fn]
 
     with open(main_header_fn, 'r') as f:
-        cffi_header_dss = process_header(f.read())
+        cffi_header_dss = process_header(f.read(), fn=main_header_fn)
 
     if 'oddie' not in version:
         if os.path.exists(dss_capi_ctx_path):

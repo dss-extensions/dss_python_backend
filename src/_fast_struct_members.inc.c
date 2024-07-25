@@ -509,6 +509,15 @@
     PyObject *f_Parser_Get_Matrix_GR;
     PyObject *f_Parser_Get_SymMatrix_GR;
     PyObject *f_Parser_Get_Vector_GR;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_PDElements_Get_AllMaxCurrents_GR;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_PDElements_Get_AllPctEmerg_GR;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_PDElements_Get_AllPctNorm_GR;
+#endif
     PyObject *f_Bus_Get_Nodes_GR;
     PyObject *f_Capacitors_Get_States_GR;
     PyObject *f_CktElement_Get_NodeOrder_GR;
@@ -1810,6 +1819,69 @@
     PyObject *f_XYCurves_Set_Yshift;
     PyObject *f_XYCurves_Set_x;
     PyObject *f_XYCurves_Set_y;
+    PyObject *f_Bus_Get_Coorddefined;
+    PyObject *f_Bus_ZscRefresh;
+    PyObject *f_CapControls_Get_UseVoltOverride;
+    PyObject *f_Capacitors_AddStep;
+    PyObject *f_Capacitors_Get_IsDelta;
+    PyObject *f_Capacitors_SubtractStep;
+    PyObject *f_CktElement_Get_Enabled;
+    PyObject *f_CktElement_Get_HasOCPDevice;
+    PyObject *f_CktElement_Get_HasSwitchControl;
+    PyObject *f_CktElement_Get_HasVoltControl;
+    PyObject *f_CktElement_Get_IsIsolated;
+    PyObject *f_DSS_Get_AllowChangeDir;
+    PyObject *f_DSS_Get_AllowDOScmd;
+    PyObject *f_DSS_Get_AllowEditor;
+    PyObject *f_DSS_Get_AllowForms;
+    PyObject *f_DSS_Get_COMErrorResults;
+    PyObject *f_DSS_Get_EnableArrayDimensions;
+    PyObject *f_DSS_Get_LegacyModels;
+    PyObject *f_Error_Get_EarlyAbort;
+    PyObject *f_Error_Get_ExtendedErrors;
+    PyObject *f_Fuses_IsBlown;
+    PyObject *f_Generators_Get_ForcedON;
+    PyObject *f_Generators_Get_IsDelta;
+    PyObject *f_LineCodes_Get_IsZ1Z0;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_LineGeometries_Get_Reduce;
+#endif
+    PyObject *f_Lines_Get_IsSwitch;
+    PyObject *f_LoadShapes_Get_UseActual;
+    PyObject *f_Loads_Get_IsDelta;
+    PyObject *f_Meters_Get_DIFilesAreOpen;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_PDElements_Get_IsShunt;
+#endif
+    PyObject *f_Parser_Get_AutoIncrement;
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Get_IsDelta;
+#endif
+#ifndef ALTDSS_ODDIE
+    PyObject *f_Reactors_Get_Parallel;
+#endif
+    PyObject *f_ReduceCkt_Get_KeepLoad;
+    PyObject *f_RegControls_Get_IsInverseTime;
+    PyObject *f_RegControls_Get_IsReversible;
+    PyObject *f_Sensors_Get_IsDelta;
+    PyObject *f_Sensors_Get_ReverseDelta;
+    PyObject *f_Settings_Get_AllowDuplicates;
+    PyObject *f_Settings_Get_ControlTrace;
+    PyObject *f_Settings_Get_LoadsTerminalCheck;
+    PyObject *f_Settings_Get_Trapezoidal;
+    PyObject *f_Settings_Get_ZoneLock;
+    PyObject *f_Solution_Get_ControlActionsDone;
+    PyObject *f_Solution_Get_Converged;
+    PyObject *f_Solution_Get_SystemYChanged;
+    PyObject *f_Storages_Get_LimitCurrent;
+    PyObject *f_SwtControls_Get_IsLocked;
+    PyObject *f_Transformers_Get_IsDelta;
+    PyObject *f_WindGens_Get_IsDelta;
+    PyObject *f_YMatrix_CheckConvergence;
+    PyObject *f_YMatrix_Get_LoadsNeedUpdating;
+    PyObject *f_YMatrix_Get_SolutionInitialized;
+    PyObject *f_YMatrix_Get_SystemYChanged;
+    PyObject *f_YMatrix_Get_UseAuxCurrents;
     PyObject *f_Bus_Get_Coorddefined;
     PyObject *f_Bus_ZscRefresh;
     PyObject *f_CapControls_Get_UseVoltOverride;

@@ -1,9 +1,6 @@
 // This C extension contains a few faster alternatives for some functions
 // TODO: PyLong_FromVoidPtr and PyLong_AsVoidPtr could be used?
 // TODO: enums in int32 and one_int32 results, e.g. LoadModels
-#ifndef ALTDSS_FAST_MODINIT
-#error "Define ALTDSS_FAST_MODNAME"
-#endif
 
 #define PY_SSIZE_T_CLEAN
 // #define Py_LIMITED_API 0x03070000
@@ -27,6 +24,7 @@ typedef void (*func_ctx_strlist_t)(const void* ctx, char*** ResultPtr, int32_t* 
 typedef void (*func_ctx_strlist_int32_t)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, int32_t value);
 typedef void (*func_ctx_strlist_pchar_t)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, const char* value);
 typedef void (*gr_func_ctx_t)(const void* ctx);
+typedef void (*gr_func_ctx_bool_t)(const void* ctx, uint16_t value);
 typedef void (*gr_func_ctx_int32_t)(const void* ctx, int32_t value);
 
 typedef void (*func_ctx_int32_t)(const void* ctx, int32_t value);
@@ -49,6 +47,11 @@ enum Signatures {
     Signature_one_float64 = 10,
     Signature_str_list = 11,
     Signature_one_bool = 12,
+};
+
+enum DSSFastSettings {
+    DSSFastSettings_ODDPyStrings = 1 << 0,
+    DSSFastSettings_UseLists = 1 << 1,
 };
 
 struct AltDSS_PyContextObject_;
@@ -215,7 +218,7 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
         case Signature_one_bool:
             if (!PyArg_ParseTuple(args, "p", &cval_int))
             {
-                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a float64 value)");
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a boolean value)");
                 return NULL;
             }
             ((func_ctx_bool_t)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
@@ -339,7 +342,9 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
     switch (f->resType)
     {
         case Signature_one_bool:
-            return (cval_int32 ? Py_True : Py_False);
+            result = (cval_int32 ? Py_True : Py_False);
+            Py_INCREF(result);
+            return result;
         case Signature_one_int32:
             return PyLong_FromLong(cval_int32);
         case Signature_one_float64:
@@ -351,22 +356,35 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
 static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
 {
     PyObject *result = NULL;
-    int argValue;
+    PyObject *item = NULL;
+    int argValue = 0;
     int32_t resType = f->resType;
-    int32_t settings = *f->settingsPtr;
+    const int32_t settings = *f->settingsPtr;
     int nd = 1;
+    int nitems, i;
     npy_intp dims[2];
     void *data;
+    double *dblPtr;
+    int32_t *i32Ptr;
+    int8_t *i8Ptr;
 
     switch (f->funcArgSignature)
     {
         case Signature_one_int32:
             if (!PyArg_ParseTuple(args, "i", &argValue))
             {
-                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected an integer value)");
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyGRGetter call (expected an integer value)");
                 return NULL;
             }
             ((gr_func_ctx_int32_t)f->func)(f->dssCtx, argValue);
+            break;
+        case Signature_one_bool:
+            if (!PyArg_ParseTuple(args, "p", &argValue))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyGRSetter call (expected a boolean value)");
+                return NULL;
+            }
+            ((gr_func_ctx_bool_t)f->func)(f->dssCtx, argValue ? (uint16_t)-1 : (uint16_t)0);
             break;
         default:
             ((gr_func_ctx_t)f->func)(f->dssCtx);
@@ -392,14 +410,10 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
 
     //TODO: handle list option
 
-    if (resType == Signature_complex128) //TODO: handle advanced types
+    nitems = f->countPtr[0];
+    if ((f->countPtr[2] == 0))
     {
-        resType = Signature_float64;
-    }
-
-    if (1)//(dims[2] == 0)) //TODO: handle advanced types
-    {
-        dims[0] = f->countPtr[0];
+        dims[0] = nitems;
     }
     else
     {
@@ -408,6 +422,83 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
         dims[1] = f->countPtr[3];
     }
 
+    if (resType == Signature_complex128)
+    {
+        nitems /= 2;
+    }
+
+    if (!(settings & DSSFastSettings_UseLists))
+    {
+        switch (resType)
+        {
+            case Signature_one_complex128:
+                if (f->countPtr[0] != 2)
+                {
+                    PyErr_SetString(PyExc_RuntimeError, "Unexpected number of elements returned by API (complex number).");
+                    return NULL;
+                }
+                return PyComplex_FromDoubles((*(double**)f->dataPtr)[0], (*(double**)f->dataPtr)[1]);
+            case Signature_complex128:
+                if (f->countPtr[0] & 1)
+                {
+                    PyErr_SetString(PyExc_RuntimeError, "Unexpected number of elements returned by API (array of complex numbers).");
+                    return NULL;
+                }
+                result = PyArray_SimpleNew(nd, dims, NPY_COMPLEX128);
+                if (result == NULL)
+                {
+                    return NULL;
+                }
+                data = PyArray_DATA((PyArrayObject*) result);
+                if (data == NULL)
+                    goto array_error;
+                memcpy(data, *(double**)f->dataPtr, 2 * sizeof(double) * nitems);
+                return result;
+            case Signature_float64:
+                result = PyArray_SimpleNew(nd, dims, NPY_FLOAT64);
+                if (result == NULL)
+                {
+                    return NULL;
+                }
+                data = PyArray_DATA((PyArrayObject*) result);
+                if (data == NULL)
+                    goto array_error;
+                memcpy(data, *(double**)f->dataPtr, sizeof(double) * nitems);
+                return result;
+            // case Signature_float32:
+            //     result = PyArray_SimpleNew(nd, dims, NPY_FLOAT32);
+            //     memcpy(data, f->dataPtr[0], *(float**)f->dataPtr, sizeof(float) * nitems);
+            //     data = PyArray_DATA(result);
+            //     return result;
+            case Signature_int32:
+                result = PyArray_SimpleNew(nd, dims, NPY_INT32);
+                if (result == NULL)
+                {
+                    return NULL;
+                }
+                data = PyArray_DATA((PyArrayObject*) result);
+                if (data == NULL)
+                    goto array_error;
+                memcpy(data, *(int32_t**)f->dataPtr, sizeof(int32_t) * nitems);
+                return result;
+            case Signature_int8:
+                result = PyArray_SimpleNew(nd, dims, NPY_INT8);
+                if (result == NULL)
+                {
+                    return NULL;
+                }
+                data = PyArray_DATA((PyArrayObject*) result);
+                if (data == NULL)
+                    goto array_error;
+                memcpy(data, *(int8_t**)f->dataPtr, sizeof(int8_t) * nitems);
+                return result;
+            default:
+                PyErr_SetString(PyExc_TypeError, "Invalid type specified.");
+                return NULL;
+        }
+    }
+
+    // Duplicated from above, but using lists
     switch (resType)
     {
         case Signature_one_complex128:
@@ -423,42 +514,83 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 PyErr_SetString(PyExc_RuntimeError, "Unexpected number of elements returned by API (array of complex numbers).");
                 return NULL;
             }
-            result = PyArray_SimpleNew(nd, dims, NPY_COMPLEX128);
-            data = PyArray_DATA((PyArrayObject*) result);
-            if (data == NULL)
-                goto array_error;
-            memcpy(data, *(double**)f->dataPtr, sizeof(double) * f->countPtr[0]);
+            result = PyList_New(nitems);
+            if (result == NULL)
+            {
+                return NULL;
+            }
+            dblPtr = *(double**)f->dataPtr;
+            for (i = 0; i < nitems; ++i, dblPtr += 2)
+            {
+                item = PyComplex_FromDoubles(dblPtr[0], dblPtr[1]);
+                if (item == NULL)
+                {
+                    goto array_error;
+                }
+                PyList_SET_ITEM(result, i, item);
+            }
             return result;
         case Signature_float64:
-            result = PyArray_SimpleNew(nd, dims, NPY_FLOAT64);
-            data = PyArray_DATA((PyArrayObject*) result);
-            if (data == NULL)
-                goto array_error;
-            memcpy(data, *(double**)f->dataPtr, sizeof(double) * f->countPtr[0]);
+            result = PyList_New(nitems);
+            if (result == NULL)
+            {
+                return NULL;
+            }
+            dblPtr = *(double**)f->dataPtr;
+            for (i = 0; i < nitems; ++i, ++dblPtr)
+            {
+                item = PyFloat_FromDouble(*dblPtr);
+                if (item == NULL)
+                {
+                    goto array_error;
+                }
+                PyList_SET_ITEM(result, i, item);
+            }
             return result;
         // case Signature_float32:
         //     result = PyArray_SimpleNew(nd, dims, NPY_FLOAT32);
-        //     memcpy(data, f->dataPtr[0], *(float**)f->dataPtr, sizeof(float) * f->countPtr[0]);
+        //     memcpy(data, f->dataPtr[0], *(float**)f->dataPtr, sizeof(float) * nitems);
         //     data = PyArray_DATA(result);
         //     return result;
         case Signature_int32:
-            result = PyArray_SimpleNew(nd, dims, NPY_INT32);
-            data = PyArray_DATA((PyArrayObject*) result);
-            if (data == NULL)
-                goto array_error;
-            memcpy(data, *(int32_t**)f->dataPtr, sizeof(int32_t) * f->countPtr[0]);
+            result = PyList_New(nitems);
+            if (result == NULL)
+            {
+                return NULL;
+            }
+            i32Ptr = *(int32_t**)f->dataPtr;
+            for (i = 0; i < nitems; ++i, ++i32Ptr)
+            {
+                item = PyLong_FromLong(*i32Ptr);
+                if (item == NULL)
+                {
+                    goto array_error;
+                }
+                PyList_SET_ITEM(result, i, item);
+            }
             return result;
         case Signature_int8:
-            result = PyArray_SimpleNew(nd, dims, NPY_INT8);
-            data = PyArray_DATA((PyArrayObject*) result);
-            if (data == NULL)
-                goto array_error;
-            memcpy(data, *(int8_t**)f->dataPtr, sizeof(int8_t) * f->countPtr[0]);
+            result = PyList_New(nitems);
+            if (result == NULL)
+            {
+                return NULL;
+            }
+            i8Ptr = *(int8_t**)f->dataPtr;
+            for (i = 0; i < nitems; ++i, ++i8Ptr)
+            {
+                item = PyLong_FromLong(*i8Ptr);
+                if (item == NULL)
+                {
+                    goto array_error;
+                }
+                PyList_SET_ITEM(result, i, item);
+            }
             return result;
         default:
             PyErr_SetString(PyExc_TypeError, "Invalid type specified.");
             return NULL;
     }
+
     return result;
 array_error:
     Py_XDECREF(result);
@@ -517,6 +649,7 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
     int32_t i;
     int argIntValue;
     Py_buffer c_str_buffer;
+    const int32_t settings = *f->settingsPtr;
 
     switch (f->funcArgSignature)
     {
@@ -564,6 +697,11 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
         return NULL;
     }
 
+    if (settings & DSSFastSettings_ODDPyStrings)
+    {
+TODO
+    }
+
     for (i = 0, sptr = cstr_list; i < count[0]; ++i, ++sptr)
     {
         item = (*sptr) ? PyUnicode_FromString(*sptr) : PyUnicode_FromString("");
@@ -573,7 +711,7 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
             DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
             return NULL;
         }
-        PyList_SetItem(result, i, item);
+        PyList_SET_ITEM(result, i, item);
     }
     DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
     return result;
@@ -955,6 +1093,8 @@ int AltDSS_PyGRGetter_cinit(AltDSS_PyGRGetterObject* f, AltDSS_PyContextObject *
 int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type, void* c_func, PyObject **py_func, PyObject *setObj, PyObject *fakeLib, const char* fname)
 {
     PyObject* key = NULL;
+    char buffer[100] = {0};
+    int gr = 0;
 
     if (res_type == Signature_empty)
     {
@@ -1042,6 +1182,7 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
                 {
                     goto ADD_FUNC_ERROR;
                 }
+                gr = 1;
                 AltDSS_PyGRGetter_cinit((AltDSS_PyGRGetterObject*) *py_func, self, res_type, args_type, c_func);
                 break;
             default:

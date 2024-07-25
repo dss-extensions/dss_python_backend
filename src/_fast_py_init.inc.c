@@ -509,6 +509,15 @@
     if (!AltDSS_Add_PyFunc(self, Signature_float64, Signature_one_int32, ctx_Parser_Get_Matrix_GR, &self->f_Parser_Get_Matrix_GR, setObj, fakeLib,"Parser_Get_Matrix_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_float64, Signature_one_int32, ctx_Parser_Get_SymMatrix_GR, &self->f_Parser_Get_SymMatrix_GR, setObj, fakeLib,"Parser_Get_SymMatrix_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_float64, Signature_one_int32, ctx_Parser_Get_Vector_GR, &self->f_Parser_Get_Vector_GR, setObj, fakeLib,"Parser_Get_Vector_GR")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_float64, Signature_one_bool, ctx_PDElements_Get_AllMaxCurrents_GR, &self->f_PDElements_Get_AllMaxCurrents_GR, setObj, fakeLib,"PDElements_Get_AllMaxCurrents_GR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_float64, Signature_one_bool, ctx_PDElements_Get_AllPctEmerg_GR, &self->f_PDElements_Get_AllPctEmerg_GR, setObj, fakeLib,"PDElements_Get_AllPctEmerg_GR")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_float64, Signature_one_bool, ctx_PDElements_Get_AllPctNorm_GR, &self->f_PDElements_Get_AllPctNorm_GR, setObj, fakeLib,"PDElements_Get_AllPctNorm_GR")) goto ERROR_INIT;
+#endif
     if (!AltDSS_Add_PyFunc(self, Signature_int32, Signature_empty, ctx_Bus_Get_Nodes_GR, &self->f_Bus_Get_Nodes_GR, setObj, fakeLib,"Bus_Get_Nodes_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_int32, Signature_empty, ctx_Capacitors_Get_States_GR, &self->f_Capacitors_Get_States_GR, setObj, fakeLib,"Capacitors_Get_States_GR")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_int32, Signature_empty, ctx_CktElement_Get_NodeOrder_GR, &self->f_CktElement_Get_NodeOrder_GR, setObj, fakeLib,"CktElement_Get_NodeOrder_GR")) goto ERROR_INIT;
@@ -1873,6 +1882,69 @@
     if (!AltDSS_Add_PyFunc(self, Signature_one_bool, Signature_empty, ctx_YMatrix_Get_SolutionInitialized, &self->f_YMatrix_Get_SolutionInitialized, setObj, fakeLib,"YMatrix_Get_SolutionInitialized")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_one_bool, Signature_empty, ctx_YMatrix_Get_SystemYChanged, &self->f_YMatrix_Get_SystemYChanged, setObj, fakeLib,"YMatrix_Get_SystemYChanged")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_one_bool, Signature_empty, ctx_YMatrix_Get_UseAuxCurrents, &self->f_YMatrix_Get_UseAuxCurrents, setObj, fakeLib,"YMatrix_Get_UseAuxCurrents")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Bus_Get_Coorddefined, &self->f_Bus_Get_Coorddefined, setObj, fakeLib,"Bus_Get_Coorddefined")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Bus_ZscRefresh, &self->f_Bus_ZscRefresh, setObj, fakeLib,"Bus_ZscRefresh")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_CapControls_Get_UseVoltOverride, &self->f_CapControls_Get_UseVoltOverride, setObj, fakeLib,"CapControls_Get_UseVoltOverride")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Capacitors_AddStep, &self->f_Capacitors_AddStep, setObj, fakeLib,"Capacitors_AddStep")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Capacitors_Get_IsDelta, &self->f_Capacitors_Get_IsDelta, setObj, fakeLib,"Capacitors_Get_IsDelta")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Capacitors_SubtractStep, &self->f_Capacitors_SubtractStep, setObj, fakeLib,"Capacitors_SubtractStep")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_CktElement_Get_Enabled, &self->f_CktElement_Get_Enabled, setObj, fakeLib,"CktElement_Get_Enabled")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_CktElement_Get_HasOCPDevice, &self->f_CktElement_Get_HasOCPDevice, setObj, fakeLib,"CktElement_Get_HasOCPDevice")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_CktElement_Get_HasSwitchControl, &self->f_CktElement_Get_HasSwitchControl, setObj, fakeLib,"CktElement_Get_HasSwitchControl")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_CktElement_Get_HasVoltControl, &self->f_CktElement_Get_HasVoltControl, setObj, fakeLib,"CktElement_Get_HasVoltControl")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_CktElement_Get_IsIsolated, &self->f_CktElement_Get_IsIsolated, setObj, fakeLib,"CktElement_Get_IsIsolated")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_DSS_Get_AllowChangeDir, &self->f_DSS_Get_AllowChangeDir, setObj, fakeLib,"DSS_Get_AllowChangeDir")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_DSS_Get_AllowDOScmd, &self->f_DSS_Get_AllowDOScmd, setObj, fakeLib,"DSS_Get_AllowDOScmd")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_DSS_Get_AllowEditor, &self->f_DSS_Get_AllowEditor, setObj, fakeLib,"DSS_Get_AllowEditor")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_DSS_Get_AllowForms, &self->f_DSS_Get_AllowForms, setObj, fakeLib,"DSS_Get_AllowForms")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_DSS_Get_COMErrorResults, &self->f_DSS_Get_COMErrorResults, setObj, fakeLib,"DSS_Get_COMErrorResults")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_DSS_Get_EnableArrayDimensions, &self->f_DSS_Get_EnableArrayDimensions, setObj, fakeLib,"DSS_Get_EnableArrayDimensions")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_DSS_Get_LegacyModels, &self->f_DSS_Get_LegacyModels, setObj, fakeLib,"DSS_Get_LegacyModels")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Error_Get_EarlyAbort, &self->f_Error_Get_EarlyAbort, setObj, fakeLib,"Error_Get_EarlyAbort")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Error_Get_ExtendedErrors, &self->f_Error_Get_ExtendedErrors, setObj, fakeLib,"Error_Get_ExtendedErrors")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Fuses_IsBlown, &self->f_Fuses_IsBlown, setObj, fakeLib,"Fuses_IsBlown")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Generators_Get_ForcedON, &self->f_Generators_Get_ForcedON, setObj, fakeLib,"Generators_Get_ForcedON")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Generators_Get_IsDelta, &self->f_Generators_Get_IsDelta, setObj, fakeLib,"Generators_Get_IsDelta")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_LineCodes_Get_IsZ1Z0, &self->f_LineCodes_Get_IsZ1Z0, setObj, fakeLib,"LineCodes_Get_IsZ1Z0")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_LineGeometries_Get_Reduce, &self->f_LineGeometries_Get_Reduce, setObj, fakeLib,"LineGeometries_Get_Reduce")) goto ERROR_INIT;
+#endif
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Lines_Get_IsSwitch, &self->f_Lines_Get_IsSwitch, setObj, fakeLib,"Lines_Get_IsSwitch")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_LoadShapes_Get_UseActual, &self->f_LoadShapes_Get_UseActual, setObj, fakeLib,"LoadShapes_Get_UseActual")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Loads_Get_IsDelta, &self->f_Loads_Get_IsDelta, setObj, fakeLib,"Loads_Get_IsDelta")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Meters_Get_DIFilesAreOpen, &self->f_Meters_Get_DIFilesAreOpen, setObj, fakeLib,"Meters_Get_DIFilesAreOpen")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_PDElements_Get_IsShunt, &self->f_PDElements_Get_IsShunt, setObj, fakeLib,"PDElements_Get_IsShunt")) goto ERROR_INIT;
+#endif
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Parser_Get_AutoIncrement, &self->f_Parser_Get_AutoIncrement, setObj, fakeLib,"Parser_Get_AutoIncrement")) goto ERROR_INIT;
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Reactors_Get_IsDelta, &self->f_Reactors_Get_IsDelta, setObj, fakeLib,"Reactors_Get_IsDelta")) goto ERROR_INIT;
+#endif
+#ifndef ALTDSS_ODDIE
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Reactors_Get_Parallel, &self->f_Reactors_Get_Parallel, setObj, fakeLib,"Reactors_Get_Parallel")) goto ERROR_INIT;
+#endif
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_ReduceCkt_Get_KeepLoad, &self->f_ReduceCkt_Get_KeepLoad, setObj, fakeLib,"ReduceCkt_Get_KeepLoad")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_RegControls_Get_IsInverseTime, &self->f_RegControls_Get_IsInverseTime, setObj, fakeLib,"RegControls_Get_IsInverseTime")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_RegControls_Get_IsReversible, &self->f_RegControls_Get_IsReversible, setObj, fakeLib,"RegControls_Get_IsReversible")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Sensors_Get_IsDelta, &self->f_Sensors_Get_IsDelta, setObj, fakeLib,"Sensors_Get_IsDelta")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Sensors_Get_ReverseDelta, &self->f_Sensors_Get_ReverseDelta, setObj, fakeLib,"Sensors_Get_ReverseDelta")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Settings_Get_AllowDuplicates, &self->f_Settings_Get_AllowDuplicates, setObj, fakeLib,"Settings_Get_AllowDuplicates")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Settings_Get_ControlTrace, &self->f_Settings_Get_ControlTrace, setObj, fakeLib,"Settings_Get_ControlTrace")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Settings_Get_LoadsTerminalCheck, &self->f_Settings_Get_LoadsTerminalCheck, setObj, fakeLib,"Settings_Get_LoadsTerminalCheck")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Settings_Get_Trapezoidal, &self->f_Settings_Get_Trapezoidal, setObj, fakeLib,"Settings_Get_Trapezoidal")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Settings_Get_ZoneLock, &self->f_Settings_Get_ZoneLock, setObj, fakeLib,"Settings_Get_ZoneLock")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Solution_Get_ControlActionsDone, &self->f_Solution_Get_ControlActionsDone, setObj, fakeLib,"Solution_Get_ControlActionsDone")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Solution_Get_Converged, &self->f_Solution_Get_Converged, setObj, fakeLib,"Solution_Get_Converged")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Solution_Get_SystemYChanged, &self->f_Solution_Get_SystemYChanged, setObj, fakeLib,"Solution_Get_SystemYChanged")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Storages_Get_LimitCurrent, &self->f_Storages_Get_LimitCurrent, setObj, fakeLib,"Storages_Get_LimitCurrent")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_SwtControls_Get_IsLocked, &self->f_SwtControls_Get_IsLocked, setObj, fakeLib,"SwtControls_Get_IsLocked")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_Transformers_Get_IsDelta, &self->f_Transformers_Get_IsDelta, setObj, fakeLib,"Transformers_Get_IsDelta")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_WindGens_Get_IsDelta, &self->f_WindGens_Get_IsDelta, setObj, fakeLib,"WindGens_Get_IsDelta")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_YMatrix_CheckConvergence, &self->f_YMatrix_CheckConvergence, setObj, fakeLib,"YMatrix_CheckConvergence")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_YMatrix_Get_LoadsNeedUpdating, &self->f_YMatrix_Get_LoadsNeedUpdating, setObj, fakeLib,"YMatrix_Get_LoadsNeedUpdating")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_YMatrix_Get_SolutionInitialized, &self->f_YMatrix_Get_SolutionInitialized, setObj, fakeLib,"YMatrix_Get_SolutionInitialized")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_YMatrix_Get_SystemYChanged, &self->f_YMatrix_Get_SystemYChanged, setObj, fakeLib,"YMatrix_Get_SystemYChanged")) goto ERROR_INIT;
+    if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_one_bool, ctx_YMatrix_Get_UseAuxCurrents, &self->f_YMatrix_Get_UseAuxCurrents, setObj, fakeLib,"YMatrix_Get_UseAuxCurrents")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_empty, ctx_CapControls_Reset, &self->f_CapControls_Reset, setObj, fakeLib,"CapControls_Reset")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_empty, ctx_Capacitors_Close, &self->f_Capacitors_Close, setObj, fakeLib,"Capacitors_Close")) goto ERROR_INIT;
     if (!AltDSS_Add_PyFunc(self, Signature_empty, Signature_empty, ctx_Capacitors_Open, &self->f_Capacitors_Open, setObj, fakeLib,"Capacitors_Open")) goto ERROR_INIT;

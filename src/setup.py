@@ -22,7 +22,9 @@ def main():
         # extra_compile_args=['/Od', '/Zi', f'-DALTDSS_FAST_MODNAME="_fastdss"', f'-DALTDSS_FAST_MODINIT=PyInit__fastdss'],
         # extra_link_args=['/DEBUG']
         # extra_compile_args=[f'-DALTDSS_FAST_MODNAME="_fastdss"', f'-DALTDSS_FAST_MODINIT=PyInit__fastdss'],
-        extra_compile_args=[f'-DALTDSS_FAST_MODNAME="_fastdss"', f'-DALTDSS_FAST_MODINIT=PyInit__fastdss', '-g', '-O0'],
+        # extra_compile_args=[f'-DALTDSS_FAST_MODNAME="_fastdss"', f'-DALTDSS_FAST_MODINIT=PyInit__fastdss', '-g', '-O0'],
+        extra_compile_args=[f'-DALTDSS_FAST_MODNAME="_fastdss"', f'-DALTDSS_FAST_MODINIT=PyInit__fastdss',],# '-g', '-O0'],
+        # extra_link_args=['-g'],
     )
 
     setup(name='dss_python_backend',
