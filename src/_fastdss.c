@@ -1,4 +1,9 @@
-// This C extension contains a few faster alternatives for some functions
+// This is a C extension that contains a few faster alternatives for a subset
+// of functions from AltDSS/DSS C-API. The rest of the functions are handled
+// via CFFI.
+// Originally written by Paulo Meira for dss_python_backend, to be 
+// used in DSS-Python, OpenDSSDirect.py and AltDSS-Python.
+
 // TODO: PyLong_FromVoidPtr and PyLong_AsVoidPtr could be used?
 // TODO: enums in int32 and one_int32 results, e.g. LoadModels
 
