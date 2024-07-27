@@ -396,8 +396,9 @@ class DSSCompatFlags(IntFlag):
 
     InvControl9611 = 0x00000004
     """
-    Toggle some InvControl behavior introduced in OpenDSS 9.6.1.1. It could be a regression
-    but needs further investigation, so we added this flag in the time being.
+    Toggle some InvControl behavior introduced in OpenDSS 9.6.1.1. It was confirmed as a 
+    regression and was fixed in OpenDSS v10. The flag still has effects for a few more
+    releases, in case users need to investigate differences across versions.
     """
 
     SaveCalcVoltageBases = 0x00000008
