@@ -155,7 +155,7 @@ typedef struct AltDSS_PyContextObject_
     int32_t* countPtr_pinteger;
     int32_t* countPtr_pbyte;
 
-    #include "./_fast_struct_members.inc.c"
+    #include "./_fastdss_struct_members.inc.c"
 } AltDSS_PyContextObject;
 
 typedef struct {
@@ -165,8 +165,6 @@ typedef struct {
     size_t attrOffset;
     char const* fname;
 } DSSFastFuncInfo;
-
-#include "./_fast_py_init.inc.c"
 
 static int AltDSS_PyScalarSetter_init(AltDSS_PyScalarSetterObject *f, PyObject *Py_UNUSED(args_ignored), PyObject *Py_UNUSED(kwargs_ignored))
 {
@@ -861,7 +859,6 @@ static PyTypeObject AltDSS_PyGRGetterType = {
     .tp_call = ((PyCFunctionWithKeywords) AltDSS_PyGRGetter_call),
 };
 
-
 static PyMethodDef funcs[] = {
     {NULL, NULL, 0, NULL}
 };
@@ -875,6 +872,8 @@ static struct PyModuleDef altdss_fast_def = {
 };
 
 int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type, void* c_func, PyObject **py_func, PyObject *setObj, PyObject *fakeLib, const char* fname);
+
+#include "./_fastdss_func_info.inc.c"
 
 static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
 {
@@ -960,10 +959,7 @@ static PyMethodDef AltDSS_PyContext_methods[] = {
     {NULL}
 };
 
-static PyMemberDef AltDSS_PyContext_members[] = {
-#include "./_fast_py_members.inc.c"
-    {NULL}
-};
+#include "./_fastdss_py_members.inc.c"
 
 static PyTypeObject AltDSS_PyContextType = {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
