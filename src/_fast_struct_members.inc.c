@@ -283,9 +283,6 @@
     PyObject *f_XYCurves_Set_Name;
     PyObject *f_YMatrix_SaveAsMarketFiles;
 #ifndef ALTDSS_ODDIE
-    PyObject *f_ZIP_Extract_GR;
-#endif
-#ifndef ALTDSS_ODDIE
     PyObject *f_ZIP_Open;
 #endif
 #ifndef ALTDSS_ODDIE
@@ -375,54 +372,150 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_ZIP_List;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_CplxSeqVoltages_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_Isc_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_SeqVoltages_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_VLL_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_VMagAngle_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_Voc_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_Voltages_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_YscMatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_ZSC012Matrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_Zsc0_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_Zsc1_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_ZscMatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_puVLL_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_puVmagAngle_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_puVoltages_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_AllBusDistances_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_AllBusVmag_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_AllBusVmagPu_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_AllBusVolts_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_AllElementLosses_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_AllNodeDistances_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_LineLosses_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_Losses_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_SubstationLosses_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_SystemY_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_TotalPower_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_YCurrents_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_YNodeVarray_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_AllVariableValues_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_CplxSeqCurrents_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_CplxSeqVoltages_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_Currents_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_CurrentsMagAng_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_Losses_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_PhaseLosses_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_Powers_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_Residuals_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_SeqCurrents_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_SeqPowers_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_SeqVoltages_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_TotalPowers_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_Voltages_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_VoltagesMagAng_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_Yprim_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Generators_Get_RegisterValues_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineCodes_Get_Cmatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineCodes_Get_Rmatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LineCodes_Get_Xmatrix_GR;
+#endif
 #ifndef ALTDSS_ODDIE
     PyObject *f_LineGeometries_Get_Xcoords_GR;
 #endif
@@ -435,21 +528,51 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_LineSpacings_Get_Ycoords_GR;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Lines_Get_Cmatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Lines_Get_Rmatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Lines_Get_Xmatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Lines_Get_Yprim_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LoadShapes_Get_Pmult_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LoadShapes_Get_Qmult_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_LoadShapes_Get_TimeArray_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Loads_Get_ZIPV_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Meters_Get_AllocFactors_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Meters_Get_CalcCurrent_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Meters_Get_Peakcurrent_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Meters_Get_RegisterValues_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Meters_Get_Totals_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Monitors_Get_dblFreq_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Monitors_Get_dblHour_GR;
+#endif
 #ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllCplxSeqCurrents_GR;
 #endif
@@ -468,7 +591,9 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllSeqPowers_GR;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_PVSystems_Get_RegisterValues_GR;
+#endif
 #ifndef ALTDSS_ODDIE
     PyObject *f_Reactors_Get_Rmatrix_GR;
 #endif
@@ -487,28 +612,72 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_Reactors_Get_Z2_GR;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Reclosers_Get_RecloseIntervals_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Sensors_Get_AllocationFactor_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Sensors_Get_Currents_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Sensors_Get_kVARS_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Sensors_Get_kVS_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Sensors_Get_kWS_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Settings_Get_VoltageBases_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Storages_Get_RegisterValues_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Transformers_Get_AllLossesByType_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Transformers_Get_LossesByType_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Transformers_Get_WdgCurrents_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Transformers_Get_WdgVoltages_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_WindGens_Get_RegisterValues_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_XYCurves_Get_Xarray_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_XYCurves_Get_Yarray_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_AllNodeDistancesByPhase_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_AllNodeVmagByPhase_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Circuit_Get_AllNodeVmagPUByPhase_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Monitors_Get_Channel_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Parser_Get_Matrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Parser_Get_SymMatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Parser_Get_Vector_GR;
+#endif
 #ifndef ALTDSS_ODDIE
     PyObject *f_LineGeometries_Get_Cmatrix_GR;
 #endif
@@ -530,10 +699,18 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllPctNorm_GR;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Bus_Get_Nodes_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Capacitors_Get_States_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_NodeOrder_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_CktElement_Get_NodeRef_GR;
+#endif
 #ifndef ALTDSS_ODDIE
     PyObject *f_LineGeometries_Get_Units_GR;
 #endif
@@ -546,14 +723,30 @@
 #ifndef ALTDSS_ODDIE
     PyObject *f_PDElements_Get_AllNumTerminals_GR;
 #endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Parallel_Get_ActorProgress_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Parallel_Get_ActorStatus_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Settings_Get_LossRegs_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Settings_Get_UEregs_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Solution_Get_BusLevels_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Solution_Get_IncMatrix_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Solution_Get_Laplacian_GR;
+#endif
+#ifndef ALTDSS_ODDIE
     PyObject *f_Monitors_Get_ByteStream_GR;
+#endif
     PyObject *f_ActiveClass_Get_Count;
     PyObject *f_ActiveClass_Get_First;
     PyObject *f_ActiveClass_Get_Next;

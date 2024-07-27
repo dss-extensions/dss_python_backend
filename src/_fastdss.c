@@ -7,54 +7,54 @@
 #include <Python.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include "numpy/ndarrayobject.h"
-#include "../dss_python_backend/include/dss_capi_ctx.h"
+#include "dss_capi_ctx.h"
 
-typedef int32_t (*func_int32_ctx_int32_t)(const void* ctx, int32_t value);
-typedef int32_t (*func_int32_ctx_pchar_t)(const void* ctx, const char* value);
-typedef int32_t (*func_int32_ctx_t)(const void* ctx);
+typedef int32_t (*func_i32_ctx_i32)(const void* ctx, int32_t value);
+typedef int32_t (*func_i32_ctx_str)(const void* ctx, const char* value);
+typedef int32_t (*func_i32_ctx)(const void* ctx);
 
-typedef double (*func_float64_ctx_int32_t)(const void* ctx, int32_t value);
-typedef double (*func_float64_ctx_pchar_t)(const void* ctx, const char* value);
-typedef double (*func_float64_ctx_t)(const void* ctx);
+typedef double (*func_f64_ctx_i32)(const void* ctx, int32_t value);
+typedef double (*func_f64_ctx_str)(const void* ctx, const char* value);
+typedef double (*func_f64_ctx)(const void* ctx);
 
-typedef uint16_t (*func_bool_ctx_int32_t)(const void* ctx, int32_t value);
-typedef uint16_t (*func_bool_ctx_int32_int32_t)(const void* ctx, int32_t value, int32_t value2);
-typedef uint16_t (*func_bool_ctx_pchar_t)(const void* ctx, const char* value);
-typedef uint16_t (*func_bool_ctx_t)(const void* ctx);
+typedef uint16_t (*func_b16_ctx_i32)(const void* ctx, int32_t value);
+typedef uint16_t (*func_b16_ctx_i32_i32)(const void* ctx, int32_t value, int32_t value2);
+typedef uint16_t (*func_b16_ctx_str)(const void* ctx, const char* value);
+typedef uint16_t (*func_b16_ctx)(const void* ctx);
 
-typedef const char* (*func_str_ctx_t)(const void* ctx);
-typedef const char* (*func_str_ctx_int32_t)(const void* ctx, int32_t value);
-typedef void (*func_ctx_strlist_t)(const void* ctx, char*** ResultPtr, int32_t* ResultDims);
-typedef void (*func_ctx_strlist_int32_t)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, int32_t value);
-typedef void (*func_ctx_strlist_pchar_t)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, const char* value);
-typedef void (*gr_func_ctx_t)(const void* ctx);
-typedef void (*gr_func_ctx_bool_t)(const void* ctx, uint16_t value);
-typedef void (*gr_func_ctx_int32_t)(const void* ctx, int32_t value);
-typedef void (*gr_func_ctx_float64_float64_int32_t)(const void* ctx, double f1, double f2, int32_t value);
+typedef const char* (*func_str_ctx)(const void* ctx);
+typedef const char* (*func_str_ctx_i32)(const void* ctx, int32_t value);
+typedef void (*func_void_ctx_strs)(const void* ctx, char*** ResultPtr, int32_t* ResultDims);
+typedef void (*func_void_ctx_strs_i32)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, int32_t value);
+typedef void (*func_void_ctx_strs_str)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, const char* value);
+typedef void (*gr_func_void_ctx)(const void* ctx);
+typedef void (*gr_func_void_ctx_b16)(const void* ctx, uint16_t value);
+typedef void (*gr_func_void_ctx_i32)(const void* ctx, int32_t value);
+typedef void (*gr_func_void_ctx_f64_f64_i32)(const void* ctx, double f1, double f2, int32_t value);
 
-typedef void (*func_ctx_int32_t)(const void* ctx, int32_t value);
-typedef void (*func_ctx_int32_int32_t)(const void* ctx, int32_t value, int32_t value2);
-typedef void (*func_ctx_float64_t)(const void* ctx, double value);
-typedef void (*func_ctx_bool_t)(const void* ctx, uint16_t value);
-typedef void (*func_ctx_str_t)(const void* ctx, const char* value);
-typedef void (*func_ctx_t)(const void* ctx);
+typedef void (*func_void_ctx_i32)(const void* ctx, int32_t value);
+typedef void (*func_void_ctx_i32_i32)(const void* ctx, int32_t value, int32_t value2);
+typedef void (*func_void_ctx_f64)(const void* ctx, double value);
+typedef void (*func_void_ctx_b16)(const void* ctx, uint16_t value);
+typedef void (*func_void_ctx_str)(const void* ctx, const char* value);
+typedef void (*func_void_ctx)(const void* ctx);
 
-enum Signatures {
-    Signature_empty = 0,
-    Signature_int32 = 1,
-    Signature_str = 2,
-    Signature_float64 = 3,
-    Signature_complex128 = 4,
-    Signature_int8 = 5,
-    Signature_float32 = 6,
-    Signature_complex64 = 7,
-    Signature_one_complex128 = 8,
-    Signature_one_int32 = 9,
-    Signature_one_float64 = 10,
-    Signature_str_list = 11,
-    Signature_one_bool = 12,
-    Signature_int32_int32 = 13,
-    Signature_float64_float64_int32 = 14
+enum {
+    dssfast_types_void = 0,
+    dssfast_types_b16,
+    dssfast_types_f32,
+    dssfast_types_f64,
+    dssfast_types_f64_f64_i32,
+    dssfast_types_gr_f64s,
+    dssfast_types_gr_i32s,
+    dssfast_types_gr_i8s,
+    dssfast_types_gr_z128,
+    dssfast_types_gr_z128s,
+    dssfast_types_i32,
+    dssfast_types_i32_i32,
+    dssfast_types_str,
+    dssfast_types_strs,
+    dssfast_types_z64,
 };
 
 enum DSSFastSettings {
@@ -158,6 +158,16 @@ typedef struct AltDSS_PyContextObject_
     #include "./_fast_struct_members.inc.c"
 } AltDSS_PyContextObject;
 
+typedef struct {
+    int resType;
+    int argType;
+    void* c_func;
+    size_t attrOffset;
+    char const* fname;
+} DSSFastFuncInfo;
+
+#include "./_fast_py_init.inc.c"
+
 static int AltDSS_PyScalarSetter_init(AltDSS_PyScalarSetterObject *f, PyObject *Py_UNUSED(args_ignored), PyObject *Py_UNUSED(kwargs_ignored))
 {
     f->parent = NULL;
@@ -207,49 +217,49 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
     
     switch (f->funcArgSignature)
     {
-        case Signature_one_int32:
+        case dssfast_types_i32:
             if (!PyArg_ParseTuple(args, "i", &cval_int))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected an integer value)");
                 return NULL;
             }
-            ((func_ctx_int32_t)f->func)(f->dssCtx, cval_int);
+            ((func_void_ctx_i32)f->func)(f->dssCtx, cval_int);
             break;
-        case Signature_int32_int32:
+        case dssfast_types_i32_i32:
             if (!PyArg_ParseTuple(args, "ii", &cval_int, &cval_int2))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected two integer values)");
                 return NULL;
             }
-            ((func_ctx_int32_int32_t)f->func)(f->dssCtx, cval_int, cval_int2);
+            ((func_void_ctx_i32_i32)f->func)(f->dssCtx, cval_int, cval_int2);
             break;
-        case Signature_one_float64:
+        case dssfast_types_f64:
             if (!PyArg_ParseTuple(args, "d", &cval_float64))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a float64 value)");
                 return NULL;
             }
-            ((func_ctx_float64_t)f->func)(f->dssCtx, cval_float64);
+            ((func_void_ctx_f64)f->func)(f->dssCtx, cval_float64);
             break;
-        case Signature_one_bool:
+        case dssfast_types_b16:
             if (!PyArg_ParseTuple(args, "p", &cval_int))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a boolean value)");
                 return NULL;
             }
-            ((func_ctx_bool_t)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
+            ((func_void_ctx_b16)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
             break;
-        case Signature_str:
+        case dssfast_types_str:
             if (!PyArg_ParseTuple(args, "s*", &cstr_buffer))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a str or bytes value)");
                 return NULL;
             }
-            ((func_ctx_str_t)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
+            ((func_void_ctx_str)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
             PyBuffer_Release(&cstr_buffer);
             break;
-        case Signature_empty:
-            ((func_ctx_t)f->func)(f->dssCtx);
+        case dssfast_types_void:
+            ((func_void_ctx)f->func)(f->dssCtx);
             break;
         default:
             PyErr_SetString(PyExc_TypeError, "Invalid call signature");
@@ -287,27 +297,27 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
 
     switch (f->funcArgSignature)
     {
-        case Signature_int32_int32:
+        case dssfast_types_i32_i32:
             if (!PyArg_ParseTuple(args, "ii", &argValue, &argValue2))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarGetter call (expected two integer values)");
                 return NULL;
             }
             break;
-        case Signature_one_int32:
+        case dssfast_types_i32:
             if (!PyArg_ParseTuple(args, "i", &argValue))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarGetter call (expected an integer value)");
                 return NULL;
             }
             break;
-        case Signature_str:
+        case dssfast_types_str:
             if (!PyArg_ParseTuple(args, "s*", &cstr_buffer))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarGetter call (expected a str or bytes value)");
                 return NULL;
             }
-        case Signature_empty:
+        case dssfast_types_void:
             break;
         default:
             PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (unknown signature)");
@@ -316,57 +326,57 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
 
     switch (f->resType)
     {
-        case Signature_one_bool:
+        case dssfast_types_b16:
         switch (f->funcArgSignature)
         {
-            case Signature_int32_int32:
-                cval_int32 = ((func_bool_ctx_int32_int32_t)f->func)(f->dssCtx, argValue, argValue2);
+            case dssfast_types_i32_i32:
+                cval_int32 = ((func_b16_ctx_i32_i32)f->func)(f->dssCtx, argValue, argValue2);
                 break;
-            case Signature_one_int32:
-                cval_int32 = ((func_bool_ctx_int32_t)f->func)(f->dssCtx, argValue);
+            case dssfast_types_i32:
+                cval_int32 = ((func_b16_ctx_i32)f->func)(f->dssCtx, argValue);
                 break;
-            case Signature_str:
-                cval_int32 = ((func_bool_ctx_pchar_t)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
+            case dssfast_types_str:
+                cval_int32 = ((func_b16_ctx_str)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
                 PyBuffer_Release(&cstr_buffer);
                 break;
-            case Signature_empty:
-                cval_int32 = ((func_bool_ctx_t)f->func)(f->dssCtx);
+            case dssfast_types_void:
+                cval_int32 = ((func_b16_ctx)f->func)(f->dssCtx);
                 break;
             default:
                 PyErr_SetString(PyExc_TypeError, "Internal error: unknown signature");
                 return NULL;
         }
         break;
-        case Signature_one_int32:
+        case dssfast_types_i32:
         switch (f->funcArgSignature)
         {
-            case Signature_one_int32:
-                cval_int32 = ((func_int32_ctx_int32_t)f->func)(f->dssCtx, argValue);
+            case dssfast_types_i32:
+                cval_int32 = ((func_i32_ctx_i32)f->func)(f->dssCtx, argValue);
                 break;
-            case Signature_str:
-                cval_int32 = ((func_int32_ctx_pchar_t)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
+            case dssfast_types_str:
+                cval_int32 = ((func_i32_ctx_str)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
                 PyBuffer_Release(&cstr_buffer);
                 break;
-            case Signature_empty:
-                cval_int32 = ((func_int32_ctx_t)f->func)(f->dssCtx);
+            case dssfast_types_void:
+                cval_int32 = ((func_i32_ctx)f->func)(f->dssCtx);
                 break;
             default:
                 PyErr_SetString(PyExc_TypeError, "Internal error: unknown signature");
                 return NULL;
         }
         break;
-        case Signature_one_float64:
+        case dssfast_types_f64:
         switch (f->funcArgSignature)
         {
-            case Signature_one_int32:
-                cval_float64 = ((func_float64_ctx_int32_t)f->func)(f->dssCtx, argValue);
+            case dssfast_types_i32:
+                cval_float64 = ((func_f64_ctx_i32)f->func)(f->dssCtx, argValue);
                 break;
-            case Signature_str:
-                cval_float64 = ((func_float64_ctx_pchar_t)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
+            case dssfast_types_str:
+                cval_float64 = ((func_f64_ctx_str)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
                 PyBuffer_Release(&cstr_buffer);
                 break;
-            case Signature_empty:
-                cval_float64 = ((func_float64_ctx_t)f->func)(f->dssCtx);
+            case dssfast_types_void:
+                cval_float64 = ((func_f64_ctx)f->func)(f->dssCtx);
                 break;
             default:
                 PyErr_SetString(PyExc_TypeError, "Internal error: unknown signature");
@@ -394,13 +404,13 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
 
     switch (f->resType)
     {
-        case Signature_one_bool:
+        case dssfast_types_b16:
             result = (cval_int32 ? Py_True : Py_False);
             Py_INCREF(result);
             return result;
-        case Signature_one_int32:
+        case dssfast_types_i32:
             return PyLong_FromLong(cval_int32);
-        case Signature_one_float64:
+        case dssfast_types_f64:
             return PyFloat_FromDouble(cval_float64);
     }
     return NULL;
@@ -424,32 +434,32 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
 
     switch (f->funcArgSignature)
     {
-        case Signature_float64_float64_int32:
+        case dssfast_types_f64_f64_i32:
             if (!PyArg_ParseTuple(args, "ddi", &float64Arg1, &float64Arg2, &argValue))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyGRGetter call (expected float, float, integer arguments)");
                 return NULL;
             }
-            ((gr_func_ctx_float64_float64_int32_t)f->func)(f->dssCtx, float64Arg1, float64Arg2, argValue);
+            ((gr_func_void_ctx_f64_f64_i32)f->func)(f->dssCtx, float64Arg1, float64Arg2, argValue);
             break;
-        case Signature_one_int32:
+        case dssfast_types_i32:
             if (!PyArg_ParseTuple(args, "i", &argValue))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyGRGetter call (expected an integer value)");
                 return NULL;
             }
-            ((gr_func_ctx_int32_t)f->func)(f->dssCtx, argValue);
+            ((gr_func_void_ctx_i32)f->func)(f->dssCtx, argValue);
             break;
-        case Signature_one_bool:
+        case dssfast_types_b16:
             if (!PyArg_ParseTuple(args, "p", &argValue))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyGRSetter call (expected a boolean value)");
                 return NULL;
             }
-            ((gr_func_ctx_bool_t)f->func)(f->dssCtx, argValue ? (uint16_t)-1 : (uint16_t)0);
+            ((gr_func_void_ctx_b16)f->func)(f->dssCtx, argValue ? (uint16_t)-1 : (uint16_t)0);
             break;
         default:
-            ((gr_func_ctx_t)f->func)(f->dssCtx);
+            ((gr_func_void_ctx)f->func)(f->dssCtx);
             break;
     }
     if (*f->errorPtr && f->parent->DSSExceptionType != Py_None)
@@ -481,7 +491,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
         dims[1] = f->countPtr[3];
     }
 
-    if (resType == Signature_complex128)
+    if (resType == dssfast_types_gr_z128s)
     {
         nitems /= 2;
     }
@@ -490,14 +500,14 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
     {
         switch (resType)
         {
-            case Signature_one_complex128:
+            case dssfast_types_gr_z128:
                 if (f->countPtr[0] != 2)
                 {
                     PyErr_SetString(PyExc_RuntimeError, "Unexpected number of elements returned by API (complex number).");
                     return NULL;
                 }
                 return PyComplex_FromDoubles((*(double**)f->dataPtr)[0], (*(double**)f->dataPtr)[1]);
-            case Signature_complex128:
+            case dssfast_types_gr_z128s:
                 if (f->countPtr[0] & 1)
                 {
                     PyErr_SetString(PyExc_RuntimeError, "Unexpected number of elements returned by API (array of complex numbers).");
@@ -513,7 +523,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                     goto array_error;
                 memcpy(data, *(double**)f->dataPtr, 2 * sizeof(double) * nitems);
                 return result;
-            case Signature_float64:
+            case dssfast_types_gr_f64s:
                 result = PyArray_SimpleNew(nd, dims, NPY_FLOAT64);
                 if (result == NULL)
                 {
@@ -524,12 +534,12 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                     goto array_error;
                 memcpy(data, *(double**)f->dataPtr, sizeof(double) * nitems);
                 return result;
-            // case Signature_float32:
+            // case dssfast_types_f32:
             //     result = PyArray_SimpleNew(nd, dims, NPY_FLOAT32);
             //     memcpy(data, f->dataPtr[0], *(float**)f->dataPtr, sizeof(float) * nitems);
             //     data = PyArray_DATA(result);
             //     return result;
-            case Signature_int32:
+            case dssfast_types_gr_i32s:
                 result = PyArray_SimpleNew(nd, dims, NPY_INT32);
                 if (result == NULL)
                 {
@@ -540,7 +550,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                     goto array_error;
                 memcpy(data, *(int32_t**)f->dataPtr, sizeof(int32_t) * nitems);
                 return result;
-            case Signature_int8:
+            case dssfast_types_gr_i8s:
                 result = PyArray_SimpleNew(nd, dims, NPY_INT8);
                 if (result == NULL)
                 {
@@ -560,14 +570,14 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
     // Duplicated from above, but using lists
     switch (resType)
     {
-        case Signature_one_complex128:
+        case dssfast_types_gr_z128:
             if (f->countPtr[0] != 2)
             {
                 PyErr_SetString(PyExc_RuntimeError, "Unexpected number of elements returned by API (complex number).");
                 return NULL;
             }
             return PyComplex_FromDoubles((*(double**)f->dataPtr)[0], (*(double**)f->dataPtr)[1]);
-        case Signature_complex128:
+        case dssfast_types_gr_z128s:
             if (f->countPtr[0] & 1)
             {
                 PyErr_SetString(PyExc_RuntimeError, "Unexpected number of elements returned by API (array of complex numbers).");
@@ -589,7 +599,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 PyList_SET_ITEM(result, i, item);
             }
             return result;
-        case Signature_float64:
+        case dssfast_types_gr_f64s:
             result = PyList_New(nitems);
             if (result == NULL)
             {
@@ -606,12 +616,12 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 PyList_SET_ITEM(result, i, item);
             }
             return result;
-        // case Signature_float32:
+        // case dssfast_types_f32:
         //     result = PyArray_SimpleNew(nd, dims, NPY_FLOAT32);
         //     memcpy(data, f->dataPtr[0], *(float**)f->dataPtr, sizeof(float) * nitems);
         //     data = PyArray_DATA(result);
         //     return result;
-        case Signature_int32:
+        case dssfast_types_gr_i32s:
             result = PyList_New(nitems);
             if (result == NULL)
             {
@@ -628,7 +638,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 PyList_SET_ITEM(result, i, item);
             }
             return result;
-        case Signature_int8:
+        case dssfast_types_gr_i8s:
             result = PyList_New(nitems);
             if (result == NULL)
             {
@@ -663,16 +673,16 @@ static PyObject *AltDSS_PyStrGetter_call(AltDSS_PyStrGetterObject *f, PyObject *
     char const* cstr;
     switch (f->funcArgSignature)
     {
-        case Signature_one_int32:
+        case dssfast_types_i32:
             if (!PyArg_ParseTuple(args, "i", &argValue))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected an integer value)");
                 return NULL;
             }
-            cstr = ((func_str_ctx_int32_t)f->func)(f->dssCtx, argValue);
+            cstr = ((func_str_ctx_i32)f->func)(f->dssCtx, argValue);
             break;
         default:
-            cstr = ((func_str_ctx_t)f->func)(f->dssCtx);
+            cstr = ((func_str_ctx)f->func)(f->dssCtx);
             break;
     }
     //TODO: for Alt functions, we will need to dispose the C string later, 
@@ -713,26 +723,26 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
 
     switch (f->funcArgSignature)
     {
-        case Signature_one_int32:
+        case dssfast_types_i32:
             if (!PyArg_ParseTuple(args, "i", &argIntValue))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected an integer value)");
                 return NULL;
             }
-            ((func_ctx_strlist_int32_t)f->func)(f->dssCtx, &cstr_list, &count[0], argIntValue);
+            ((func_void_ctx_strs_i32)f->func)(f->dssCtx, &cstr_list, &count[0], argIntValue);
             break;
-        case Signature_str:
+        case dssfast_types_str:
             // TODO: use s# whenever possible
             if (!PyArg_ParseTuple(args, "s*", &cstr_buffer))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected either a string or bytes value)");
                 return NULL;
             }
-            ((func_ctx_strlist_pchar_t)f->func)(f->dssCtx, &cstr_list, &count[0], (const char*) cstr_buffer.buf);
+            ((func_void_ctx_strs_str)f->func)(f->dssCtx, &cstr_list, &count[0], (const char*) cstr_buffer.buf);
             PyBuffer_Release(&cstr_buffer);
             break;
         default:
-            ((func_ctx_strlist_t)f->func)(f->dssCtx, &cstr_list, &count[0]);
+            ((func_void_ctx_strs)f->func)(f->dssCtx, &cstr_list, &count[0]);
             break;
     }
 
@@ -872,6 +882,8 @@ static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, P
     int32_t *unused2;
     PyObject* setObj = NULL;
     PyObject* fakeLib = NULL;
+    DSSFastFuncInfo* finfo = NULL;
+
     if (sizeof(unsigned long long) < sizeof(void*))
     {
         PyErr_SetString(PyExc_TypeError, "Unexpected integer sizes!");
@@ -903,7 +915,22 @@ static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, P
     Py_INCREF(fakeLib);
     Py_INCREF(self->DSSExceptionType);
 
-#include "./_fast_py_init.inc.c"
+    finfo = &info[0];
+    while (finfo->c_func != NULL)
+    {
+        if (!AltDSS_Add_PyFunc(
+            self,
+            finfo->resType,
+            finfo->argType,
+            finfo->c_func,
+            (PyObject**)(((char*)&self) + finfo->attrOffset),
+            setObj,
+            fakeLib,
+            finfo->fname))
+        {
+            goto ERROR_INIT;
+        }
+    }
 
     Py_DECREF(setObj);
     Py_DECREF(fakeLib);
@@ -1041,7 +1068,7 @@ ERROR0:
 
 int AltDSS_PyStrListGetter_cinit(AltDSS_PyStrListGetterObject* f, AltDSS_PyContextObject *alt_py_ctx, int res_type, int args_type, void* c_func)
 {
-    if (res_type != Signature_str_list)
+    if (res_type != dssfast_types_strs)
     {
         f->dssCtx = NULL;
         f->func = NULL;
@@ -1061,13 +1088,13 @@ int AltDSS_PyStrListGetter_cinit(AltDSS_PyStrListGetterObject* f, AltDSS_PyConte
 int AltDSS_PyScalarSetter_cinit(AltDSS_PyScalarSetterObject* f, AltDSS_PyContextObject *alt_py_ctx, int res_type, int args_type, void* c_func)
 {
     if ((
-        args_type != Signature_int32_int32 &&
-        args_type != Signature_one_int32 && 
-        args_type != Signature_one_float64 && 
-        args_type != Signature_one_bool &&
-        args_type != Signature_empty &&
-        args_type != Signature_str)
-        || (res_type != Signature_empty)
+        args_type != dssfast_types_i32_i32 &&
+        args_type != dssfast_types_i32 && 
+        args_type != dssfast_types_f64 && 
+        args_type != dssfast_types_b16 &&
+        args_type != dssfast_types_void &&
+        args_type != dssfast_types_str)
+        || (res_type != dssfast_types_void)
         )
     {
         f->dssCtx = NULL;
@@ -1087,9 +1114,9 @@ int AltDSS_PyScalarSetter_cinit(AltDSS_PyScalarSetterObject* f, AltDSS_PyContext
 
 int AltDSS_PyScalarGetter_cinit(AltDSS_PyScalarGetterObject* f, AltDSS_PyContextObject *alt_py_ctx, int res_type, int args_type, void* c_func)
 {
-    if (res_type != Signature_one_int32 && 
-        res_type != Signature_one_float64 && 
-        res_type != Signature_one_bool)
+    if (res_type != dssfast_types_i32 && 
+        res_type != dssfast_types_f64 && 
+        res_type != dssfast_types_b16)
     {
         f->dssCtx = NULL;
         f->func = NULL;
@@ -1108,7 +1135,7 @@ int AltDSS_PyScalarGetter_cinit(AltDSS_PyScalarGetterObject* f, AltDSS_PyContext
 
 int AltDSS_PyStrGetter_cinit(AltDSS_PyStrGetterObject* f, AltDSS_PyContextObject *alt_py_ctx, int res_type, int args_type, void* c_func)
 {
-    if (res_type != Signature_str)
+    if (res_type != dssfast_types_str)
     {
         f->dssCtx = NULL;
         f->func = NULL;
@@ -1136,17 +1163,17 @@ int AltDSS_PyGRGetter_cinit(AltDSS_PyGRGetterObject* f, AltDSS_PyContextObject *
     f->resType = resType;
     switch (resType)
     {
-        case Signature_complex128:
-        case Signature_one_complex128:
-        case Signature_float64:
+        case dssfast_types_gr_z128s:
+        case dssfast_types_gr_z128:
+        case dssfast_types_gr_f64s:
             f->dataPtr = (void*) alt_py_ctx->dataPtr_pdouble;
             f->countPtr = alt_py_ctx->countPtr_pdouble;
             return 1;
-        case Signature_int32:
+        case dssfast_types_gr_i32s:
             f->dataPtr = (void*)alt_py_ctx->dataPtr_pinteger;
             f->countPtr = alt_py_ctx->countPtr_pinteger;
             return 1;
-        case Signature_int8:
+        case dssfast_types_gr_i8s:
             f->dataPtr = (void*)alt_py_ctx->dataPtr_pbyte;
             f->countPtr = alt_py_ctx->countPtr_pbyte;
             return 1;
@@ -1161,32 +1188,16 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
 {
     PyObject* key = NULL;
 
-    if (res_type == Signature_empty)
+    if (res_type == dssfast_types_void)
     {
         switch (args_type)
         {
-            // case Signature_str_list:
-            //     *py_func = (PyObject*) PyObject_New(AltDSS_PyStrListGetterObject, &AltDSS_PyStrListGetterType);
-            //     if ((*py_func) == NULL)
-            //     {
-            //         goto ADD_FUNC_ERROR;
-            //     }
-            //     AltDSS_PyStrListGetter_cinit((AltDSS_PyStrListGetterObject*) *py_func, self, res_type, args_type, c_func);
-            //     break;
-            // case Signature_str:
-            //     *py_func = (PyObject*) PyObject_New(AltDSS_PyStrGetterObject, &AltDSS_PyStrGetterType);
-            //     if ((*py_func) == NULL)
-            //     {
-            //         goto ADD_FUNC_ERROR;
-            //     }
-            //     AltDSS_PyStrGetter_cinit((AltDSS_PyStrGetterObject*) *py_func, self, res_type, args_type, c_func);
-            //     break;
-            case Signature_int32_int32:
-            case Signature_one_float64:
-            case Signature_one_int32:
-            case Signature_one_bool:
-            case Signature_str:
-            case Signature_empty:
+            case dssfast_types_i32_i32:
+            case dssfast_types_f64:
+            case dssfast_types_i32:
+            case dssfast_types_b16:
+            case dssfast_types_str:
+            case dssfast_types_void:
                 *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarSetterObject, &AltDSS_PyScalarSetterType);
                 if ((*py_func) == NULL)
                 {
@@ -1194,17 +1205,6 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
                 }
                 AltDSS_PyScalarSetter_cinit((AltDSS_PyScalarSetterObject*) *py_func, self, res_type, args_type, c_func);
                 break;
-            // case Signature_complex128:
-            // case Signature_float64:
-            // case Signature_int32:
-            // case Signature_int8:
-            //     *py_func = (PyObject*) PyObject_New(AltDSS_PyGRGetterObject, &AltDSS_PyGRGetterType);
-            //     if ((*py_func) == NULL)
-            //     {
-            //         goto ADD_FUNC_ERROR;
-            //     }
-            //     AltDSS_PyGRGetter_cinit((AltDSS_PyGRGetterObject*) *py_func, self, res_type, args_type, c_func);
-            //     break;
             default:
                 goto ADD_FUNC_ERROR;
         }        
@@ -1213,7 +1213,7 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
     {
         switch (res_type)
         {
-            case Signature_str_list:
+            case dssfast_types_strs:
                 *py_func = (PyObject*) PyObject_New(AltDSS_PyStrListGetterObject, &AltDSS_PyStrListGetterType);
                 if ((*py_func) == NULL)
                 {
@@ -1221,7 +1221,7 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
                 }
                 AltDSS_PyStrListGetter_cinit((AltDSS_PyStrListGetterObject*) *py_func, self, res_type, args_type, c_func);
                 break;
-            case Signature_str:
+            case dssfast_types_str:
                 *py_func = (PyObject*) PyObject_New(AltDSS_PyStrGetterObject, &AltDSS_PyStrGetterType);
                 if ((*py_func) == NULL)
                 {
@@ -1229,9 +1229,9 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
                 }
                 AltDSS_PyStrGetter_cinit((AltDSS_PyStrGetterObject*) *py_func, self, res_type, args_type, c_func);
                 break;
-            case Signature_one_float64:
-            case Signature_one_int32:
-            case Signature_one_bool:
+            case dssfast_types_f64:
+            case dssfast_types_i32:
+            case dssfast_types_b16:
                 *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarGetterObject, &AltDSS_PyScalarGetterType);
                 if ((*py_func) == NULL)
                 {
@@ -1239,10 +1239,10 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, int res_type, int args_type,
                 }
                 AltDSS_PyScalarGetter_cinit((AltDSS_PyScalarGetterObject*) *py_func, self, res_type, args_type, c_func);
                 break;
-            case Signature_complex128:
-            case Signature_float64:
-            case Signature_int32:
-            case Signature_int8:
+            case dssfast_types_gr_z128s:
+            case dssfast_types_gr_f64s:
+            case dssfast_types_gr_i32s:
+            case dssfast_types_gr_i8s:
                 *py_func = (PyObject*) PyObject_New(AltDSS_PyGRGetterObject, &AltDSS_PyGRGetterType);
                 if ((*py_func) == NULL)
                 {
