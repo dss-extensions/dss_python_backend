@@ -459,7 +459,7 @@ class AltDSSEvent(IntEnum):
 class DSSPropertyNameStyle(IntEnum):
     """
     This enum is used in the PropertyNameStyle property to control the naming convention.
-    Currently, this only affects capitalization, i.e., if you software already uses case
+    Currently, this only affects capitalization, i.e., if your software already uses case
     insensitive string comparisons for the property names, this is not useful. Otherwise,
     you can use `Legacy` to use the older names.
     """
