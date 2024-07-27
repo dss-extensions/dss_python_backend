@@ -9,10 +9,15 @@
 
 #define PY_SSIZE_T_CLEAN
 // #define Py_LIMITED_API 0x03070000
+#include <string.h>
 #include <Python.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include "numpy/ndarrayobject.h"
 #include "dss_capi_ctx.h"
+
+// #ifndef PyList_SET_ITEM
+// #define PyList_SET_ITEM PyList_SetItem 
+// #endif
 
 typedef int32_t (*func_i32_ctx_i32)(const void* ctx, int32_t value);
 typedef int32_t (*func_i32_ctx_str)(const void* ctx, const char* value);
@@ -216,7 +221,8 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
     PyObject* result = NULL;
     int cval_int, cval_int2;
     double cval_float64;
-    Py_buffer cstr_buffer;
+    char const *cstr = NULL;
+    Py_ssize_t cstr_size = 0;
     
     switch (f->funcArgSignature)
     {
@@ -253,13 +259,12 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
             ((func_void_ctx_b16)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
             break;
         case dssfast_types_str:
-            if (!PyArg_ParseTuple(args, "s*", &cstr_buffer))
+            if (!PyArg_ParseTuple(args, "s#", &cstr, &cstr_size))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a str or bytes value)");
                 return NULL;
             }
-            ((func_void_ctx_str)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
-            PyBuffer_Release(&cstr_buffer);
+            ((func_void_ctx_str)f->func)(f->dssCtx, cstr);
             break;
         case dssfast_types_void:
             ((func_void_ctx)f->func)(f->dssCtx);
@@ -296,7 +301,8 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
     int argValue, argValue2;
     int32_t cval_int32 = -1;
     double cval_float64 = -1;
-    Py_buffer cstr_buffer;
+    char const *cstr = NULL;
+    Py_ssize_t cstr_size = 0;
 
     switch (f->funcArgSignature)
     {
@@ -315,7 +321,7 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
             }
             break;
         case dssfast_types_str:
-            if (!PyArg_ParseTuple(args, "s*", &cstr_buffer))
+            if (!PyArg_ParseTuple(args, "s#", &cstr, &cstr_size))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarGetter call (expected a str or bytes value)");
                 return NULL;
@@ -339,8 +345,7 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
                 cval_int32 = ((func_b16_ctx_i32)f->func)(f->dssCtx, argValue);
                 break;
             case dssfast_types_str:
-                cval_int32 = ((func_b16_ctx_str)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
-                PyBuffer_Release(&cstr_buffer);
+                cval_int32 = ((func_b16_ctx_str)f->func)(f->dssCtx, cstr);
                 break;
             case dssfast_types_void:
                 cval_int32 = ((func_b16_ctx)f->func)(f->dssCtx);
@@ -357,8 +362,7 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
                 cval_int32 = ((func_i32_ctx_i32)f->func)(f->dssCtx, argValue);
                 break;
             case dssfast_types_str:
-                cval_int32 = ((func_i32_ctx_str)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
-                PyBuffer_Release(&cstr_buffer);
+                cval_int32 = ((func_i32_ctx_str)f->func)(f->dssCtx, cstr);
                 break;
             case dssfast_types_void:
                 cval_int32 = ((func_i32_ctx)f->func)(f->dssCtx);
@@ -375,8 +379,7 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
                 cval_float64 = ((func_f64_ctx_i32)f->func)(f->dssCtx, argValue);
                 break;
             case dssfast_types_str:
-                cval_float64 = ((func_f64_ctx_str)f->func)(f->dssCtx, (const char*) cstr_buffer.buf);
-                PyBuffer_Release(&cstr_buffer);
+                cval_float64 = ((func_f64_ctx_str)f->func)(f->dssCtx, cstr);
                 break;
             case dssfast_types_void:
                 cval_float64 = ((func_f64_ctx)f->func)(f->dssCtx);
@@ -716,12 +719,12 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
     PyObject *result = NULL;
     PyObject *item = NULL;
     char** cstr_list = NULL;
-    char* cstr = NULL;
+    char const *cstr = NULL;
+    Py_ssize_t cstr_size = 0;
     char** sptr = NULL;
     int32_t count[4] = {0, 0, 0, 0};
     int32_t i;
     int argIntValue;
-    Py_buffer cstr_buffer;
     const int32_t settings = *f->settingsPtr;
 
     switch (f->funcArgSignature)
@@ -735,14 +738,12 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
             ((func_void_ctx_strs_i32)f->func)(f->dssCtx, &cstr_list, &count[0], argIntValue);
             break;
         case dssfast_types_str:
-            // TODO: use s# whenever possible
-            if (!PyArg_ParseTuple(args, "s*", &cstr_buffer))
+            if (!PyArg_ParseTuple(args, "s#", &cstr, &cstr_size))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected either a string or bytes value)");
                 return NULL;
             }
-            ((func_void_ctx_strs_str)f->func)(f->dssCtx, &cstr_list, &count[0], (const char*) cstr_buffer.buf);
-            PyBuffer_Release(&cstr_buffer);
+            ((func_void_ctx_strs_str)f->func)(f->dssCtx, &cstr_list, &count[0], cstr);
             break;
         default:
             ((func_void_ctx_strs)f->func)(f->dssCtx, &cstr_list, &count[0]);
