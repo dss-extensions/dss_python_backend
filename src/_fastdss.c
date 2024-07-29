@@ -230,7 +230,8 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
     double cval_float64;
     char const *cstr = NULL;
     Py_ssize_t cstr_size = 0;
-    
+    PyThreadState *threadstate;
+
     switch (f->funcArgSignature)
     {
         case fastdss_types_i32:
@@ -239,7 +240,9 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected an integer value)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             ((func_void_ctx_i32)f->func)(f->dssCtx, cval_int);
+            PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_i32_i32:
             if (!PyArg_ParseTuple(args, "ii", &cval_int, &cval_int2))
@@ -247,7 +250,9 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected two integer values)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             ((func_void_ctx_i32_i32)f->func)(f->dssCtx, cval_int, cval_int2);
+            PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_f64:
             if (!PyArg_ParseTuple(args, "d", &cval_float64))
@@ -255,7 +260,9 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a float64 value)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             ((func_void_ctx_f64)f->func)(f->dssCtx, cval_float64);
+            PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_b16:
             if (!PyArg_ParseTuple(args, "p", &cval_int))
@@ -263,7 +270,9 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a boolean value)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             ((func_void_ctx_b16)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
+            PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_str:
             if (!PyArg_ParseTuple(args, "s#", &cstr, &cstr_size))
@@ -271,10 +280,14 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a str or bytes value)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             ((func_void_ctx_str)f->func)(f->dssCtx, cstr);
+            PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_void:
+            threadstate = PyEval_SaveThread();
             ((func_void_ctx)f->func)(f->dssCtx);
+            PyEval_RestoreThread(threadstate);
             break;
         default:
             PyErr_SetString(PyExc_TypeError, "Invalid call signature");
@@ -282,14 +295,14 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
     }
 
     if (*f->errorPtr && ((*f->settingsPtr) & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
-        {
-            const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
-            int32_t num = *f->errorPtr;
-            *f->errorPtr = 0;
-            PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
-                PyLong_FromLong(num),
-                PyUnicode_FromString(errorDesc)
-            ));
+    {
+        const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
+        int32_t num = *f->errorPtr;
+        *f->errorPtr = 0;
+        PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
+            PyLong_FromLong(num),
+            PyUnicode_FromString(errorDesc)
+        ));
         return NULL;
     }
     result = Py_None;
@@ -305,6 +318,7 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
     double cval_float64 = -1;
     char const *cstr = NULL;
     Py_ssize_t cstr_size = 0;
+    PyThreadState *threadstate;
 
     switch (f->funcArgSignature)
     {
@@ -335,6 +349,7 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
             return NULL;
     }
 
+    threadstate = PyEval_SaveThread();
     switch (f->resType)
     {
         case fastdss_types_b16:
@@ -353,6 +368,7 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
                 cval_int32 = ((func_b16_ctx)f->func)(f->dssCtx);
                 break;
             default:
+                PyEval_RestoreThread(threadstate);
                 PyErr_SetString(PyExc_TypeError, "Internal error: unknown signature");
                 return NULL;
         }
@@ -370,6 +386,7 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
                 cval_int32 = ((func_i32_ctx)f->func)(f->dssCtx);
                 break;
             default:
+                PyEval_RestoreThread(threadstate);
                 PyErr_SetString(PyExc_TypeError, "Internal error: unknown signature");
                 return NULL;
         }
@@ -387,21 +404,23 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
                 cval_float64 = ((func_f64_ctx)f->func)(f->dssCtx);
                 break;
             default:
+                PyEval_RestoreThread(threadstate);
                 PyErr_SetString(PyExc_TypeError, "Internal error: unknown signature");
                 return NULL;
         }
         break;
     }
+    PyEval_RestoreThread(threadstate);
 
     if (*f->errorPtr && ((*f->settingsPtr) & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
-        {
-            const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
-            int32_t num = *f->errorPtr;
-            *f->errorPtr = 0;
-            PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
-                PyLong_FromLong(num),
-                PyUnicode_FromString(errorDesc)
-            ));
+    {
+        const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
+        int32_t num = *f->errorPtr;
+        *f->errorPtr = 0;
+        PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
+            PyLong_FromLong(num),
+            PyUnicode_FromString(errorDesc)
+        ));
         return NULL;
     }
 
@@ -434,6 +453,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
     double *dblPtr;
     int32_t *i32Ptr;
     int8_t *i8Ptr;
+    PyThreadState *threadstate;
 
     switch (f->funcArgSignature)
     {
@@ -443,7 +463,9 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyGRGetter call (expected float, float, integer arguments)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             ((gr_func_void_ctx_f64_f64_i32)f->func)(f->dssCtx, float64Arg1, float64Arg2, argValue);
+            PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_i32:
             if (!PyArg_ParseTuple(args, "i", &argValue))
@@ -451,7 +473,9 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyGRGetter call (expected an integer value)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             ((gr_func_void_ctx_i32)f->func)(f->dssCtx, argValue);
+            PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_b16:
             if (!PyArg_ParseTuple(args, "p", &argValue))
@@ -459,21 +483,25 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyGRSetter call (expected a boolean value)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             ((gr_func_void_ctx_b16)f->func)(f->dssCtx, argValue ? (uint16_t)-1 : (uint16_t)0);
+            PyEval_RestoreThread(threadstate);
             break;
         default:
+            threadstate = PyEval_SaveThread();
             ((gr_func_void_ctx)f->func)(f->dssCtx);
+            PyEval_RestoreThread(threadstate);
             break;
     }
     if (*f->errorPtr && ((*f->settingsPtr) & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
-        {
-            const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
-            int32_t num = *f->errorPtr;
-            *f->errorPtr = 0;
-            PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
-                PyLong_FromLong(num),
-                PyUnicode_FromString(errorDesc)
-            ));
+    {
+        const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
+        int32_t num = *f->errorPtr;
+        *f->errorPtr = 0;
+        PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
+            PyLong_FromLong(num),
+            PyUnicode_FromString(errorDesc)
+        ));
         return NULL;
     }
 
@@ -492,8 +520,8 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
         dims[0] = f->countPtr[2];
         dims[1] = f->countPtr[3];
         if (resType == fastdss_types_gr_z128s)
-    {
-        nitems /= 2;
+        {
+            nitems /= 2;
         }
     }
 
@@ -672,6 +700,7 @@ static PyObject *AltDSS_PyStrGetter_call(AltDSS_PyStrGetterObject *f, PyObject *
     PyObject *result = NULL;
     int argValue;
     char const* cstr;
+    PyThreadState *threadstate;
     switch (f->funcArgSignature)
     {
         case fastdss_types_i32:
@@ -680,10 +709,14 @@ static PyObject *AltDSS_PyStrGetter_call(AltDSS_PyStrGetterObject *f, PyObject *
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected an integer value)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             cstr = ((func_str_ctx_i32)f->func)(f->dssCtx, argValue);
+            PyEval_RestoreThread(threadstate);
             break;
         default:
+            threadstate = PyEval_SaveThread();
             cstr = ((func_str_ctx)f->func)(f->dssCtx);
+            PyEval_RestoreThread(threadstate);
             break;
     }
     //TODO: for Alt functions, we will need to dispose the C string later, 
@@ -721,6 +754,7 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
     int32_t i;
     int argIntValue;
     const int32_t settings = *f->settingsPtr;
+    PyThreadState *threadstate;
 
     switch (f->funcArgSignature)
     {
@@ -730,7 +764,9 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected an integer value)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             ((func_void_ctx_strs_i32)f->func)(f->dssCtx, &cstr_list, &count[0], argIntValue);
+            PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_str:
             if (!PyArg_ParseTuple(args, "s#", &cstr, &cstr_size))
@@ -738,10 +774,14 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected either a string or bytes value)");
                 return NULL;
             }
+            threadstate = PyEval_SaveThread();
             ((func_void_ctx_strs_str)f->func)(f->dssCtx, &cstr_list, &count[0], cstr);
+            PyEval_RestoreThread(threadstate);
             break;
         default:
+            threadstate = PyEval_SaveThread();
             ((func_void_ctx_strs)f->func)(f->dssCtx, &cstr_list, &count[0]);
+            PyEval_RestoreThread(threadstate);
             break;
     }
 
