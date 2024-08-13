@@ -440,6 +440,17 @@ class DSSCompatFlags(IntFlag):
     This flag only affects some of the classic API functions, especially Loads and Generators.
     """
 
+    MonitorHeader = 0x00000080
+    """
+    Add extra spaces (and trailing comma) to the monitor headers to match the official OpenDSS implementation.
+    This affects both the Header function/property in the API, and the exported CSVs.
+
+    The extra spaces can cause issues with third-party software. For example, Pandas adds 
+    an extra empty column for monitor exports, and keeps the spaces in the column names.
+    This typically requires extra steps to both remove the spaces in the column names, and 
+    discard the extra column.
+    """
+
 
 class AltDSSEvent(IntEnum):
     """
