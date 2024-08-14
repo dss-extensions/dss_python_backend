@@ -451,6 +451,15 @@ class DSSCompatFlags(IntFlag):
     discard the extra column.
     """
 
+    InvControlDeltaV = 0x00000100
+    """
+    An issue with the voltage delta across iterations was found and fixed in AltDSS/DSS C-API 0.15.0.
+    Use this flag to restore the previous behavior, which also matches the official OpenDSS.
+
+    The issue affects situations where an InvControl object tracks multiple DERs, while using one of the volt-var modes.
+    It is not always apparent and does not always affect the end results.
+    """
+
 
 class AltDSSEvent(IntEnum):
     """
