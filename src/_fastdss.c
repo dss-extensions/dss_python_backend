@@ -918,8 +918,6 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, FastDSSFuncInfo* finfo, PyOb
 
 static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
 {
-    char ***unused1;
-    int32_t *unused2;
     PyObject* setObj = NULL;
     PyObject* fakeLib = NULL;
     FastDSSFuncInfo* finfo = NULL;
@@ -942,11 +940,9 @@ static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, P
     self->errorPtr = ctx_Error_Get_NumberPtr(self->dssCtx);
     
     ctx_DSS_GetGRPointers(self->dssCtx,
-        &unused1,
         &self->dataPtr_pdouble,
         &self->dataPtr_pinteger,
         &self->dataPtr_pbyte,
-        &unused2,
         &self->countPtr_pdouble,
         &self->countPtr_pinteger,
         &self->countPtr_pbyte
