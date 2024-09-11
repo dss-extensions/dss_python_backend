@@ -282,7 +282,6 @@ PyObject *f_Circuit_Get_AllNodeNames;
 PyObject *f_Circuit_Get_YNodeOrder;
 PyObject *f_CktElement_Get_AllPropertyNames;
 PyObject *f_CktElement_Get_AllVariableNames;
-PyObject *f_CktElement_Get_BusNames;
 PyObject *f_CtrlQueue_Get_Queue;
 PyObject *f_DSSElement_Get_AllPropertyNames;
 PyObject *f_DSS_Get_Classes;
@@ -342,6 +341,7 @@ PyObject *f_WindGens_Get_RegisterNames;
 PyObject *f_WireData_Get_AllNames;
 #endif
 PyObject *f_XYCurves_Get_AllNames;
+PyObject *f_CktElement_Get_BusNames;
 PyObject *f_Circuit_Get_AllNodeNamesByPhase;
 #ifndef ALTDSS_ODDIE
 PyObject *f_ZIP_List;

@@ -35,6 +35,7 @@ typedef uint16_t (*func_b16_ctx)(const void* ctx);
 typedef const char* (*func_str_ctx)(const void* ctx);
 typedef const char* (*func_str_ctx_i32)(const void* ctx, int32_t value);
 typedef void (*func_void_ctx_strs)(const void* ctx, char*** ResultPtr, int32_t* ResultDims);
+typedef void (*func_void_ctx_strs_b16)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, uint16_t value);
 typedef void (*func_void_ctx_strs_i32)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, int32_t value);
 typedef void (*func_void_ctx_strs_str)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, const char* value);
 typedef void (*gr_func_void_ctx)(const void* ctx);
@@ -758,6 +759,16 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
 
     switch (f->funcArgSignature)
     {
+        case fastdss_types_b16:
+            if (!PyArg_ParseTuple(args, "i", &argIntValue))
+            {
+                PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected a boolean value)");
+                return NULL;
+            }
+            threadstate = PyEval_SaveThread();
+            ((func_void_ctx_strs_i32)f->func)(f->dssCtx, &cstr_list, &count[0], argIntValue ? 1 : 0);
+            PyEval_RestoreThread(threadstate);
+            break;
         case fastdss_types_i32:
             if (!PyArg_ParseTuple(args, "i", &argIntValue))
             {

@@ -283,7 +283,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Circuit_Get_YNodeOrder", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_Get_YNodeOrder)},
 {"CktElement_Get_AllPropertyNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_AllPropertyNames)},
 {"CktElement_Get_AllVariableNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_AllVariableNames)},
-{"CktElement_Get_BusNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_BusNames)},
 {"CtrlQueue_Get_Queue", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CtrlQueue_Get_Queue)},
 {"DSSElement_Get_AllPropertyNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSSElement_Get_AllPropertyNames)},
 {"DSS_Get_Classes", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Get_Classes)},
@@ -343,6 +342,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"WireData_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_AllNames)},
 #endif
 {"XYCurves_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_AllNames)},
+{"CktElement_Get_BusNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_BusNames)},
 {"Circuit_Get_AllNodeNamesByPhase", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_Get_AllNodeNamesByPhase)},
 #ifndef ALTDSS_ODDIE
 {"ZIP_List", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_List)},

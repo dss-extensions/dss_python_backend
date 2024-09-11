@@ -283,7 +283,6 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_strs, fastdss_types_void, ctx_Circuit_Get_YNodeOrder, offsetof(AltDSS_PyContextObject, f_Circuit_Get_YNodeOrder), "Circuit_Get_YNodeOrder"},
 {fastdss_types_strs, fastdss_types_void, ctx_CktElement_Get_AllPropertyNames, offsetof(AltDSS_PyContextObject, f_CktElement_Get_AllPropertyNames), "CktElement_Get_AllPropertyNames"},
 {fastdss_types_strs, fastdss_types_void, ctx_CktElement_Get_AllVariableNames, offsetof(AltDSS_PyContextObject, f_CktElement_Get_AllVariableNames), "CktElement_Get_AllVariableNames"},
-{fastdss_types_strs, fastdss_types_void, ctx_CktElement_Get_BusNames, offsetof(AltDSS_PyContextObject, f_CktElement_Get_BusNames), "CktElement_Get_BusNames"},
 {fastdss_types_strs, fastdss_types_void, ctx_CtrlQueue_Get_Queue, offsetof(AltDSS_PyContextObject, f_CtrlQueue_Get_Queue), "CtrlQueue_Get_Queue"},
 {fastdss_types_strs, fastdss_types_void, ctx_DSSElement_Get_AllPropertyNames, offsetof(AltDSS_PyContextObject, f_DSSElement_Get_AllPropertyNames), "DSSElement_Get_AllPropertyNames"},
 {fastdss_types_strs, fastdss_types_void, ctx_DSS_Get_Classes, offsetof(AltDSS_PyContextObject, f_DSS_Get_Classes), "DSS_Get_Classes"},
@@ -343,6 +342,7 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_strs, fastdss_types_void, ctx_WireData_Get_AllNames, offsetof(AltDSS_PyContextObject, f_WireData_Get_AllNames), "WireData_Get_AllNames"},
 #endif
 {fastdss_types_strs, fastdss_types_void, ctx_XYCurves_Get_AllNames, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_AllNames), "XYCurves_Get_AllNames"},
+{fastdss_types_strs, fastdss_types_b16, ctx_CktElement_Get_BusNames, offsetof(AltDSS_PyContextObject, f_CktElement_Get_BusNames), "CktElement_Get_BusNames"},
 {fastdss_types_strs, fastdss_types_i32, ctx_Circuit_Get_AllNodeNamesByPhase, offsetof(AltDSS_PyContextObject, f_Circuit_Get_AllNodeNamesByPhase), "Circuit_Get_AllNodeNamesByPhase"},
 #ifndef ALTDSS_ODDIE
 {fastdss_types_strs, fastdss_types_str, ctx_ZIP_List, offsetof(AltDSS_PyContextObject, f_ZIP_List), "ZIP_List"},
