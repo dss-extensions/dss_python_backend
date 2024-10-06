@@ -62,9 +62,7 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_str, fastdss_types_void, ctx_Monitors_Get_Element, offsetof(AltDSS_PyContextObject, f_Monitors_Get_Element), "Monitors_Get_Element"},
 {fastdss_types_str, fastdss_types_void, ctx_Monitors_Get_FileName, offsetof(AltDSS_PyContextObject, f_Monitors_Get_FileName), "Monitors_Get_FileName"},
 {fastdss_types_str, fastdss_types_void, ctx_Monitors_Get_Name, offsetof(AltDSS_PyContextObject, f_Monitors_Get_Name), "Monitors_Get_Name"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_str, fastdss_types_void, ctx_PDElements_Get_Name, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Name), "PDElements_Get_Name"},
-#endif
 {fastdss_types_str, fastdss_types_void, ctx_PVSystems_Get_Name, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Name), "PVSystems_Get_Name"},
 {fastdss_types_str, fastdss_types_void, ctx_PVSystems_Get_Sensor, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Sensor), "PVSystems_Get_Sensor"},
 {fastdss_types_str, fastdss_types_void, ctx_PVSystems_Get_Tdaily, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Tdaily), "PVSystems_Get_Tdaily"},
@@ -80,13 +78,11 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_str, fastdss_types_void, ctx_Parser_Get_NextParam, offsetof(AltDSS_PyContextObject, f_Parser_Get_NextParam), "Parser_Get_NextParam"},
 {fastdss_types_str, fastdss_types_void, ctx_Parser_Get_StrValue, offsetof(AltDSS_PyContextObject, f_Parser_Get_StrValue), "Parser_Get_StrValue"},
 {fastdss_types_str, fastdss_types_void, ctx_Parser_Get_WhiteSpace, offsetof(AltDSS_PyContextObject, f_Parser_Get_WhiteSpace), "Parser_Get_WhiteSpace"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_str, fastdss_types_void, ctx_Reactors_Get_Bus1, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Bus1), "Reactors_Get_Bus1"},
 {fastdss_types_str, fastdss_types_void, ctx_Reactors_Get_Bus2, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Bus2), "Reactors_Get_Bus2"},
 {fastdss_types_str, fastdss_types_void, ctx_Reactors_Get_LCurve, offsetof(AltDSS_PyContextObject, f_Reactors_Get_LCurve), "Reactors_Get_LCurve"},
 {fastdss_types_str, fastdss_types_void, ctx_Reactors_Get_Name, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Name), "Reactors_Get_Name"},
 {fastdss_types_str, fastdss_types_void, ctx_Reactors_Get_RCurve, offsetof(AltDSS_PyContextObject, f_Reactors_Get_RCurve), "Reactors_Get_RCurve"},
-#endif
 {fastdss_types_str, fastdss_types_void, ctx_Reclosers_Get_MonitoredObj, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_MonitoredObj), "Reclosers_Get_MonitoredObj"},
 {fastdss_types_str, fastdss_types_void, ctx_Reclosers_Get_Name, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_Name), "Reclosers_Get_Name"},
 {fastdss_types_str, fastdss_types_void, ctx_Reclosers_Get_SwitchedObj, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_SwitchedObj), "Reclosers_Get_SwitchedObj"},
@@ -197,9 +193,7 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_void, fastdss_types_str, ctx_Meters_Set_Name, offsetof(AltDSS_PyContextObject, f_Meters_Set_Name), "Meters_Set_Name"},
 {fastdss_types_void, fastdss_types_str, ctx_Monitors_Set_Element, offsetof(AltDSS_PyContextObject, f_Monitors_Set_Element), "Monitors_Set_Element"},
 {fastdss_types_void, fastdss_types_str, ctx_Monitors_Set_Name, offsetof(AltDSS_PyContextObject, f_Monitors_Set_Name), "Monitors_Set_Name"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_void, fastdss_types_str, ctx_PDElements_Set_Name, offsetof(AltDSS_PyContextObject, f_PDElements_Set_Name), "PDElements_Set_Name"},
-#endif
 {fastdss_types_void, fastdss_types_str, ctx_PVSystems_Set_Name, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Name), "PVSystems_Set_Name"},
 {fastdss_types_void, fastdss_types_str, ctx_PVSystems_Set_Tdaily, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Tdaily), "PVSystems_Set_Tdaily"},
 {fastdss_types_void, fastdss_types_str, ctx_PVSystems_Set_Tduty, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Tduty), "PVSystems_Set_Tduty"},
@@ -212,13 +206,11 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_void, fastdss_types_str, ctx_Parser_Set_Delimiters, offsetof(AltDSS_PyContextObject, f_Parser_Set_Delimiters), "Parser_Set_Delimiters"},
 {fastdss_types_void, fastdss_types_str, ctx_Parser_Set_EndQuote, offsetof(AltDSS_PyContextObject, f_Parser_Set_EndQuote), "Parser_Set_EndQuote"},
 {fastdss_types_void, fastdss_types_str, ctx_Parser_Set_WhiteSpace, offsetof(AltDSS_PyContextObject, f_Parser_Set_WhiteSpace), "Parser_Set_WhiteSpace"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_void, fastdss_types_str, ctx_Reactors_Set_Bus1, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Bus1), "Reactors_Set_Bus1"},
 {fastdss_types_void, fastdss_types_str, ctx_Reactors_Set_Bus2, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Bus2), "Reactors_Set_Bus2"},
 {fastdss_types_void, fastdss_types_str, ctx_Reactors_Set_LCurve, offsetof(AltDSS_PyContextObject, f_Reactors_Set_LCurve), "Reactors_Set_LCurve"},
 {fastdss_types_void, fastdss_types_str, ctx_Reactors_Set_Name, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Name), "Reactors_Set_Name"},
 {fastdss_types_void, fastdss_types_str, ctx_Reactors_Set_RCurve, offsetof(AltDSS_PyContextObject, f_Reactors_Set_RCurve), "Reactors_Set_RCurve"},
-#endif
 {fastdss_types_void, fastdss_types_str, ctx_Reclosers_Set_MonitoredObj, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_MonitoredObj), "Reclosers_Set_MonitoredObj"},
 {fastdss_types_void, fastdss_types_str, ctx_Reclosers_Set_Name, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_Name), "Reclosers_Set_Name"},
 {fastdss_types_void, fastdss_types_str, ctx_Reclosers_Set_SwitchedObj, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_SwitchedObj), "Reclosers_Set_SwitchedObj"},
@@ -310,14 +302,10 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_strs, fastdss_types_void, ctx_Meters_Get_ZonePCE, offsetof(AltDSS_PyContextObject, f_Meters_Get_ZonePCE), "Meters_Get_ZonePCE"},
 {fastdss_types_strs, fastdss_types_void, ctx_Monitors_Get_AllNames, offsetof(AltDSS_PyContextObject, f_Monitors_Get_AllNames), "Monitors_Get_AllNames"},
 {fastdss_types_strs, fastdss_types_void, ctx_Monitors_Get_Header, offsetof(AltDSS_PyContextObject, f_Monitors_Get_Header), "Monitors_Get_Header"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_strs, fastdss_types_void, ctx_PDElements_Get_AllNames, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNames), "PDElements_Get_AllNames"},
-#endif
 {fastdss_types_strs, fastdss_types_void, ctx_PVSystems_Get_AllNames, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_AllNames), "PVSystems_Get_AllNames"},
 {fastdss_types_strs, fastdss_types_void, ctx_PVSystems_Get_RegisterNames, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_RegisterNames), "PVSystems_Get_RegisterNames"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_strs, fastdss_types_void, ctx_Reactors_Get_AllNames, offsetof(AltDSS_PyContextObject, f_Reactors_Get_AllNames), "Reactors_Get_AllNames"},
-#endif
 {fastdss_types_strs, fastdss_types_void, ctx_Reclosers_Get_AllNames, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_AllNames), "Reclosers_Get_AllNames"},
 {fastdss_types_strs, fastdss_types_void, ctx_RegControls_Get_AllNames, offsetof(AltDSS_PyContextObject, f_RegControls_Get_AllNames), "RegControls_Get_AllNames"},
 {fastdss_types_strs, fastdss_types_void, ctx_Relays_Get_AllNames, offsetof(AltDSS_PyContextObject, f_Relays_Get_AllNames), "Relays_Get_AllNames"},
@@ -384,15 +372,11 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_Meters_Get_Totals_GR, offsetof(AltDSS_PyContextObject, f_Meters_Get_Totals_GR), "Meters_Get_Totals_GR"},
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_Monitors_Get_dblFreq_GR, offsetof(AltDSS_PyContextObject, f_Monitors_Get_dblFreq_GR), "Monitors_Get_dblFreq_GR"},
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_Monitors_Get_dblHour_GR, offsetof(AltDSS_PyContextObject, f_Monitors_Get_dblHour_GR), "Monitors_Get_dblHour_GR"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_PDElements_Get_AllCurrentsMagAng_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllCurrentsMagAng_GR), "PDElements_Get_AllCurrentsMagAng_GR"},
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_PDElements_Get_AllSeqCurrents_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllSeqCurrents_GR), "PDElements_Get_AllSeqCurrents_GR"},
-#endif
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_PVSystems_Get_RegisterValues_GR, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_RegisterValues_GR), "PVSystems_Get_RegisterValues_GR"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_Reactors_Get_Rmatrix_GR, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Rmatrix_GR), "Reactors_Get_Rmatrix_GR"},
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_Reactors_Get_Xmatrix_GR, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Xmatrix_GR), "Reactors_Get_Xmatrix_GR"},
-#endif
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_Reclosers_Get_RecloseIntervals_GR, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_RecloseIntervals_GR), "Reclosers_Get_RecloseIntervals_GR"},
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_Sensors_Get_AllocationFactor_GR, offsetof(AltDSS_PyContextObject, f_Sensors_Get_AllocationFactor_GR), "Sensors_Get_AllocationFactor_GR"},
 {fastdss_types_gr_f64s, fastdss_types_void, ctx_Sensors_Get_Currents_GR, offsetof(AltDSS_PyContextObject, f_Sensors_Get_Currents_GR), "Sensors_Get_Currents_GR"},
@@ -415,10 +399,10 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_gr_f64s, fastdss_types_f64_f64_i32, ctx_LineGeometries_Get_Cmatrix_GR, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Cmatrix_GR), "LineGeometries_Get_Cmatrix_GR"},
 {fastdss_types_gr_f64s, fastdss_types_f64_f64_i32, ctx_LineGeometries_Get_Rmatrix_GR, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Rmatrix_GR), "LineGeometries_Get_Rmatrix_GR"},
 {fastdss_types_gr_f64s, fastdss_types_f64_f64_i32, ctx_LineGeometries_Get_Xmatrix_GR, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Xmatrix_GR), "LineGeometries_Get_Xmatrix_GR"},
+#endif
 {fastdss_types_gr_f64s, fastdss_types_b16, ctx_PDElements_Get_AllMaxCurrents_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllMaxCurrents_GR), "PDElements_Get_AllMaxCurrents_GR"},
 {fastdss_types_gr_f64s, fastdss_types_b16, ctx_PDElements_Get_AllPctEmerg_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllPctEmerg_GR), "PDElements_Get_AllPctEmerg_GR"},
 {fastdss_types_gr_f64s, fastdss_types_b16, ctx_PDElements_Get_AllPctNorm_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllPctNorm_GR), "PDElements_Get_AllPctNorm_GR"},
-#endif
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_Bus_Get_CplxSeqVoltages_GR, offsetof(AltDSS_PyContextObject, f_Bus_Get_CplxSeqVoltages_GR), "Bus_Get_CplxSeqVoltages_GR"},
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_Bus_Get_Isc_GR, offsetof(AltDSS_PyContextObject, f_Bus_Get_Isc_GR), "Bus_Get_Isc_GR"},
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_Bus_Get_VLL_GR, offsetof(AltDSS_PyContextObject, f_Bus_Get_VLL_GR), "Bus_Get_VLL_GR"},
@@ -444,12 +428,10 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_CktElement_Get_Voltages_GR, offsetof(AltDSS_PyContextObject, f_CktElement_Get_Voltages_GR), "CktElement_Get_Voltages_GR"},
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_CktElement_Get_Yprim_GR, offsetof(AltDSS_PyContextObject, f_CktElement_Get_Yprim_GR), "CktElement_Get_Yprim_GR"},
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_Lines_Get_Yprim_GR, offsetof(AltDSS_PyContextObject, f_Lines_Get_Yprim_GR), "Lines_Get_Yprim_GR"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_PDElements_Get_AllCplxSeqCurrents_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllCplxSeqCurrents_GR), "PDElements_Get_AllCplxSeqCurrents_GR"},
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_PDElements_Get_AllCurrents_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllCurrents_GR), "PDElements_Get_AllCurrents_GR"},
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_PDElements_Get_AllPowers_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllPowers_GR), "PDElements_Get_AllPowers_GR"},
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_PDElements_Get_AllSeqPowers_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllSeqPowers_GR), "PDElements_Get_AllSeqPowers_GR"},
-#endif
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_Transformers_Get_AllLossesByType_GR, offsetof(AltDSS_PyContextObject, f_Transformers_Get_AllLossesByType_GR), "Transformers_Get_AllLossesByType_GR"},
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_Transformers_Get_LossesByType_GR, offsetof(AltDSS_PyContextObject, f_Transformers_Get_LossesByType_GR), "Transformers_Get_LossesByType_GR"},
 {fastdss_types_gr_z128s, fastdss_types_void, ctx_Transformers_Get_WdgCurrents_GR, offsetof(AltDSS_PyContextObject, f_Transformers_Get_WdgCurrents_GR), "Transformers_Get_WdgCurrents_GR"},
@@ -464,22 +446,20 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_gr_z128, fastdss_types_void, ctx_Circuit_Get_SubstationLosses_GR, offsetof(AltDSS_PyContextObject, f_Circuit_Get_SubstationLosses_GR), "Circuit_Get_SubstationLosses_GR"},
 {fastdss_types_gr_z128, fastdss_types_void, ctx_Circuit_Get_TotalPower_GR, offsetof(AltDSS_PyContextObject, f_Circuit_Get_TotalPower_GR), "Circuit_Get_TotalPower_GR"},
 {fastdss_types_gr_z128, fastdss_types_void, ctx_CktElement_Get_Losses_GR, offsetof(AltDSS_PyContextObject, f_CktElement_Get_Losses_GR), "CktElement_Get_Losses_GR"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_gr_z128, fastdss_types_void, ctx_Reactors_Get_Z_GR, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Z_GR), "Reactors_Get_Z_GR"},
 {fastdss_types_gr_z128, fastdss_types_void, ctx_Reactors_Get_Z0_GR, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Z0_GR), "Reactors_Get_Z0_GR"},
 {fastdss_types_gr_z128, fastdss_types_void, ctx_Reactors_Get_Z1_GR, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Z1_GR), "Reactors_Get_Z1_GR"},
 {fastdss_types_gr_z128, fastdss_types_void, ctx_Reactors_Get_Z2_GR, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Z2_GR), "Reactors_Get_Z2_GR"},
-#endif
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_Bus_Get_Nodes_GR, offsetof(AltDSS_PyContextObject, f_Bus_Get_Nodes_GR), "Bus_Get_Nodes_GR"},
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_Capacitors_Get_States_GR, offsetof(AltDSS_PyContextObject, f_Capacitors_Get_States_GR), "Capacitors_Get_States_GR"},
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_CktElement_Get_NodeOrder_GR, offsetof(AltDSS_PyContextObject, f_CktElement_Get_NodeOrder_GR), "CktElement_Get_NodeOrder_GR"},
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_CktElement_Get_NodeRef_GR, offsetof(AltDSS_PyContextObject, f_CktElement_Get_NodeRef_GR), "CktElement_Get_NodeRef_GR"},
 #ifndef ALTDSS_ODDIE
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_LineGeometries_Get_Units_GR, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Units_GR), "LineGeometries_Get_Units_GR"},
+#endif
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_PDElements_Get_AllNumConductors_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumConductors_GR), "PDElements_Get_AllNumConductors_GR"},
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_PDElements_Get_AllNumPhases_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumPhases_GR), "PDElements_Get_AllNumPhases_GR"},
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_PDElements_Get_AllNumTerminals_GR, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumTerminals_GR), "PDElements_Get_AllNumTerminals_GR"},
-#endif
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_Parallel_Get_ActorProgress_GR, offsetof(AltDSS_PyContextObject, f_Parallel_Get_ActorProgress_GR), "Parallel_Get_ActorProgress_GR"},
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_Parallel_Get_ActorStatus_GR, offsetof(AltDSS_PyContextObject, f_Parallel_Get_ActorStatus_GR), "Parallel_Get_ActorStatus_GR"},
 {fastdss_types_gr_i32s, fastdss_types_void, ctx_Settings_Get_LossRegs_GR, offsetof(AltDSS_PyContextObject, f_Settings_Get_LossRegs_GR), "Settings_Get_LossRegs_GR"},
@@ -645,7 +625,6 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_i32, fastdss_types_void, ctx_Monitors_Get_SampleCount, offsetof(AltDSS_PyContextObject, f_Monitors_Get_SampleCount), "Monitors_Get_SampleCount"},
 {fastdss_types_i32, fastdss_types_void, ctx_Monitors_Get_Terminal, offsetof(AltDSS_PyContextObject, f_Monitors_Get_Terminal), "Monitors_Get_Terminal"},
 {fastdss_types_i32, fastdss_types_void, ctx_Monitors_Get_idx, offsetof(AltDSS_PyContextObject, f_Monitors_Get_idx), "Monitors_Get_idx"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_i32, fastdss_types_void, ctx_PDElements_Get_Count, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Count), "PDElements_Get_Count"},
 {fastdss_types_i32, fastdss_types_void, ctx_PDElements_Get_First, offsetof(AltDSS_PyContextObject, f_PDElements_Get_First), "PDElements_Get_First"},
 {fastdss_types_i32, fastdss_types_void, ctx_PDElements_Get_FromTerminal, offsetof(AltDSS_PyContextObject, f_PDElements_Get_FromTerminal), "PDElements_Get_FromTerminal"},
@@ -654,7 +633,6 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_i32, fastdss_types_void, ctx_PDElements_Get_ParentPDElement, offsetof(AltDSS_PyContextObject, f_PDElements_Get_ParentPDElement), "PDElements_Get_ParentPDElement"},
 {fastdss_types_i32, fastdss_types_void, ctx_PDElements_Get_SectionID, offsetof(AltDSS_PyContextObject, f_PDElements_Get_SectionID), "PDElements_Get_SectionID"},
 {fastdss_types_i32, fastdss_types_void, ctx_PDElements_Get_Totalcustomers, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Totalcustomers), "PDElements_Get_Totalcustomers"},
-#endif
 {fastdss_types_i32, fastdss_types_void, ctx_PVSystems_Get_Count, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Count), "PVSystems_Get_Count"},
 {fastdss_types_i32, fastdss_types_void, ctx_PVSystems_Get_First, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_First), "PVSystems_Get_First"},
 {fastdss_types_i32, fastdss_types_void, ctx_PVSystems_Get_Next, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Next), "PVSystems_Get_Next"},
@@ -667,14 +645,12 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_i32, fastdss_types_void, ctx_Parallel_Get_NumCores, offsetof(AltDSS_PyContextObject, f_Parallel_Get_NumCores), "Parallel_Get_NumCores"},
 {fastdss_types_i32, fastdss_types_void, ctx_Parallel_Get_NumOfActors, offsetof(AltDSS_PyContextObject, f_Parallel_Get_NumOfActors), "Parallel_Get_NumOfActors"},
 {fastdss_types_i32, fastdss_types_void, ctx_Parser_Get_IntValue, offsetof(AltDSS_PyContextObject, f_Parser_Get_IntValue), "Parser_Get_IntValue"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_i32, fastdss_types_void, ctx_Reactors_Get_Count, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Count), "Reactors_Get_Count"},
 {fastdss_types_i32, fastdss_types_void, ctx_Reactors_Get_First, offsetof(AltDSS_PyContextObject, f_Reactors_Get_First), "Reactors_Get_First"},
 {fastdss_types_i32, fastdss_types_void, ctx_Reactors_Get_Next, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Next), "Reactors_Get_Next"},
 {fastdss_types_i32, fastdss_types_void, ctx_Reactors_Get_Phases, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Phases), "Reactors_Get_Phases"},
 {fastdss_types_i32, fastdss_types_void, ctx_Reactors_Get_SpecType, offsetof(AltDSS_PyContextObject, f_Reactors_Get_SpecType), "Reactors_Get_SpecType"},
 {fastdss_types_i32, fastdss_types_void, ctx_Reactors_Get_idx, offsetof(AltDSS_PyContextObject, f_Reactors_Get_idx), "Reactors_Get_idx"},
-#endif
 {fastdss_types_i32, fastdss_types_void, ctx_Reclosers_Get_Count, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_Count), "Reclosers_Get_Count"},
 {fastdss_types_i32, fastdss_types_void, ctx_Reclosers_Get_First, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_First), "Reclosers_Get_First"},
 {fastdss_types_i32, fastdss_types_void, ctx_Reclosers_Get_MonitoredTerm, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_MonitoredTerm), "Reclosers_Get_MonitoredTerm"},
@@ -873,10 +849,8 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_void, fastdss_types_i32, ctx_Parallel_Set_ActiveParallel, offsetof(AltDSS_PyContextObject, f_Parallel_Set_ActiveParallel), "Parallel_Set_ActiveParallel"},
 {fastdss_types_void, fastdss_types_i32, ctx_Parallel_Set_ActorCPU, offsetof(AltDSS_PyContextObject, f_Parallel_Set_ActorCPU), "Parallel_Set_ActorCPU"},
 {fastdss_types_void, fastdss_types_i32, ctx_Parallel_Set_ConcatenateReports, offsetof(AltDSS_PyContextObject, f_Parallel_Set_ConcatenateReports), "Parallel_Set_ConcatenateReports"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_void, fastdss_types_i32, ctx_Reactors_Set_Phases, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Phases), "Reactors_Set_Phases"},
 {fastdss_types_void, fastdss_types_i32, ctx_Reactors_Set_idx, offsetof(AltDSS_PyContextObject, f_Reactors_Set_idx), "Reactors_Set_idx"},
-#endif
 {fastdss_types_void, fastdss_types_i32, ctx_Reclosers_Set_MonitoredTerm, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_MonitoredTerm), "Reclosers_Set_MonitoredTerm"},
 {fastdss_types_void, fastdss_types_i32, ctx_Reclosers_Set_NormalState, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_NormalState), "Reclosers_Set_NormalState"},
 {fastdss_types_void, fastdss_types_i32, ctx_Reclosers_Set_NumFast, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_NumFast), "Reclosers_Set_NumFast"},
@@ -1077,14 +1051,12 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_f64, fastdss_types_void, ctx_Meters_Get_SAIFI, offsetof(AltDSS_PyContextObject, f_Meters_Get_SAIFI), "Meters_Get_SAIFI"},
 {fastdss_types_f64, fastdss_types_void, ctx_Meters_Get_SAIFIKW, offsetof(AltDSS_PyContextObject, f_Meters_Get_SAIFIKW), "Meters_Get_SAIFIKW"},
 {fastdss_types_f64, fastdss_types_void, ctx_Meters_Get_SumBranchFltRates, offsetof(AltDSS_PyContextObject, f_Meters_Get_SumBranchFltRates), "Meters_Get_SumBranchFltRates"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_f64, fastdss_types_void, ctx_PDElements_Get_AccumulatedL, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AccumulatedL), "PDElements_Get_AccumulatedL"},
 {fastdss_types_f64, fastdss_types_void, ctx_PDElements_Get_FaultRate, offsetof(AltDSS_PyContextObject, f_PDElements_Get_FaultRate), "PDElements_Get_FaultRate"},
 {fastdss_types_f64, fastdss_types_void, ctx_PDElements_Get_Lambda, offsetof(AltDSS_PyContextObject, f_PDElements_Get_Lambda), "PDElements_Get_Lambda"},
 {fastdss_types_f64, fastdss_types_void, ctx_PDElements_Get_RepairTime, offsetof(AltDSS_PyContextObject, f_PDElements_Get_RepairTime), "PDElements_Get_RepairTime"},
 {fastdss_types_f64, fastdss_types_void, ctx_PDElements_Get_TotalMiles, offsetof(AltDSS_PyContextObject, f_PDElements_Get_TotalMiles), "PDElements_Get_TotalMiles"},
 {fastdss_types_f64, fastdss_types_void, ctx_PDElements_Get_pctPermanent, offsetof(AltDSS_PyContextObject, f_PDElements_Get_pctPermanent), "PDElements_Get_pctPermanent"},
-#endif
 {fastdss_types_f64, fastdss_types_void, ctx_PVSystems_Get_Irradiance, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_Irradiance), "PVSystems_Get_Irradiance"},
 {fastdss_types_f64, fastdss_types_void, ctx_PVSystems_Get_IrradianceNow, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_IrradianceNow), "PVSystems_Get_IrradianceNow"},
 {fastdss_types_f64, fastdss_types_void, ctx_PVSystems_Get_PF, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_PF), "PVSystems_Get_PF"},
@@ -1093,14 +1065,12 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_f64, fastdss_types_void, ctx_PVSystems_Get_kW, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_kW), "PVSystems_Get_kW"},
 {fastdss_types_f64, fastdss_types_void, ctx_PVSystems_Get_kvar, offsetof(AltDSS_PyContextObject, f_PVSystems_Get_kvar), "PVSystems_Get_kvar"},
 {fastdss_types_f64, fastdss_types_void, ctx_Parser_Get_DblValue, offsetof(AltDSS_PyContextObject, f_Parser_Get_DblValue), "Parser_Get_DblValue"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_f64, fastdss_types_void, ctx_Reactors_Get_LmH, offsetof(AltDSS_PyContextObject, f_Reactors_Get_LmH), "Reactors_Get_LmH"},
 {fastdss_types_f64, fastdss_types_void, ctx_Reactors_Get_R, offsetof(AltDSS_PyContextObject, f_Reactors_Get_R), "Reactors_Get_R"},
 {fastdss_types_f64, fastdss_types_void, ctx_Reactors_Get_Rp, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Rp), "Reactors_Get_Rp"},
 {fastdss_types_f64, fastdss_types_void, ctx_Reactors_Get_X, offsetof(AltDSS_PyContextObject, f_Reactors_Get_X), "Reactors_Get_X"},
 {fastdss_types_f64, fastdss_types_void, ctx_Reactors_Get_kV, offsetof(AltDSS_PyContextObject, f_Reactors_Get_kV), "Reactors_Get_kV"},
 {fastdss_types_f64, fastdss_types_void, ctx_Reactors_Get_kvar, offsetof(AltDSS_PyContextObject, f_Reactors_Get_kvar), "Reactors_Get_kvar"},
-#endif
 {fastdss_types_f64, fastdss_types_void, ctx_Reclosers_Get_GroundInst, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_GroundInst), "Reclosers_Get_GroundInst"},
 {fastdss_types_f64, fastdss_types_void, ctx_Reclosers_Get_GroundTrip, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_GroundTrip), "Reclosers_Get_GroundTrip"},
 {fastdss_types_f64, fastdss_types_void, ctx_Reclosers_Get_PhaseInst, offsetof(AltDSS_PyContextObject, f_Reclosers_Get_PhaseInst), "Reclosers_Get_PhaseInst"},
@@ -1336,24 +1306,20 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_void, fastdss_types_f64, ctx_Loads_Set_kwhdays, offsetof(AltDSS_PyContextObject, f_Loads_Set_kwhdays), "Loads_Set_kwhdays"},
 {fastdss_types_void, fastdss_types_f64, ctx_Loads_Set_pctSeriesRL, offsetof(AltDSS_PyContextObject, f_Loads_Set_pctSeriesRL), "Loads_Set_pctSeriesRL"},
 {fastdss_types_void, fastdss_types_f64, ctx_Loads_Set_xfkVA, offsetof(AltDSS_PyContextObject, f_Loads_Set_xfkVA), "Loads_Set_xfkVA"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_void, fastdss_types_f64, ctx_PDElements_Set_FaultRate, offsetof(AltDSS_PyContextObject, f_PDElements_Set_FaultRate), "PDElements_Set_FaultRate"},
 {fastdss_types_void, fastdss_types_f64, ctx_PDElements_Set_RepairTime, offsetof(AltDSS_PyContextObject, f_PDElements_Set_RepairTime), "PDElements_Set_RepairTime"},
 {fastdss_types_void, fastdss_types_f64, ctx_PDElements_Set_pctPermanent, offsetof(AltDSS_PyContextObject, f_PDElements_Set_pctPermanent), "PDElements_Set_pctPermanent"},
-#endif
 {fastdss_types_void, fastdss_types_f64, ctx_PVSystems_Set_Irradiance, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Irradiance), "PVSystems_Set_Irradiance"},
 {fastdss_types_void, fastdss_types_f64, ctx_PVSystems_Set_PF, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_PF), "PVSystems_Set_PF"},
 {fastdss_types_void, fastdss_types_f64, ctx_PVSystems_Set_Pmpp, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_Pmpp), "PVSystems_Set_Pmpp"},
 {fastdss_types_void, fastdss_types_f64, ctx_PVSystems_Set_kVArated, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_kVArated), "PVSystems_Set_kVArated"},
 {fastdss_types_void, fastdss_types_f64, ctx_PVSystems_Set_kvar, offsetof(AltDSS_PyContextObject, f_PVSystems_Set_kvar), "PVSystems_Set_kvar"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_void, fastdss_types_f64, ctx_Reactors_Set_LmH, offsetof(AltDSS_PyContextObject, f_Reactors_Set_LmH), "Reactors_Set_LmH"},
 {fastdss_types_void, fastdss_types_f64, ctx_Reactors_Set_R, offsetof(AltDSS_PyContextObject, f_Reactors_Set_R), "Reactors_Set_R"},
 {fastdss_types_void, fastdss_types_f64, ctx_Reactors_Set_Rp, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Rp), "Reactors_Set_Rp"},
 {fastdss_types_void, fastdss_types_f64, ctx_Reactors_Set_X, offsetof(AltDSS_PyContextObject, f_Reactors_Set_X), "Reactors_Set_X"},
 {fastdss_types_void, fastdss_types_f64, ctx_Reactors_Set_kV, offsetof(AltDSS_PyContextObject, f_Reactors_Set_kV), "Reactors_Set_kV"},
 {fastdss_types_void, fastdss_types_f64, ctx_Reactors_Set_kvar, offsetof(AltDSS_PyContextObject, f_Reactors_Set_kvar), "Reactors_Set_kvar"},
-#endif
 {fastdss_types_void, fastdss_types_f64, ctx_Reclosers_Set_GroundInst, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_GroundInst), "Reclosers_Set_GroundInst"},
 {fastdss_types_void, fastdss_types_f64, ctx_Reclosers_Set_GroundTrip, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_GroundTrip), "Reclosers_Set_GroundTrip"},
 {fastdss_types_void, fastdss_types_f64, ctx_Reclosers_Set_PhaseInst, offsetof(AltDSS_PyContextObject, f_Reclosers_Set_PhaseInst), "Reclosers_Set_PhaseInst"},
@@ -1515,14 +1481,10 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_b16, fastdss_types_void, ctx_LoadShapes_Get_UseActual, offsetof(AltDSS_PyContextObject, f_LoadShapes_Get_UseActual), "LoadShapes_Get_UseActual"},
 {fastdss_types_b16, fastdss_types_void, ctx_Loads_Get_IsDelta, offsetof(AltDSS_PyContextObject, f_Loads_Get_IsDelta), "Loads_Get_IsDelta"},
 {fastdss_types_b16, fastdss_types_void, ctx_Meters_Get_DIFilesAreOpen, offsetof(AltDSS_PyContextObject, f_Meters_Get_DIFilesAreOpen), "Meters_Get_DIFilesAreOpen"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_b16, fastdss_types_void, ctx_PDElements_Get_IsShunt, offsetof(AltDSS_PyContextObject, f_PDElements_Get_IsShunt), "PDElements_Get_IsShunt"},
-#endif
 {fastdss_types_b16, fastdss_types_void, ctx_Parser_Get_AutoIncrement, offsetof(AltDSS_PyContextObject, f_Parser_Get_AutoIncrement), "Parser_Get_AutoIncrement"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_b16, fastdss_types_void, ctx_Reactors_Get_IsDelta, offsetof(AltDSS_PyContextObject, f_Reactors_Get_IsDelta), "Reactors_Get_IsDelta"},
 {fastdss_types_b16, fastdss_types_void, ctx_Reactors_Get_Parallel, offsetof(AltDSS_PyContextObject, f_Reactors_Get_Parallel), "Reactors_Get_Parallel"},
-#endif
 {fastdss_types_b16, fastdss_types_void, ctx_ReduceCkt_Get_KeepLoad, offsetof(AltDSS_PyContextObject, f_ReduceCkt_Get_KeepLoad), "ReduceCkt_Get_KeepLoad"},
 {fastdss_types_b16, fastdss_types_void, ctx_RegControls_Get_IsInverseTime, offsetof(AltDSS_PyContextObject, f_RegControls_Get_IsInverseTime), "RegControls_Get_IsInverseTime"},
 {fastdss_types_b16, fastdss_types_void, ctx_RegControls_Get_IsReversible, offsetof(AltDSS_PyContextObject, f_RegControls_Get_IsReversible), "RegControls_Get_IsReversible"},
@@ -1571,10 +1533,8 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_void, fastdss_types_b16, ctx_Loads_Set_IsDelta, offsetof(AltDSS_PyContextObject, f_Loads_Set_IsDelta), "Loads_Set_IsDelta"},
 {fastdss_types_void, fastdss_types_b16, ctx_Meters_DoReliabilityCalc, offsetof(AltDSS_PyContextObject, f_Meters_DoReliabilityCalc), "Meters_DoReliabilityCalc"},
 {fastdss_types_void, fastdss_types_b16, ctx_Parser_Set_AutoIncrement, offsetof(AltDSS_PyContextObject, f_Parser_Set_AutoIncrement), "Parser_Set_AutoIncrement"},
-#ifndef ALTDSS_ODDIE
 {fastdss_types_void, fastdss_types_b16, ctx_Reactors_Set_IsDelta, offsetof(AltDSS_PyContextObject, f_Reactors_Set_IsDelta), "Reactors_Set_IsDelta"},
 {fastdss_types_void, fastdss_types_b16, ctx_Reactors_Set_Parallel, offsetof(AltDSS_PyContextObject, f_Reactors_Set_Parallel), "Reactors_Set_Parallel"},
-#endif
 {fastdss_types_void, fastdss_types_b16, ctx_ReduceCkt_Set_KeepLoad, offsetof(AltDSS_PyContextObject, f_ReduceCkt_Set_KeepLoad), "ReduceCkt_Set_KeepLoad"},
 {fastdss_types_void, fastdss_types_b16, ctx_RegControls_Set_IsInverseTime, offsetof(AltDSS_PyContextObject, f_RegControls_Set_IsInverseTime), "RegControls_Set_IsInverseTime"},
 {fastdss_types_void, fastdss_types_b16, ctx_RegControls_Set_IsReversible, offsetof(AltDSS_PyContextObject, f_RegControls_Set_IsReversible), "RegControls_Set_IsReversible"},
