@@ -11,9 +11,15 @@
 // #define Py_LIMITED_API 0x03070000
 #include <string.h>
 #include <Python.h>
+#include <structmember.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include "numpy/ndarrayobject.h"
 #include "dss_capi_ctx.h"
+
+#ifndef Py_T_OBJECT_EX
+// For older Python releases
+#define Py_T_OBJECT_EX T_OBJECT
+#endif
 
 // #ifndef PyList_SET_ITEM
 // #define PyList_SET_ITEM PyList_SetItem 
