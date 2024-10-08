@@ -5,6 +5,7 @@ import numpy
 
 def main():
     options_oddie = dict(
+        py_limited_api=True,
         include_dirs=[numpy.get_include(), '../dss_python_backend/include/'],
         libraries=['altdss_oddie_capi'],
         library_dirs=['../../dss_capi/lib/win_x64', '../../dss_capi/lib/linux_x64'],
@@ -15,6 +16,7 @@ def main():
     )
 
     options_alt = dict(
+        py_limited_api=True,
         include_dirs=[numpy.get_include(), '../dss_python_backend/include/'],
         libraries=['dss_capi'],
         library_dirs=['../../dss_capi/lib/win_x64', '../../dss_capi/lib/linux_x64'],
