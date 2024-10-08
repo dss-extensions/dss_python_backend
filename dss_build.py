@@ -122,7 +122,7 @@ ffi_builders = {}
 src_path = os.environ.get('SRC_DIR', '')
 DSS_CAPI_PATH = os.environ.get('DSS_CAPI_PATH', os.path.join(src_path, '..', 'dss_capi'))
 
-VERSIONS = ['dss_capi', 'dss_capid']
+VERSIONS = ['altdss_capi', 'altdss_capid']
 if BUILD_ODDIE:
     VERSIONS.append('altdss_oddie_capi')
 
@@ -131,35 +131,43 @@ for version in VERSIONS:
     debug = 'd' if version.endswith('d') else ''
 
     if 'oddie' not in version:
-        main_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'dss_capi.h')
-        dss_capi_ctx_path = os.path.join(DSS_CAPI_PATH, 'include', 'dss_capi_ctx.h')
-        # headers = [main_header_fn, dss_capi_ctx_path]
+        main_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'dss_ctx.h')
+        common_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'common.h')
+        enums_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'enums.h')
+        # dss_capi_ctx_path = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'dss_ctx.h')
+        extra_headers = [enums_header_fn, ]
     else:
-        main_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'altdss_oddie.h')
+        main_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'oddie.h')
         dss_capi_ctx_path = None
-        # headers = [main_header_fn]
+        common_header_fn = None
+        extra_headers = []
+
+    if common_header_fn:
+        with open(common_header_fn, 'r') as f:
+            cffi_header_dss = process_header(f.read(), fn=common_header_fn)
+    else:
+        cffi_header_dss = ''
 
     with open(main_header_fn, 'r') as f:
-        cffi_header_dss = process_header(f.read(), fn=main_header_fn)
+        cffi_header_dss += process_header(f.read(), fn=main_header_fn)
+
 
     if 'oddie' not in version:
-        if os.path.exists(dss_capi_ctx_path):
-            with open(dss_capi_ctx_path, 'r') as f:
-                cffi_header_dss += process_header(f.read())
-            
+        for extra_fn in extra_headers:
+            if os.path.exists(extra_fn):
+                with open(extra_fn, 'r') as f:
+                    cffi_header_dss += process_header(f.read())
+
         with open('cffi/dss_capi_custom.h', 'r') as f:
             extra_header_dss = f.read()
             
         cffi_header_dss += extra_header_dss
         
         with open('cffi/dss_capi_custom.c', 'r') as f:
-            if os.path.exists(dss_capi_ctx_path):
-                extra_source_dss = '#include <dss_capi_ctx.h>\n'
-                extra_source_dss += f.read()
-            else:
-                extra_source_dss = f.read()
+            extra_source_dss = '#include <altdss/capi/dss_ctx.h>\n'
+            extra_source_dss += f.read()
     else:
-        extra_source_dss = '#include <altdss_oddie.h>\n'
+        extra_source_dss = '#include <altdss/capi/oddie.h>\n'
 
     ffi_builder_dss.cdef(cffi_header_dss)
 
@@ -170,7 +178,7 @@ for version in VERSIONS:
         ],
         include_dirs=[
             os.path.join(DSS_CAPI_PATH, 'include'),
-            os.path.join(DSS_CAPI_PATH, 'include/altdss'),
+            # os.path.join(DSS_CAPI_PATH, 'include/altdss'),
         ],
         source_extension='.c',
         **extra
@@ -226,8 +234,8 @@ for user_model in user_models:
         
 # Is there a better way to do this? Unfortunately setup(cffi_modules=...)
 # needs a list of strings and cannot handle objects directly
-ffi_builder_ = ffi_builders['dss_capi']
-ffi_builder_d = ffi_builders['dss_capid']
+ffi_builder_ = ffi_builders['altdss_capi']
+ffi_builder_d = ffi_builders['altdss_capid']
 if BUILD_ODDIE:
     ffi_builder_odd = ffi_builders['altdss_oddie_capi']
 
