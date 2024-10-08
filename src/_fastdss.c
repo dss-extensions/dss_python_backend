@@ -14,7 +14,7 @@
 #include <structmember.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include "numpy/ndarrayobject.h"
-#include "dss_capi_ctx.h"
+#include "altdss/capi/dss_ctx.h"
 
 #ifndef Py_T_OBJECT_EX
 // For older Python releases
