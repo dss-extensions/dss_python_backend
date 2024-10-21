@@ -9,15 +9,15 @@ For better maintenance and evolution of the Python-only code, the module was spl
 import os
 
 if os.environ.get('DSS_EXTENSIONS_DEBUG', '') != '1':
-    from ._dss_capi import ffi, lib
+    from ._altdss_capi import ffi, lib
 else:
     import warnings
     warnings.warn('Environment variable DSS_EXTENSIONS_DEBUG=1 is set: loading the debug version of the DSS C-API library')
-    from ._dss_capid import ffi, lib
+    from ._altdss_capid import ffi, lib
 
 # Ensure this is called at least once. This was moved from 
 # CffiApiUtil so we call it as soon as the DLL/so is loaded.
-lib.DSS_Start(0)
+lib.ctx_DSS_Start(ffi.NULL, 0)
 
 __version__ = '0.14.6a1'
 __all__ = ['ffi', 'lib']
