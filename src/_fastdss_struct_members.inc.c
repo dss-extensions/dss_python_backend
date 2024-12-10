@@ -2,9 +2,7 @@ PyObject *f_ActiveClass_Get_ActiveClassName;
 PyObject *f_ActiveClass_Get_ActiveClassParent;
 PyObject *f_ActiveClass_Get_Name;
 PyObject *f_Bus_Get_Name;
-#ifndef ALTDSS_ODDIE
 PyObject *f_CNData_Get_Name;
-#endif
 PyObject *f_CapControls_Get_Capacitor;
 PyObject *f_CapControls_Get_MonitoredObj;
 PyObject *f_CapControls_Get_Name;
@@ -37,10 +35,8 @@ PyObject *f_Generators_Get_daily;
 PyObject *f_Generators_Get_duty;
 PyObject *f_ISources_Get_Name;
 PyObject *f_LineCodes_Get_Name;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Get_Name;
 PyObject *f_LineSpacings_Get_Name;
-#endif
 PyObject *f_Lines_Get_Bus1;
 PyObject *f_Lines_Get_Bus2;
 PyObject *f_Lines_Get_Geometry;
@@ -106,9 +102,7 @@ PyObject *f_Solution_Get_ModeID;
 PyObject *f_Storages_Get_Name;
 PyObject *f_SwtControls_Get_Name;
 PyObject *f_SwtControls_Get_SwitchedObj;
-#ifndef ALTDSS_ODDIE
 PyObject *f_TSData_Get_Name;
-#endif
 PyObject *f_Text_Get_Command;
 PyObject *f_Text_Get_Result;
 PyObject *f_Topology_Get_BranchName;
@@ -122,27 +116,19 @@ PyObject *f_WindGens_Get_Name;
 PyObject *f_WindGens_Get_Yearly;
 PyObject *f_WindGens_Get_daily;
 PyObject *f_WindGens_Get_duty;
-#ifndef ALTDSS_ODDIE
 PyObject *f_WireData_Get_Name;
-#endif
 PyObject *f_XYCurves_Get_Name;
-#ifndef ALTDSS_ODDIE
 PyObject *f_ActiveClass_ToJSON;
 PyObject *f_Circuit_ToJSON;
-#endif
 PyObject *f_CktElement_Get_Controller;
-#ifndef ALTDSS_ODDIE
 PyObject *f_DSSElement_ToJSON;
-#endif
 PyObject *f_DSS_Executive_Get_Command;
 PyObject *f_DSS_Executive_Get_CommandHelp;
 PyObject *f_DSS_Executive_Get_Option;
 PyObject *f_DSS_Executive_Get_OptionHelp;
 PyObject *f_DSS_Executive_Get_OptionValue;
 PyObject *f_ActiveClass_Set_Name;
-#ifndef ALTDSS_ODDIE
 PyObject *f_CNData_Set_Name;
-#endif
 PyObject *f_CapControls_Set_Capacitor;
 PyObject *f_CapControls_Set_MonitoredObj;
 PyObject *f_CapControls_Set_Name;
@@ -170,10 +156,8 @@ PyObject *f_Generators_Set_daily;
 PyObject *f_Generators_Set_duty;
 PyObject *f_ISources_Set_Name;
 PyObject *f_LineCodes_Set_Name;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Set_Name;
 PyObject *f_LineSpacings_Set_Name;
-#endif
 PyObject *f_Lines_Set_Bus1;
 PyObject *f_Lines_Set_Bus2;
 PyObject *f_Lines_Set_Geometry;
@@ -234,9 +218,7 @@ PyObject *f_Solution_Set_LDCurve;
 PyObject *f_Storages_Set_Name;
 PyObject *f_SwtControls_Set_Name;
 PyObject *f_SwtControls_Set_SwitchedObj;
-#ifndef ALTDSS_ODDIE
 PyObject *f_TSData_Set_Name;
-#endif
 PyObject *f_Text_CommandBlock;
 PyObject *f_Text_Set_Command;
 PyObject *f_Topology_Set_BranchName;
@@ -249,23 +231,17 @@ PyObject *f_WindGens_Set_Name;
 PyObject *f_WindGens_Set_Yearly;
 PyObject *f_WindGens_Set_daily;
 PyObject *f_WindGens_Set_duty;
-#ifndef ALTDSS_ODDIE
 PyObject *f_WireData_Set_Name;
-#endif
 PyObject *f_XYCurves_Set_Name;
 PyObject *f_YMatrix_SaveAsMarketFiles;
-#ifndef ALTDSS_ODDIE
 PyObject *f_ZIP_Open;
 PyObject *f_ZIP_Redirect;
-#endif
 PyObject *f_ActiveClass_Get_AllNames;
 PyObject *f_Bus_Get_AllPCEatBus;
 PyObject *f_Bus_Get_AllPDEatBus;
 PyObject *f_Bus_Get_LineList;
 PyObject *f_Bus_Get_LoadList;
-#ifndef ALTDSS_ODDIE
 PyObject *f_CNData_Get_AllNames;
-#endif
 PyObject *f_CapControls_Get_AllNames;
 PyObject *f_Capacitors_Get_AllNames;
 PyObject *f_Circuit_Get_AllBusNames;
@@ -286,11 +262,9 @@ PyObject *f_Generators_Get_AllNames;
 PyObject *f_Generators_Get_RegisterNames;
 PyObject *f_ISources_Get_AllNames;
 PyObject *f_LineCodes_Get_AllNames;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Get_AllNames;
 PyObject *f_LineGeometries_Get_Conductors;
 PyObject *f_LineSpacings_Get_AllNames;
-#endif
 PyObject *f_Lines_Get_AllNames;
 PyObject *f_LoadShapes_Get_AllNames;
 PyObject *f_Loads_Get_AllNames;
@@ -315,9 +289,7 @@ PyObject *f_Solution_Get_IncMatrixRows;
 PyObject *f_Storages_Get_AllNames;
 PyObject *f_Storages_Get_RegisterNames;
 PyObject *f_SwtControls_Get_AllNames;
-#ifndef ALTDSS_ODDIE
 PyObject *f_TSData_Get_AllNames;
-#endif
 PyObject *f_Topology_Get_AllIsolatedBranches;
 PyObject *f_Topology_Get_AllIsolatedLoads;
 PyObject *f_Topology_Get_AllLoopedPairs;
@@ -325,15 +297,11 @@ PyObject *f_Transformers_Get_AllNames;
 PyObject *f_Vsources_Get_AllNames;
 PyObject *f_WindGens_Get_AllNames;
 PyObject *f_WindGens_Get_RegisterNames;
-#ifndef ALTDSS_ODDIE
 PyObject *f_WireData_Get_AllNames;
-#endif
 PyObject *f_XYCurves_Get_AllNames;
 PyObject *f_CktElement_Get_BusNames;
 PyObject *f_Circuit_Get_AllNodeNamesByPhase;
-#ifndef ALTDSS_ODDIE
 PyObject *f_ZIP_List;
-#endif
 PyObject *f_Bus_Get_SeqVoltages_GR;
 PyObject *f_Bus_Get_VMagAngle_GR;
 PyObject *f_Bus_Get_puVmagAngle_GR;
@@ -351,12 +319,10 @@ PyObject *f_Generators_Get_RegisterValues_GR;
 PyObject *f_LineCodes_Get_Cmatrix_GR;
 PyObject *f_LineCodes_Get_Rmatrix_GR;
 PyObject *f_LineCodes_Get_Xmatrix_GR;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Get_Xcoords_GR;
 PyObject *f_LineGeometries_Get_Ycoords_GR;
 PyObject *f_LineSpacings_Get_Xcoords_GR;
 PyObject *f_LineSpacings_Get_Ycoords_GR;
-#endif
 PyObject *f_Lines_Get_Cmatrix_GR;
 PyObject *f_Lines_Get_Rmatrix_GR;
 PyObject *f_Lines_Get_Xmatrix_GR;
@@ -394,11 +360,9 @@ PyObject *f_Monitors_Get_Channel_GR;
 PyObject *f_Parser_Get_Matrix_GR;
 PyObject *f_Parser_Get_SymMatrix_GR;
 PyObject *f_Parser_Get_Vector_GR;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Get_Cmatrix_GR;
 PyObject *f_LineGeometries_Get_Rmatrix_GR;
 PyObject *f_LineGeometries_Get_Xmatrix_GR;
-#endif
 PyObject *f_PDElements_Get_AllMaxCurrents_GR;
 PyObject *f_PDElements_Get_AllPctEmerg_GR;
 PyObject *f_PDElements_Get_AllPctNorm_GR;
@@ -435,9 +399,7 @@ PyObject *f_Transformers_Get_AllLossesByType_GR;
 PyObject *f_Transformers_Get_LossesByType_GR;
 PyObject *f_Transformers_Get_WdgCurrents_GR;
 PyObject *f_Transformers_Get_WdgVoltages_GR;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Get_Zmatrix_GR;
-#endif
 PyObject *f_Bus_Get_Zsc0_GR;
 PyObject *f_Bus_Get_Zsc1_GR;
 PyObject *f_Circuit_Get_LineLosses_GR;
@@ -453,9 +415,7 @@ PyObject *f_Bus_Get_Nodes_GR;
 PyObject *f_Capacitors_Get_States_GR;
 PyObject *f_CktElement_Get_NodeOrder_GR;
 PyObject *f_CktElement_Get_NodeRef_GR;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Get_Units_GR;
-#endif
 PyObject *f_PDElements_Get_AllNumConductors_GR;
 PyObject *f_PDElements_Get_AllNumPhases_GR;
 PyObject *f_PDElements_Get_AllNumTerminals_GR;
@@ -477,7 +437,6 @@ PyObject *f_Bus_Get_Next;
 PyObject *f_Bus_Get_NumNodes;
 PyObject *f_Bus_Get_SectionID;
 PyObject *f_Bus_Get_idx;
-#ifndef ALTDSS_ODDIE
 PyObject *f_CNData_Get_Count;
 PyObject *f_CNData_Get_First;
 PyObject *f_CNData_Get_GMRUnits;
@@ -486,7 +445,6 @@ PyObject *f_CNData_Get_RadiusUnits;
 PyObject *f_CNData_Get_ResistanceUnits;
 PyObject *f_CNData_Get_idx;
 PyObject *f_CNData_Get_k;
-#endif
 PyObject *f_CapControls_Get_Count;
 PyObject *f_CapControls_Get_First;
 PyObject *f_CapControls_Get_Mode;
@@ -560,7 +518,6 @@ PyObject *f_LineCodes_Get_Next;
 PyObject *f_LineCodes_Get_Phases;
 PyObject *f_LineCodes_Get_Units;
 PyObject *f_LineCodes_Get_idx;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Get_Count;
 PyObject *f_LineGeometries_Get_First;
 PyObject *f_LineGeometries_Get_Nconds;
@@ -574,7 +531,6 @@ PyObject *f_LineSpacings_Get_Next;
 PyObject *f_LineSpacings_Get_Phases;
 PyObject *f_LineSpacings_Get_Units;
 PyObject *f_LineSpacings_Get_idx;
-#endif
 PyObject *f_Lines_Get_Count;
 PyObject *f_Lines_Get_First;
 PyObject *f_Lines_Get_Next;
@@ -715,7 +671,6 @@ PyObject *f_SwtControls_Get_NormalState;
 PyObject *f_SwtControls_Get_State;
 PyObject *f_SwtControls_Get_SwitchedTerm;
 PyObject *f_SwtControls_Get_idx;
-#ifndef ALTDSS_ODDIE
 PyObject *f_TSData_Get_Count;
 PyObject *f_TSData_Get_First;
 PyObject *f_TSData_Get_GMRUnits;
@@ -723,7 +678,6 @@ PyObject *f_TSData_Get_Next;
 PyObject *f_TSData_Get_RadiusUnits;
 PyObject *f_TSData_Get_ResistanceUnits;
 PyObject *f_TSData_Get_idx;
-#endif
 PyObject *f_Topology_Get_ActiveBranch;
 PyObject *f_Topology_Get_ActiveLevel;
 PyObject *f_Topology_Get_BackwardBranch;
@@ -760,7 +714,6 @@ PyObject *f_WindGens_Get_Phases;
 PyObject *f_WindGens_Get_QFlag;
 PyObject *f_WindGens_Get_QMode;
 PyObject *f_WindGens_Get_idx;
-#ifndef ALTDSS_ODDIE
 PyObject *f_WireData_Get_Count;
 PyObject *f_WireData_Get_First;
 PyObject *f_WireData_Get_GMRUnits;
@@ -768,7 +721,6 @@ PyObject *f_WireData_Get_Next;
 PyObject *f_WireData_Get_RadiusUnits;
 PyObject *f_WireData_Get_ResistanceUnits;
 PyObject *f_WireData_Get_idx;
-#endif
 PyObject *f_XYCurves_Get_Count;
 PyObject *f_XYCurves_Get_First;
 PyObject *f_XYCurves_Get_Next;
@@ -783,13 +735,11 @@ PyObject *f_Circuit_SetActiveElement;
 PyObject *f_DSS_SetActiveClass;
 PyObject *f_Lines_New;
 PyObject *f_LoadShapes_New;
-#ifndef ALTDSS_ODDIE
 PyObject *f_CNData_Set_GMRUnits;
 PyObject *f_CNData_Set_RadiusUnits;
 PyObject *f_CNData_Set_ResistanceUnits;
 PyObject *f_CNData_Set_idx;
 PyObject *f_CNData_Set_k;
-#endif
 PyObject *f_CapControls_Set_Mode;
 PyObject *f_CapControls_Set_MonitoredTerm;
 PyObject *f_CapControls_Set_idx;
@@ -816,7 +766,6 @@ PyObject *f_ISources_Set_idx;
 PyObject *f_LineCodes_Set_Phases;
 PyObject *f_LineCodes_Set_Units;
 PyObject *f_LineCodes_Set_idx;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Set_Nconds;
 PyObject *f_LineGeometries_Set_Phases;
 PyObject *f_LineGeometries_Set_idx;
@@ -824,7 +773,6 @@ PyObject *f_LineSpacings_Set_Nconds;
 PyObject *f_LineSpacings_Set_Phases;
 PyObject *f_LineSpacings_Set_Units;
 PyObject *f_LineSpacings_Set_idx;
-#endif
 PyObject *f_Lines_Set_Phases;
 PyObject *f_Lines_Set_Units;
 PyObject *f_Lines_Set_idx;
@@ -894,12 +842,10 @@ PyObject *f_SwtControls_Set_NormalState;
 PyObject *f_SwtControls_Set_State;
 PyObject *f_SwtControls_Set_SwitchedTerm;
 PyObject *f_SwtControls_Set_idx;
-#ifndef ALTDSS_ODDIE
 PyObject *f_TSData_Set_GMRUnits;
 PyObject *f_TSData_Set_RadiusUnits;
 PyObject *f_TSData_Set_ResistanceUnits;
 PyObject *f_TSData_Set_idx;
-#endif
 PyObject *f_Transformers_Set_CoreType;
 PyObject *f_Transformers_Set_NumTaps;
 PyObject *f_Transformers_Set_NumWindings;
@@ -914,12 +860,10 @@ PyObject *f_WindGens_Set_Phases;
 PyObject *f_WindGens_Set_QFlag;
 PyObject *f_WindGens_Set_QMode;
 PyObject *f_WindGens_Set_idx;
-#ifndef ALTDSS_ODDIE
 PyObject *f_WireData_Set_GMRUnits;
 PyObject *f_WireData_Set_RadiusUnits;
 PyObject *f_WireData_Set_ResistanceUnits;
 PyObject *f_WireData_Set_idx;
-#endif
 PyObject *f_XYCurves_Set_Npts;
 PyObject *f_XYCurves_Set_idx;
 PyObject *f_YMatrix_AddInAuxCurrents;
@@ -938,7 +882,6 @@ PyObject *f_Bus_Get_TotalMiles;
 PyObject *f_Bus_Get_kVBase;
 PyObject *f_Bus_Get_x;
 PyObject *f_Bus_Get_y;
-#ifndef ALTDSS_ODDIE
 PyObject *f_CNData_Get_DiaCable;
 PyObject *f_CNData_Get_DiaIns;
 PyObject *f_CNData_Get_DiaStrand;
@@ -953,7 +896,6 @@ PyObject *f_CNData_Get_RStrand;
 PyObject *f_CNData_Get_Rac;
 PyObject *f_CNData_Get_Radius;
 PyObject *f_CNData_Get_Rdc;
-#endif
 PyObject *f_CapControls_Get_CTratio;
 PyObject *f_CapControls_Get_DeadTime;
 PyObject *f_CapControls_Get_Delay;
@@ -996,11 +938,9 @@ PyObject *f_LineCodes_Get_R0;
 PyObject *f_LineCodes_Get_R1;
 PyObject *f_LineCodes_Get_X0;
 PyObject *f_LineCodes_Get_X1;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Get_EmergAmps;
 PyObject *f_LineGeometries_Get_NormAmps;
 PyObject *f_LineGeometries_Get_RhoEarth;
-#endif
 PyObject *f_Lines_Get_C0;
 PyObject *f_Lines_Get_C1;
 PyObject *f_Lines_Get_EmergAmps;
@@ -1133,7 +1073,6 @@ PyObject *f_Storages_Get_kWhRated;
 PyObject *f_Storages_Get_kvar;
 PyObject *f_Storages_Get_puSOC;
 PyObject *f_SwtControls_Get_Delay;
-#ifndef ALTDSS_ODDIE
 PyObject *f_TSData_Get_DiaCable;
 PyObject *f_TSData_Get_DiaIns;
 PyObject *f_TSData_Get_DiaShield;
@@ -1148,7 +1087,6 @@ PyObject *f_TSData_Get_Radius;
 PyObject *f_TSData_Get_Rdc;
 PyObject *f_TSData_Get_TapeLap;
 PyObject *f_TSData_Get_TapeLayer;
-#endif
 PyObject *f_Transformers_Get_MaxTap;
 PyObject *f_Transformers_Get_MinTap;
 PyObject *f_Transformers_Get_R;
@@ -1183,7 +1121,6 @@ PyObject *f_WindGens_Get_kVA;
 PyObject *f_WindGens_Get_kW;
 PyObject *f_WindGens_Get_kvar;
 PyObject *f_WindGens_Get_pd;
-#ifndef ALTDSS_ODDIE
 PyObject *f_WireData_Get_CapRadius;
 PyObject *f_WireData_Get_Diameter;
 PyObject *f_WireData_Get_EmergAmps;
@@ -1192,7 +1129,6 @@ PyObject *f_WireData_Get_NormAmps;
 PyObject *f_WireData_Get_Rac;
 PyObject *f_WireData_Get_Radius;
 PyObject *f_WireData_Get_Rdc;
-#endif
 PyObject *f_XYCurves_Get_Xscale;
 PyObject *f_XYCurves_Get_Xshift;
 PyObject *f_XYCurves_Get_Yscale;
@@ -1201,7 +1137,6 @@ PyObject *f_XYCurves_Get_x;
 PyObject *f_XYCurves_Get_y;
 PyObject *f_Bus_Set_x;
 PyObject *f_Bus_Set_y;
-#ifndef ALTDSS_ODDIE
 PyObject *f_CNData_Set_DiaCable;
 PyObject *f_CNData_Set_DiaIns;
 PyObject *f_CNData_Set_DiaStrand;
@@ -1216,7 +1151,6 @@ PyObject *f_CNData_Set_RStrand;
 PyObject *f_CNData_Set_Rac;
 PyObject *f_CNData_Set_Radius;
 PyObject *f_CNData_Set_Rdc;
-#endif
 PyObject *f_CapControls_Set_CTratio;
 PyObject *f_CapControls_Set_DeadTime;
 PyObject *f_CapControls_Set_Delay;
@@ -1259,11 +1193,9 @@ PyObject *f_LineCodes_Set_R0;
 PyObject *f_LineCodes_Set_R1;
 PyObject *f_LineCodes_Set_X0;
 PyObject *f_LineCodes_Set_X1;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Set_EmergAmps;
 PyObject *f_LineGeometries_Set_NormAmps;
 PyObject *f_LineGeometries_Set_RhoEarth;
-#endif
 PyObject *f_Lines_Set_C0;
 PyObject *f_Lines_Set_C1;
 PyObject *f_Lines_Set_EmergAmps;
@@ -1383,7 +1315,6 @@ PyObject *f_Storages_Set_kWhRated;
 PyObject *f_Storages_Set_kvar;
 PyObject *f_Storages_Set_puSOC;
 PyObject *f_SwtControls_Set_Delay;
-#ifndef ALTDSS_ODDIE
 PyObject *f_TSData_Set_DiaCable;
 PyObject *f_TSData_Set_DiaIns;
 PyObject *f_TSData_Set_DiaShield;
@@ -1398,7 +1329,6 @@ PyObject *f_TSData_Set_Radius;
 PyObject *f_TSData_Set_Rdc;
 PyObject *f_TSData_Set_TapeLap;
 PyObject *f_TSData_Set_TapeLayer;
-#endif
 PyObject *f_Transformers_Set_MaxTap;
 PyObject *f_Transformers_Set_MinTap;
 PyObject *f_Transformers_Set_R;
@@ -1433,7 +1363,6 @@ PyObject *f_WindGens_Set_kVA;
 PyObject *f_WindGens_Set_kW;
 PyObject *f_WindGens_Set_kvar;
 PyObject *f_WindGens_Set_pd;
-#ifndef ALTDSS_ODDIE
 PyObject *f_WireData_Set_CapRadius;
 PyObject *f_WireData_Set_Diameter;
 PyObject *f_WireData_Set_EmergAmps;
@@ -1442,7 +1371,6 @@ PyObject *f_WireData_Set_NormAmps;
 PyObject *f_WireData_Set_Rac;
 PyObject *f_WireData_Set_Radius;
 PyObject *f_WireData_Set_Rdc;
-#endif
 PyObject *f_XYCurves_Set_Xscale;
 PyObject *f_XYCurves_Set_Xshift;
 PyObject *f_XYCurves_Set_Yscale;
@@ -1473,9 +1401,7 @@ PyObject *f_Fuses_IsBlown;
 PyObject *f_Generators_Get_ForcedON;
 PyObject *f_Generators_Get_IsDelta;
 PyObject *f_LineCodes_Get_IsZ1Z0;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Get_Reduce;
-#endif
 PyObject *f_Lines_Get_IsSwitch;
 PyObject *f_LoadShapes_Get_UseActual;
 PyObject *f_Loads_Get_IsDelta;
@@ -1506,9 +1432,7 @@ PyObject *f_YMatrix_Get_LoadsNeedUpdating;
 PyObject *f_YMatrix_Get_SolutionInitialized;
 PyObject *f_YMatrix_Get_SystemYChanged;
 PyObject *f_YMatrix_Get_UseAuxCurrents;
-#ifndef ALTDSS_ODDIE
 PyObject *f_ZIP_Contains;
-#endif
 PyObject *f_CktElement_IsOpen;
 PyObject *f_CapControls_Set_UseVoltOverride;
 PyObject *f_Capacitors_Set_IsDelta;
@@ -1524,9 +1448,7 @@ PyObject *f_Error_Set_EarlyAbort;
 PyObject *f_Error_Set_ExtendedErrors;
 PyObject *f_Generators_Set_ForcedON;
 PyObject *f_Generators_Set_IsDelta;
-#ifndef ALTDSS_ODDIE
 PyObject *f_LineGeometries_Set_Reduce;
-#endif
 PyObject *f_Lines_Set_IsSwitch;
 PyObject *f_LoadShapes_Set_UseActual;
 PyObject *f_Loads_Set_IsDelta;
@@ -1635,6 +1557,4 @@ PyObject *f_YMatrix_GetPCInjCurr;
 PyObject *f_YMatrix_GetSourceInjCurrents;
 PyObject *f_YMatrix_SetGeneratordQdV;
 PyObject *f_YMatrix_ZeroInjCurr;
-#ifndef ALTDSS_ODDIE
 PyObject *f_ZIP_Close;
-#endif

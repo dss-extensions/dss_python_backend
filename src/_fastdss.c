@@ -14,7 +14,9 @@
 #include <structmember.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include "numpy/ndarrayobject.h"
-#include "altdss/capi/dss_ctx.h"
+#include "altdss/capi/common.h"
+#include "altdss/capi/enums.h"
+#include "altdss/capi/capi.h"
 
 #ifndef Py_T_OBJECT_EX
 // For older Python releases
@@ -24,6 +26,8 @@
 // #ifndef PyList_SET_ITEM
 // #define PyList_SET_ITEM PyList_SetItem 
 // #endif
+
+//TODO: reuse code from the new capi.h header
 
 typedef int32_t (*func_i32_ctx_i32)(const void* ctx, int32_t value);
 typedef int32_t (*func_i32_ctx_str)(const void* ctx, const char* value);
@@ -87,6 +91,7 @@ typedef struct
 {
     PyObject_HEAD
 
+    AltDSSCAPI *dssCFuncs;
     void *dssCtx;
     int32_t *errorPtr;
     void* func;
@@ -102,6 +107,7 @@ typedef struct
 {
     PyObject_HEAD
 
+    AltDSSCAPI *dssCFuncs;
     void *dssCtx;
     int32_t *errorPtr;
     void* func;
@@ -117,6 +123,7 @@ typedef struct
 {
     PyObject_HEAD
 
+    AltDSSCAPI *dssCFuncs;
     void *dssCtx;
     int32_t *errorPtr;
     void* func;
@@ -132,6 +139,7 @@ typedef struct
 {
     PyObject_HEAD
 
+    AltDSSCAPI *dssCFuncs;
     void *dssCtx;
     int32_t *errorPtr;
     void* func;
@@ -147,6 +155,7 @@ typedef struct
 {
     PyObject_HEAD
 
+    AltDSSCAPI *dssCFuncs;
     void *dssCtx;
     int32_t *errorPtr;
     void* func;
@@ -166,6 +175,7 @@ typedef struct AltDSS_PyContextObject_
 {
     PyObject_HEAD
 
+    AltDSSCAPI *dssCFuncs;
     void *dssCtx;
     int32_t *errorPtr;
     PyObject *DSSExceptionType;
@@ -185,7 +195,7 @@ typedef struct AltDSS_PyContextObject_
 typedef struct {
     int resType;
     int argType;
-    void* c_func;
+    size_t c_funcOffset;
     size_t attrOffset;
     char const* fname;
 } FastDSSFuncInfo;
@@ -303,7 +313,7 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
 
     if (*f->errorPtr && ((*f->settingsPtr) & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
     {
-        const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
+        const char *errorDesc = f->dssCFuncs->Error_Get_Description(f->dssCtx);
         int32_t num = *f->errorPtr;
         *f->errorPtr = 0;
         PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
@@ -421,7 +431,7 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
 
     if (*f->errorPtr && ((*f->settingsPtr) & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
     {
-        const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
+        const char *errorDesc = f->dssCFuncs->Error_Get_Description(f->dssCtx);
         int32_t num = *f->errorPtr;
         *f->errorPtr = 0;
         PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
@@ -502,7 +512,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
     }
     if (*f->errorPtr && ((*f->settingsPtr) & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
     {
-        const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
+        const char *errorDesc = f->dssCFuncs->Error_Get_Description(f->dssCtx);
         int32_t num = *f->errorPtr;
         *f->errorPtr = 0;
         PyErr_SetObject(f->parent->DSSExceptionType, PyTuple_Pack(2, 
@@ -730,9 +740,9 @@ static PyObject *AltDSS_PyStrGetter_call(AltDSS_PyStrGetterObject *f, PyObject *
     // or take ownership of the pointer.
     if (*f->errorPtr && ((*f->settingsPtr) & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
     {
-        if (ctx_Error_Get_Description != f->func)
+        if (f->dssCFuncs->Error_Get_Description != f->func)
         {
-            const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
+            const char *errorDesc = f->dssCFuncs->Error_Get_Description(f->dssCtx);
             int32_t num = *f->errorPtr;
             *f->errorPtr = 0;
             //TODO: check ref count here
@@ -804,7 +814,7 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
 
     if (*f->errorPtr && ((*f->settingsPtr) & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
     {
-        const char *errorDesc = ctx_Error_Get_Description(f->dssCtx);
+        const char *errorDesc = f->dssCFuncs->Error_Get_Description(f->dssCtx);
         int32_t num = *f->errorPtr;
         *f->errorPtr = 0;
         //TODO: check ref count here
@@ -859,7 +869,7 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
 
 static PyTypeObject AltDSS_PyScalarGetterType = {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
-    .tp_name = ALTDSS_FAST_MODNAME ".AltDSS_PyScalarGetter",
+    .tp_name = "_fastdss.AltDSS_PyScalarGetter",
     .tp_doc = PyDoc_STR("Wrap an AltDSS C-API plain scalar (int32, float64, bool) getter functions, handling DSS errors"),
     .tp_basicsize = sizeof(AltDSS_PyScalarGetterObject),
     .tp_itemsize = 0,
@@ -871,7 +881,7 @@ static PyTypeObject AltDSS_PyScalarGetterType = {
 
 static PyTypeObject AltDSS_PyScalarSetterType = {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
-    .tp_name = ALTDSS_FAST_MODNAME ".AltDSS_PyScalarSetter",
+    .tp_name = "_fastdss.AltDSS_PyScalarSetter",
     .tp_doc = PyDoc_STR("Wrap an AltDSS C-API plain scalar (int32, float64, bool) setter functions, handling DSS errors"),
     .tp_basicsize = sizeof(AltDSS_PyScalarSetterObject),
     .tp_itemsize = 0,
@@ -883,7 +893,7 @@ static PyTypeObject AltDSS_PyScalarSetterType = {
 
 static PyTypeObject AltDSS_PyStrGetterType = {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
-    .tp_name = ALTDSS_FAST_MODNAME ".AltDSS_PyStrGetter",
+    .tp_name = "_fastdss.AltDSS_PyStrGetter",
     .tp_doc = PyDoc_STR("Wrap an AltDSS C-API plain str functions, handling DSS errors"),
     .tp_basicsize = sizeof(AltDSS_PyStrGetterObject),
     .tp_itemsize = 0,
@@ -895,7 +905,7 @@ static PyTypeObject AltDSS_PyStrGetterType = {
 
 static PyTypeObject AltDSS_PyStrListGetterType = {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
-    .tp_name = ALTDSS_FAST_MODNAME ".AltDSS_PyStrListGetter",
+    .tp_name = "_fastdss.AltDSS_PyStrListGetter",
     .tp_doc = PyDoc_STR("Wrap an AltDSS C-API function that returns an array of strings, handling DSS errors"),
     .tp_basicsize = sizeof(AltDSS_PyStrListGetterObject),
     .tp_itemsize = 0,
@@ -907,7 +917,7 @@ static PyTypeObject AltDSS_PyStrListGetterType = {
 
 static PyTypeObject AltDSS_PyGRGetterType = {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
-    .tp_name = ALTDSS_FAST_MODNAME ".AltDSS_PyGRGetter",
+    .tp_name = "_fastdss.AltDSS_PyGRGetter",
     .tp_doc = PyDoc_STR("Wrap an AltDSS C-API function that returns a numeric array, handling DSS errors and runtime settings"),
     .tp_basicsize = sizeof(AltDSS_PyGRGetterObject),
     .tp_itemsize = 0,
@@ -923,8 +933,8 @@ static PyMethodDef funcs[] = {
 
 static struct PyModuleDef altdss_fast_def = {
     PyModuleDef_HEAD_INIT, 
-    ALTDSS_FAST_MODNAME, 
-    "A couple of faster string handling functions; CPython only.\n",
+    "_fastdss",
+    "Faster, NumPy integrated wrapper implementations for AltDSS C-API and AltDSS Oddie C-API; intended for CPython only.\n",
     -1,
     funcs
 };
@@ -938,6 +948,7 @@ static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, P
     PyObject* setObj = NULL;
     PyObject* fakeLib = NULL;
     FastDSSFuncInfo* finfo = NULL;
+    void** tmpFunc = NULL;
 
     if (sizeof(unsigned long long) < sizeof(void*))
     {
@@ -945,18 +956,19 @@ static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, P
         return -1;
     }
 
-    unsigned long long dssCtx, settingsPtr;
-    if ((!PyArg_ParseTuple(args, "KKOOO", &dssCtx, &settingsPtr, &self->DSSExceptionType, &setObj, &fakeLib)) || !PyObject_IsInstance(setObj, (PyObject*) &PySet_Type))
+    unsigned long long dssCtx, settingsPtr, dssCFuncs;
+    if ((!PyArg_ParseTuple(args, "KKOOOO", &dssCtx, &dssCFuncs, &settingsPtr, &self->DSSExceptionType, &setObj, &fakeLib)) || !PyObject_IsInstance(setObj, (PyObject*) &PySet_Type))
     {
         PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyContext initialization");
         return -1;
     }
     
     self->dssCtx = (void*) dssCtx;
+    self->dssCFuncs = (AltDSSCAPI*) dssCFuncs;
     self->settingsPtr = (int32_t*) settingsPtr;
-    self->errorPtr = ctx_Error_Get_NumberPtr(self->dssCtx);
-    
-    ctx_DSS_GetGRPointers(self->dssCtx,
+    self->errorPtr = self->dssCFuncs->Error_Get_NumberPtr(self->dssCtx);
+
+    self->dssCFuncs->DSS_GetGRPointers(self->dssCtx,
         &self->dataPtr_pdouble,
         &self->dataPtr_pinteger,
         &self->dataPtr_pbyte,
@@ -969,10 +981,11 @@ static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, P
     Py_INCREF(self->DSSExceptionType);
 
     finfo = &info[0];
-    while (finfo->c_func != NULL)
+    while (finfo->c_funcOffset)
     {
         // printf("INFO: function %s\n", finfo->fname);
-        if (!AltDSS_Add_PyFunc(self, finfo, setObj, fakeLib))
+        tmpFunc = *(void**)(((char*) self->dssCFuncs) + finfo->c_funcOffset);
+        if (tmpFunc != NULL && !AltDSS_Add_PyFunc(self, finfo, setObj, fakeLib))
         {
             goto ERROR_INIT;
         }
@@ -1011,7 +1024,7 @@ static PyMethodDef AltDSS_PyContext_methods[] = {
 
 static PyTypeObject AltDSS_PyContextType = {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
-    .tp_name = ALTDSS_FAST_MODNAME ".AltDSS_PyContext",
+    .tp_name = "_fastdss.AltDSS_PyContext",
     .tp_doc = PyDoc_STR("Wraps a subset of the AltDSS C-API functions, handling DSS errors"),
     .tp_basicsize = sizeof(AltDSS_PyContextObject),
     .tp_itemsize = 0,
@@ -1023,7 +1036,7 @@ static PyTypeObject AltDSS_PyContextType = {
     .tp_members = AltDSS_PyContext_members,
 };
 
-PyMODINIT_FUNC ALTDSS_FAST_MODINIT()
+PyMODINIT_FUNC PyInit__fastdss()
 {
     PyObject *m;
 
@@ -1122,7 +1135,9 @@ int AltDSS_PyStrListGetter_cinit(AltDSS_PyStrListGetterObject* f, AltDSS_PyConte
     f->parent = alt_py_ctx;
     f->dssCtx = alt_py_ctx->dssCtx;
     f->errorPtr = alt_py_ctx->errorPtr;
-    f->func = finfo->c_func;
+
+    f->func = *(void**)(((char*) alt_py_ctx->dssCFuncs) + finfo->c_funcOffset);
+    f->dssCFuncs = alt_py_ctx->dssCFuncs;
     f->settingsPtr = alt_py_ctx->settingsPtr;
     f->funcArgSignature = finfo->argType;
     f->resType = finfo->resType;
@@ -1150,7 +1165,8 @@ int AltDSS_PyScalarSetter_cinit(AltDSS_PyScalarSetterObject* f, AltDSS_PyContext
     f->parent = alt_py_ctx;
     f->dssCtx = alt_py_ctx->dssCtx;
     f->errorPtr = alt_py_ctx->errorPtr;
-    f->func = finfo->c_func;
+    f->func = *(void**)(((char*) alt_py_ctx->dssCFuncs) + finfo->c_funcOffset);
+    f->dssCFuncs = alt_py_ctx->dssCFuncs;
     f->settingsPtr = alt_py_ctx->settingsPtr;
     f->funcArgSignature = finfo->argType;
     f->resType = finfo->resType;
@@ -1172,7 +1188,8 @@ int AltDSS_PyScalarGetter_cinit(AltDSS_PyScalarGetterObject* f, AltDSS_PyContext
     f->parent = alt_py_ctx;
     f->dssCtx = alt_py_ctx->dssCtx;
     f->errorPtr = alt_py_ctx->errorPtr;
-    f->func = finfo->c_func;
+    f->func = *(void**)(((char*) alt_py_ctx->dssCFuncs) + finfo->c_funcOffset);
+    f->dssCFuncs = alt_py_ctx->dssCFuncs;
     f->settingsPtr = alt_py_ctx->settingsPtr;
     f->funcArgSignature = finfo->argType;
     f->resType = finfo->resType;
@@ -1192,7 +1209,8 @@ int AltDSS_PyStrGetter_cinit(AltDSS_PyStrGetterObject* f, AltDSS_PyContextObject
     f->parent = alt_py_ctx;
     f->dssCtx = alt_py_ctx->dssCtx;
     f->errorPtr = alt_py_ctx->errorPtr;
-    f->func = finfo->c_func;
+    f->func = *(void**)(((char*) alt_py_ctx->dssCFuncs) + finfo->c_funcOffset);
+    f->dssCFuncs = alt_py_ctx->dssCFuncs;
     f->settingsPtr = alt_py_ctx->settingsPtr;
     f->funcArgSignature = finfo->argType;
     f->resType = finfo->resType;
@@ -1205,7 +1223,8 @@ int AltDSS_PyGRGetter_cinit(AltDSS_PyGRGetterObject* f, AltDSS_PyContextObject *
     f->parent = alt_py_ctx;
     f->dssCtx = alt_py_ctx->dssCtx;
     f->errorPtr = alt_py_ctx->errorPtr;
-    f->func = finfo->c_func;
+    f->func = *(void**)(((char*) alt_py_ctx->dssCFuncs) + finfo->c_funcOffset);
+    f->dssCFuncs = alt_py_ctx->dssCFuncs;
     f->settingsPtr = alt_py_ctx->settingsPtr;
     f->funcArgSignature = finfo->argType;
     f->resType = finfo->resType;

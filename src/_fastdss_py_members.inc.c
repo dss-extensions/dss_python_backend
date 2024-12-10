@@ -3,9 +3,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"ActiveClass_Get_ActiveClassParent", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_Get_ActiveClassParent)},
 {"ActiveClass_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_Get_Name)},
 {"Bus_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_Name)},
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Name)},
-#endif
 {"CapControls_Get_Capacitor", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_Capacitor)},
 {"CapControls_Get_MonitoredObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_MonitoredObj)},
 {"CapControls_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_Name)},
@@ -38,10 +36,8 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Generators_Get_duty", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Get_duty)},
 {"ISources_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ISources_Get_Name)},
 {"LineCodes_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_Name)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Name)},
 {"LineSpacings_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Name)},
-#endif
 {"Lines_Get_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Bus1)},
 {"Lines_Get_Bus2", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Bus2)},
 {"Lines_Get_Geometry", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Geometry)},
@@ -107,9 +103,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Storages_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Get_Name)},
 {"SwtControls_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Get_Name)},
 {"SwtControls_Get_SwitchedObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Get_SwitchedObj)},
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_Name)},
-#endif
 {"Text_Get_Command", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Text_Get_Command)},
 {"Text_Get_Result", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Text_Get_Result)},
 {"Topology_Get_BranchName", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Get_BranchName)},
@@ -123,27 +117,19 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"WindGens_Get_Yearly", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_Yearly)},
 {"WindGens_Get_daily", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_daily)},
 {"WindGens_Get_duty", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_duty)},
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Name)},
-#endif
 {"XYCurves_Get_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_Name)},
-#ifndef ALTDSS_ODDIE
 {"ActiveClass_ToJSON", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_ToJSON)},
 {"Circuit_ToJSON", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_ToJSON)},
-#endif
 {"CktElement_Get_Controller", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_Controller)},
-#ifndef ALTDSS_ODDIE
 {"DSSElement_ToJSON", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSSElement_ToJSON)},
-#endif
 {"DSS_Executive_Get_Command", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Executive_Get_Command)},
 {"DSS_Executive_Get_CommandHelp", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Executive_Get_CommandHelp)},
 {"DSS_Executive_Get_Option", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Executive_Get_Option)},
 {"DSS_Executive_Get_OptionHelp", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Executive_Get_OptionHelp)},
 {"DSS_Executive_Get_OptionValue", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Executive_Get_OptionValue)},
 {"ActiveClass_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_Set_Name)},
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Name)},
-#endif
 {"CapControls_Set_Capacitor", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Capacitor)},
 {"CapControls_Set_MonitoredObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_MonitoredObj)},
 {"CapControls_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Name)},
@@ -171,10 +157,8 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Generators_Set_duty", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_duty)},
 {"ISources_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ISources_Set_Name)},
 {"LineCodes_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_Name)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_Name)},
 {"LineSpacings_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Name)},
-#endif
 {"Lines_Set_Bus1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Bus1)},
 {"Lines_Set_Bus2", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Bus2)},
 {"Lines_Set_Geometry", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Geometry)},
@@ -235,9 +219,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Storages_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_Name)},
 {"SwtControls_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_Name)},
 {"SwtControls_Set_SwitchedObj", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_SwitchedObj)},
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Name)},
-#endif
 {"Text_CommandBlock", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Text_CommandBlock)},
 {"Text_Set_Command", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Text_Set_Command)},
 {"Topology_Set_BranchName", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Set_BranchName)},
@@ -250,23 +232,17 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"WindGens_Set_Yearly", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_Yearly)},
 {"WindGens_Set_daily", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_daily)},
 {"WindGens_Set_duty", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_duty)},
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Name)},
-#endif
 {"XYCurves_Set_Name", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Name)},
 {"YMatrix_SaveAsMarketFiles", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_SaveAsMarketFiles)},
-#ifndef ALTDSS_ODDIE
 {"ZIP_Open", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Open)},
 {"ZIP_Redirect", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Redirect)},
-#endif
 {"ActiveClass_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_Get_AllNames)},
 {"Bus_Get_AllPCEatBus", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_AllPCEatBus)},
 {"Bus_Get_AllPDEatBus", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_AllPDEatBus)},
 {"Bus_Get_LineList", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_LineList)},
 {"Bus_Get_LoadList", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_LoadList)},
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_AllNames)},
-#endif
 {"CapControls_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_AllNames)},
 {"Capacitors_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Capacitors_Get_AllNames)},
 {"Circuit_Get_AllBusNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_Get_AllBusNames)},
@@ -287,11 +263,9 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Generators_Get_RegisterNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Get_RegisterNames)},
 {"ISources_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ISources_Get_AllNames)},
 {"LineCodes_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_AllNames)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_AllNames)},
 {"LineGeometries_Get_Conductors", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Conductors)},
 {"LineSpacings_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_AllNames)},
-#endif
 {"Lines_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_AllNames)},
 {"LoadShapes_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Get_AllNames)},
 {"Loads_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Get_AllNames)},
@@ -316,9 +290,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Storages_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Get_AllNames)},
 {"Storages_Get_RegisterNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Get_RegisterNames)},
 {"SwtControls_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Get_AllNames)},
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_AllNames)},
-#endif
 {"Topology_Get_AllIsolatedBranches", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Get_AllIsolatedBranches)},
 {"Topology_Get_AllIsolatedLoads", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Get_AllIsolatedLoads)},
 {"Topology_Get_AllLoopedPairs", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Get_AllLoopedPairs)},
@@ -326,15 +298,11 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Vsources_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Vsources_Get_AllNames)},
 {"WindGens_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_AllNames)},
 {"WindGens_Get_RegisterNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_RegisterNames)},
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_AllNames)},
-#endif
 {"XYCurves_Get_AllNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_AllNames)},
 {"CktElement_Get_BusNames", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_BusNames)},
 {"Circuit_Get_AllNodeNamesByPhase", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_Get_AllNodeNamesByPhase)},
-#ifndef ALTDSS_ODDIE
 {"ZIP_List", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_List)},
-#endif
 {"Bus_Get_SeqVoltages_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_SeqVoltages_GR)},
 {"Bus_Get_VMagAngle_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_VMagAngle_GR)},
 {"Bus_Get_puVmagAngle_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_puVmagAngle_GR)},
@@ -352,12 +320,10 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"LineCodes_Get_Cmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_Cmatrix_GR)},
 {"LineCodes_Get_Rmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_Rmatrix_GR)},
 {"LineCodes_Get_Xmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_Xmatrix_GR)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Xcoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Xcoords_GR)},
 {"LineGeometries_Get_Ycoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Ycoords_GR)},
 {"LineSpacings_Get_Xcoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Xcoords_GR)},
 {"LineSpacings_Get_Ycoords_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Ycoords_GR)},
-#endif
 {"Lines_Get_Cmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Cmatrix_GR)},
 {"Lines_Get_Rmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Rmatrix_GR)},
 {"Lines_Get_Xmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Xmatrix_GR)},
@@ -395,11 +361,9 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Parser_Get_Matrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Get_Matrix_GR)},
 {"Parser_Get_SymMatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Get_SymMatrix_GR)},
 {"Parser_Get_Vector_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Parser_Get_Vector_GR)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Cmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Cmatrix_GR)},
 {"LineGeometries_Get_Rmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Rmatrix_GR)},
 {"LineGeometries_Get_Xmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Xmatrix_GR)},
-#endif
 {"PDElements_Get_AllMaxCurrents_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllMaxCurrents_GR)},
 {"PDElements_Get_AllPctEmerg_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllPctEmerg_GR)},
 {"PDElements_Get_AllPctNorm_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllPctNorm_GR)},
@@ -436,9 +400,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Transformers_Get_LossesByType_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Get_LossesByType_GR)},
 {"Transformers_Get_WdgCurrents_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Get_WdgCurrents_GR)},
 {"Transformers_Get_WdgVoltages_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Get_WdgVoltages_GR)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Zmatrix_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Zmatrix_GR)},
-#endif
 {"Bus_Get_Zsc0_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_Zsc0_GR)},
 {"Bus_Get_Zsc1_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_Zsc1_GR)},
 {"Circuit_Get_LineLosses_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Circuit_Get_LineLosses_GR)},
@@ -454,9 +416,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Capacitors_Get_States_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Capacitors_Get_States_GR)},
 {"CktElement_Get_NodeOrder_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_NodeOrder_GR)},
 {"CktElement_Get_NodeRef_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_NodeRef_GR)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Units_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Units_GR)},
-#endif
 {"PDElements_Get_AllNumConductors_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumConductors_GR)},
 {"PDElements_Get_AllNumPhases_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumPhases_GR)},
 {"PDElements_Get_AllNumTerminals_GR", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_PDElements_Get_AllNumTerminals_GR)},
@@ -478,7 +438,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Bus_Get_NumNodes", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_NumNodes)},
 {"Bus_Get_SectionID", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_SectionID)},
 {"Bus_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_idx)},
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Count)},
 {"CNData_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_First)},
 {"CNData_Get_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_GMRUnits)},
@@ -487,7 +446,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"CNData_Get_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_ResistanceUnits)},
 {"CNData_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_idx)},
 {"CNData_Get_k", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_k)},
-#endif
 {"CapControls_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_Count)},
 {"CapControls_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_First)},
 {"CapControls_Get_Mode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_Mode)},
@@ -561,7 +519,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"LineCodes_Get_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_Phases)},
 {"LineCodes_Get_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_Units)},
 {"LineCodes_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_idx)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Count)},
 {"LineGeometries_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_First)},
 {"LineGeometries_Get_Nconds", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Nconds)},
@@ -575,7 +532,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"LineSpacings_Get_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Phases)},
 {"LineSpacings_Get_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_Units)},
 {"LineSpacings_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Get_idx)},
-#endif
 {"Lines_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Count)},
 {"Lines_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_First)},
 {"Lines_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_Next)},
@@ -716,7 +672,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"SwtControls_Get_State", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Get_State)},
 {"SwtControls_Get_SwitchedTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Get_SwitchedTerm)},
 {"SwtControls_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Get_idx)},
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_Count)},
 {"TSData_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_First)},
 {"TSData_Get_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_GMRUnits)},
@@ -724,7 +679,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"TSData_Get_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_RadiusUnits)},
 {"TSData_Get_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_ResistanceUnits)},
 {"TSData_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_idx)},
-#endif
 {"Topology_Get_ActiveBranch", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Get_ActiveBranch)},
 {"Topology_Get_ActiveLevel", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Get_ActiveLevel)},
 {"Topology_Get_BackwardBranch", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Topology_Get_BackwardBranch)},
@@ -761,7 +715,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"WindGens_Get_QFlag", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_QFlag)},
 {"WindGens_Get_QMode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_QMode)},
 {"WindGens_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_idx)},
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Count)},
 {"WireData_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_First)},
 {"WireData_Get_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_GMRUnits)},
@@ -769,7 +722,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"WireData_Get_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_RadiusUnits)},
 {"WireData_Get_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_ResistanceUnits)},
 {"WireData_Get_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_idx)},
-#endif
 {"XYCurves_Get_Count", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_Count)},
 {"XYCurves_Get_First", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_First)},
 {"XYCurves_Get_Next", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_Next)},
@@ -784,13 +736,11 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"DSS_SetActiveClass", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_SetActiveClass)},
 {"Lines_New", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_New)},
 {"LoadShapes_New", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_New)},
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_GMRUnits)},
 {"CNData_Set_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_RadiusUnits)},
 {"CNData_Set_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_ResistanceUnits)},
 {"CNData_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_idx)},
 {"CNData_Set_k", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_k)},
-#endif
 {"CapControls_Set_Mode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Mode)},
 {"CapControls_Set_MonitoredTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_MonitoredTerm)},
 {"CapControls_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_idx)},
@@ -817,7 +767,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"LineCodes_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_Phases)},
 {"LineCodes_Set_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_Units)},
 {"LineCodes_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_idx)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_Nconds", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_Nconds)},
 {"LineGeometries_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_Phases)},
 {"LineGeometries_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_idx)},
@@ -825,7 +774,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"LineSpacings_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Phases)},
 {"LineSpacings_Set_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_Units)},
 {"LineSpacings_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineSpacings_Set_idx)},
-#endif
 {"Lines_Set_Phases", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Phases)},
 {"Lines_Set_Units", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_Units)},
 {"Lines_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_idx)},
@@ -895,12 +843,10 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"SwtControls_Set_State", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_State)},
 {"SwtControls_Set_SwitchedTerm", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_SwitchedTerm)},
 {"SwtControls_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_idx)},
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_GMRUnits)},
 {"TSData_Set_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_RadiusUnits)},
 {"TSData_Set_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_ResistanceUnits)},
 {"TSData_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_idx)},
-#endif
 {"Transformers_Set_CoreType", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_CoreType)},
 {"Transformers_Set_NumTaps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_NumTaps)},
 {"Transformers_Set_NumWindings", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_NumWindings)},
@@ -915,12 +861,10 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"WindGens_Set_QFlag", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_QFlag)},
 {"WindGens_Set_QMode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_QMode)},
 {"WindGens_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_idx)},
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_GMRUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_GMRUnits)},
 {"WireData_Set_RadiusUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_RadiusUnits)},
 {"WireData_Set_ResistanceUnits", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_ResistanceUnits)},
 {"WireData_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_idx)},
-#endif
 {"XYCurves_Set_Npts", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Npts)},
 {"XYCurves_Set_idx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_idx)},
 {"YMatrix_AddInAuxCurrents", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_AddInAuxCurrents)},
@@ -939,7 +883,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Bus_Get_kVBase", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_kVBase)},
 {"Bus_Get_x", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_x)},
 {"Bus_Get_y", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Get_y)},
-#ifndef ALTDSS_ODDIE
 {"CNData_Get_DiaCable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_DiaCable)},
 {"CNData_Get_DiaIns", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_DiaIns)},
 {"CNData_Get_DiaStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_DiaStrand)},
@@ -954,7 +897,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"CNData_Get_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Rac)},
 {"CNData_Get_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Radius)},
 {"CNData_Get_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Get_Rdc)},
-#endif
 {"CapControls_Get_CTratio", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_CTratio)},
 {"CapControls_Get_DeadTime", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_DeadTime)},
 {"CapControls_Get_Delay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Get_Delay)},
@@ -997,11 +939,9 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"LineCodes_Get_R1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_R1)},
 {"LineCodes_Get_X0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_X0)},
 {"LineCodes_Get_X1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_X1)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_EmergAmps)},
 {"LineGeometries_Get_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_NormAmps)},
 {"LineGeometries_Get_RhoEarth", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_RhoEarth)},
-#endif
 {"Lines_Get_C0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_C0)},
 {"Lines_Get_C1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_C1)},
 {"Lines_Get_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_EmergAmps)},
@@ -1134,7 +1074,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Storages_Get_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Get_kvar)},
 {"Storages_Get_puSOC", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Get_puSOC)},
 {"SwtControls_Get_Delay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Get_Delay)},
-#ifndef ALTDSS_ODDIE
 {"TSData_Get_DiaCable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_DiaCable)},
 {"TSData_Get_DiaIns", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_DiaIns)},
 {"TSData_Get_DiaShield", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_DiaShield)},
@@ -1149,7 +1088,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"TSData_Get_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_Rdc)},
 {"TSData_Get_TapeLap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_TapeLap)},
 {"TSData_Get_TapeLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Get_TapeLayer)},
-#endif
 {"Transformers_Get_MaxTap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Get_MaxTap)},
 {"Transformers_Get_MinTap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Get_MinTap)},
 {"Transformers_Get_R", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Get_R)},
@@ -1184,7 +1122,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"WindGens_Get_kW", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_kW)},
 {"WindGens_Get_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_kvar)},
 {"WindGens_Get_pd", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Get_pd)},
-#ifndef ALTDSS_ODDIE
 {"WireData_Get_CapRadius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_CapRadius)},
 {"WireData_Get_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Diameter)},
 {"WireData_Get_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_EmergAmps)},
@@ -1193,7 +1130,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"WireData_Get_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Rac)},
 {"WireData_Get_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Radius)},
 {"WireData_Get_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Get_Rdc)},
-#endif
 {"XYCurves_Get_Xscale", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_Xscale)},
 {"XYCurves_Get_Xshift", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_Xshift)},
 {"XYCurves_Get_Yscale", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_Yscale)},
@@ -1202,7 +1138,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"XYCurves_Get_y", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Get_y)},
 {"Bus_Set_x", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Set_x)},
 {"Bus_Set_y", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Bus_Set_y)},
-#ifndef ALTDSS_ODDIE
 {"CNData_Set_DiaCable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_DiaCable)},
 {"CNData_Set_DiaIns", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_DiaIns)},
 {"CNData_Set_DiaStrand", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_DiaStrand)},
@@ -1217,7 +1152,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"CNData_Set_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Rac)},
 {"CNData_Set_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Radius)},
 {"CNData_Set_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CNData_Set_Rdc)},
-#endif
 {"CapControls_Set_CTratio", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_CTratio)},
 {"CapControls_Set_DeadTime", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_DeadTime)},
 {"CapControls_Set_Delay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_Delay)},
@@ -1260,11 +1194,9 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"LineCodes_Set_R1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_R1)},
 {"LineCodes_Set_X0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_X0)},
 {"LineCodes_Set_X1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Set_X1)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_EmergAmps)},
 {"LineGeometries_Set_NormAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_NormAmps)},
 {"LineGeometries_Set_RhoEarth", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_RhoEarth)},
-#endif
 {"Lines_Set_C0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_C0)},
 {"Lines_Set_C1", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_C1)},
 {"Lines_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_EmergAmps)},
@@ -1384,7 +1316,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Storages_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_kvar)},
 {"Storages_Set_puSOC", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Storages_Set_puSOC)},
 {"SwtControls_Set_Delay", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_SwtControls_Set_Delay)},
-#ifndef ALTDSS_ODDIE
 {"TSData_Set_DiaCable", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_DiaCable)},
 {"TSData_Set_DiaIns", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_DiaIns)},
 {"TSData_Set_DiaShield", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_DiaShield)},
@@ -1399,7 +1330,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"TSData_Set_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_Rdc)},
 {"TSData_Set_TapeLap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_TapeLap)},
 {"TSData_Set_TapeLayer", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_TSData_Set_TapeLayer)},
-#endif
 {"Transformers_Set_MaxTap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_MaxTap)},
 {"Transformers_Set_MinTap", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_MinTap)},
 {"Transformers_Set_R", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Transformers_Set_R)},
@@ -1434,7 +1364,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"WindGens_Set_kW", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_kW)},
 {"WindGens_Set_kvar", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_kvar)},
 {"WindGens_Set_pd", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WindGens_Set_pd)},
-#ifndef ALTDSS_ODDIE
 {"WireData_Set_CapRadius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_CapRadius)},
 {"WireData_Set_Diameter", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Diameter)},
 {"WireData_Set_EmergAmps", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_EmergAmps)},
@@ -1443,7 +1372,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"WireData_Set_Rac", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Rac)},
 {"WireData_Set_Radius", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Radius)},
 {"WireData_Set_Rdc", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_WireData_Set_Rdc)},
-#endif
 {"XYCurves_Set_Xscale", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Xscale)},
 {"XYCurves_Set_Xshift", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Xshift)},
 {"XYCurves_Set_Yscale", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_XYCurves_Set_Yscale)},
@@ -1474,9 +1402,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Generators_Get_ForcedON", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Get_ForcedON)},
 {"Generators_Get_IsDelta", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Get_IsDelta)},
 {"LineCodes_Get_IsZ1Z0", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineCodes_Get_IsZ1Z0)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Get_Reduce", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Get_Reduce)},
-#endif
 {"Lines_Get_IsSwitch", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Get_IsSwitch)},
 {"LoadShapes_Get_UseActual", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Get_UseActual)},
 {"Loads_Get_IsDelta", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Get_IsDelta)},
@@ -1507,9 +1433,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"YMatrix_Get_SolutionInitialized", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_Get_SolutionInitialized)},
 {"YMatrix_Get_SystemYChanged", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_Get_SystemYChanged)},
 {"YMatrix_Get_UseAuxCurrents", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_Get_UseAuxCurrents)},
-#ifndef ALTDSS_ODDIE
 {"ZIP_Contains", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Contains)},
-#endif
 {"CktElement_IsOpen", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_IsOpen)},
 {"CapControls_Set_UseVoltOverride", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_UseVoltOverride)},
 {"Capacitors_Set_IsDelta", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Capacitors_Set_IsDelta)},
@@ -1525,9 +1449,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"Error_Set_ExtendedErrors", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Error_Set_ExtendedErrors)},
 {"Generators_Set_ForcedON", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_ForcedON)},
 {"Generators_Set_IsDelta", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Generators_Set_IsDelta)},
-#ifndef ALTDSS_ODDIE
 {"LineGeometries_Set_Reduce", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LineGeometries_Set_Reduce)},
-#endif
 {"Lines_Set_IsSwitch", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Lines_Set_IsSwitch)},
 {"LoadShapes_Set_UseActual", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_LoadShapes_Set_UseActual)},
 {"Loads_Set_IsDelta", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Loads_Set_IsDelta)},
@@ -1636,8 +1558,6 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"YMatrix_GetSourceInjCurrents", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_GetSourceInjCurrents)},
 {"YMatrix_SetGeneratordQdV", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_SetGeneratordQdV)},
 {"YMatrix_ZeroInjCurr", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_ZeroInjCurr)},
-#ifndef ALTDSS_ODDIE
 {"ZIP_Close", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Close)},
-#endif
 {NULL}
 };

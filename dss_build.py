@@ -1,17 +1,25 @@
+import numpy
 from cffi import FFI
 import sys, re, os
 from dss_setup_common import PLATFORM_FOLDER, BUILD_ODDIE
+from setuptools import Extension
 
-def process_header(src, extern_py=False, implement_py=False, prefix='', flags=None, fn=''):
+def process_header(src, extern_py=False, implement_py=False, prefix='', flags=None, fn='', remove=[]):
     '''Prepare the DSS C-API headers for parsing and building with CFFI'''
     
+    src = src.replace('#endif // #ifdef HAS_ALTDSS_LOADER_FUNC', '')
+    src = src.replace('#ifdef HAS_ALTDSS_LOADER_FUNC', '')
+
     if flags is not None:
         definitions = [x[2:] for x in flags] # remove -D
     else:
         definitions = None
 
     call_convention = '__stdcall ' if (sys.platform == 'win32') else ''
-    
+
+    for exp in remove:
+        src = re.sub(exp, '', src, flags=re.MULTILINE)
+
     if definitions is not None:
         # Since we cannot easily use a C preprocessor here, some custom replacements
         if 'ALTDSS_USERMODEL' in definitions:
@@ -107,7 +115,7 @@ DSS_MODEL_DLL(\1) {name}(\2)
             ))
             
         src = '\n'.join(out_lines)
-    
+
     return src
     
 extra = {}
@@ -122,70 +130,62 @@ ffi_builders = {}
 src_path = os.environ.get('SRC_DIR', '')
 DSS_CAPI_PATH = os.environ.get('DSS_CAPI_PATH', os.path.join(src_path, '..', 'dss_capi'))
 
-VERSIONS = ['altdss_capi', 'altdss_capid']
-if BUILD_ODDIE:
-    VERSIONS.append('altdss_oddie_capi')
+ffi_builder_dss = FFI()
+ffi_builders['dss_loader'] = ffi_builder_dss
 
-for version in VERSIONS:
-    ffi_builder_dss = FFI()
-    debug = 'd' if version.endswith('d') else ''
+# main_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'dss_ctx.h')
+main_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'capi.h')
+common_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'common.h')
+enums_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'enums.h')
+# dss_capi_ctx_path = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'dss_ctx.h')
+extra_headers = [enums_header_fn, ]
 
-    if 'oddie' not in version:
-        main_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'dss_ctx.h')
-        common_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'common.h')
-        enums_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'enums.h')
-        # dss_capi_ctx_path = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'dss_ctx.h')
-        extra_headers = [enums_header_fn, ]
-    else:
-        main_header_fn = os.path.join(DSS_CAPI_PATH, 'include', 'altdss', 'capi', 'oddie.h')
-        dss_capi_ctx_path = None
-        common_header_fn = None
-        extra_headers = []
+if common_header_fn:
+    with open(common_header_fn, 'r') as f:
+        # Remove the functions from the common header, only use the other defs
+        cffi_header_dss = process_header(f.read(), fn=common_header_fn, remove=[r'^\s*ALTDSS_CAPI_DLL.*$', r'^\s*HMODULE.*$'])
+else:
+    cffi_header_dss = ''
 
-    if common_header_fn:
-        with open(common_header_fn, 'r') as f:
-            cffi_header_dss = process_header(f.read(), fn=common_header_fn)
-    else:
-        cffi_header_dss = ''
-
-    with open(main_header_fn, 'r') as f:
-        cffi_header_dss += process_header(f.read(), fn=main_header_fn)
+with open(main_header_fn, 'r') as f:
+    src = f.read().replace('ALTDSS_CAPI_DLL', '')
+    cffi_header_dss += process_header(src, fn=main_header_fn, remove=[r'^\s*HMODULE.*$'])
 
 
-    if 'oddie' not in version:
-        for extra_fn in extra_headers:
-            if os.path.exists(extra_fn):
-                with open(extra_fn, 'r') as f:
-                    cffi_header_dss += process_header(f.read())
+for extra_fn in extra_headers:
+    if os.path.exists(extra_fn):
+        with open(extra_fn, 'r') as f:
+            cffi_header_dss += process_header(f.read())
 
-        with open('cffi/dss_capi_custom.h', 'r') as f:
-            extra_header_dss = f.read()
-            
-        cffi_header_dss += extra_header_dss
-        
-        with open('cffi/dss_capi_custom.c', 'r') as f:
-            extra_source_dss = '#include <altdss/capi/dss_ctx.h>\n'
-            extra_source_dss += f.read()
-    else:
-        extra_source_dss = '#include <altdss/capi/oddie.h>\n'
-
-    ffi_builder_dss.cdef(cffi_header_dss)
-
-    ffi_builder_dss.set_source(f"_{version}", extra_source_dss,
-        libraries=[version],
-        library_dirs=[
-            os.path.join(DSS_CAPI_PATH, 'lib/{}'.format(PLATFORM_FOLDER))
-        ],
-        include_dirs=[
-            os.path.join(DSS_CAPI_PATH, 'include'),
-            # os.path.join(DSS_CAPI_PATH, 'include/altdss'),
-        ],
-        source_extension='.c',
-        **extra
-    )
+with open('cffi/dss_capi_custom.h', 'r') as f:
+    extra_header_dss = f.read()
     
-    ffi_builders[version] = ffi_builder_dss
+cffi_header_dss += extra_header_dss
+extra_source_dss = ''
+with open('cffi/dss_capi_custom.c', 'r') as f:
+    extra_source_dss = '#include <altdss/capi/enums.h>\n'
+    extra_source_dss += '#include <altdss/capi/common.h>\n'
+    extra_source_dss += '#include <altdss/capi/capi.h>\n'
+    extra_source_dss += f.read()
 
+ffi_builder_dss.cdef(cffi_header_dss)
+
+lib_dir = os.path.join(DSS_CAPI_PATH, 'lib/{}'.format(PLATFORM_FOLDER))
+inc_dir = os.path.join(DSS_CAPI_PATH, 'include')
+
+ffi_builder_dss.set_source(f"_altdss_capi_loader", extra_source_dss,
+    libraries=['altdss_capi_loader'],
+    define_macros = [('HAS_ALTDSS_LOADER_FUNC', 1)],
+    library_dirs=[
+        lib_dir
+    ],
+    include_dirs=[
+        inc_dir,
+        # os.path.join(DSS_CAPI_PATH, 'include/altdss'),
+    ],
+    source_extension='.c',
+    **extra
+)
 
 # User-model modules/DLLs
 # Currently we build a separate DLL for each kind of model,
@@ -225,7 +225,7 @@ for user_model in user_models:
         ffi_builder.set_source(f"_dss_{user_model}_{variant}", user_model_src,
             libraries=[],
             library_dirs=[],
-            include_dirs=[os.path.join(DSS_CAPI_PATH, 'include')],
+            include_dirs=[inc_dir],
             source_extension='.c',
             extra_compile_args=variant_flags,
             #extra_link_args=['/DYNAMICBASE:NO', '/NXCOMPAT:NO']
@@ -234,11 +234,6 @@ for user_model in user_models:
         
 # Is there a better way to do this? Unfortunately setup(cffi_modules=...)
 # needs a list of strings and cannot handle objects directly
-ffi_builder_ = ffi_builders['altdss_capi']
-ffi_builder_d = ffi_builders['altdss_capid']
-if BUILD_ODDIE:
-    ffi_builder_odd = ffi_builders['altdss_oddie_capi']
-
 ffi_builder_GenUserModel_altdss = ffi_builders['GenUserModel-AltDSS']
 ffi_builder_GenUserModel_v7 = ffi_builders['GenUserModel-OpenDSS_v7']
 ffi_builder_GenUserModel_v8v9 = ffi_builders['GenUserModel-OpenDSS_v8v9']
@@ -247,7 +242,20 @@ ffi_builder_GenUserModel_v10 = ffi_builders['GenUserModel-OpenDSS_v10']
 #ffi_builder_StoreDynaModel = ffi_builders['StoreDynaModel']
 #ffi_builder_StoreUserModel = ffi_builders['StoreUserModel']
 #ffi_builder_CapUserControl = ffi_builders['CapUserControl']
-        
+
+
+_fast_dss_options = dict(
+    py_limited_api=True,
+    include_dirs=[numpy.get_include(), inc_dir],
+    libraries=['altdss_capi_loader'],
+    library_dirs=[lib_dir],
+    extra_link_args=["-Wl,-R,$ORIGIN/."],
+    # extra_compile_args=['-g', '-O0'],
+    # extra_link_args=['-g'],
+)
+
+fastdss_extension = Extension('_fastdss', ["src/_fastdss.c"], **_fast_dss_options)
+
 if __name__ == "__main__":
     for version, builder in ffi_builders.items():
         print('-' * 40)

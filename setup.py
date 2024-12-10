@@ -1,7 +1,8 @@
 from setuptools import setup
 import re, shutil, os, io
-from dss_setup_common import PLATFORM_FOLDER, DLL_SUFFIX, BUILD_ODDIE
+from dss_setup_common import PLATFORM_FOLDER, DLL_SUFFIX
 import glob
+import dss_build
 
 MANYLINUX = os.environ.get('DSS_PYTHON_BACKEND_MANYLINUX', '0') == '1'
 
@@ -86,10 +87,6 @@ else:
     })
 
 
-VERSIONS = ['', 'd']
-if BUILD_ODDIE:
-    VERSIONS.append('odd')
-
 setup(
     name="dss_python_backend",
     description="Low-level Python bindings and native libs for DSS-Python. Not intended for direct usage, see DSS-Python instead.",
@@ -101,17 +98,18 @@ setup(
     license="BSD",
     packages=['dss_python_backend'],
     setup_requires=["cffi>=1.11.2"],
-    cffi_modules=["dss_build.py:ffi_builder_{}".format(version) for version in VERSIONS] + 
-        [
-            'dss_build.py:ffi_builder_GenUserModel_altdss', 
-            'dss_build.py:ffi_builder_GenUserModel_v7', 
-            'dss_build.py:ffi_builder_GenUserModel_v8v9', 
-            'dss_build.py:ffi_builder_GenUserModel_v10', 
-            #'dss_build.py:ffi_builder_PVSystemUserModel', 
-            #'dss_build.py:ffi_builder_StoreDynaModel', 
-            #'dss_build.py:ffi_builder_StoreUserModel', 
-            #'dss_build.py:ffi_builder_CapUserControl'
-        ],
+    cffi_modules= [
+        "dss_build.py:ffi_builder_dss",
+        'dss_build.py:ffi_builder_GenUserModel_altdss', 
+        'dss_build.py:ffi_builder_GenUserModel_v7', 
+        'dss_build.py:ffi_builder_GenUserModel_v8v9', 
+        'dss_build.py:ffi_builder_GenUserModel_v10', 
+        #'dss_build.py:ffi_builder_PVSystemUserModel', 
+        #'dss_build.py:ffi_builder_StoreDynaModel', 
+        #'dss_build.py:ffi_builder_StoreUserModel', 
+        #'dss_build.py:ffi_builder_CapUserControl'
+    ],
+    ext_modules=[dss_build.fastdss_extension],
     ext_package="dss_python_backend",
     install_requires=["cffi>=1.11.2"],
     # tests_require=["pytest"],
