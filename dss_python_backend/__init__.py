@@ -15,17 +15,13 @@ altdss_lib_parent_path = Path(_altdss_capi_loader.__file__).absolute().parent
 
 if os.environ.get('DSS_EXTENSIONS_DEBUG', '') != '1':
     altdss_lib_path = altdss_lib_parent_path.joinpath('libaltdss_capi.so')
-    pass
 else:
     import warnings
     warnings.warn('Environment variable DSS_EXTENSIONS_DEBUG=1 is set: loading the debug version of the DSS C-API library')
     altdss_lib_path = altdss_lib_parent_path.joinpath('libaltdss_capid.so')
-    pass
-
 
 if not altdss_lib_path.exists():
     raise RuntimeError('AltDSS library not found!')
-
 
 # Basic initialization -- load the library and prepare the structures
 lib = _altdss_capi_loader.ffi.new('AltDSSCAPI*')
@@ -44,7 +40,7 @@ _init_result = loader_lib.AltDSSCAPILibInit(
 if _init_result != 1:
     raise RuntimeError(f'AltDSS library found but could not be loaded (code {_init_result})!')
 
-# Ensure this is called at least once. This was moved from 
+# For AltDSS, ensure this is called at least once. This was moved from 
 # CffiApiUtil so we call it as soon as the DLL/so is loaded.
 lib.DSS_Start(ffi.NULL, 0)
 
