@@ -1433,6 +1433,7 @@ PyObject *f_YMatrix_Get_SolutionInitialized;
 PyObject *f_YMatrix_Get_SystemYChanged;
 PyObject *f_YMatrix_Get_UseAuxCurrents;
 PyObject *f_ZIP_Contains;
+PyObject *f_DSS_Start;
 PyObject *f_CktElement_IsOpen;
 PyObject *f_CapControls_Set_UseVoltOverride;
 PyObject *f_Capacitors_Set_IsDelta;

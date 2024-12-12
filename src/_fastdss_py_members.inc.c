@@ -1434,6 +1434,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"YMatrix_Get_SystemYChanged", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_Get_SystemYChanged)},
 {"YMatrix_Get_UseAuxCurrents", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_YMatrix_Get_UseAuxCurrents)},
 {"ZIP_Contains", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ZIP_Contains)},
+{"DSS_Start", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_DSS_Start)},
 {"CktElement_IsOpen", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_IsOpen)},
 {"CapControls_Set_UseVoltOverride", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CapControls_Set_UseVoltOverride)},
 {"Capacitors_Set_IsDelta", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_Capacitors_Set_IsDelta)},

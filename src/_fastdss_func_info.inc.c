@@ -1434,6 +1434,7 @@ FastDSSFuncInfo info[] = {
 {fastdss_types_b16, fastdss_types_void, offsetof(AltDSSCAPI, YMatrix_Get_SystemYChanged), offsetof(AltDSS_PyContextObject, f_YMatrix_Get_SystemYChanged), "YMatrix_Get_SystemYChanged"},
 {fastdss_types_b16, fastdss_types_void, offsetof(AltDSSCAPI, YMatrix_Get_UseAuxCurrents), offsetof(AltDSS_PyContextObject, f_YMatrix_Get_UseAuxCurrents), "YMatrix_Get_UseAuxCurrents"},
 {fastdss_types_b16, fastdss_types_str, offsetof(AltDSSCAPI, ZIP_Contains), offsetof(AltDSS_PyContextObject, f_ZIP_Contains), "ZIP_Contains"},
+{fastdss_types_b16, fastdss_types_i32, offsetof(AltDSSCAPI, DSS_Start), offsetof(AltDSS_PyContextObject, f_DSS_Start), "DSS_Start"},
 {fastdss_types_b16, fastdss_types_i32_i32, offsetof(AltDSSCAPI, CktElement_IsOpen), offsetof(AltDSS_PyContextObject, f_CktElement_IsOpen), "CktElement_IsOpen"},
 {fastdss_types_void, fastdss_types_b16, offsetof(AltDSSCAPI, CapControls_Set_UseVoltOverride), offsetof(AltDSS_PyContextObject, f_CapControls_Set_UseVoltOverride), "CapControls_Set_UseVoltOverride"},
 {fastdss_types_void, fastdss_types_b16, offsetof(AltDSSCAPI, Capacitors_Set_IsDelta), offsetof(AltDSS_PyContextObject, f_Capacitors_Set_IsDelta), "Capacitors_Set_IsDelta"},

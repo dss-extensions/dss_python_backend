@@ -822,14 +822,14 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
             PyLong_FromLong(num),
             PyUnicode_FromString(errorDesc)
         ));
-        DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
+        f->dssCFuncs->DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
         return NULL;
     }
 
     result = PyList_New(count[0]);
     if (PyErr_Occurred())
     {
-        DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
+        f->dssCFuncs->DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
         return NULL;
     }
 
@@ -857,12 +857,12 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
         if (PyErr_Occurred())
         {
             Py_DECREF(result);
-            DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
+            f->dssCFuncs->DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
             return NULL;
         }
         PyList_SET_ITEM(result, i, item);
     }
-    DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
+    f->dssCFuncs->DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
     return result;
 }
 
