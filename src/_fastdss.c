@@ -948,7 +948,6 @@ static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, P
     PyObject* setObj = NULL;
     PyObject* fakeLib = NULL;
     FastDSSFuncInfo* finfo = NULL;
-    void** tmpFunc = NULL;
 
     if (sizeof(unsigned long long) < sizeof(void*))
     {
@@ -984,8 +983,7 @@ static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, P
     while (finfo->c_funcOffset)
     {
         // printf("INFO: function %s\n", finfo->fname);
-        tmpFunc = *(void**)(((char*) self->dssCFuncs) + finfo->c_funcOffset);
-        if (tmpFunc != NULL && !AltDSS_Add_PyFunc(self, finfo, setObj, fakeLib))
+        if (!AltDSS_Add_PyFunc(self, finfo, setObj, fakeLib))
         {
             goto ERROR_INIT;
         }
@@ -1256,73 +1254,84 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, FastDSSFuncInfo* finfo, PyOb
 {
     PyObject **py_func = (PyObject**)(((char*)self) + finfo->attrOffset);
     PyObject *key = NULL;
+    void** tmpFunc = *(void**)(((char*) self->dssCFuncs) + finfo->c_funcOffset);
 
-    if (finfo->resType == fastdss_types_void)
+    if (tmpFunc != NULL)
     {
-        switch (finfo->argType)
+        if (finfo->resType == fastdss_types_void)
         {
-            case fastdss_types_i32_i32:
-            case fastdss_types_f64:
-            case fastdss_types_i32:
-            case fastdss_types_b16:
-            case fastdss_types_str:
-            case fastdss_types_void:
-                *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarSetterObject, &AltDSS_PyScalarSetterType);
-                if ((*py_func) == NULL)
-                {
+            switch (finfo->argType)
+            {
+                case fastdss_types_i32_i32:
+                case fastdss_types_f64:
+                case fastdss_types_i32:
+                case fastdss_types_b16:
+                case fastdss_types_str:
+                case fastdss_types_void:
+                    *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarSetterObject, &AltDSS_PyScalarSetterType);
+                    if ((*py_func) == NULL)
+                    {
+                        goto ADD_FUNC_ERROR;
+                    }
+                    AltDSS_PyScalarSetter_cinit((AltDSS_PyScalarSetterObject*) *py_func, self, finfo);
+                    break;
+                default:
                     goto ADD_FUNC_ERROR;
-                }
-                AltDSS_PyScalarSetter_cinit((AltDSS_PyScalarSetterObject*) *py_func, self, finfo);
-                break;
-            default:
-                goto ADD_FUNC_ERROR;
-        }        
+            }        
+        }
+        else
+        {
+            switch (finfo->resType)
+            {
+                case fastdss_types_strs:
+                    *py_func = (PyObject*) PyObject_New(AltDSS_PyStrListGetterObject, &AltDSS_PyStrListGetterType);
+                    if ((*py_func) == NULL)
+                    {
+                        goto ADD_FUNC_ERROR;
+                    }
+                    AltDSS_PyStrListGetter_cinit((AltDSS_PyStrListGetterObject*) *py_func, self, finfo);
+                    break;
+                case fastdss_types_str:
+                    *py_func = (PyObject*) PyObject_New(AltDSS_PyStrGetterObject, &AltDSS_PyStrGetterType);
+                    if ((*py_func) == NULL)
+                    {
+                        goto ADD_FUNC_ERROR;
+                    }
+                    AltDSS_PyStrGetter_cinit((AltDSS_PyStrGetterObject*) *py_func, self, finfo);
+                    break;
+                case fastdss_types_f64:
+                case fastdss_types_i32:
+                case fastdss_types_b16:
+                    *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarGetterObject, &AltDSS_PyScalarGetterType);
+                    if ((*py_func) == NULL)
+                    {
+                        goto ADD_FUNC_ERROR;
+                    }
+                    AltDSS_PyScalarGetter_cinit((AltDSS_PyScalarGetterObject*) *py_func, self, finfo);
+                    break;
+                case fastdss_types_gr_z128s:
+                case fastdss_types_gr_z128:
+                case fastdss_types_gr_f64s:
+                case fastdss_types_gr_i32s:
+                case fastdss_types_gr_i8s:
+                    *py_func = (PyObject*) PyObject_New(AltDSS_PyGRGetterObject, &AltDSS_PyGRGetterType);
+                    if ((*py_func) == NULL)
+                    {
+                        goto ADD_FUNC_ERROR;
+                    }
+                    AltDSS_PyGRGetter_cinit((AltDSS_PyGRGetterObject*) *py_func, self, finfo);
+                    break;
+                default:
+                    goto ADD_FUNC_ERROR;
+            }
+        }
     }
     else
     {
-        switch (finfo->resType)
-        {
-            case fastdss_types_strs:
-                *py_func = (PyObject*) PyObject_New(AltDSS_PyStrListGetterObject, &AltDSS_PyStrListGetterType);
-                if ((*py_func) == NULL)
-                {
-                    goto ADD_FUNC_ERROR;
-                }
-                AltDSS_PyStrListGetter_cinit((AltDSS_PyStrListGetterObject*) *py_func, self, finfo);
-                break;
-            case fastdss_types_str:
-                *py_func = (PyObject*) PyObject_New(AltDSS_PyStrGetterObject, &AltDSS_PyStrGetterType);
-                if ((*py_func) == NULL)
-                {
-                    goto ADD_FUNC_ERROR;
-                }
-                AltDSS_PyStrGetter_cinit((AltDSS_PyStrGetterObject*) *py_func, self, finfo);
-                break;
-            case fastdss_types_f64:
-            case fastdss_types_i32:
-            case fastdss_types_b16:
-                *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarGetterObject, &AltDSS_PyScalarGetterType);
-                if ((*py_func) == NULL)
-                {
-                    goto ADD_FUNC_ERROR;
-                }
-                AltDSS_PyScalarGetter_cinit((AltDSS_PyScalarGetterObject*) *py_func, self, finfo);
-                break;
-            case fastdss_types_gr_z128s:
-            case fastdss_types_gr_z128:
-            case fastdss_types_gr_f64s:
-            case fastdss_types_gr_i32s:
-            case fastdss_types_gr_i8s:
-                *py_func = (PyObject*) PyObject_New(AltDSS_PyGRGetterObject, &AltDSS_PyGRGetterType);
-                if ((*py_func) == NULL)
-                {
-                    goto ADD_FUNC_ERROR;
-                }
-                AltDSS_PyGRGetter_cinit((AltDSS_PyGRGetterObject*) *py_func, self, finfo);
-                break;
-            default:
-                goto ADD_FUNC_ERROR;
-        }
+        // If the function is not available in the lib,
+        // set the attribute to None, but mark it as done.
+        *py_func = Py_None;
+        Py_INCREF(*py_func);
     }
 
     key = PyUnicode_FromString(finfo->fname);
