@@ -459,6 +459,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
 {
     PyObject *result = NULL;
     PyObject *item = NULL;
+    NPY_ORDER order = NPY_ANYORDER;
     double float64Arg1, float64Arg2;
     int argValue = 0;
     int32_t resType = f->resType;
@@ -523,13 +524,21 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
     }
 
     nitems = f->countPtr[0];
-    if ((f->countPtr[2] == 0) || ((settings & FastDSSSettings_AdvancedTypes) == 0))
+    if (((settings & FastDSSSettings_AdvancedTypes) == 0))
     {
         dims[0] = nitems;
         if (resType == fastdss_types_gr_z128s)
         {
             resType = fastdss_types_gr_f64s;
         }
+    }
+    else if (f->countPtr[2] == 0)
+    {
+        if (resType == fastdss_types_gr_z128s)
+        {
+            nitems /= 2;
+        }
+        dims[0] = nitems;
     }
     else
     {
@@ -540,6 +549,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
         {
             nitems /= 2;
         }
+        order = NPY_FORTRANORDER;
     }
 
     if (!(settings & FastDSSSettings_UseLists))
@@ -559,7 +569,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                     PyErr_SetString(PyExc_RuntimeError, "Unexpected number of elements returned by API (array of complex numbers).");
                     return NULL;
                 }
-                result = PyArray_SimpleNew(nd, dims, NPY_COMPLEX128);
+                result = PyArray_EMPTY(nd, dims, NPY_COMPLEX128, order);
                 if (result == NULL)
                 {
                     return NULL;
@@ -570,7 +580,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 memcpy(data, *(double**)f->dataPtr, 2 * sizeof(double) * nitems);
                 return result;
             case fastdss_types_gr_f64s:
-                result = PyArray_SimpleNew(nd, dims, NPY_FLOAT64);
+                result = PyArray_EMPTY(nd, dims, NPY_FLOAT64, order);
                 if (result == NULL)
                 {
                     return NULL;
@@ -581,12 +591,12 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 memcpy(data, *(double**)f->dataPtr, sizeof(double) * nitems);
                 return result;
             // case fastdss_types_f32:
-            //     result = PyArray_SimpleNew(nd, dims, NPY_FLOAT32);
+            //     result = PyArray_EMPTY(nd, dims, NPY_FLOAT32, order);
             //     memcpy(data, f->dataPtr[0], *(float**)f->dataPtr, sizeof(float) * nitems);
             //     data = PyArray_DATA(result);
             //     return result;
             case fastdss_types_gr_i32s:
-                result = PyArray_SimpleNew(nd, dims, NPY_INT32);
+                result = PyArray_EMPTY(nd, dims, NPY_INT32, order);
                 if (result == NULL)
                 {
                     return NULL;
@@ -597,7 +607,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 memcpy(data, *(int32_t**)f->dataPtr, sizeof(int32_t) * nitems);
                 return result;
             case fastdss_types_gr_i8s:
-                result = PyArray_SimpleNew(nd, dims, NPY_INT8);
+                result = PyArray_EMPTY(nd, dims, NPY_INT8, order);
                 if (result == NULL)
                 {
                     return NULL;
