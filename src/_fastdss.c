@@ -956,7 +956,7 @@ static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, P
     }
 
     unsigned long long dssCtx, settingsPtr, dssCFuncs;
-    if ((!PyArg_ParseTuple(args, "KKOOOO", &dssCtx, &dssCFuncs, &settingsPtr, &self->DSSExceptionType, &setObj, &fakeLib)) || !PyObject_IsInstance(setObj, (PyObject*) &PySet_Type))
+    if ((!PyArg_ParseTuple(args, "KKKOOO", &dssCtx, &dssCFuncs, &settingsPtr, &self->DSSExceptionType, &setObj, &fakeLib)) || !PyObject_IsInstance(setObj, (PyObject*) &PySet_Type))
     {
         PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyContext initialization");
         return -1;
