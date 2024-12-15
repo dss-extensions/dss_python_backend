@@ -523,7 +523,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
     }
 
     nitems = f->countPtr[0];
-    if ((f->countPtr[2] == 0))
+    if ((f->countPtr[2] == 0) || ((settings & FastDSSSettings_AdvancedTypes) == 0))
     {
         dims[0] = nitems;
         if (resType == fastdss_types_gr_z128s)
