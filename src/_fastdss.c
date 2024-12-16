@@ -527,7 +527,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
     if (((settings & FastDSSSettings_AdvancedTypes) == 0))
     {
         dims[0] = nitems;
-        if (resType == fastdss_types_gr_z128s)
+        if (resType == fastdss_types_gr_z128s || resType == fastdss_types_gr_z128)
         {
             resType = fastdss_types_gr_f64s;
         }
@@ -549,7 +549,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
         {
             nitems /= 2;
         }
-        order = NPY_FORTRANORDER;
+        order = (resType == fastdss_types_gr_i32s) ? NPY_CORDER : NPY_FORTRANORDER;
     }
 
     if (!(settings & FastDSSSettings_UseLists))
