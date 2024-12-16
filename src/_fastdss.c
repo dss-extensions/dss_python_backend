@@ -511,7 +511,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
             PyEval_RestoreThread(threadstate);
             break;
     }
-    if (*f->errorPtr && ((*f->settingsPtr) & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
+    if (*f->errorPtr && (settings & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
     {
         const char *errorDesc = f->dssCFuncs->Error_Get_Description(f->dssCtx);
         int32_t num = *f->errorPtr;
@@ -822,7 +822,7 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
             break;
     }
 
-    if (*f->errorPtr && ((*f->settingsPtr) & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
+    if (*f->errorPtr && (settings & FastDSSSettings_UseExceptions) && f->parent->DSSExceptionType != Py_None)
     {
         const char *errorDesc = f->dssCFuncs->Error_Get_Description(f->dssCtx);
         int32_t num = *f->errorPtr;
