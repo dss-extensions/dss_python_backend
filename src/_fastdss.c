@@ -836,7 +836,6 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
         return NULL;
     }
 
-    result = PyList_New(count[0]);
     if (PyErr_Occurred())
     {
         f->dssCFuncs->DSS_Dispose_PPAnsiChar(&cstr_list, count[1]);
@@ -860,6 +859,8 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
             count[0] = 0;
         }
     }
+
+    result = PyList_New(count[0]);
 
     for (i = 0, sptr = cstr_list; i < count[0]; ++i, ++sptr)
     {
