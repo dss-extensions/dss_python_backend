@@ -126,3 +126,5 @@ dss_python_backend/**/*.hpp
 *.dbl
 *.sng
 *.pdb
+
+dss_python_backend/include

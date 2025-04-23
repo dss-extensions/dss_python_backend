@@ -27,56 +27,7 @@
 // #define PyList_SET_ITEM PyList_SetItem 
 // #endif
 
-//TODO: reuse code from the new capi.h header
-
-typedef int32_t (*func_i32_ctx_i32)(const void* ctx, int32_t value);
-typedef int32_t (*func_i32_ctx_str)(const void* ctx, const char* value);
-typedef int32_t (*func_i32_ctx)(const void* ctx);
-
-typedef double (*func_f64_ctx_i32)(const void* ctx, int32_t value);
-typedef double (*func_f64_ctx_str)(const void* ctx, const char* value);
-typedef double (*func_f64_ctx)(const void* ctx);
-
-typedef uint16_t (*func_b16_ctx_i32)(const void* ctx, int32_t value);
-typedef uint16_t (*func_b16_ctx_i32_i32)(const void* ctx, int32_t value, int32_t value2);
-typedef uint16_t (*func_b16_ctx_str)(const void* ctx, const char* value);
-typedef uint16_t (*func_b16_ctx)(const void* ctx);
-
-typedef const char* (*func_str_ctx)(const void* ctx);
-typedef const char* (*func_str_ctx_i32)(const void* ctx, int32_t value);
-typedef void (*func_void_ctx_strs)(const void* ctx, char*** ResultPtr, int32_t* ResultDims);
-typedef void (*func_void_ctx_strs_b16)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, uint16_t value);
-typedef void (*func_void_ctx_strs_i32)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, int32_t value);
-typedef void (*func_void_ctx_strs_str)(const void* ctx, char*** ResultPtr, int32_t* ResultDims, const char* value);
-typedef void (*gr_func_void_ctx)(const void* ctx);
-typedef void (*gr_func_void_ctx_b16)(const void* ctx, uint16_t value);
-typedef void (*gr_func_void_ctx_i32)(const void* ctx, int32_t value);
-typedef void (*gr_func_void_ctx_f64_f64_i32)(const void* ctx, double f1, double f2, int32_t value);
-
-typedef void (*func_void_ctx_i32)(const void* ctx, int32_t value);
-typedef void (*func_void_ctx_i32_i32)(const void* ctx, int32_t value, int32_t value2);
-typedef void (*func_void_ctx_f64)(const void* ctx, double value);
-typedef void (*func_void_ctx_b16)(const void* ctx, uint16_t value);
-typedef void (*func_void_ctx_str)(const void* ctx, const char* value);
-typedef void (*func_void_ctx)(const void* ctx);
-
-enum {
-    fastdss_types_void = 0,
-    fastdss_types_b16,
-    fastdss_types_f32,
-    fastdss_types_f64,
-    fastdss_types_f64_f64_i32,
-    fastdss_types_gr_f64s,
-    fastdss_types_gr_i32s,
-    fastdss_types_gr_i8s,
-    fastdss_types_gr_z128,
-    fastdss_types_gr_z128s,
-    fastdss_types_i32,
-    fastdss_types_i32_i32,
-    fastdss_types_str,
-    fastdss_types_strs,
-    fastdss_types_z64,
-};
+#include "altdss/capi/fastdss_func_info.h"
 
 enum FastDSSSettings {
     FastDSSSettings_UseExceptions = 1 << 0,
@@ -192,14 +143,6 @@ typedef struct AltDSS_PyContextObject_
     #include "./_fastdss_struct_members.inc.c"
 } AltDSS_PyContextObject;
 
-typedef struct {
-    int resType;
-    int argType;
-    size_t c_funcOffset;
-    size_t attrOffset;
-    char const* fname;
-} FastDSSFuncInfo;
-
 static int AltDSS_PyScalarSetter_init(AltDSS_PyScalarSetterObject *f, PyObject *Py_UNUSED(args_ignored), PyObject *Py_UNUSED(kwargs_ignored))
 {
     f->parent = NULL;
@@ -258,7 +201,7 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((func_void_ctx_i32)f->func)(f->dssCtx, cval_int);
+            ((altdss_func_v_cvp_i32)f->func)(f->dssCtx, cval_int);
             PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_i32_i32:
@@ -268,7 +211,7 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((func_void_ctx_i32_i32)f->func)(f->dssCtx, cval_int, cval_int2);
+            ((altdss_func_v_cvp_i32_i32)f->func)(f->dssCtx, cval_int, cval_int2);
             PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_f64:
@@ -278,17 +221,17 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((func_void_ctx_f64)f->func)(f->dssCtx, cval_float64);
+            ((altdss_func_v_cvp_f64)f->func)(f->dssCtx, cval_float64);
             PyEval_RestoreThread(threadstate);
             break;
-        case fastdss_types_b16:
+        case fastdss_types_u16:
             if (!PyArg_ParseTuple(args, "p", &cval_int))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyScalarSetter call (expected a boolean value)");
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((func_void_ctx_b16)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
+            ((altdss_func_v_cvp_u16)f->func)(f->dssCtx, cval_int ? (uint16_t)-1 : (uint16_t)0);
             PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_str:
@@ -298,12 +241,12 @@ static PyObject *AltDSS_PyScalarSetter_call(AltDSS_PyScalarSetterObject *f, PyOb
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((func_void_ctx_str)f->func)(f->dssCtx, cstr);
+            ((altdss_func_v_cvp_cstr)f->func)(f->dssCtx, cstr);
             PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_void:
             threadstate = PyEval_SaveThread();
-            ((func_void_ctx)f->func)(f->dssCtx);
+            ((altdss_func_v_cvp)f->func)(f->dssCtx);
             PyEval_RestoreThread(threadstate);
             break;
         default:
@@ -369,20 +312,20 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
     threadstate = PyEval_SaveThread();
     switch (f->resType)
     {
-        case fastdss_types_b16:
+        case fastdss_types_u16:
         switch (f->funcArgSignature)
         {
             case fastdss_types_i32_i32:
-                cval_int32 = ((func_b16_ctx_i32_i32)f->func)(f->dssCtx, argValue, argValue2);
+                cval_int32 = ((altdss_func_u16_cvp_i32_i32)f->func)(f->dssCtx, argValue, argValue2);
                 break;
             case fastdss_types_i32:
-                cval_int32 = ((func_b16_ctx_i32)f->func)(f->dssCtx, argValue);
+                cval_int32 = ((altdss_func_u16_cvp_i32)f->func)(f->dssCtx, argValue);
                 break;
             case fastdss_types_str:
-                cval_int32 = ((func_b16_ctx_str)f->func)(f->dssCtx, cstr);
+                cval_int32 = ((altdss_func_u16_cvp_cstr)f->func)(f->dssCtx, cstr);
                 break;
             case fastdss_types_void:
-                cval_int32 = ((func_b16_ctx)f->func)(f->dssCtx);
+                cval_int32 = ((altdss_func_u16_cvp)f->func)(f->dssCtx);
                 break;
             default:
                 PyEval_RestoreThread(threadstate);
@@ -394,13 +337,13 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
         switch (f->funcArgSignature)
         {
             case fastdss_types_i32:
-                cval_int32 = ((func_i32_ctx_i32)f->func)(f->dssCtx, argValue);
+                cval_int32 = ((altdss_func_i32_cvp_i32)f->func)(f->dssCtx, argValue);
                 break;
             case fastdss_types_str:
-                cval_int32 = ((func_i32_ctx_str)f->func)(f->dssCtx, cstr);
+                cval_int32 = ((altdss_func_i32_cvp_cstr)f->func)(f->dssCtx, cstr);
                 break;
             case fastdss_types_void:
-                cval_int32 = ((func_i32_ctx)f->func)(f->dssCtx);
+                cval_int32 = ((altdss_func_i32_cvp)f->func)(f->dssCtx);
                 break;
             default:
                 PyEval_RestoreThread(threadstate);
@@ -412,13 +355,13 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
         switch (f->funcArgSignature)
         {
             case fastdss_types_i32:
-                cval_float64 = ((func_f64_ctx_i32)f->func)(f->dssCtx, argValue);
+                cval_float64 = ((altdss_func_f64_vp_i32)f->func)(f->dssCtx, argValue);
                 break;
             case fastdss_types_str:
-                cval_float64 = ((func_f64_ctx_str)f->func)(f->dssCtx, cstr);
+                cval_float64 = ((altdss_func_f64_vp_cstr)f->func)(f->dssCtx, cstr);
                 break;
             case fastdss_types_void:
-                cval_float64 = ((func_f64_ctx)f->func)(f->dssCtx);
+                cval_float64 = ((altdss_func_f64_cvp)f->func)(f->dssCtx);
                 break;
             default:
                 PyEval_RestoreThread(threadstate);
@@ -443,7 +386,7 @@ static PyObject *AltDSS_PyScalarGetter_call(AltDSS_PyScalarGetterObject *f, PyOb
 
     switch (f->resType)
     {
-        case fastdss_types_b16:
+        case fastdss_types_u16:
             result = (cval_int32 ? Py_True : Py_False);
             Py_INCREF(result);
             return result;
@@ -482,7 +425,7 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((gr_func_void_ctx_f64_f64_i32)f->func)(f->dssCtx, float64Arg1, float64Arg2, argValue);
+            ((altdss_func_v_cvp_f64_f64_i32)f->func)(f->dssCtx, float64Arg1, float64Arg2, argValue);
             PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_i32:
@@ -492,22 +435,22 @@ static PyObject *AltDSS_PyGRGetter_call(AltDSS_PyGRGetterObject *f, PyObject *ar
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((gr_func_void_ctx_i32)f->func)(f->dssCtx, argValue);
+            ((altdss_func_v_cvp_i32)f->func)(f->dssCtx, argValue);
             PyEval_RestoreThread(threadstate);
             break;
-        case fastdss_types_b16:
+        case fastdss_types_u16:
             if (!PyArg_ParseTuple(args, "p", &argValue))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyGRSetter call (expected a boolean value)");
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((gr_func_void_ctx_b16)f->func)(f->dssCtx, argValue ? (uint16_t)-1 : (uint16_t)0);
+            ((altdss_func_v_cvp_u16)f->func)(f->dssCtx, argValue ? (uint16_t)-1 : (uint16_t)0);
             PyEval_RestoreThread(threadstate);
             break;
         default:
             threadstate = PyEval_SaveThread();
-            ((gr_func_void_ctx)f->func)(f->dssCtx);
+            ((altdss_func_v_cvp)f->func)(f->dssCtx);
             PyEval_RestoreThread(threadstate);
             break;
     }
@@ -737,12 +680,12 @@ static PyObject *AltDSS_PyStrGetter_call(AltDSS_PyStrGetterObject *f, PyObject *
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            cstr = ((func_str_ctx_i32)f->func)(f->dssCtx, argValue);
+            cstr = ((altdss_func_cstr_cvp_i32)f->func)(f->dssCtx, argValue);
             PyEval_RestoreThread(threadstate);
             break;
         default:
             threadstate = PyEval_SaveThread();
-            cstr = ((func_str_ctx)f->func)(f->dssCtx);
+            cstr = ((altdss_func_cstr_cvp)f->func)(f->dssCtx);
             PyEval_RestoreThread(threadstate);
             break;
     }
@@ -785,14 +728,14 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
 
     switch (f->funcArgSignature)
     {
-        case fastdss_types_b16:
+        case fastdss_types_u16:
             if (!PyArg_ParseTuple(args, "i", &argIntValue))
             {
                 PyErr_SetString(PyExc_TypeError, "Invalid arguments on AltDSS_PyStrGetter call (expected a boolean value)");
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((func_void_ctx_strs_i32)f->func)(f->dssCtx, &cstr_list, &count[0], argIntValue ? 1 : 0);
+            ((altdss_func_v_cvp_strs_i32p_u16)f->func)(f->dssCtx, &cstr_list, &count[0], argIntValue ? 1 : 0);
             PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_i32:
@@ -802,7 +745,7 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((func_void_ctx_strs_i32)f->func)(f->dssCtx, &cstr_list, &count[0], argIntValue);
+            ((altdss_func_v_cvp_strs_i32p_i32)f->func)(f->dssCtx, &cstr_list, &count[0], argIntValue);
             PyEval_RestoreThread(threadstate);
             break;
         case fastdss_types_str:
@@ -812,12 +755,12 @@ static PyObject *AltDSS_PyStrListGetter_call(AltDSS_PyStrListGetterObject *f, Py
                 return NULL;
             }
             threadstate = PyEval_SaveThread();
-            ((func_void_ctx_strs_str)f->func)(f->dssCtx, &cstr_list, &count[0], cstr);
+            ((altdss_func_v_cvp_strs_i32p_cstr)f->func)(f->dssCtx, &cstr_list, &count[0], cstr);
             PyEval_RestoreThread(threadstate);
             break;
         default:
             threadstate = PyEval_SaveThread();
-            ((func_void_ctx_strs)f->func)(f->dssCtx, &cstr_list, &count[0]);
+            ((altdss_func_v_cvp_strs_i32p)f->func)(f->dssCtx, &cstr_list, &count[0]);
             PyEval_RestoreThread(threadstate);
             break;
     }
@@ -952,7 +895,8 @@ static struct PyModuleDef altdss_fast_def = {
 
 int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, FastDSSFuncInfo* finfo, PyObject *setObj, PyObject *fakeLib);
 
-#include "./_fastdss_func_info.inc.c"
+#define FASTDSS_FUNCINFO_FILL(funcname) offsetof(AltDSSCAPI, funcname), NULL, offsetof(AltDSS_PyContextObject, f_##funcname), #funcname
+#include "altdss/capi/fastdss_func_info.inc.c"
 
 static int AltDSS_PyContext_init(AltDSS_PyContextObject *self, PyObject *args, PyObject *Py_UNUSED(kwargs_ignored))
 {
@@ -1160,7 +1104,7 @@ int AltDSS_PyScalarSetter_cinit(AltDSS_PyScalarSetterObject* f, AltDSS_PyContext
         finfo->argType != fastdss_types_i32_i32 &&
         finfo->argType != fastdss_types_i32 && 
         finfo->argType != fastdss_types_f64 && 
-        finfo->argType != fastdss_types_b16 &&
+        finfo->argType != fastdss_types_u16 &&
         finfo->argType != fastdss_types_void &&
         finfo->argType != fastdss_types_str)
         || (finfo->resType != fastdss_types_void)
@@ -1187,7 +1131,7 @@ int AltDSS_PyScalarGetter_cinit(AltDSS_PyScalarGetterObject* f, AltDSS_PyContext
 {
     if (finfo->resType != fastdss_types_i32 && 
         finfo->resType != fastdss_types_f64 && 
-        finfo->resType != fastdss_types_b16)
+        finfo->resType != fastdss_types_u16)
     {
         f->dssCtx = NULL;
         f->func = NULL;
@@ -1276,7 +1220,7 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, FastDSSFuncInfo* finfo, PyOb
                 case fastdss_types_i32_i32:
                 case fastdss_types_f64:
                 case fastdss_types_i32:
-                case fastdss_types_b16:
+                case fastdss_types_u16:
                 case fastdss_types_str:
                 case fastdss_types_void:
                     *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarSetterObject, &AltDSS_PyScalarSetterType);
@@ -1312,7 +1256,7 @@ int AltDSS_Add_PyFunc(AltDSS_PyContextObject *self, FastDSSFuncInfo* finfo, PyOb
                     break;
                 case fastdss_types_f64:
                 case fastdss_types_i32:
-                case fastdss_types_b16:
+                case fastdss_types_u16:
                     *py_func = (PyObject*) PyObject_New(AltDSS_PyScalarGetterObject, &AltDSS_PyScalarGetterType);
                     if ((*py_func) == NULL)
                     {
