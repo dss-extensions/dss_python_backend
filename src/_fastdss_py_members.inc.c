@@ -477,6 +477,7 @@ static PyMemberDef AltDSS_PyContext_members[] = {
 {"CktElement_Get_OCPDevIndex", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_OCPDevIndex)},
 {"CktElement_Get_OCPDevType", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_OCPDevType)},
 {"CktElement_Get_VariableIdx", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_VariableIdx)},
+{"CktElement_Get_YprimOrder", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CktElement_Get_YprimOrder)},
 {"CtrlQueue_Get_ActionCode", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CtrlQueue_Get_ActionCode)},
 {"CtrlQueue_Get_DeviceHandle", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CtrlQueue_Get_DeviceHandle)},
 {"CtrlQueue_Get_NumActions", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_CtrlQueue_Get_NumActions)},

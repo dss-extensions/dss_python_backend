@@ -476,6 +476,7 @@ PyObject *f_CktElement_Get_NumTerminals;
 PyObject *f_CktElement_Get_OCPDevIndex;
 PyObject *f_CktElement_Get_OCPDevType;
 PyObject *f_CktElement_Get_VariableIdx;
+PyObject *f_CktElement_Get_YprimOrder;
 PyObject *f_CtrlQueue_Get_ActionCode;
 PyObject *f_CtrlQueue_Get_DeviceHandle;
 PyObject *f_CtrlQueue_Get_NumActions;
