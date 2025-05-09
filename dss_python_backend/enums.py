@@ -473,6 +473,20 @@ class DSSCompatFlags(IntFlag):
     Set this compatibility flag to silently ignore the errors listed above and restore the original behavior.
     """
 
+    LegacySMARTDS = 0x00000800
+    """
+    Starting AltDSS/DSS C-API v0.15.0, this flag was added to try to adjust the parser to handle .DSS files from the
+    [SMART-DS](https://data.openei.org/submissions/2981) dataset.
+
+    Enable this flag to add the extra handling. If you save the circuit afterwards, the saved scripts should be compatible with
+    modern DSS versions.
+
+    This flag is required since OpenDSS changed the models for a few components several years ago.
+
+    If you still cannot load a scenario from SMART-DS, please report on GitHub, e.g., for a previous discussion see:
+    https://github.com/orgs/dss-extensions/discussions/50
+    """
+
 
 class AltDSSEvent(IntEnum):
     """
