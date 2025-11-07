@@ -88,16 +88,9 @@ else:
 
 
 setup(
-    name="dss_python_backend",
-    description="Low-level Python bindings and native libs for DSS-Python. Not intended for direct usage, see DSS-Python instead.",
-    long_description=long_description,
-    long_description_content_type='text/markdown',
-    author="Paulo Meira",
-    author_email="pmeira@ieee.org",
     version=package_version,
-    license="BSD",
     packages=['dss_python_backend'],
-    setup_requires=["cffi>=1.11.2"],
+    setup_requires=["cffi>=2.0.0"],
     cffi_modules= [
         "dss_build.py:ffi_builder_dss",
         'dss_build.py:ffi_builder_GenUserModel_altdss', 
@@ -111,25 +104,8 @@ setup(
     ],
     ext_modules=[dss_build.fastdss_extension],
     ext_package="dss_python_backend",
-    install_requires=["cffi>=1.11.2"],
     # tests_require=["pytest"],
     zip_safe=False,
-    classifiers=[
-        'Intended Audience :: Science/Research',
-        'Intended Audience :: Education',
-
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.10',
-        'Programming Language :: Python :: 3.11',
-        'Programming Language :: Python :: 3.12',
-        'Programming Language :: Python :: Implementation :: CPython',
-        'Programming Language :: Python :: Implementation :: PyPy',
-        'Development Status :: 5 - Production/Stable',
-        'Topic :: Scientific/Engineering',
-        'License :: OSI Approved :: BSD License'
-    ],
     **extra_args
 )
 

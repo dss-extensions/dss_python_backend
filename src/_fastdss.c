@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: (C) 2024-2025 Paulo Meira & contributors to DSS-Extensions
+// SPDX-License-Identifier: LGPL-3.0-only
+
 // This is a C extension that contains a few faster alternatives for a subset
 // of functions from AltDSS/DSS C-API. The rest of the functions are handled
 // via CFFI.

@@ -1,3 +1,42 @@
+[project]
+name = "dss_python_backend"
+dynamic = ["version"]
+readme = {file = "README.md", content-type = "text/markdown"}
+description = "Low-level Python bindings and native libs for DSS-Python, OpenDSSDirect.py and AltDSS-Python. Not intended for direct usage, see the high-level packages instead."
+license = "BSD-3-Clause AND LGPL-3.0-only"
+license-files = ["LICENSE.BSD3", "LICENSE.LGPL3", "OPENDSS_LICENSE"]
+authors = [
+    {name = "Paulo Meira", email = "pmeira@ieee.org"},
+]
+maintainers = [
+    {name = "Paulo Meira", email = "pmeira@ieee.org"},
+]
+dependencies = [
+    "cffi>=2,<3",
+    "numpy>=2,<3",
+]
+requires-python = ">=3.11" # Following NumPy's requirements
+
+classifiers=[
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
+
+    "Development Status :: 5 - Production/Stable",
+
+    "Topic :: Scientific/Engineering",
+]
+
+[project.urls]
+Homepage = "https://github.com/dss-extensions/dss_python_backend"
+Repository = "https://github.com/dss-extensions/dss_python_backend.git"
+"Bug Tracker" = "https://github.com/dss-extensions/dss-extensions/issues"
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"

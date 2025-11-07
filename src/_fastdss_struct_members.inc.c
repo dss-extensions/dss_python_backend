@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: (C) 2024-2025 Paulo Meira & contributors to DSS-Extensions
+// SPDX-License-Identifier: LGPL-3.0-only
+
 PyObject *f_ActiveClass_Get_ActiveClassName;
 PyObject *f_ActiveClass_Get_ActiveClassParent;
 PyObject *f_ActiveClass_Get_Name;

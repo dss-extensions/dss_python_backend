@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: (C) 2024-2025 Paulo Meira & contributors to DSS-Extensions
+// SPDX-License-Identifier: LGPL-3.0-only
+
 static PyMemberDef AltDSS_PyContext_members[] = {
 {"ActiveClass_Get_ActiveClassName", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_Get_ActiveClassName)},
 {"ActiveClass_Get_ActiveClassParent", Py_T_OBJECT_EX, offsetof(AltDSS_PyContextObject, f_ActiveClass_Get_ActiveClassParent)},

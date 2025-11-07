@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: (C) 2024-2025 Paulo Meira & contributors to DSS-Extensions
+# SPDX-License-Identifier: LGPL-3.0-only
 
 from enum import Enum
 

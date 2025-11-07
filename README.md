@@ -6,12 +6,18 @@
 
 `dss_python_backend` provides low-level bindings for an implementation of EPRI's OpenDSS, using [CFFI](https://cffi.readthedocs.io/) and our [DSS C-API library and headers](https://github.com/dss-extensions/dss_capi/). It contains the native libraries (and DLLs) required by DSS-Python. This is considered an implementation detail.
 
-**This is not intended for direct usage, [see DSS-Python](https://github.com/dss-extensions/dss_python/) and [OpenDSSDirect.py](https://github.com/dss-extensions/OpenDSSDirect.py/) instead!**
+**This is not intended for direct usage, [see DSS-Python](https://github.com/dss-extensions/DSS-Python/), [OpenDSSDirect.py](https://github.com/dss-extensions/OpenDSSDirect.py/), and [AltDSS-Python](https://github.com/dss-extensions/AltDSS-Python/) instead!**
 
 After several years integrated into DSS-Python, this package was created in April 2023 to make the maintenance easier. See https://github.com/dss-extensions/dss_python/issues/51
 
-This package includes:
-- CFFI modules for DSS C-API
+The Python package includes:
+- FastDSS modules for AltDSS/DSS C-API
+- CFFI modules for AltDSS/DSS C-API
 - CFFI modules for user-models (only the code for generator user-models is being compiled nowadays)
-- DSS C-API libraries, DLLs, and headers
+- AltDSS/DSS C-API related libraries (AltDSS Engine, Oddie, Loader, etc.), DLLs, and headers
 
+This module contains source-code licensed under BSD3 and LGPL3. See each file for SPDX comments.
+
+Although this repository does not contain code from OpenDSS, the license is listed in `OPENDSS_LICENSE` for reference. The final packages do include software derived from OpenDSS code and other libraries, such as KLUSolveX and KLU (from SuiteSparse), both licensed under the LGPL. Since the files listed in this repository contain multiple licenses, SPDX identifiers are now included in the file headers.
+
+*Note: this package might be renamed in the future to reflect the new developments.*
