@@ -1027,6 +1027,9 @@ PyMODINIT_FUNC PyInit__fastdss()
     {
         return NULL;
     }
+#ifdef Py_GIL_DISABLED
+    PyUnstable_Module_SetGIL(m, Py_MOD_GIL_NOT_USED);
+#endif
 
     Py_INCREF(&AltDSS_PyContextType);
     if (PyModule_AddObject(m, "AltDSS_PyContext", (PyObject *) &AltDSS_PyContextType) < 0)
