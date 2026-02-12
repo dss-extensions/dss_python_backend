@@ -1,7 +1,7 @@
 import numpy
 from cffi import FFI
 import sys, re, os
-from dss_setup_common import PLATFORM_FOLDER, BUILD_ODDIE
+from dss_setup_common import PLATFORM_FOLDER
 from setuptools import Extension
 
 def process_header(src, extern_py=False, implement_py=False, prefix='', flags=None, fn='', remove=[]):
@@ -249,7 +249,7 @@ _fast_dss_options = dict(
     include_dirs=[numpy.get_include(), inc_dir],
     libraries=['altdss_capi_loader'],
     library_dirs=[lib_dir],
-    extra_link_args=["-Wl,-R,$ORIGIN/."],
+    **extra
     # extra_compile_args=['-g', '-O0'],
     # extra_link_args=['-g'],
 )

@@ -1,9 +1,9 @@
 set -e -x
-export PATH=/opt/python/cp39-cp39/bin/:$PATH
-export DSS_PYTHON_BACKEND_MANYLINUX=1
+export PATH=/opt/python/cp311-cp311/bin/:$PATH
+# export DSS_PYTHON_BACKEND_MANYLINUX=1
 
 cd dss_python_backend
-python3 -m pip install --upgrade pip cffi wheel
+python3 -m pip install --user --upgrade pip setuptools packaging trove-classifiers cffi wheel numpy==2
 python3 setup.py --quiet bdist_wheel --py-limited-api cp37 --dist-dir="../artifacts_raw"
 cd ..
 

@@ -4,7 +4,7 @@ from dss_setup_common import PLATFORM_FOLDER, DLL_SUFFIX
 import glob
 import dss_build
 
-MANYLINUX = os.environ.get('DSS_PYTHON_BACKEND_MANYLINUX', '0') == '1'
+SKIP_COPY = os.environ.get('DSS_PYTHON_BACKEND_SKIP_COPY', '0') == '1'
 
 # Copy README.md contents
 with io.open('README.md', encoding='utf8') as readme_md:
@@ -51,8 +51,7 @@ base_dll_path_in = os.path.join(DSS_CAPI_PATH, 'lib', PLATFORM_FOLDER)
 dll_path_out = os.path.abspath(os.path.join(src_path, 'dss_python_backend'))
 include_path_out = os.path.join(dll_path_out, 'include')
 
-if not MANYLINUX:
-    # for manylinux wheels, auditwheel handles copying the libs later
+if not SKIP_COPY:
     for fn in glob.glob(os.path.join(base_dll_path_in, '*{}'.format(DLL_SUFFIX))):
         shutil.copy(fn, dll_path_out)
 
@@ -75,16 +74,9 @@ extra_files = (
     glob.glob(os.path.join(dll_path_out, '*.a'))
 )    
 
-if MANYLINUX:
-    # Do not pack .so files when building manylinux wheels
-    # (auditwheel will copy and adjust them anyway)
-    extra_args = dict(package_data={
-        'dss_python_backend': extra_files
-    })
-else:
-    extra_args = dict(package_data={
-        'dss_python_backend': ['*{}'.format(DLL_SUFFIX)] + extra_files
-    })
+extra_args = dict(package_data={
+    'dss_python_backend': ['*{}'.format(DLL_SUFFIX)] + extra_files
+})
 
 
 setup(

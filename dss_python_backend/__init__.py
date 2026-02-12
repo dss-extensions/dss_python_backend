@@ -56,5 +56,5 @@ if _init_result != 1:
 # CffiApiUtil so we call it as soon as the DLL/so is loaded.
 lib.DSS_Start(ffi.NULL, 0)
 
-__version__ = '0.14.6a1'
+__version__ = '0.15.0a1'
 __all__ = ['ffi', 'lib', 'loader_lib']
