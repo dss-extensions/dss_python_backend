@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: (C) 2023-2025 Paulo Meira & contributors to DSS-Extensions
+# SPDX-FileCopyrightText: (C) 2023-2026 Paulo Meira & contributors to DSS-Extensions
 # SPDX-License-Identifier: BSD-3
 
 try:
@@ -663,11 +663,20 @@ class SetterFlags(IntFlag):
     - Null pointers for strings (in this case, use a `"\\0"` string for empty strings)
     """
 
+    Broadcast = 0x00000010
+    """
+    In some specific array(-like) properties, a single scalar value can be broadcast to 
+    all elements in the array.
+    """
+
     AllowAllConductors = 0x40000000
     """
+    **Deprecated**
+
     Used internally for the "Wires" property ("Conductors").
     This was left public in case someone tries to implement some internal aspects in
-    external functions.
+    external functions. EPRI's OpenDSS introduced a similar `Conductors` property,
+    so this flag is not required anymore in modern versions of AltDSS.
     """
 
 
@@ -1100,11 +1109,23 @@ class VCCSNonRMSVariables(IntEnum):
     '''Hout'''
 
 
+class BatchOperation(IntEnum):
+    '''
+    AltDSS Batch Operations
+
+    *These are not typically used by end-users.*
+    '''
+    Set = 0
+    Multiply = 1
+    Increment = 2
+    Divide = 3
+
 
 __all__ = [
     'ActionCodes',
     'AltDSSEvent',
     'AutoAddTypes',
+    'BatchOperation',
     'CapControlModes',
     'CktModels',
     'ControlModes',
