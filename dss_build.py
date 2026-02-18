@@ -124,6 +124,10 @@ extra = {}
 # loaded without changing LD_LIBRARY_PATH.
 if sys.platform == 'linux':
     extra['extra_link_args'] = ["-Wl,-R,$ORIGIN/."]
+elif sys.platform == 'win32':
+    # Due to some specifics on Windows, we need to skip the lib included via pragma
+    python3xx_lib = f"python{sys.version_info.major}{sys.version_info.minor}.lib"
+    extra['extra_link_args'] = [f"/NODEFAULTLIB:{python3xx_lib}"]
 
 ffi_builders = {}    
 

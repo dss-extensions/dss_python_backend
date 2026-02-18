@@ -11,8 +11,14 @@
 // TODO: enums in int32 and one_int32 results, e.g. LoadModels
 
 #define PY_SSIZE_T_CLEAN
-// #define Py_LIMITED_API 0x03070000
+
 #include <string.h>
+#ifdef _WIN32
+#if defined(_MSC_VER)
+#pragma comment(lib, "python3.lib") 
+#endif
+#endif
+
 #include <Python.h>
 #include <structmember.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
