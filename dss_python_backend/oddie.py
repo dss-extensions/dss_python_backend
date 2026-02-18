@@ -7,15 +7,16 @@ import os
 from . import _altdss_capi_loader
 from ._altdss_capi_loader import ffi, lib as loader_lib
 from pathlib import Path
+from . import DLL_SUFFIX, DLL_PREFIX
 
 altdss_lib_parent_path = Path(_altdss_capi_loader.__file__).absolute().parent
 
 if os.environ.get('DSS_EXTENSIONS_DEBUG', '') != '1':
-    oddie_lib_path = altdss_lib_parent_path.joinpath('libaltdss_oddie_capi.so')
+    oddie_lib_path = altdss_lib_parent_path.joinpath(f'{DLL_PREFIX}altdss_oddie_capi{DLL_SUFFIX}')
 else:
     import warnings
     warnings.warn('Environment variable DSS_EXTENSIONS_DEBUG=1 is set: loading the debug version of the AltDSS Oddie library')
-    oddie_lib_path = altdss_lib_parent_path.joinpath('libaltdss_oddie_capid.so')
+    oddie_lib_path = altdss_lib_parent_path.joinpath(f'{DLL_PREFIX}altdss_oddie_capid{DLL_SUFFIX}')
 
 if not oddie_lib_path.exists():
     print(oddie_lib_path)
