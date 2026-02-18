@@ -3,7 +3,7 @@
 set -e -x
 
 ORIGINAL_PATH=$PATH
-PYTHON_DIRS="cp311-cp311 cp312-cp312"
+PYTHON_DIRS="cp312-cp312 cp313-cp313 cp314-cp314"
 
 for pydir in $PYTHON_DIRS
 do
@@ -11,4 +11,5 @@ do
     export PATH=/opt/python/${pydir}/bin/:$ORIGINAL_PATH
     python -m pip install artifacts/dss_python_backend-*.whl
     python -c 'from dss_python_backend import lib, ffi; lib.DSS_NewCircuit(ffi.NULL, b"test123"); assert ffi.string(lib.Circuit_Get_Name(ffi.NULL)) == b"test123"'
+    python -c 'from dss_python_backend import _fastdss'
 done
