@@ -128,6 +128,9 @@ elif sys.platform == 'win32':
     # Due to some specifics on Windows, we need to skip the lib included via pragma
     python3xx_lib = f"python{sys.version_info.major}{sys.version_info.minor}.lib"
     extra['extra_link_args'] = [f"/NODEFAULTLIB:{python3xx_lib}"]
+elif sys.platform == 'darwin':
+    extra['extra_link_args'] = ["-Wl,-rpath,@loader_path/."]
+
 
 ffi_builders = {}    
 

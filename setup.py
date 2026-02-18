@@ -1,7 +1,9 @@
 from setuptools import setup
-import re, shutil, os, io
+import re, shutil, os, io, sys, glob
+
+sys.path.insert(0, os.path.dirname(__file__))
+
 from dss_setup_common import PLATFORM_FOLDER, DLL_SUFFIX
-import glob
 import dss_build
 
 SKIP_COPY = os.environ.get('DSS_PYTHON_BACKEND_SKIP_COPY', '0') == '1'
@@ -81,7 +83,7 @@ extra_args = dict(package_data={
 
 setup(
     version=package_version,
-    packages=['dss_python_backend'],
+    packages=['dss_python_backend', 'dss_python_backend.include'],
     setup_requires=["cffi>=2.0.0"],
     cffi_modules= [
         "dss_build.py:ffi_builder_dss",

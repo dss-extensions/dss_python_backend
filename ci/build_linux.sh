@@ -3,8 +3,9 @@ export PATH=/opt/python/cp311-cp311/bin/:$PATH
 # export DSS_PYTHON_BACKEND_MANYLINUX=1
 
 cd dss_python_backend
-python3 -m pip install --user --upgrade pip setuptools packaging trove-classifiers cffi wheel numpy==2
-python3 setup.py --quiet bdist_wheel --py-limited-api cp37 --dist-dir="../artifacts_raw"
+python3 -m pip install --user --upgrade pip setuptools packaging trove-classifiers cffi wheel 'numpy>=2,<3' build
+# python3 setup.py --quiet bdist_wheel --py-limited-api cp37 --dist-dir="../artifacts_raw"
+python3 -m build --wheel --outdir="../artifacts_raw"
 cd ..
 
 # Bundle external shared libraries into the wheels
