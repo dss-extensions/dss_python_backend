@@ -175,7 +175,7 @@ with open('cffi/dss_capi_custom.c', 'r') as f:
     extra_source_dss += '#include <altdss/capi/capi.h>\n'
     extra_source_dss += f.read()
 
-ffi_builder_dss.cdef(cffi_header_dss)
+ffi_builder_dss.cdef(cffi_header_dss, packed=True)
 
 lib_dir = os.path.join(DSS_CAPI_PATH, 'lib/{}'.format(PLATFORM_FOLDER))
 inc_dir = os.path.join(DSS_CAPI_PATH, 'include')

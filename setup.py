@@ -57,10 +57,10 @@ if not SKIP_COPY:
     for fn in glob.glob(os.path.join(base_dll_path_in, '*{}'.format(DLL_SUFFIX))):
         shutil.copy(fn, dll_path_out)
 
-# Copy libs (easier to build custom extensions with a default DSS Python installation)
-for pattern in ('*.lib', '*.a', '*.pdb'):
-    for fn in glob.glob(os.path.join(base_dll_path_in, pattern)):
-        shutil.copy(fn, dll_path_out)
+    # Copy libs (easier to build custom extensions with a default DSS Python installation)
+    for pattern in ('*.lib', '*.a', '*.pdb'):
+        for fn in glob.glob(os.path.join(base_dll_path_in, pattern)):
+            shutil.copy(fn, dll_path_out)
 
 # Copy headers
 if os.path.exists(include_path_out):
