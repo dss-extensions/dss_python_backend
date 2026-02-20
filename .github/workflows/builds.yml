@@ -3,7 +3,7 @@ name: Builds
 # TODO: generalize steps
 
 env:
-  DSS_CAPI_TAG: '0.14.4'
+  DSS_CAPI_TAG: '0.15.0b3'
   ARTIFACTS_FOLDER: '${{ github.workspace }}/artifacts'
 
 on: 
@@ -12,55 +12,53 @@ on:
   push:
 
 jobs:
-  build_linux_x64:
-    name: 'Linux x64'
-    runs-on: ubuntu-latest
+  build_linux:
+    name: 'Linux ${{ matrix.arch }} (${{ matrix.manylinux-base }})'
+    continue-on-error: false
     strategy:
       matrix:
-        container-image: [
-          'quay.io/pypa/manylinux_2_28_x86_64',
-          'quay.io/pypa/manylinux2014_x86_64'
-        ]
-    container:
-      image: ${{ matrix.container-image }}
+        include:
+          - arch: x64
+            docker_image: 'quay.io/pypa/manylinux_2_28_x86_64'
+            dss_extensions_linux32: ''
+            gh_image: ubuntu-latest
+            manylinux-base: 'manylinux_2_28'
+            conda_subdir: 'linux-64'
+
+          - arch: x64
+            docker_image: 'quay.io/pypa/manylinux2014_x86_64'
+            dss_extensions_linux32: ''
+            gh_image: ubuntu-latest
+            manylinux-base: 'manylinux2014'
+            conda_subdir: 'linux-64'
+
+          - arch: x86
+            docker_image: 'quay.io/pypa/manylinux_2_34_i686'
+            dss_extensions_linux32: linux32
+            gh_image: ubuntu-latest
+            manylinux-base: 'manylinux2014'
+            conda_subdir: 'linux-32'
+
+          - arch: arm64
+            docker_image: 'quay.io/pypa/manylinux_2_28_aarch64'
+            dss_extensions_linux32: ''
+            gh_image: ubuntu-24.04-arm
+            manylinux-base: 'manylinux_2_28'
+            conda_subdir: 'linux-aarch64'
+
+          - arch: arm64
+            docker_image: 'quay.io/pypa/manylinux2014_aarch64'
+            dss_extensions_linux32: ''
+            gh_image: ubuntu-24.04-arm
+            manylinux-base: 'manylinux2014'
+            conda_subdir: 'linux-aarch64'
+
+    runs-on: ${{ matrix.gh_image }}
     env:
-      CONDA_SUBDIR: 'linux-64'
+      CONDA_SUBDIR: '${{ matrix.conda_subdir }}'
       DSS_CAPI_PATH: '${{ github.workspace }}/dss_capi'
       CONDA: "/opt/miniconda/"
-    steps: 
-      - name: 'Checkout'
-        run: |
-          git clone $GITHUB_SERVER_URL/$GITHUB_REPOSITORY dss_python_backend
-          cd dss_python_backend
-          git checkout $GITHUB_SHA
-      - name: 'Download/extract DSS C-API binaries'
-        run: |
-          curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/dss_capi_${DSS_CAPI_TAG}_linux_x64.tar.gz -o dss_capi.tar.gz
-          tar zxf dss_capi.tar.gz
-          cd dss_python_backend/dss_python_backend
-      - name: Build wheel
-        run: |
-          mkdir -p artifacts
-          mkdir -p artifacts_raw
-          bash dss_python_backend/ci/build_linux.sh x64
-      # - name: Build conda packages
-      #   continue-on-error: true
-      #   run: |
-      #     bash dss_python_backend/ci/build_conda.sh
-      - name: Try installing the wheel
-        run: bash dss_python_backend/ci/test_wheel.sh
-      - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v3"
-        with:
-          name: 'packages'
-          path: '${{ github.workspace }}/artifacts'
-
-  build_linux_x86:
-    name: 'Linux x86'
-    runs-on: ubuntu-latest
-    env:
-      CONDA_SUBDIR: 'linux-32'
-      DOCKER_IMAGE: 'pmeira/manylinux_wheel_fpc322_i686'
+      DOCKER_IMAGE: '${{ matrix.docker_image }}'
     steps: 
       - name: 'Checkout'
         run: |
@@ -72,27 +70,38 @@ jobs:
           docker pull $DOCKER_IMAGE
       - name: 'Download/extract DSS C-API binaries'
         run: |
-          curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/dss_capi_${DSS_CAPI_TAG}_linux_x86.tar.gz -o dss_capi.tar.gz
+          curl -s -L https://github.com/dss-extensions/dss_capi/releases/download/${DSS_CAPI_TAG}/dss_capi_${DSS_CAPI_TAG}_linux_${{ matrix.arch }}.tar.gz -o dss_capi.tar.gz
           tar zxf dss_capi.tar.gz
           cd dss_python_backend/dss_python_backend
       - name: Build wheel
         run: |
           mkdir -p artifacts
           mkdir -p artifacts_raw
-          docker run -e GITHUB_SHA -e GITHUB_REF -e DSS_CAPI_PATH=/build/dss_capi -v "${PWD}:/build" -w /build $DOCKER_IMAGE bash /build/dss_python_backend/ci/build_linux.sh x86
+          docker run -e GITHUB_SHA -e GITHUB_REF -e DSS_CAPI_PATH=/build/dss_capi -v "${PWD}:/build" -w /build $DOCKER_IMAGE ${{ matrix.dss_extensions_linux32}} bash /build/dss_python_backend/ci/build_linux.sh ${{ matrix.arch }}
+          ls -lh dss_python_backend/dss_python_backend
+      # - name: Build conda packages
+      #   continue-on-error: false
+      #   run: |
+      #     bash dss_python_backend/ci/build_conda.sh
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v3"
+        uses: "actions/upload-artifact@v4"
         with:
-          name: 'packages'
+          name: 'packages-linux_${{ matrix.arch }}-${{ matrix.manylinux-base }}'
           path: '${{ github.workspace }}/artifacts'
+      - name: Try installing the wheel
+        continue-on-error: ${{ matrix.arch == 'x86' }}
+        run: |
+          docker run -e GITHUB_SHA -e GITHUB_REF -e DSS_CAPI_PATH=/build/dss_capi -v "${PWD}:/build" -w /build $DOCKER_IMAGE ${{ matrix.dss_extensions_linux32}} bash /build/dss_python_backend/ci/test_wheel.sh
 
   build_macos_x64:
     name: 'macOS x64'
-    runs-on: 'macos-11'
+    continue-on-error: false
+    runs-on: 'macos-15-intel'
     env:
       DSS_CAPI_PATH: '${{ github.workspace }}/dss_capi'
       #SDKROOT: '${{ github.workspace }}/MacOSX10.13.sdk'
-      PYTHON: python3
+      PYTHON: python
+      MACOSX_DEPLOYMENT_TARGET: "11.0"
     steps:
       - uses: actions/checkout@v3
         with: 
@@ -107,30 +116,47 @@ jobs:
       #   run: |
       #     curl -s -L https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.13.sdk.tar.xz -o macOSsdk.tar.xz
       #     tar xf macOSsdk.tar.xz
+      - name: 'Prepare Python'
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Prepare virtual environment
+        run: |
+          $PYTHON -m venv buildvenv
       - name: Build wheel
         run: |
+          source buildvenv/bin/activate
           bash dss_python_backend/ci/build_wheel.sh
       # - name: Build conda packages
-      #   continue-on-error: true
+      #   continue-on-error: false
       #   run: |
       #     sudo chown -R $UID $CONDA
       #     bash dss_python_backend/ci/build_conda.sh
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v3"
+        uses: "actions/upload-artifact@v4"
         with:
-          name: 'packages'
+          name: 'packages-darwin_x64'
           path: '${{ github.workspace }}/artifacts'
+      - name: Try installing the wheel
+        continue-on-error: true
+        shell: bash
+        run: |
+          python -m pip install artifacts/dss_python_backend-*.whl
+          python -c 'from dss_python_backend import lib, ffi; lib.DSS_NewCircuit(ffi.NULL, b"test123"); assert ffi.string(lib.Circuit_Get_Name(ffi.NULL)) == b"test123"'
+          python -c 'from dss_python_backend import _fastdss'
 
   build_macos_arm64:
     name: 'macOS ARM64'
-    runs-on: 'macos-11'
+    continue-on-error: false
+    runs-on: 'macos-15'
     env:
       DSS_CAPI_PATH: '${{ github.workspace }}/dss_capi'
       # SDKROOT: '${{ github.workspace }}/MacOSX10.13.sdk'
-      PYTHON: python3
+      PYTHON: python
       _PYTHON_HOST_PLATFORM: macosx-11.0-arm64
       ARCHFLAGS: '-arch arm64'
-
+      MACOSX_DEPLOYMENT_TARGET: "11.0"
     steps:
       - uses: actions/checkout@v3
         with: 
@@ -145,23 +171,40 @@ jobs:
       #   run: |
       #     curl -s -L https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.13.sdk.tar.xz -o macOSsdk.tar.xz
       #     tar xf macOSsdk.tar.xz
+      - name: 'Prepare Python'
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Prepare virtual environment
+        run: |
+          python -m venv buildvenv
       - name: Build wheel
         run: |
+          source buildvenv/bin/activate
           bash dss_python_backend/ci/build_wheel.sh
       # - name: Build conda packages
-      #   continue-on-error: true
+      #   continue-on-error: false
       #   run: |
       #     sudo chown -R $UID $CONDA
       #     bash dss_python_backend/ci/build_conda.sh
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v3"
+        uses: "actions/upload-artifact@v4"
         with:
-          name: 'packages'
+          name: 'packages-darwin_arm64'
           path: '${{ github.workspace }}/artifacts'
+      - name: Try installing the wheel
+        continue-on-error: true
+        shell: bash
+        run: |
+          python -m pip install artifacts/dss_python_backend-*.whl
+          python -c 'from dss_python_backend import lib, ffi; lib.DSS_NewCircuit(ffi.NULL, b"test123"); assert ffi.string(lib.Circuit_Get_Name(ffi.NULL)) == b"test123"'
+          python -c 'from dss_python_backend import _fastdss'
 
   build_win_x64:
     name: 'Windows x64'
-    runs-on: windows-2019
+    continue-on-error: false
+    runs-on: windows-2022
     env:
       CONDA_SUBDIR: 'win-64'
       DSS_CAPI_PATH: '${{ github.workspace }}\dss_capi'
@@ -182,19 +225,28 @@ jobs:
         run: |
           bash dss_python_backend/ci/build_wheel.sh
       # - name: Build conda packages
-      #   continue-on-error: true
+      #   continue-on-error: false
       #   shell: bash
       #   run: |
       #     bash dss_python_backend/ci/build_conda.sh
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v3"
+        uses: "actions/upload-artifact@v4"
         with:
-          name: 'packages'
+          name: 'packages-win_x64'
           path: '${{ github.workspace }}/artifacts'
+      - name: Try installing the wheel
+        continue-on-error: true
+        shell: bash
+        run: |
+          python -m pip install artifacts/dss_python_backend-*.whl
+          python -c "from dss_python_backend import lib, ffi; lib.DSS_NewCircuit(ffi.NULL, b'test123'); assert ffi.string(lib.Circuit_Get_Name(ffi.NULL)) == b'test123'"
+          python -c "from dss_python_backend import _fastdss"
+
 
   build_win_x86:
     name: 'Windows x86'
-    runs-on: windows-2019
+    continue-on-error: false
+    runs-on: windows-2022
     env:
       CONDA_SUBDIR: 'win-32'
       DSS_CAPI_PATH: '${{ github.workspace }}\dss_capi'
@@ -204,9 +256,11 @@ jobs:
         with: 
           fetch-depth: 0
           path: 'dss_python_backend'
-      - uses: actions/setup-python@v3
+      - name: 'Setup Python'
+        uses: actions/setup-python@v6
         with:
-          python-version: '3.8'
+          python-version: '3.11'
+          cache: 'pip'
           architecture: 'x86'
       - name: 'Download/extract DSS C-API binaries'
         shell: cmd
@@ -219,8 +273,27 @@ jobs:
         run: |
           bash dss_python_backend/ci/build_wheel.sh
       - name: 'Upload artifacts'
-        uses: "actions/upload-artifact@v3"
+        uses: "actions/upload-artifact@v4"
         with:
-          name: 'packages'
+          name: 'packages-win_x86'
           path: '${{ github.workspace }}/artifacts'
+      - name: Try installing the wheel
+        continue-on-error: true
+        shell: bash
+        run: |
+          python -m pip install artifacts/dss_python_backend-*.whl
+          python -c "from dss_python_backend import lib, ffi; lib.DSS_NewCircuit(ffi.NULL, b'test123'); assert ffi.string(lib.Circuit_Get_Name(ffi.NULL)) == b'test123'"
+          python -c "from dss_python_backend import _fastdss"
 
+  merge:
+    name: 'Merge build artifacts'
+    continue-on-error: false
+    runs-on: ubuntu-latest
+    needs: [build_linux, build_macos_arm64, build_macos_x64, build_win_x64, build_win_x86]
+    steps:
+      - name: Merge Artifacts
+        uses: actions/upload-artifact/merge@v4
+        with:
+          name: dss_python_backend-builds
+          pattern: packages-*
+          # delete-merged: true

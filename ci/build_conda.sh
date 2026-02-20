@@ -6,7 +6,7 @@ if [ "$RUNNER_OS" = "Windows" ]; then
 fi
 
 export PATH=$CONDA:$CONDA/bin:$CONDA/scripts:$PATH
-export DSS_PYTHON_BACKEND_MANYLINUX=0
+# export DSS_PYTHON_BACKEND_MANYLINUX=0
 
 source $CONDA/etc/profile.d/conda.sh
 
@@ -18,7 +18,7 @@ conda config --add channels conda-forge
 conda create -p ../boa boa anaconda-client
 conda activate boa
 
-PYTHON_VERSIONS="3.7 3.8 3.9 3.10 3.11"
+PYTHON_VERSIONS="3.11 3.12"
 for pyversion in $PYTHON_VERSIONS
 do
     # Workaround to build when a single version fails

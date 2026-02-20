@@ -1,7 +1,7 @@
 import atexit
 from weakref import WeakKeyDictionary
 from .enums import AltDSSEvent
-from . import ffi, lib
+from . import ffi, lib, loader_lib
 
 LEGACY_EVENTS = (
     AltDSSEvent.Legacy_InitControls,
@@ -29,10 +29,10 @@ class EventCallbackManager:
                 continue
 
             handlers[:] = []
-            lib.ctx_DSSEvents_UnregisterAlt(
+            lib.DSSEvents_UnregisterAlt(
                 self.ctx,
                 evt_type,
-                lib.altdss_python_util_callback
+                loader_lib.altdss_python_util_callback
             )
 
     def __del__(self):
@@ -41,10 +41,10 @@ class EventCallbackManager:
     def register_func(self, evt: AltDSSEvent, func) -> bool:
         handlers = getattr(self, AltDSSEvent(evt).name)
         if len(handlers) == 0:
-            if lib.ctx_DSSEvents_RegisterAlt(
+            if lib.DSSEvents_RegisterAlt(
                 self.ctx,
                 evt,
-                lib.altdss_python_util_callback
+                loader_lib.altdss_python_util_callback
             ) == 0:
                 raise RuntimeError('Could not register main callback function.')
 
@@ -59,10 +59,10 @@ class EventCallbackManager:
         prev_len = len(handlers)
         handlers[:] = [f for f in handlers if f is not func]
         if len(handlers) == 0:
-            lib.ctx_DSSEvents_UnregisterAlt(
+            lib.DSSEvents_UnregisterAlt(
                 self.ctx,
                 evt,
-                lib.altdss_python_util_callback
+                loader_lib.altdss_python_util_callback
             )
 
         return prev_len != len(handlers)

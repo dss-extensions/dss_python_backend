@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: (C) 2023-2026 Paulo Meira & contributors to DSS-Extensions
+# SPDX-License-Identifier: BSD-3
+
 try:
     from enum import IntEnum, IntFlag
 except (ModuleNotFoundError, ImportError):
@@ -124,6 +127,9 @@ class SolutionAlgorithms(IntEnum):
 
     NewtonSolve = 1
     """Solution algorithm option - Newton solution"""
+
+    NCIMSolve = 2
+    """Solution algorithm option - NCIM solution"""
 
 class ControlModes(IntEnum):
     Static = 0
@@ -393,8 +399,9 @@ class DSSCompatFlags(IntFlag):
 
     InvControl9611 = 0x00000004
     """
-    Toggle some InvControl behavior introduced in OpenDSS 9.6.1.1. It could be a regression
-    but needs further investigation, so we added this flag in the time being.
+    Toggle some InvControl behavior introduced in OpenDSS 9.6.1.1. It was confirmed as a 
+    regression and was fixed in OpenDSS v10. The flag still has effects for a few more
+    releases, in case users need to investigate differences across versions.
     """
 
     SaveCalcVoltageBases = 0x00000008
@@ -436,6 +443,53 @@ class DSSCompatFlags(IntFlag):
     This flag only affects some of the classic API functions, especially Loads and Generators.
     """
 
+    MonitorHeader = 0x00000080
+    """
+    Add extra spaces (and trailing comma) to the monitor headers to match the official OpenDSS implementation.
+    This affects both the Header function/property in the API, and the exported CSVs.
+
+    The extra spaces can cause issues with third-party software. For example, Pandas adds 
+    an extra empty column for monitor exports, and keeps the spaces in the column names.
+    This typically requires extra steps to both remove the spaces in the column names, and 
+    discard the extra column.
+    """
+
+    InvControlDeltaV = 0x00000100
+    """
+    An issue with the voltage delta across iterations was found and fixed in AltDSS/DSS C-API 0.15.0.
+    Use this flag to restore the previous behavior, which also matches the official OpenDSS.
+
+    The issue affects situations where an InvControl object tracks multiple DERs, while using one of the volt-var modes.
+    It is not always apparent and does not always affect the end results.
+    """
+
+    PermissiveProperties = 0x00000200
+    """
+    Starting AltDSS/DSS C-API v0.15.0, the way some properties are handled has been tweaked to try to provide a better experience for general users.
+
+    - The arrays provided in the text interface, scripts or the Alt APIs are required to match the provided sizes. For example, if a LoadShape has `NPts` set to 12 and the user provides 24 values for `PMult`, an error is generated.
+
+    - Some properties in Transformer and AutoTrans that previously silently replaced zeros with default values now error.
+
+    - Some properties are read-only, but previously silent ignored input values. Errors are now generated if the user tries to set them. This includes some properties that are read-only on certain conditions. For example, if a SwtControl is locked, its state cannot be set.
+
+    Set this compatibility flag to silently ignore the errors listed above and restore the original behavior.
+    """
+
+    LegacySMARTDS = 0x00000800
+    """
+    Starting AltDSS/DSS C-API v0.15.0, this flag was added to try to adjust the parser to handle .DSS files from the
+    [SMART-DS](https://data.openei.org/submissions/2981) dataset.
+
+    Enable this flag to add the extra handling. If you save the circuit afterwards, the saved scripts should be compatible with
+    modern DSS versions.
+
+    This flag is required since OpenDSS changed the models for a few components several years ago.
+
+    If you still cannot load a scenario from SMART-DS, please report on GitHub, e.g., for a previous discussion see:
+    https://github.com/orgs/dss-extensions/discussions/50
+    """
+
 
 class AltDSSEvent(IntEnum):
     """
@@ -455,7 +509,7 @@ class AltDSSEvent(IntEnum):
 class DSSPropertyNameStyle(IntEnum):
     """
     This enum is used in the PropertyNameStyle property to control the naming convention.
-    Currently, this only affects capitalization, i.e., if you software already uses case
+    Currently, this only affects capitalization, i.e., if your software already uses case
     insensitive string comparisons for the property names, this is not useful. Otherwise,
     you can use `Legacy` to use the older names.
     """
@@ -609,11 +663,20 @@ class SetterFlags(IntFlag):
     - Null pointers for strings (in this case, use a `"\\0"` string for empty strings)
     """
 
+    Broadcast = 0x00000010
+    """
+    In some specific array(-like) properties, a single scalar value can be broadcast to 
+    all elements in the array.
+    """
+
     AllowAllConductors = 0x40000000
     """
+    **Deprecated**
+
     Used internally for the "Wires" property ("Conductors").
     This was left public in case someone tries to implement some internal aspects in
-    external functions.
+    external functions. EPRI's OpenDSS introduced a similar `Conductors` property,
+    so this flag is not required anymore in modern versions of AltDSS.
     """
 
 
@@ -1046,11 +1109,23 @@ class VCCSNonRMSVariables(IntEnum):
     '''Hout'''
 
 
+class BatchOperation(IntEnum):
+    '''
+    AltDSS Batch Operations
+
+    *These are not typically used by end-users.*
+    '''
+    Set = 0
+    Multiply = 1
+    Increment = 2
+    Divide = 3
+
 
 __all__ = [
     'ActionCodes',
     'AltDSSEvent',
     'AutoAddTypes',
+    'BatchOperation',
     'CapControlModes',
     'CktModels',
     'ControlModes',
