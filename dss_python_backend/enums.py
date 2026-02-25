@@ -504,6 +504,8 @@ class AltDSSEvent(IntEnum):
     Clear = 3
     ReprocessBuses = 4
     BuildSystemY = 5
+    SampleControlDevices = 6
+    AllocateVI = 7
 
 
 class DSSPropertyNameStyle(IntEnum):
